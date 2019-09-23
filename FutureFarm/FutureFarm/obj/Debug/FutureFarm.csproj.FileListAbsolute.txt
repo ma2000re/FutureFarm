@@ -1,0 +1,10 @@
+D:\OneDrive - BHAK und BHAS Mistelbach 316448\Schule\AP_SWE\GitHub\FutureFarmProgramm\FutureFarm\FutureFarm\bin\Debug\FutureFarm.exe.config
+D:\OneDrive - BHAK und BHAS Mistelbach 316448\Schule\AP_SWE\GitHub\FutureFarmProgramm\FutureFarm\FutureFarm\bin\Debug\FutureFarm.exe
+D:\OneDrive - BHAK und BHAS Mistelbach 316448\Schule\AP_SWE\GitHub\FutureFarmProgramm\FutureFarm\FutureFarm\bin\Debug\FutureFarm.pdb
+D:\OneDrive - BHAK und BHAS Mistelbach 316448\Schule\AP_SWE\GitHub\FutureFarmProgramm\FutureFarm\FutureFarm\obj\Debug\FutureFarm.csprojAssemblyReference.cache
+D:\OneDrive - BHAK und BHAS Mistelbach 316448\Schule\AP_SWE\GitHub\FutureFarmProgramm\FutureFarm\FutureFarm\obj\Debug\FutureFarm.Form1.resources
+D:\OneDrive - BHAK und BHAS Mistelbach 316448\Schule\AP_SWE\GitHub\FutureFarmProgramm\FutureFarm\FutureFarm\obj\Debug\FutureFarm.Properties.Resources.resources
+D:\OneDrive - BHAK und BHAS Mistelbach 316448\Schule\AP_SWE\GitHub\FutureFarmProgramm\FutureFarm\FutureFarm\obj\Debug\FutureFarm.csproj.GenerateResource.cache
+D:\OneDrive - BHAK und BHAS Mistelbach 316448\Schule\AP_SWE\GitHub\FutureFarmProgramm\FutureFarm\FutureFarm\obj\Debug\FutureFarm.csproj.CoreCompileInputs.cache
+D:\OneDrive - BHAK und BHAS Mistelbach 316448\Schule\AP_SWE\GitHub\FutureFarmProgramm\FutureFarm\FutureFarm\obj\Debug\FutureFarm.exe
+D:\OneDrive - BHAK und BHAS Mistelbach 316448\Schule\AP_SWE\GitHub\FutureFarmProgramm\FutureFarm\FutureFarm\obj\Debug\FutureFarm.pdb
