@@ -50,6 +50,9 @@ namespace FutureFarm
             panelAuswahl.Height = btArtikel.Height;
             panelAuswahl.Top = btArtikel.Top;
 
+            FrmArtikel fArtikel = new FrmArtikel();
+            fArtikel.ShowDialog();
+
         }
 
         private void btLieferanten_Click(object sender, EventArgs e)
