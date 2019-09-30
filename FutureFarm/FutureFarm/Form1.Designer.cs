@@ -28,20 +28,26 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.panel1 = new System.Windows.Forms.Panel();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panelAuswahl = new System.Windows.Forms.Panel();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.btLogin = new System.Windows.Forms.Button();
+            this.btBeenden = new System.Windows.Forms.Button();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.btEinstellungen = new System.Windows.Forms.Button();
             this.btLieferanten = new System.Windows.Forms.Button();
             this.btKunden = new System.Windows.Forms.Button();
             this.btArtikel = new System.Windows.Forms.Button();
             this.btRechnungen = new System.Windows.Forms.Button();
             this.btHome = new System.Windows.Forms.Button();
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.btBeenden = new System.Windows.Forms.Button();
+            this.listViewLoginDaten = new System.Windows.Forms.ListView();
+            this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -62,6 +68,53 @@
             this.panel1.Size = new System.Drawing.Size(205, 670);
             this.panel1.TabIndex = 0;
             // 
+            // panelAuswahl
+            // 
+            this.panelAuswahl.BackColor = System.Drawing.Color.DodgerBlue;
+            this.panelAuswahl.Location = new System.Drawing.Point(1, 97);
+            this.panelAuswahl.Name = "panelAuswahl";
+            this.panelAuswahl.Size = new System.Drawing.Size(10, 79);
+            this.panelAuswahl.TabIndex = 2;
+            // 
+            // panel2
+            // 
+            this.panel2.BackColor = System.Drawing.Color.DodgerBlue;
+            this.panel2.Controls.Add(this.btLogin);
+            this.panel2.Controls.Add(this.btBeenden);
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel2.Location = new System.Drawing.Point(205, 0);
+            this.panel2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(945, 55);
+            this.panel2.TabIndex = 1;
+            // 
+            // btLogin
+            // 
+            this.btLogin.FlatAppearance.BorderSize = 0;
+            this.btLogin.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btLogin.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btLogin.Image = global::FutureFarm.Properties.Resources.grün;
+            this.btLogin.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btLogin.Location = new System.Drawing.Point(6, 13);
+            this.btLogin.Name = "btLogin";
+            this.btLogin.Size = new System.Drawing.Size(155, 29);
+            this.btLogin.TabIndex = 1;
+            this.btLogin.Text = "Log In";
+            this.btLogin.UseVisualStyleBackColor = true;
+            this.btLogin.Click += new System.EventHandler(this.btLogin_Click);
+            // 
+            // btBeenden
+            // 
+            this.btBeenden.FlatAppearance.BorderSize = 0;
+            this.btBeenden.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btBeenden.Image = global::FutureFarm.Properties.Resources.turn_off;
+            this.btBeenden.Location = new System.Drawing.Point(903, 12);
+            this.btBeenden.Name = "btBeenden";
+            this.btBeenden.Size = new System.Drawing.Size(30, 30);
+            this.btBeenden.TabIndex = 0;
+            this.btBeenden.UseVisualStyleBackColor = true;
+            this.btBeenden.Click += new System.EventHandler(this.btBeenden_Click);
+            // 
             // pictureBox1
             // 
             this.pictureBox1.Image = global::FutureFarm.Properties.Resources.logoTransp;
@@ -71,14 +124,6 @@
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 7;
             this.pictureBox1.TabStop = false;
-            // 
-            // panelAuswahl
-            // 
-            this.panelAuswahl.BackColor = System.Drawing.Color.DodgerBlue;
-            this.panelAuswahl.Location = new System.Drawing.Point(1, 97);
-            this.panelAuswahl.Name = "panelAuswahl";
-            this.panelAuswahl.Size = new System.Drawing.Size(10, 79);
-            this.panelAuswahl.TabIndex = 2;
             // 
             // btEinstellungen
             // 
@@ -176,45 +221,53 @@
             this.btHome.UseVisualStyleBackColor = true;
             this.btHome.Click += new System.EventHandler(this.btHome_Click);
             // 
-            // panel2
+            // listViewLoginDaten
             // 
-            this.panel2.BackColor = System.Drawing.Color.DodgerBlue;
-            this.panel2.Controls.Add(this.btBeenden);
-            this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel2.Location = new System.Drawing.Point(205, 0);
-            this.panel2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(945, 55);
-            this.panel2.TabIndex = 1;
+            this.listViewLoginDaten.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader1,
+            this.columnHeader2,
+            this.columnHeader3});
+            this.listViewLoginDaten.Location = new System.Drawing.Point(428, 132);
+            this.listViewLoginDaten.Name = "listViewLoginDaten";
+            this.listViewLoginDaten.Size = new System.Drawing.Size(601, 342);
+            this.listViewLoginDaten.TabIndex = 17;
+            this.listViewLoginDaten.UseCompatibleStateImageBehavior = false;
+            this.listViewLoginDaten.View = System.Windows.Forms.View.Details;
             // 
-            // btBeenden
+            // columnHeader1
             // 
-            this.btBeenden.FlatAppearance.BorderSize = 0;
-            this.btBeenden.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btBeenden.Image = global::FutureFarm.Properties.Resources.turn_off;
-            this.btBeenden.Location = new System.Drawing.Point(903, 12);
-            this.btBeenden.Name = "btBeenden";
-            this.btBeenden.Size = new System.Drawing.Size(30, 30);
-            this.btBeenden.TabIndex = 0;
-            this.btBeenden.UseVisualStyleBackColor = true;
-            this.btBeenden.Click += new System.EventHandler(this.btBeenden_Click);
+            this.columnHeader1.Text = "BID";
+            this.columnHeader1.Width = 40;
+            // 
+            // columnHeader2
+            // 
+            this.columnHeader2.Text = "Benutzer";
+            this.columnHeader2.Width = 200;
+            // 
+            // columnHeader3
+            // 
+            this.columnHeader3.Text = "Passwort";
+            this.columnHeader3.Width = 200;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1150, 670);
+            this.Controls.Add(this.listViewLoginDaten);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Form1";
+            this.Load += new System.EventHandler(this.Form1_Load);
             this.panel1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -232,6 +285,11 @@
         private System.Windows.Forms.Panel panelAuswahl;
         private System.Windows.Forms.Button btBeenden;
         private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.Button btLogin;
+        private System.Windows.Forms.ListView listViewLoginDaten;
+        private System.Windows.Forms.ColumnHeader columnHeader1;
+        private System.Windows.Forms.ColumnHeader columnHeader2;
+        private System.Windows.Forms.ColumnHeader columnHeader3;
     }
 }
 

@@ -7,6 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.IO;
+using System.Data.OleDb;
 
 namespace FutureFarm
 {
@@ -19,7 +21,20 @@ namespace FutureFarm
             //Auswahl anpassen
             panelAuswahl.Height = btHome.Height;
             panelAuswahl.Top = btHome.Top;
+
+            db = new Datenbank();
         }
+
+        Boolean passwortKorrekt = false;
+        internal String benutzerEingabe;
+        internal String passwortEingabe;
+        Datenbank db;
+        String sql;
+        StreamReader sr;
+        StreamWriter sw;
+        ListViewItem lvItem;
+        OleDbDataReader dr;
+        int anzahlBenutzer;
 
         private void btHome_Click(object sender, EventArgs e)
         {
@@ -65,6 +80,46 @@ namespace FutureFarm
         {
             panelAuswahl.Height = btKunden.Height;
             panelAuswahl.Top = btKunden.Top;
+        }
+
+        private void btLogin_Click(object sender, EventArgs e)
+        {
+            FrmLogin fLogin = new FrmLogin();
+            fLogin.ShowDialog();
+
+            benutzerEingabe = fLogin.txtBenutzername.Text;
+            passwortEingabe = fLogin.txtPasswort.Text;
+
+            
+
+            //if (benutzerEingabe.Equals("Manuel") && passwortEingabe.Equals("Passw0rd"))
+            //{
+            //    passwortKorrekt = true;
+            //    MessageBox.Show("Login erfolgreich!");
+            //}
+            //else
+            //    MessageBox.Show("Login fehlgeschlagen!");
+        }
+
+        private void BenutzerEinlesen()
+        {
+            listViewLoginDaten.Items.Clear();
+            sql = "Select * from tblLogin";
+            dr = db.Einlesen(sql);
+            while (dr.Read())
+            {
+                lvItem = new ListViewItem(dr[0].ToString());
+                lvItem.SubItems.Add(dr[1].ToString());
+                lvItem.SubItems.Add(dr[2].ToString());
+
+                listViewLoginDaten.Items.Add(lvItem);
+                anzahlBenutzer++;
+            }
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            BenutzerEinlesen();
         }
     }
 }
