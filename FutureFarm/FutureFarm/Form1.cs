@@ -25,7 +25,7 @@ namespace FutureFarm
             db = new Datenbank();
         }
 
-        Boolean passwortKorrekt = false;
+        internal Boolean LogIn = false;
         internal String benutzerEingabe;
         internal String passwortEingabe;
         Datenbank db;
@@ -34,7 +34,7 @@ namespace FutureFarm
         StreamWriter sw;
         ListViewItem lvItem;
         OleDbDataReader dr;
-        int anzahlBenutzer;
+        internal int anzahlBenutzer;
 
         private void btHome_Click(object sender, EventArgs e)
         {
@@ -84,21 +84,39 @@ namespace FutureFarm
 
         private void btLogin_Click(object sender, EventArgs e)
         {
+            Einloggen();
+        }
+
+        internal void Einloggen()
+        {
+            Form1 f1 = new Form1();
             FrmLogin fLogin = new FrmLogin();
             fLogin.ShowDialog();
 
             benutzerEingabe = fLogin.txtBenutzername.Text;
             passwortEingabe = fLogin.txtPasswort.Text;
 
-            
+            for (int i = 0; i < anzahlBenutzer; i++)
+            {
+                //MessageBox.Show(listViewLoginDaten.Items[i].SubItems[1].ToString());
+                if (listViewLoginDaten.Items[i].SubItems[1].Text == benutzerEingabe)
+                {
+                    //MessageBox.Show(listViewLoginDaten.Items[i].SubItems[1].Text + "***" + benutzerEingabe);
+                    if (listViewLoginDaten.Items[i].SubItems[2].Text == passwortEingabe)
+                    {
+                        MessageBox.Show("Login erfolgreich!");
+                        LogIn = true;
+                        btLogin.Text = benutzerEingabe;
+                    }
+                    else
+                        LogIn = false;
+                }
+            }
 
-            //if (benutzerEingabe.Equals("Manuel") && passwortEingabe.Equals("Passw0rd"))
-            //{
-            //    passwortKorrekt = true;
-            //    MessageBox.Show("Login erfolgreich!");
-            //}
-            //else
-            //    MessageBox.Show("Login fehlgeschlagen!");
+            if (LogIn == false)
+            {
+                MessageBox.Show("Login fehlgeschlagen!");
+            }
         }
 
         private void BenutzerEinlesen()
