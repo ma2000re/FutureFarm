@@ -84,7 +84,22 @@ namespace FutureFarm
 
         private void btLogin_Click(object sender, EventArgs e)
         {
+            if(LogIn==false)
             Einloggen();
+            else
+            {
+                DialogResult dialogResult = MessageBox.Show("Wollen Sie den Benutzer wirklich abmelden?", "Log Out", MessageBoxButtons.YesNo);
+                if (dialogResult == DialogResult.Yes)
+                {
+                    LogIn = false;
+                    btLogin.Image = Image.FromFile("D:\\OneDrive - BHAK und BHAS Mistelbach 316448\\Schule\\AP_SWE\\GitHub\\FutureFarmProgramm\\FutureFarm\\FutureFarm\\Properties\\logout.png");
+                    btLogin.Text = "Log In";
+                }
+                else if (dialogResult == DialogResult.No)
+                {
+                    this.Close(); 
+                }
+            }
         }
 
         internal void Einloggen()
@@ -104,9 +119,10 @@ namespace FutureFarm
                     //MessageBox.Show(listViewLoginDaten.Items[i].SubItems[1].Text + "***" + benutzerEingabe);
                     if (listViewLoginDaten.Items[i].SubItems[2].Text == passwortEingabe)
                     {
-                        MessageBox.Show("Login erfolgreich!");
                         LogIn = true;
                         btLogin.Text = benutzerEingabe;
+
+                        btLogin.Image = Image.FromFile("D:\\OneDrive - BHAK und BHAS Mistelbach 316448\\Schule\\AP_SWE\\GitHub\\FutureFarmProgramm\\FutureFarm\\FutureFarm\\Properties\\login.png");
                     }
                     else
                         LogIn = false;

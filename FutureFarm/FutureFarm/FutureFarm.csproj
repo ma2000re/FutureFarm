@@ -185,6 +185,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="logoNEW.ico" />
+    <None Include="Properties\logout.png" />
+    <None Include="Properties\grün.jpeg" />
     <None Include="Properties\grün.png" />
     <None Include="Properties\rot.png" />
   </ItemGroup>
