@@ -50,7 +50,8 @@ namespace FutureFarm
         private void ArtikelEinlesen()
         {
             listViewArtikel.Items.Clear();
-            sql = "Select * from tblArtikel";
+            sql = "SELECT tblArtikel.ArtikelID, tblArtikel.Bezeichnung, tblArtikel.PreisNetto, tblUmsatzsteuer.UstSatz, tblLieferanten.Firma, tblArtikel.Lagerstand, tblArtikel.Reserviert FROM tblUmsatzsteuer INNER JOIN(tblLieferanten INNER JOIN tblArtikel ON tblLieferanten.LieferantenID = tblArtikel.LieferantenID) ON tblUmsatzsteuer.UstID = tblArtikel.UstID;";
+
             dr = db.Einlesen(sql);
             while (dr.Read())
             {
@@ -67,6 +68,43 @@ namespace FutureFarm
                 listViewArtikel.Items.Add(lvItem);
 
             }
+        }
+
+        private void listViewArtikel_ItemSelectionChanged(object sender, ListViewItemSelectionChangedEventArgs e)
+        {
+
+        }
+
+        private void listViewArtikel_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (listViewArtikel.SelectedItems.Count == 0)
+            {
+                MessageBox.Show("Wählen Sie bitte einen Artikel aus!");
+                return;
+            }
+            lvItem = listViewArtikel.SelectedItems[0];
+
+            txtArtikelID.Text = lvItem.SubItems[0].Text;
+            txtBezeichnung.Text = lvItem.SubItems[1].Text;
+            txtNettopreis.Text = (lvItem.SubItems[2].Text);
+            txtUST.Text = lvItem.SubItems[3].Text;
+            Double netto = Convert.ToDouble(txtNettopreis.Text);
+            Double ust = Convert.ToDouble(txtUST.Text);
+            txtBrutto.Text = (netto + (1 + ust / 100)).ToString();
+            txtLagerstand.Text = lvItem.SubItems[5].Text;
+            txtReserviert.Text = lvItem.SubItems[6].Text;
+            txtLieferant.Text = lvItem.SubItems[4].Text;
+            //fKunde.id = Convert.ToInt64(lvItem.SubItems[0].Text);
+            //fKunde.txtVorname.Text = lvItem.SubItems[1].Text;
+            //fKunde.txtZuname.Text = lvItem.SubItems[2].Text;
+            //fKunde.dtpGeburt.Value = Convert.ToDateTime(lvItem.SubItems[3].Text);
+            //fKunde.txtEmail.Text = lvItem.SubItems[4].Text;
+            //fKunde.txtTelefon.Text = lvItem.SubItems[5].Text;
+            //fKunde.txtStraße.Text = lvItem.SubItems[7].Text;
+            //fKunde.plz = lvItem.SubItems[6].Text;
+            
+           // inlesenKunden();
+
         }
     }
 }
