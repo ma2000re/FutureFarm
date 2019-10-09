@@ -16,7 +16,7 @@ namespace FutureFarm
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new FrmArtikel());
+            Application.Run(new Form1());
         }
     }
 }

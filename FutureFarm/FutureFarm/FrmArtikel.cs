@@ -26,12 +26,20 @@ namespace FutureFarm
         StreamWriter sw;
         ListViewItem lvItem;
         OleDbDataReader dr;
+        FrmWarnung fWarnung = new FrmWarnung();
+
 
         private void btHome_Click(object sender, EventArgs e)
         {
             panelAuswahl.Height = btHome.Height;
             panelAuswahl.Top = btHome.Top;
+
+            FrmWarnung fWarnung = new FrmWarnung();
+            fWarnung.lbText.Text = "Nicht gesicherte Daten gehen verloren! \nWollen Sie fortfahren?";
+            fWarnung.ShowDialog();
+            if (fWarnung.weiter == true)
             this.Close();
+            
         }
 
         private void btArtikelNeu_Click(object sender, EventArgs e)
@@ -50,7 +58,7 @@ namespace FutureFarm
         private void ArtikelEinlesen()
         {
             listViewArtikel.Items.Clear();
-            sql = "SELECT tblArtikel.ArtikelID, tblArtikel.Bezeichnung, tblArtikel.PreisNetto, tblUmsatzsteuer.UstSatz, tblLieferanten.Firma, tblArtikel.Lagerstand, tblArtikel.Reserviert FROM tblUmsatzsteuer INNER JOIN(tblLieferanten INNER JOIN tblArtikel ON tblLieferanten.LieferantenID = tblArtikel.LieferantenID) ON tblUmsatzsteuer.UstID = tblArtikel.UstID;";
+            sql = "SELECT tblArtikel.ArtikelID, tblArtikel.Bezeichnung, tblArtikel.PreisNetto, tblUmsatzsteuer.UstSatz, tblLieferanten.Firma, tblArtikel.Lagerstand, tblArtikel.Reserviert, tblArtikel.Aktiv FROM tblUmsatzsteuer INNER JOIN(tblLieferanten INNER JOIN tblArtikel ON tblLieferanten.LieferantenID = tblArtikel.LieferantenID) ON tblUmsatzsteuer.UstID = tblArtikel.UstID;";
 
             dr = db.Einlesen(sql);
             while (dr.Read())
@@ -63,9 +71,10 @@ namespace FutureFarm
                 lvItem.SubItems.Add(dr[5].ToString());
                 lvItem.SubItems.Add(dr[6].ToString());
 
-
-
-                listViewArtikel.Items.Add(lvItem);
+                if(dr[7].ToString()=="True")
+                {
+                    listViewArtikel.Items.Add(lvItem);
+                }
 
             }
         }
@@ -104,6 +113,44 @@ namespace FutureFarm
             //fKunde.plz = lvItem.SubItems[6].Text;
             
            // inlesenKunden();
+
+        }
+
+        private void btSpeichern_Click(object sender, EventArgs e)
+        {
+            //sql = "SELECT tblArtikel.ArtikelID, tblArtikel.Bezeichnung, tblArtikel.PreisNetto, tblUmsatzsteuer.UstSatz, tblLieferanten.Firma, tblArtikel.Lagerstand, tblArtikel.Reserviert FROM tblUmsatzsteuer INNER JOIN(tblLieferanten INNER JOIN tblArtikel ON tblLieferanten.LieferantenID = tblArtikel.LieferantenID) ON tblUmsatzsteuer.UstID = tblArtikel.UstID;";
+            // sql = "Update Artikel set Bezeichnung='" + txtBezeichnung.Text + "', Nettopreis='" + preis + "', UmsatzsteuerID='" + (cbUstSatz.SelectedIndex + 1) + "' where ArtikelID=" + id + ";";
+            if (txtArtikelID.Text != "")
+            {
+               // sql="UPDATE tblArtikel, tblUmsatzsteuer, tblLieferanten SET tblArtikel.Bezeichnung='"+txtBezeichnung.Text+"', tblArtikel.PreisNetto='"+txtNettopreis.Text+"', tblUmsatzsteuer.UstSatz="
+            }
+            else if (txtArtikelID.Text == "")
+            {
+                FrmWarnung fWarnung = new FrmWarnung();
+                fWarnung.lbText.Text = "Bitte wählen Sie einen Artikel aus, bevor Sie Änderungen\nspeichern wollen!";
+                fWarnung.ShowDialog();
+            }
+        }
+
+        private void btLöschen_Click(object sender, EventArgs e)
+        {
+            if (txtArtikelID.Text != "")
+            {
+                fWarnung.Text = "Wollen Sie den Artikel wirklich löschen?";
+                fWarnung.ShowDialog();
+                if(fWarnung.weiter==true)
+                {
+                    sql = "UPDATE tblArtikel SET Aktiv='false'";
+                    db.Ausfuehren(sql);
+
+                    //>AAAAAAAAAAAAAAAAAAAAAAAAAA
+                }
+            }
+            else if (txtArtikelID.Text == "")
+            {
+                fWarnung.lbText.Text = "Bitte wählen Sie einen Artikel aus, bevor Sie Änderungen\nspeichern wollen!";
+                fWarnung.ShowDialog();
+            }
 
         }
     }

@@ -60,6 +60,9 @@
             this.txtReserviert = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
             this.txtLieferant = new System.Windows.Forms.TextBox();
+            this.btNeu = new System.Windows.Forms.Button();
+            this.btSpeichern = new System.Windows.Forms.Button();
+            this.btLöschen = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
@@ -366,11 +369,46 @@
             this.txtLieferant.Size = new System.Drawing.Size(254, 21);
             this.txtLieferant.TabIndex = 25;
             // 
+            // btNeu
+            // 
+            this.btNeu.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btNeu.Location = new System.Drawing.Point(857, 97);
+            this.btNeu.Name = "btNeu";
+            this.btNeu.Size = new System.Drawing.Size(161, 53);
+            this.btNeu.TabIndex = 27;
+            this.btNeu.Text = "Neu";
+            this.btNeu.UseVisualStyleBackColor = true;
+            // 
+            // btSpeichern
+            // 
+            this.btSpeichern.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btSpeichern.Location = new System.Drawing.Point(857, 156);
+            this.btSpeichern.Name = "btSpeichern";
+            this.btSpeichern.Size = new System.Drawing.Size(161, 53);
+            this.btSpeichern.TabIndex = 28;
+            this.btSpeichern.Text = "Speichern";
+            this.btSpeichern.UseVisualStyleBackColor = true;
+            this.btSpeichern.Click += new System.EventHandler(this.btSpeichern_Click);
+            // 
+            // btLöschen
+            // 
+            this.btLöschen.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btLöschen.Location = new System.Drawing.Point(857, 215);
+            this.btLöschen.Name = "btLöschen";
+            this.btLöschen.Size = new System.Drawing.Size(161, 53);
+            this.btLöschen.TabIndex = 29;
+            this.btLöschen.Text = "Löschen";
+            this.btLöschen.UseVisualStyleBackColor = true;
+            this.btLöschen.Click += new System.EventHandler(this.btLöschen_Click);
+            // 
             // FrmArtikel
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1162, 678);
+            this.Controls.Add(this.btLöschen);
+            this.Controls.Add(this.btSpeichern);
+            this.Controls.Add(this.btNeu);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.txtLieferant);
             this.Controls.Add(this.label8);
@@ -439,5 +477,8 @@
         private System.Windows.Forms.TextBox txtReserviert;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.TextBox txtLieferant;
+        private System.Windows.Forms.Button btNeu;
+        private System.Windows.Forms.Button btSpeichern;
+        private System.Windows.Forms.Button btLöschen;
     }
 }

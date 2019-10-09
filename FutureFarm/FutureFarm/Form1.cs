@@ -153,6 +153,8 @@ namespace FutureFarm
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            panelAuswahl.Top = btHome.Top;
+            panelAuswahl.Height = btHome.Height;
             BenutzerEinlesen();
         }
     }
