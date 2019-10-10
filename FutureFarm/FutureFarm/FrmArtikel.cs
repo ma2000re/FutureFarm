@@ -140,10 +140,17 @@ namespace FutureFarm
                 fWarnung.ShowDialog();
                 if(fWarnung.weiter==true)
                 {
-                    sql = "UPDATE tblArtikel SET Aktiv='false'";
+                    sql = "UPDATE tblArtikel SET Aktiv=false WHERE ArtikelID="+Convert.ToInt64(txtArtikelID.Text)+";";
                     db.Ausfuehren(sql);
-
-                    //>AAAAAAAAAAAAAAAAAAAAAAAAAA
+                    txtArtikelID.Clear();
+                    txtBezeichnung.Clear();
+                    txtBrutto.Clear();
+                    txtNettopreis.Clear();
+                    txtLagerstand.Clear();
+                    txtReserviert.Clear();
+                    txtUST.Clear();
+                    txtLieferant.Clear();
+                    ArtikelEinlesen();
                 }
             }
             else if (txtArtikelID.Text == "")
