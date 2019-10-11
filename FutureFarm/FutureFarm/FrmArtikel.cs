@@ -50,6 +50,10 @@ namespace FutureFarm
 
         private void FrmArtikel_Load(object sender, EventArgs e)
         {
+            btNeu.Enabled = false;
+            btLöschen.Enabled = false;
+            btSpeichern.Enabled = false;
+
             ArtikelEinlesen();
             panelAuswahl.Height = btHome.Height;
             panelAuswahl.Top = btHome.Top;
@@ -122,7 +126,7 @@ namespace FutureFarm
             // sql = "Update Artikel set Bezeichnung='" + txtBezeichnung.Text + "', Nettopreis='" + preis + "', UmsatzsteuerID='" + (cbUstSatz.SelectedIndex + 1) + "' where ArtikelID=" + id + ";";
             if (txtArtikelID.Text != "")
             {
-               // sql="UPDATE tblArtikel, tblUmsatzsteuer, tblLieferanten SET tblArtikel.Bezeichnung='"+txtBezeichnung.Text+"', tblArtikel.PreisNetto='"+txtNettopreis.Text+"', tblUmsatzsteuer.UstSatz="
+                sql = "UPDATE tblArtikel, tblUmsatzsteuer, tblLieferanten SET tblArtikel.Bezeichnung='" + txtBezeichnung.Text + "', tblArtikel.PreisNetto='" + txtNettopreis.Text + "', tblUmsatzsteuer.UstSatz=";
             }
             else if (txtArtikelID.Text == "")
             {

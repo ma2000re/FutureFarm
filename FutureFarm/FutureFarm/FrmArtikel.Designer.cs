@@ -168,7 +168,7 @@
             this.columnHeader6,
             this.columnHeader7});
             this.listViewArtikel.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.listViewArtikel.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.listViewArtikel.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.listViewArtikel.FullRowSelect = true;
             this.listViewArtikel.Location = new System.Drawing.Point(205, 336);
             this.listViewArtikel.Name = "listViewArtikel";
@@ -477,8 +477,8 @@
         private System.Windows.Forms.TextBox txtReserviert;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.TextBox txtLieferant;
-        private System.Windows.Forms.Button btNeu;
-        private System.Windows.Forms.Button btSpeichern;
-        private System.Windows.Forms.Button btLöschen;
+        public System.Windows.Forms.Button btNeu;
+        public System.Windows.Forms.Button btSpeichern;
+        public System.Windows.Forms.Button btLöschen;
     }
 }

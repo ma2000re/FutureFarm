@@ -53,6 +53,12 @@ namespace FutureFarm
         {
             panelAuswahl.Height = btRechnungen.Height;
             panelAuswahl.Top = btRechnungen.Top;
+
+            FrmRechnungen fRechnungen = new FrmRechnungen();
+            fRechnungen.ShowDialog();
+            panelAuswahl.Height = btHome.Height;
+            panelAuswahl.Top = btHome.Top;
+
         }
 
         private void btBeenden_Click(object sender, EventArgs e)
@@ -67,6 +73,9 @@ namespace FutureFarm
 
             FrmArtikel fArtikel = new FrmArtikel();
             fArtikel.ShowDialog();
+            panelAuswahl.Height = btHome.Height;
+            panelAuswahl.Top = btHome.Top;
+
 
         }
 
@@ -104,9 +113,10 @@ namespace FutureFarm
 
         internal void Einloggen()
         {
-            Form1 f1 = new Form1();
             FrmLogin fLogin = new FrmLogin();
             fLogin.ShowDialog();
+            FrmArtikel fArtikel = new FrmArtikel();
+
 
             benutzerEingabe = fLogin.txtBenutzername.Text;
             passwortEingabe = fLogin.txtPasswort.Text;
@@ -123,6 +133,11 @@ namespace FutureFarm
                         btLogin.Text = benutzerEingabe;
 
                         btLogin.Image = Image.FromFile("D:\\OneDrive - BHAK und BHAS Mistelbach 316448\\Schule\\AP_SWE\\GitHub\\FutureFarmProgramm\\FutureFarm\\FutureFarm\\Properties\\login.png");
+
+                        fArtikel.btLöschen.Enabled = true;
+                        fArtikel.btNeu.Enabled = true;
+                        fArtikel.btSpeichern.Enabled = true;
+
                     }
                     else
                         LogIn = false;
