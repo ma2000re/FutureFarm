@@ -53,6 +53,12 @@ namespace FutureFarm
         {
             panelAuswahl.Height = btRechnungen.Height;
             panelAuswahl.Top = btRechnungen.Top;
+
+            FrmRechnungen fRechnungen = new FrmRechnungen();
+            fRechnungen.ShowDialog();
+            panelAuswahl.Height = btHome.Height;
+            panelAuswahl.Top = btHome.Top;
+
         }
 
         private void btBeenden_Click(object sender, EventArgs e)
@@ -67,6 +73,9 @@ namespace FutureFarm
 
             FrmArtikel fArtikel = new FrmArtikel();
             fArtikel.ShowDialog();
+            panelAuswahl.Height = btHome.Height;
+            panelAuswahl.Top = btHome.Top;
+
 
         }
 
@@ -84,14 +93,30 @@ namespace FutureFarm
 
         private void btLogin_Click(object sender, EventArgs e)
         {
+            if(LogIn==false)
             Einloggen();
+            else
+            {
+                DialogResult dialogResult = MessageBox.Show("Wollen Sie den Benutzer wirklich abmelden?", "Log Out", MessageBoxButtons.YesNo);
+                if (dialogResult == DialogResult.Yes)
+                {
+                    LogIn = false;
+                    btLogin.Image = Image.FromFile("D:\\OneDrive - BHAK und BHAS Mistelbach 316448\\Schule\\AP_SWE\\GitHub\\FutureFarmProgramm\\FutureFarm\\FutureFarm\\Properties\\logout.png");
+                    btLogin.Text = "Log In";
+                }
+                else if (dialogResult == DialogResult.No)
+                {
+                    this.Close(); 
+                }
+            }
         }
 
         internal void Einloggen()
         {
-            Form1 f1 = new Form1();
             FrmLogin fLogin = new FrmLogin();
             fLogin.ShowDialog();
+            FrmArtikel fArtikel = new FrmArtikel();
+
 
             benutzerEingabe = fLogin.txtBenutzername.Text;
             passwortEingabe = fLogin.txtPasswort.Text;
@@ -104,9 +129,15 @@ namespace FutureFarm
                     //MessageBox.Show(listViewLoginDaten.Items[i].SubItems[1].Text + "***" + benutzerEingabe);
                     if (listViewLoginDaten.Items[i].SubItems[2].Text == passwortEingabe)
                     {
-                        MessageBox.Show("Login erfolgreich!");
                         LogIn = true;
                         btLogin.Text = benutzerEingabe;
+
+                        btLogin.Image = Image.FromFile("D:\\OneDrive - BHAK und BHAS Mistelbach 316448\\Schule\\AP_SWE\\GitHub\\FutureFarmProgramm\\FutureFarm\\FutureFarm\\Properties\\login.png");
+
+                        fArtikel.btLöschen.Enabled = true;
+                        fArtikel.btNeu.Enabled = true;
+                        fArtikel.btSpeichern.Enabled = true;
+
                     }
                     else
                         LogIn = false;
@@ -137,6 +168,8 @@ namespace FutureFarm
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            panelAuswahl.Top = btHome.Top;
+            panelAuswahl.Height = btHome.Height;
             BenutzerEinlesen();
         }
     }

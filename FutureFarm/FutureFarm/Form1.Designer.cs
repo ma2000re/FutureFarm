@@ -199,7 +199,7 @@
             this.btLogin.FlatAppearance.BorderSize = 0;
             this.btLogin.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btLogin.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btLogin.Image = global::FutureFarm.Properties.Resources.grün;
+            this.btLogin.Image = global::FutureFarm.Properties.Resources.logout;
             this.btLogin.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btLogin.Location = new System.Drawing.Point(6, 13);
             this.btLogin.Name = "btLogin";
@@ -228,12 +228,13 @@
             this.columnHeader1,
             this.columnHeader2,
             this.columnHeader3});
-            this.listViewLoginDaten.Location = new System.Drawing.Point(525, 97);
+            this.listViewLoginDaten.Location = new System.Drawing.Point(1165, 252);
             this.listViewLoginDaten.Name = "listViewLoginDaten";
             this.listViewLoginDaten.Size = new System.Drawing.Size(601, 342);
             this.listViewLoginDaten.TabIndex = 17;
             this.listViewLoginDaten.UseCompatibleStateImageBehavior = false;
             this.listViewLoginDaten.View = System.Windows.Forms.View.Details;
+            this.listViewLoginDaten.Visible = false;
             // 
             // columnHeader1
             // 
@@ -286,11 +287,11 @@
         private System.Windows.Forms.Panel panelAuswahl;
         private System.Windows.Forms.Button btBeenden;
         private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.Button btLogin;
         private System.Windows.Forms.ColumnHeader columnHeader1;
         private System.Windows.Forms.ColumnHeader columnHeader2;
         private System.Windows.Forms.ColumnHeader columnHeader3;
         internal System.Windows.Forms.ListView listViewLoginDaten;
+        internal System.Windows.Forms.Button btLogin;
     }
 }
 
