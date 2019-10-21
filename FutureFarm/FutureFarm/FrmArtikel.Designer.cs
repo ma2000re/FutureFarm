@@ -63,6 +63,7 @@
             this.btNeu = new System.Windows.Forms.Button();
             this.btSpeichern = new System.Windows.Forms.Button();
             this.btLöschen = new System.Windows.Forms.Button();
+            this.columnHeader8 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
@@ -161,6 +162,7 @@
             // 
             this.listViewArtikel.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.columnHeader1,
+            this.columnHeader8,
             this.columnHeader2,
             this.columnHeader3,
             this.columnHeader4,
@@ -186,33 +188,39 @@
             // 
             // columnHeader2
             // 
+            this.columnHeader2.DisplayIndex = 1;
             this.columnHeader2.Text = "Bezeichnung";
             this.columnHeader2.Width = 300;
             // 
             // columnHeader3
             // 
+            this.columnHeader3.DisplayIndex = 2;
             this.columnHeader3.Text = "Nettopreis";
             this.columnHeader3.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.columnHeader3.Width = 100;
             // 
             // columnHeader4
             // 
+            this.columnHeader4.DisplayIndex = 3;
             this.columnHeader4.Text = "UST";
             this.columnHeader4.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // columnHeader5
             // 
+            this.columnHeader5.DisplayIndex = 4;
             this.columnHeader5.Text = "Lieferant";
             this.columnHeader5.Width = 200;
             // 
             // columnHeader6
             // 
+            this.columnHeader6.DisplayIndex = 5;
             this.columnHeader6.Text = "Lagerstand";
             this.columnHeader6.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.columnHeader6.Width = 100;
             // 
             // columnHeader7
             // 
+            this.columnHeader7.DisplayIndex = 6;
             this.columnHeader7.Text = "Reserviert";
             this.columnHeader7.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.columnHeader7.Width = 80;
@@ -401,6 +409,11 @@
             this.btLöschen.UseVisualStyleBackColor = true;
             this.btLöschen.Click += new System.EventHandler(this.btLöschen_Click);
             // 
+            // columnHeader8
+            // 
+            this.columnHeader8.DisplayIndex = 7;
+            this.columnHeader8.Text = "externe ID";
+            // 
             // FrmArtikel
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
@@ -480,5 +493,6 @@
         public System.Windows.Forms.Button btNeu;
         public System.Windows.Forms.Button btSpeichern;
         public System.Windows.Forms.Button btLöschen;
+        private System.Windows.Forms.ColumnHeader columnHeader8;
     }
 }

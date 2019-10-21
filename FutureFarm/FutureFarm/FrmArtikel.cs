@@ -63,7 +63,7 @@ namespace FutureFarm
         {
             listViewArtikel.Items.Clear();
             sql = "SELECT tblArtikel.ArtikelID, tblArtikel.Bezeichnung, tblArtikel.PreisNetto, tblUmsatzsteuer.UstSatz, tblLieferanten.Firma, tblArtikel.Lagerstand, tblArtikel.Reserviert, tblArtikel.Aktiv FROM tblUmsatzsteuer INNER JOIN(tblLieferanten INNER JOIN tblArtikel ON tblLieferanten.LieferantenID = tblArtikel.LieferantenID) ON tblUmsatzsteuer.UstID = tblArtikel.UstID;";
-
+            sql = "SELECT * FROM qryArtikel";
             dr = db.Einlesen(sql);
             while (dr.Read())
             {
@@ -75,7 +75,7 @@ namespace FutureFarm
                 lvItem.SubItems.Add(dr[5].ToString());
                 lvItem.SubItems.Add(dr[6].ToString());
 
-                if(dr[7].ToString()=="True")
+                if(dr[8].ToString()=="True")
                 {
                     listViewArtikel.Items.Add(lvItem);
                 }
