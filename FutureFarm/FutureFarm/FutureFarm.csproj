@@ -51,6 +51,9 @@
   </PropertyGroup>
   <PropertyGroup />
   <ItemGroup>
+    <Reference Include="RestSharp, Version=105.2.3.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\RestSharp.105.2.3\lib\net45\RestSharp.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -95,6 +98,20 @@
     <Compile Include="FrmWarnung.Designer.cs">
       <DependentUpon>FrmWarnung.cs</DependentUpon>
     </Compile>
+    <Compile Include="Models\Art.cs" />
+    <Compile Include="Models\Artikel.cs" />
+    <Compile Include="Models\Bestellung.cs" />
+    <Compile Include="Models\BestellungArtikel.cs" />
+    <Compile Include="Models\Firmendaten.cs" />
+    <Compile Include="Models\Formular.cs" />
+    <Compile Include="Models\Kunden.cs" />
+    <Compile Include="Models\Lieferanten.cs" />
+    <Compile Include="Models\Login.cs" />
+    <Compile Include="Models\News.cs" />
+    <Compile Include="Models\Postleitzahl.cs" />
+    <Compile Include="Models\Rechnung.cs" />
+    <Compile Include="Models\RechnungArtikel.cs" />
+    <Compile Include="Models\Termine.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Form1.resx">
@@ -117,6 +134,7 @@
       <SubType>Designer</SubType>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -215,5 +233,6 @@
       <Install>false</Install>
     </BootstrapperPackage>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

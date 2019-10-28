@@ -9,6 +9,10 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
 using System.Data.OleDb;
+using RestSharp;
+using Common.Models;
+//using Rest_API_Bibliothek_Test.Models;
+
 
 namespace FutureFarm
 {
@@ -50,11 +54,35 @@ namespace FutureFarm
 
         private void FrmArtikel_Load(object sender, EventArgs e)
         {
+            //Client für API
+            var client = new RestClient("http://localhost:8888");
+            var request = new RestRequest("artikel", Method.GET);
+            request.AddHeader("Content-Type", "application/json");
+            var response = client.Execute<List<Artikel>>(request);
+
+            foreach(Artikel a in response.Data)
+            {
+                //MessageBox.Show(a.Bezeichnung.ToString());
+                lvItem = new ListViewItem(a.ArtikelID.ToString());
+                lvItem.SubItems.Add(a.ExterneID.ToString());
+                lvItem.SubItems.Add(a.Bezeichnung.ToString());
+                lvItem.SubItems.Add(a.PreisNetto.ToString());
+                lvItem.SubItems.Add(a.Ust.ToString());
+                lvItem.SubItems.Add(a.Lieferant.Firma.ToString()+", "+a.Lieferant.Nachname.ToString());
+                lvItem.SubItems.Add(a.Lagerstand.ToString());
+                lvItem.SubItems.Add(a.Reserviert.ToString());
+                lvItem.SubItems.Add(a.Aktiv.ToString());
+
+                if(a.Aktiv==true)
+                listViewArtikel.Items.Add(lvItem);
+            }
+
+
             btNeu.Enabled = false;
             btLöschen.Enabled = false;
             btSpeichern.Enabled = false;
 
-            ArtikelEinlesen();
+            //ArtikelEinlesen();
             panelAuswahl.Height = btHome.Height;
             panelAuswahl.Top = btHome.Top;
         }
