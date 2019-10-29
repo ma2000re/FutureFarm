@@ -221,6 +221,11 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="logoNEW.ico" />
+    <None Include="Properties\eye-open.png" />
+    <None Include="Properties\eye-closed.png" />
+    <None Include="Properties\news.png" />
+    <None Include="Properties\termin.png" />
+    <None Include="Properties\Fax-icon.png" />
     <None Include="Properties\logout.png" />
     <None Include="Properties\grün.jpeg" />
     <None Include="Properties\grün.png" />
