@@ -54,61 +54,8 @@ namespace FutureFarm
 
         private void FrmArtikel_Load(object sender, EventArgs e)
         {
-            //Client für API
-            var client = new RestClient("http://localhost:8888");
-            var request = new RestRequest("artikel", Method.GET);
-            request.AddHeader("Content-Type", "application/json");
-            var response = client.Execute<List<Artikel>>(request);
-
-            foreach(Artikel a in response.Data)
-            {
-                //MessageBox.Show(a.Bezeichnung.ToString());
-                lvItem = new ListViewItem(a.ArtikelID.ToString());
-                lvItem.SubItems.Add(a.ExterneID.ToString());
-                lvItem.SubItems.Add(a.Bezeichnung.ToString());
-                lvItem.SubItems.Add(a.PreisNetto.ToString());
-                lvItem.SubItems.Add(a.Ust.ToString());
-                lvItem.SubItems.Add(a.Lieferant.Firma.ToString()+", "+a.Lieferant.Nachname.ToString());
-                lvItem.SubItems.Add(a.Lagerstand.ToString());
-                lvItem.SubItems.Add(a.Reserviert.ToString());
-                lvItem.SubItems.Add(a.Aktiv.ToString());
-
-                if(a.Aktiv==true)
-                listViewArtikel.Items.Add(lvItem);
-            }
 
 
-            btNeu.Enabled = false;
-            btLöschen.Enabled = false;
-            btSpeichern.Enabled = false;
-
-            //ArtikelEinlesen();
-            panelAuswahl.Height = btHome.Height;
-            panelAuswahl.Top = btHome.Top;
-        }
-
-        private void ArtikelEinlesen()
-        {
-            listViewArtikel.Items.Clear();
-            sql = "SELECT tblArtikel.ArtikelID, tblArtikel.Bezeichnung, tblArtikel.PreisNetto, tblUmsatzsteuer.UstSatz, tblLieferanten.Firma, tblArtikel.Lagerstand, tblArtikel.Reserviert, tblArtikel.Aktiv FROM tblUmsatzsteuer INNER JOIN(tblLieferanten INNER JOIN tblArtikel ON tblLieferanten.LieferantenID = tblArtikel.LieferantenID) ON tblUmsatzsteuer.UstID = tblArtikel.UstID;";
-            sql = "SELECT * FROM qryArtikel";
-            dr = db.Einlesen(sql);
-            while (dr.Read())
-            {
-                lvItem = new ListViewItem(dr[0].ToString());
-                lvItem.SubItems.Add(dr[1].ToString());
-                lvItem.SubItems.Add(dr[2].ToString());
-                lvItem.SubItems.Add(dr[3].ToString());
-                lvItem.SubItems.Add(dr[4].ToString());
-                lvItem.SubItems.Add(dr[5].ToString());
-                lvItem.SubItems.Add(dr[6].ToString());
-
-                if(dr[8].ToString()=="True")
-                {
-                    listViewArtikel.Items.Add(lvItem);
-                }
-
-            }
         }
 
         private void listViewArtikel_ItemSelectionChanged(object sender, ListViewItemSelectionChangedEventArgs e)
@@ -118,23 +65,6 @@ namespace FutureFarm
 
         private void listViewArtikel_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (listViewArtikel.SelectedItems.Count == 0)
-            {
-                MessageBox.Show("Wählen Sie bitte einen Artikel aus!");
-                return;
-            }
-            lvItem = listViewArtikel.SelectedItems[0];
-
-            txtArtikelID.Text = lvItem.SubItems[0].Text;
-            txtBezeichnung.Text = lvItem.SubItems[1].Text;
-            txtNettopreis.Text = (lvItem.SubItems[2].Text);
-            txtUST.Text = lvItem.SubItems[3].Text;
-            Double netto = Convert.ToDouble(txtNettopreis.Text);
-            Double ust = Convert.ToDouble(txtUST.Text);
-            txtBrutto.Text = (netto + (1 + ust / 100)).ToString();
-            txtLagerstand.Text = lvItem.SubItems[5].Text;
-            txtReserviert.Text = lvItem.SubItems[6].Text;
-            txtLieferant.Text = lvItem.SubItems[4].Text;
             //fKunde.id = Convert.ToInt64(lvItem.SubItems[0].Text);
             //fKunde.txtVorname.Text = lvItem.SubItems[1].Text;
             //fKunde.txtZuname.Text = lvItem.SubItems[2].Text;
@@ -182,7 +112,7 @@ namespace FutureFarm
                     txtReserviert.Clear();
                     txtUST.Clear();
                     txtLieferant.Clear();
-                    ArtikelEinlesen();
+                    //ArtikelEinlesen();
                 }
             }
             else if (txtArtikelID.Text == "")
