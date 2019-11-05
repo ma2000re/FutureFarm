@@ -82,6 +82,8 @@ namespace FutureFarm
             panelsDeaktivieren();
             panelArtikel.Visible = true;
             panelArtikel.Dock = DockStyle.Fill;
+            listViewArtikel.Height = Convert.ToInt16(panelArtikel.Height * 0.45);
+            panelArtikelInfo.Location = new Point(Convert.ToInt16(panelArtikel.Width * 0.05), Convert.ToInt16(panelArtikel.Height * 0.05));
 
             ArtikelEinlesen();
 
@@ -111,7 +113,7 @@ namespace FutureFarm
                 lvItem.SubItems.Add(a.Reserviert.ToString());
                 lvItem.SubItems.Add(a.Aktiv.ToString());
 
-                if (a.Aktiv == true)
+                //if (a.Aktiv == true)
                     listViewArtikel.Items.Add(lvItem);
             }
 
@@ -143,413 +145,452 @@ namespace FutureFarm
 
         }
 
-            private void btLieferanten_Click(object sender, EventArgs e)
-            {
-                panelAuswahl.Height = btLieferanten.Height;
-                panelAuswahl.Top = btLieferanten.Top;
-                panelsDeaktivieren();
-            }
+        private void btLieferanten_Click(object sender, EventArgs e)
+        {
+            panelAuswahl.Height = btLieferanten.Height;
+            panelAuswahl.Top = btLieferanten.Top;
+            panelsDeaktivieren();
+        }
 
-            private void btKunden_Click(object sender, EventArgs e)
-            {
-                panelAuswahl.Height = btKunden.Height;
-                panelAuswahl.Top = btKunden.Top;
-                panelsDeaktivieren();
-            }
+        private void btKunden_Click(object sender, EventArgs e)
+        {
+            panelAuswahl.Height = btKunden.Height;
+            panelAuswahl.Top = btKunden.Top;
+            panelsDeaktivieren();
+        }
 
-            private void btLogin_Click(object sender, EventArgs e)
+        private void btLogin_Click(object sender, EventArgs e)
+        {
+            //panelsDeaktivieren();
+            if (LogIn == false)
+                Einloggen();
+            else
             {
-                //panelsDeaktivieren();
-                if (LogIn == false)
-                    Einloggen();
-                else
+                DialogResult dialogResult = MessageBox.Show("Wollen Sie den Benutzer wirklich abmelden?", "Log Out", MessageBoxButtons.YesNo);
+                if (dialogResult == DialogResult.Yes)
                 {
-                    DialogResult dialogResult = MessageBox.Show("Wollen Sie den Benutzer wirklich abmelden?", "Log Out", MessageBoxButtons.YesNo);
-                    if (dialogResult == DialogResult.Yes)
+                    LogIn = false;
+                    btLogin.Image = Image.FromFile("D:\\OneDrive - BHAK und BHAS Mistelbach 316448\\Schule\\AP_SWE\\GitHub\\FutureFarmProgramm\\FutureFarm\\FutureFarm\\Properties\\logout.png");
+                    btLogin.Text = "Log In";
+                }
+                else if (dialogResult == DialogResult.No)
+                {
+                    this.Close();
+                }
+            }
+            CheckEingeloggt();
+        }
+
+        private void Einloggen()
+        {
+            FrmLogin fLogin = new FrmLogin();
+            fLogin.ShowDialog();
+            FrmArtikel fArtikel = new FrmArtikel();
+
+
+            benutzerEingabe = fLogin.txtBenutzername.Text;
+            passwortEingabe = fLogin.txtPasswort.Text;
+
+            for (int i = 0; i < anzahlBenutzer; i++)
+            {
+                //MessageBox.Show(listViewLoginDaten.Items[i].SubItems[1].ToString());
+                if (listViewLoginDaten.Items[i].SubItems[1].Text == benutzerEingabe)
+                {
+                    //MessageBox.Show(listViewLoginDaten.Items[i].SubItems[1].Text + "***" + benutzerEingabe);
+                    if (listViewLoginDaten.Items[i].SubItems[2].Text == passwortEingabe)
+                    {
+                        LogIn = true;
+                        btLogin.Text = benutzerEingabe;
+
+                        btLogin.Image = Image.FromFile("D:\\OneDrive - BHAK und BHAS Mistelbach 316448\\Schule\\AP_SWE\\GitHub\\FutureFarmProgramm\\FutureFarm\\FutureFarm\\Properties\\login.png");
+
+                        fArtikel.btLöschen.Enabled = true;
+                        fArtikel.btNeu.Enabled = true;
+                        fArtikel.btSpeichern.Enabled = true;
+
+                        //LetzteAnmeldungAktualisieren();
+                    }
+                    else
                     {
                         LogIn = false;
-                        btLogin.Image = Image.FromFile("D:\\OneDrive - BHAK und BHAS Mistelbach 316448\\Schule\\AP_SWE\\GitHub\\FutureFarmProgramm\\FutureFarm\\FutureFarm\\Properties\\logout.png");
-                        btLogin.Text = "Log In";
+
                     }
-                    else if (dialogResult == DialogResult.No)
-                    {
-                        this.Close();
-                    }
-                }
-                CheckEingeloggt();
-            }
-
-            private void Einloggen()
-            {
-                FrmLogin fLogin = new FrmLogin();
-                fLogin.ShowDialog();
-                FrmArtikel fArtikel = new FrmArtikel();
-
-
-                benutzerEingabe = fLogin.txtBenutzername.Text;
-                passwortEingabe = fLogin.txtPasswort.Text;
-
-                for (int i = 0; i < anzahlBenutzer; i++)
-                {
-                    //MessageBox.Show(listViewLoginDaten.Items[i].SubItems[1].ToString());
-                    if (listViewLoginDaten.Items[i].SubItems[1].Text == benutzerEingabe)
-                    {
-                        //MessageBox.Show(listViewLoginDaten.Items[i].SubItems[1].Text + "***" + benutzerEingabe);
-                        if (listViewLoginDaten.Items[i].SubItems[2].Text == passwortEingabe)
-                        {
-                            LogIn = true;
-                            btLogin.Text = benutzerEingabe;
-
-                            btLogin.Image = Image.FromFile("D:\\OneDrive - BHAK und BHAS Mistelbach 316448\\Schule\\AP_SWE\\GitHub\\FutureFarmProgramm\\FutureFarm\\FutureFarm\\Properties\\login.png");
-
-                            fArtikel.btLöschen.Enabled = true;
-                            fArtikel.btNeu.Enabled = true;
-                            fArtikel.btSpeichern.Enabled = true;
-
-                            //LetzteAnmeldungAktualisieren();
-                        }
-                        else
-                        {
-                            LogIn = false;
-
-                        }
-                        CheckEingeloggt();
-                    }
-                }
-
-                if (LogIn == false)
-                {
-                    MessageBox.Show("Login fehlgeschlagen!");
-                }
-
-            }
-
-            private void CheckEingeloggt()
-            {
-                if (LogIn == false)
-                {
-                    btLöschen.Enabled = false;
-                    btNeu.Enabled = false;
-                    btÄndern.Enabled = false;
-                    pbPasswort.Enabled = false;
-                    btSpeichern.Enabled = false;
-                    btArtikelLöschen.Enabled = false;
-                    btArtikelNeu.Enabled = false;
-                    btArtikelSpeichern.Enabled = false;
-                }
-                else if (LogIn == true)
-                {
-                    btLöschen.Enabled = true;
-                    btNeu.Enabled = true;
-                    btÄndern.Enabled = true;
-                    pbPasswort.Enabled = true;
-                    btSpeichern.Enabled = true;
-                    btArtikelLöschen.Enabled = true;
-                    btArtikelNeu.Enabled = true;
-                    btArtikelSpeichern.Enabled = true;
-
-                }
-
-            }
-
-            private void LetzteAnmeldungAktualisieren()
-            {
-                //API Client
-                var client = new RestClient("http://localhost:8888");
-                var request = new RestRequest("logins", Method.PUT);
-                request.AddHeader("Content-Type", "application/json");
-                var response = client.Execute<List<Login>>(request);
-
-                foreach (Login l in response.Data)
-                {
-                    //MessageBox.Show(a.Bezeichnung.ToString());
-                    lvItem = new ListViewItem(l.BenutzernameID.ToString());
-                    lvItem.SubItems.Add(l.Benutzername.ToString());
-                    lvItem.SubItems.Add(l.Passwort.ToString());
-                    lvItem.SubItems.Add(l.LetzteAnmeldung.ToString());
-                    listViewLoginDaten.Items.Add(lvItem);
-                    anzahlBenutzer++;
-                }
-
-            }
-
-            private void BenutzerEinlesen()
-            {
-                listViewPanelBenutzerLogin.Items.Clear();
-                //API Client
-                var client = new RestClient("http://localhost:8888");
-                var request = new RestRequest("logins", Method.GET);
-                request.AddHeader("Content-Type", "application/json");
-                var response = client.Execute<List<Login>>(request);
-
-                foreach (Login l in response.Data)
-                {
-                    //MessageBox.Show(a.Bezeichnung.ToString());
-                    lvItem = new ListViewItem(l.BenutzernameID.ToString());
-                    lvItem.SubItems.Add(l.Benutzername.ToString());
-                    lvItem.SubItems.Add(l.Passwort.ToString());
-                    lvItem.SubItems.Add(l.LetzteAnmeldung.ToString());
-                    listViewLoginDaten.Items.Add(lvItem);
-                    anzahlBenutzer++;
-                }
-
-            }
-
-            private void Form1_Load(object sender, EventArgs e)
-            {
-                APIStart();
-                GoFullscreen();
-                MenuErstellen();
-
-                panelAuswahl.Top = btHome.Top;
-                panelAuswahl.Height = btHome.Height;
-                BenutzerEinlesen();
-            }
-
-            internal void GoFullscreen()
-            {
-                FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-                Left = Top = 0;
-                Width = Screen.PrimaryScreen.WorkingArea.Width;
-                Height = Screen.PrimaryScreen.WorkingArea.Height;
-            }
-
-            private void APIStart()
-            {
-                ProcessStartInfo startInfo = new ProcessStartInfo(@"C:\\Users\\Manuel\\Desktop\\Api.exe.lnk");
-                startInfo.WindowStyle = ProcessWindowStyle.Hidden;
-                Process.Start(startInfo);
-
-            }
-
-            private void btRechnungen_MouseEnter(object sender, EventArgs e)
-            {
-                panelAuswahl.Top = btRechnungen.Top;
-                umenu();
-            }
-
-            private void btHome_MouseEnter(object sender, EventArgs e)
-            {
-                panelAuswahl.Top = btHome.Top;
-                umenu();
-            }
-
-            private void btArtikel_MouseEnter(object sender, EventArgs e)
-            {
-                panelAuswahl.Top = btArtikel.Top;
-                umenu();
-            }
-
-            private void btKunden_MouseEnter(object sender, EventArgs e)
-            {
-                panelAuswahl.Top = btKunden.Top;
-                umenu();
-            }
-
-            private void btLieferanten_MouseEnter(object sender, EventArgs e)
-            {
-                panelAuswahl.Top = btLieferanten.Top;
-                umenu();
-            }
-
-            private void btAnfragen_MouseEnter(object sender, EventArgs e)
-            {
-                panelAuswahl.Top = btAnfragen.Top;
-                umenu();
-            }
-
-            private void btBestellungen_MouseEnter(object sender, EventArgs e)
-            {
-                panelAuswahl.Top = btBestellungen.Top;
-                umenu();
-            }
-
-            private void btNews_MouseEnter(object sender, EventArgs e)
-            {
-                panelAuswahl.Top = btNews.Top;
-                umenu();
-            }
-
-            private void btTermine_MouseEnter(object sender, EventArgs e)
-            {
-                panelAuswahl.Top = btTermine.Top;
-                umenu();
-            }
-
-            private void btEinstellungen_MouseEnter(object sender, EventArgs e)
-            {
-                panelAuswahl.Top = btEinstellungen.Top;
-
-                //Unterauswahl anzeigen
-                btFirmendaten.Location = new Point(Convert.ToInt16(weite * 0.1), (pictureBox1.Height + (btHome.Height * 9)));
-                btBenutzer.Location = new Point(Convert.ToInt16(weite * 0.1), Convert.ToInt16((pictureBox1.Height + (btHome.Height * 9.5))));
-                btFirmendaten.Visible = true;
-                btBenutzer.Visible = true;
-                btFirmendaten.BringToFront();
-                btBenutzer.BringToFront();
-                panelUnterMenu.BringToFront();
-                panelUnterMenu.Height = btFirmendaten.Height;
-                panelUnterMenu.Visible = false;
-
-            }
-
-            private void umenu()
-            {
-                btFirmendaten.Visible = false;
-                btBenutzer.Visible = false;
-                panelUnterMenu.Visible = false;
-            }
-
-            private void button1_Click(object sender, EventArgs e)
-            {
-                this.WindowState = FormWindowState.Minimized;
-            }
-
-            private void btFirmendaten_MouseEnter(object sender, EventArgs e)
-            {
-                panelUnterMenu.Visible = true;
-                panelUnterMenu.Location = btFirmendaten.Location;
-            }
-
-            private void btBenutzer_MouseEnter(object sender, EventArgs e)
-            {
-                panelUnterMenu.Visible = true;
-                panelUnterMenu.Location = btBenutzer.Location;
-            }
-
-            private void MenuErstellen()
-            {
-                int anzahlTasks = 10;
-                int menuHöhe = Convert.ToInt16(höhe - pictureBox1.Height);
-                int menuWeite = Convert.ToInt16(weite * 0.10);
-
-                panel1.Width = menuWeite;
-                panel1.Height = Convert.ToInt16(höhe);
-
-                panel3.Width = menuWeite;
-                panel3.Height = menuHöhe;
-
-                int btHöhe = Convert.ToInt16(menuHöhe / anzahlTasks);
-                int btWeite = Convert.ToInt16(menuWeite - 10);
-                int btPositionX = 10;
-                int btPositionY = Convert.ToInt16(pictureBox1.Height);
-
-                //Button Höhe und Weite
-                btHome.Height = btHöhe;
-                btHome.Width = btWeite;
-                btRechnungen.Height = btHöhe;
-                btRechnungen.Width = btWeite;
-                btArtikel.Height = btHöhe;
-                btArtikel.Width = btWeite;
-                btKunden.Height = btHöhe;
-                btKunden.Width = btWeite;
-                btLieferanten.Height = btHöhe;
-                btLieferanten.Width = btWeite;
-                btAnfragen.Height = btHöhe;
-                btAnfragen.Width = btWeite;
-                btBestellungen.Height = btHöhe;
-                btBestellungen.Width = btWeite;
-                btNews.Height = btHöhe;
-                btNews.Width = btWeite;
-                btTermine.Height = btHöhe;
-                btTermine.Width = btWeite;
-                btEinstellungen.Height = btHöhe;
-                btEinstellungen.Width = btWeite;
-                //Button Location Positionen
-                btHome.Location = new Point(btPositionX, 0);
-                btRechnungen.Location = new Point(btPositionX, btHöhe);
-                btArtikel.Location = new Point(btPositionX, btHöhe * 2);
-                btKunden.Location = new Point(btPositionX, btHöhe * 3);
-                btLieferanten.Location = new Point(btPositionX, btHöhe * 4);
-                btAnfragen.Location = new Point(btPositionX, btHöhe * 5);
-                btBestellungen.Location = new Point(btPositionX, btHöhe * 6);
-                btNews.Location = new Point(btPositionX, btHöhe * 7);
-                btTermine.Location = new Point(btPositionX, btHöhe * 8);
-                btEinstellungen.Location = new Point(btPositionX, btHöhe * 9);
-                //AuswahlPanel
-                panelAuswahl.Location = new Point(0, 0);
-                panelAuswahl.Height = btHöhe;
-                //Unterauswahl Einstellungen
-                btFirmendaten.Height = btHöhe / 2;
-                btBenutzer.Height = btHöhe / 2;
-
-            }
-
-            private void Form1_MouseEnter(object sender, EventArgs e)
-            {
-                panelAuswahl.Top = btHome.Top;
-
-                panelUnterMenu.Visible = false;
-            }
-
-            private void btBenutzer_Click(object sender, EventArgs e)
-            {
-                panelBenutzer.Dock = DockStyle.Fill;
-                panelsDeaktivieren();
-                panelBenutzer.Visible = true;
-
-                panelBenutzerLoginEinlesen();
-                pbBildName = "eye-closed.png";
-                pbPasswort.Image = Image.FromFile(@"D:\\OneDrive - BHAK und BHAS Mistelbach 316448\\Schule\\AP_SWE\\GitHub\\FutureFarmProgramm\\FutureFarm\\FutureFarm\\Properties\\" + pbBildName);
-
-                CheckEingeloggt();
-
-                panelUnterMenu.Visible = false;
-            }
-
-            private void panelBenutzerLoginEinlesen()
-            {
-                listViewPanelBenutzerLogin.Items.Clear();
-                //API Client
-                var client = new RestClient("http://localhost:8888");
-                var request = new RestRequest("logins", Method.GET);
-                request.AddHeader("Content-Type", "application/json");
-                var response = client.Execute<List<Login>>(request);
-
-                foreach (Login l in response.Data)
-                {
-                    //MessageBox.Show(a.Bezeichnung.ToString());
-                    lvItem = new ListViewItem(l.BenutzernameID.ToString());
-                    lvItem.SubItems.Add(l.Benutzername.ToString());
-                    lvItem.SubItems.Add(l.Passwort.ToString());
-                    lvItem.SubItems.Add(l.LetzteAnmeldung.ToString());
-                    listViewPanelBenutzerLogin.Items.Add(lvItem);
-                }
-
-            }
-
-            private void panelsDeaktivieren()
-            {
-                //Alle Panels invisible
-                panelBenutzer.Visible = false;
-                panelFirmendaten.Visible = false;
-                panelArtikel.Visible = false;
-
-                if (LogIn == true)
-                {
-                    btNeu.Enabled = true;
-                    btÄndern.Enabled = true;
-                    btLöschen.Enabled = true;
-                    pbPasswort.Enabled = true;
+                    CheckEingeloggt();
                 }
             }
 
-            private void btAnfragen_Click(object sender, EventArgs e)
+            if (LogIn == false)
             {
-                panelsDeaktivieren();
+                MessageBox.Show("Login fehlgeschlagen!");
             }
 
-            private void btBestellungen_Click(object sender, EventArgs e)
+        }
+
+        private void CheckEingeloggt()
+        {
+            if (LogIn == false)
             {
-                panelsDeaktivieren();
+                btLöschen.Enabled = false;
+                btNeu.Enabled = false;
+                btÄndern.Enabled = false;
+                pbPasswort.Enabled = false;
+                btSpeichern.Enabled = false;
+                btArtikelLöschen.Enabled = false;
+                btArtikelNeu.Enabled = false;
+                btArtikelSpeichern.Enabled = false;
+                btNewsLöschen.Enabled = false;
+                btNewsSpeichern.Enabled = false;
+            }
+            else if (LogIn == true)
+            {
+                btLöschen.Enabled = true;
+                btNeu.Enabled = true;
+                btÄndern.Enabled = true;
+                pbPasswort.Enabled = true;
+                btSpeichern.Enabled = true;
+                btArtikelLöschen.Enabled = true;
+                btArtikelNeu.Enabled = true;
+                btArtikelSpeichern.Enabled = true;
+                btNewsLöschen.Enabled = true;
+                btNewsSpeichern.Enabled = true;
+
             }
 
-            private void btNews_Click(object sender, EventArgs e)
+        }
+
+        private void LetzteAnmeldungAktualisieren()
+        {
+            //API Client
+            var client = new RestClient("http://localhost:8888");
+            var request = new RestRequest("logins", Method.PUT);
+            request.AddHeader("Content-Type", "application/json");
+            var response = client.Execute<List<Login>>(request);
+
+            foreach (Login l in response.Data)
             {
-                panelsDeaktivieren();
+                //MessageBox.Show(a.Bezeichnung.ToString());
+                lvItem = new ListViewItem(l.BenutzernameID.ToString());
+                lvItem.SubItems.Add(l.Benutzername.ToString());
+                lvItem.SubItems.Add(l.Passwort.ToString());
+                lvItem.SubItems.Add(l.LetzteAnmeldung.ToString());
+                listViewLoginDaten.Items.Add(lvItem);
+                anzahlBenutzer++;
             }
 
-            private void btTermine_Click(object sender, EventArgs e)
+        }
+
+        private void BenutzerEinlesen()
+        {
+            listViewPanelBenutzerLogin.Items.Clear();
+            //API Client
+            var client = new RestClient("http://localhost:8888");
+            var request = new RestRequest("logins", Method.GET);
+            request.AddHeader("Content-Type", "application/json");
+            var response = client.Execute<List<Login>>(request);
+
+            foreach (Login l in response.Data)
+            {
+                //MessageBox.Show(a.Bezeichnung.ToString());
+                lvItem = new ListViewItem(l.BenutzernameID.ToString());
+                lvItem.SubItems.Add(l.Benutzername.ToString());
+                lvItem.SubItems.Add(l.Passwort.ToString());
+                lvItem.SubItems.Add(l.LetzteAnmeldung.ToString());
+                listViewLoginDaten.Items.Add(lvItem);
+                anzahlBenutzer++;
+            }
+
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            APIStart();
+            GoFullscreen();
+            MenuErstellen();
+
+            panelAuswahl.Top = btHome.Top;
+            panelAuswahl.Height = btHome.Height;
+            BenutzerEinlesen();
+        }
+
+        internal void GoFullscreen()
+        {
+            FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            Left = Top = 0;
+            Width = Screen.PrimaryScreen.WorkingArea.Width;
+            Height = Screen.PrimaryScreen.WorkingArea.Height;
+        }
+
+        private void APIStart()
+        {
+            ProcessStartInfo startInfo = new ProcessStartInfo(@"C:\\Users\Manuel\\Desktop\\Api.exe.lnk");
+            startInfo.WindowStyle = ProcessWindowStyle.Hidden;
+            Process.Start(startInfo);
+
+        }
+
+        private void btRechnungen_MouseEnter(object sender, EventArgs e)
+        {
+            panelAuswahl.Top = btRechnungen.Top;
+            umenu();
+        }
+
+        private void btHome_MouseEnter(object sender, EventArgs e)
+        {
+            panelAuswahl.Top = btHome.Top;
+            umenu();
+        }
+
+        private void btArtikel_MouseEnter(object sender, EventArgs e)
+        {
+            panelAuswahl.Top = btArtikel.Top;
+            umenu();
+        }
+
+        private void btKunden_MouseEnter(object sender, EventArgs e)
+        {
+            panelAuswahl.Top = btKunden.Top;
+            umenu();
+        }
+
+        private void btLieferanten_MouseEnter(object sender, EventArgs e)
+        {
+            panelAuswahl.Top = btLieferanten.Top;
+            umenu();
+        }
+
+        private void btAnfragen_MouseEnter(object sender, EventArgs e)
+        {
+            panelAuswahl.Top = btAnfragen.Top;
+            umenu();
+        }
+
+        private void btBestellungen_MouseEnter(object sender, EventArgs e)
+        {
+            panelAuswahl.Top = btBestellungen.Top;
+            umenu();
+        }
+
+        private void btNews_MouseEnter(object sender, EventArgs e)
+        {
+            panelAuswahl.Top = btNews.Top;
+            umenu();
+        }
+
+        private void btTermine_MouseEnter(object sender, EventArgs e)
+        {
+            panelAuswahl.Top = btTermine.Top;
+            umenu();
+        }
+
+        private void btEinstellungen_MouseEnter(object sender, EventArgs e)
+        {
+            panelAuswahl.Top = btEinstellungen.Top;
+
+            //Unterauswahl anzeigen
+            btFirmendaten.Location = new Point(Convert.ToInt16(weite * 0.1), (pictureBox1.Height + (btHome.Height * 9)));
+            btBenutzer.Location = new Point(Convert.ToInt16(weite * 0.1), Convert.ToInt16((pictureBox1.Height + (btHome.Height * 9.5))));
+            btFirmendaten.Visible = true;
+            btBenutzer.Visible = true;
+            btFirmendaten.BringToFront();
+            btBenutzer.BringToFront();
+            panelUnterMenu.BringToFront();
+            panelUnterMenu.Height = btFirmendaten.Height;
+            panelUnterMenu.Visible = false;
+
+        }
+
+        private void umenu()
+        {
+            btFirmendaten.Visible = false;
+            btBenutzer.Visible = false;
+            panelUnterMenu.Visible = false;
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            this.WindowState = FormWindowState.Minimized;
+        }
+
+        private void btFirmendaten_MouseEnter(object sender, EventArgs e)
+        {
+            panelUnterMenu.Visible = true;
+            panelUnterMenu.Location = btFirmendaten.Location;
+        }
+
+        private void btBenutzer_MouseEnter(object sender, EventArgs e)
+        {
+            panelUnterMenu.Visible = true;
+            panelUnterMenu.Location = btBenutzer.Location;
+        }
+
+        private void MenuErstellen()
+        {
+            int anzahlTasks = 10;
+            int menuHöhe = Convert.ToInt16(höhe - pictureBox1.Height);
+            int menuWeite = Convert.ToInt16(weite * 0.10);
+
+            panel1.Width = menuWeite;
+            panel1.Height = Convert.ToInt16(höhe);
+
+            panel3.Width = menuWeite;
+            panel3.Height = menuHöhe;
+
+            int btHöhe = Convert.ToInt16(menuHöhe / anzahlTasks);
+            int btWeite = Convert.ToInt16(menuWeite - 10);
+            int btPositionX = 10;
+            int btPositionY = Convert.ToInt16(pictureBox1.Height);
+
+            //Button Höhe und Weite
+            btHome.Height = btHöhe;
+            btHome.Width = btWeite;
+            btRechnungen.Height = btHöhe;
+            btRechnungen.Width = btWeite;
+            btArtikel.Height = btHöhe;
+            btArtikel.Width = btWeite;
+            btKunden.Height = btHöhe;
+            btKunden.Width = btWeite;
+            btLieferanten.Height = btHöhe;
+            btLieferanten.Width = btWeite;
+            btAnfragen.Height = btHöhe;
+            btAnfragen.Width = btWeite;
+            btBestellungen.Height = btHöhe;
+            btBestellungen.Width = btWeite;
+            btNews.Height = btHöhe;
+            btNews.Width = btWeite;
+            btTermine.Height = btHöhe;
+            btTermine.Width = btWeite;
+            btEinstellungen.Height = btHöhe;
+            btEinstellungen.Width = btWeite;
+            //Button Location Positionen
+            btHome.Location = new Point(btPositionX, 0);
+            btRechnungen.Location = new Point(btPositionX, btHöhe);
+            btArtikel.Location = new Point(btPositionX, btHöhe * 2);
+            btKunden.Location = new Point(btPositionX, btHöhe * 3);
+            btLieferanten.Location = new Point(btPositionX, btHöhe * 4);
+            btAnfragen.Location = new Point(btPositionX, btHöhe * 5);
+            btBestellungen.Location = new Point(btPositionX, btHöhe * 6);
+            btNews.Location = new Point(btPositionX, btHöhe * 7);
+            btTermine.Location = new Point(btPositionX, btHöhe * 8);
+            btEinstellungen.Location = new Point(btPositionX, btHöhe * 9);
+            //AuswahlPanel
+            panelAuswahl.Location = new Point(0, 0);
+            panelAuswahl.Height = btHöhe;
+            //Unterauswahl Einstellungen
+            btFirmendaten.Height = btHöhe / 2;
+            btBenutzer.Height = btHöhe / 2;
+
+        }
+
+        private void Form1_MouseEnter(object sender, EventArgs e)
+        {
+            panelAuswahl.Top = btHome.Top;
+
+            panelUnterMenu.Visible = false;
+        }
+
+        private void btBenutzer_Click(object sender, EventArgs e)
+        {
+            panelBenutzer.Dock = DockStyle.Fill;
+            panelsDeaktivieren();
+            panelBenutzer.Visible = true;
+
+            panelBenutzerLoginEinlesen();
+            pbBildName = "eye-closed.png";
+            pbPasswort.Image = Image.FromFile(@"D:\\OneDrive - BHAK und BHAS Mistelbach 316448\\Schule\\AP_SWE\\GitHub\\FutureFarmProgramm\\FutureFarm\\FutureFarm\\Properties\\" + pbBildName);
+
+            CheckEingeloggt();
+
+            panelUnterMenu.Visible = false;
+        }
+
+        private void panelBenutzerLoginEinlesen()
+        {
+            listViewPanelBenutzerLogin.Items.Clear();
+            //API Client
+            var client = new RestClient("http://localhost:8888");
+            var request = new RestRequest("logins", Method.GET);
+            request.AddHeader("Content-Type", "application/json");
+            var response = client.Execute<List<Login>>(request);
+
+            foreach (Login l in response.Data)
+            {
+                //MessageBox.Show(a.Bezeichnung.ToString());
+                lvItem = new ListViewItem(l.BenutzernameID.ToString());
+                lvItem.SubItems.Add(l.Benutzername.ToString());
+                lvItem.SubItems.Add(l.Passwort.ToString());
+                lvItem.SubItems.Add(l.LetzteAnmeldung.ToString());
+                listViewPanelBenutzerLogin.Items.Add(lvItem);
+            }
+
+        }
+
+        private void panelsDeaktivieren()
+        {
+            //Alle Panels invisible
+            panelBenutzer.Visible = false;
+            panelFirmendaten.Visible = false;
+            panelArtikel.Visible = false;
+
+            if (LogIn == true)
+            {
+                btNeu.Enabled = true;
+                btÄndern.Enabled = true;
+                btLöschen.Enabled = true;
+                pbPasswort.Enabled = true;
+            }
+        }
+
+        private void btAnfragen_Click(object sender, EventArgs e)
+        {
+            panelsDeaktivieren();
+        }
+
+        private void btBestellungen_Click(object sender, EventArgs e)
+        {
+            panelsDeaktivieren();
+        }
+
+        private void btNews_Click(object sender, EventArgs e)
+        {
+            panelAuswahl.Height = btNews.Height;
+            panelAuswahl.Top = btNews.Top;
+            panelsDeaktivieren();
+            panelNews.Visible = true;
+            panelNews.Dock = DockStyle.Fill;
+            listViewNews.Width = Convert.ToInt16(panelNews.Width * 0.5);
+
+            NewsEinlesen();
+
+            CheckEingeloggt();
+
+            panelUnterMenu.Visible = false;
+
+        }
+
+        private void NewsEinlesen()
+        {
+            listViewNews.Items.Clear();
+            //API Client
+            var client = new RestClient("http://localhost:8888");
+            var request = new RestRequest("news", Method.GET);
+            request.AddHeader("Content-Type", "application/json");
+            var response = client.Execute<List<News>>(request);
+
+            foreach (News n in response.Data)
+            {
+                //MessageBox.Show(a.Bezeichnung.ToString());
+                lvItem = new ListViewItem(n.NewsID.ToString());
+                lvItem.SubItems.Add(n.Titel.ToString());
+                lvItem.SubItems.Add(n.Beitrag.ToString());
+                DateTime datum = Convert.ToDateTime(n.Datum);
+                lvItem.SubItems.Add(datum.ToShortDateString());
+                lvItem.SubItems.Add(n.Login.Benutzername.ToString());
+                listViewNews.Items.Add(lvItem);
+            }
+        }
+
+
+        private void btTermine_Click(object sender, EventArgs e)
             {
                 panelsDeaktivieren();
             }
@@ -703,8 +744,55 @@ namespace FutureFarm
                 txtArtikelLieferant.Text = lvItem.SubItems[5].Text;
 
             }
+
+        private void dtpNews_ValueChanged(object sender, EventArgs e)
+        {
+
         }
 
+        private void listViewNews_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (listViewNews.SelectedItems.Count == 0)
+            {
+                MessageBox.Show("Wählen Sie bitte einen Beitrag aus!");
+                return;
+            }
+            lvItem = listViewNews.SelectedItems[0];
 
+            txtNewsID.Text = lvItem.SubItems[0].Text;
+            txtNewsTitel.Text = lvItem.SubItems[1].Text;
+            txtNewsBeitrag.Text = lvItem.SubItems[2].Text;
+            dtpNews.Value = Convert.ToDateTime(lvItem.SubItems[3].Text);
+        }
+
+        private void btNewsNeu_Click(object sender, EventArgs e)
+        {
+            txtNewsID.Clear();
+            txtNewsTitel.Clear();
+            txtNewsBeitrag.Clear();
+            dtpNews.Value = DateTime.Now;
+
+            
+        }
+
+        private void btNewsSpeichern_Click(object sender, EventArgs e)
+        {
+            var client = new RestClient("http://localhost:8888");
+            //var request = new RestRequest("firmendaten", Method.GET);
+            //request.AddHeader("Content-Type", "application/json");
+            //var response = client.Execute<List<Firmendaten>>(request);
+
+            var request = new RestRequest("news", Method.POST);
+            request.AddParameter("Titel", txtNewsTitel.Text);
+            request.AddParameter("Beitrag", txtNewsBeitrag.Text);
+            request.AddParameter("Datum", dtpNews.Value);
+            request.AddParameter("Benutzer", btLogin.Text);
+            request.AddHeader("content-type", "application/json");
+
+            var response = client.Execute(request);
+
+            NewsEinlesen();
+        }
     }
+}
 
