@@ -41,6 +41,7 @@ namespace FutureFarm
         internal double weite = Screen.PrimaryScreen.WorkingArea.Width;
         internal double höhe = Screen.PrimaryScreen.WorkingArea.Height;
         string pbBildName;
+        
 
         private void btHome_Click(object sender, EventArgs e)
         {
@@ -84,8 +85,11 @@ namespace FutureFarm
             panelArtikel.Dock = DockStyle.Fill;
             listViewArtikel.Height = Convert.ToInt16(panelArtikel.Height * 0.45);
             panelArtikelInfo.Location = new Point(Convert.ToInt16(panelArtikel.Width * 0.05), Convert.ToInt16(panelArtikel.Height * 0.05));
+            lbArtikelFilter.Location = new Point(10, (panelArtikel.Height-listViewArtikel.Height-40));
+            cbArtikelFilter.Location = new Point((10 + lbArtikelFilter.Width), (panelArtikel.Height - listViewArtikel.Height - 43));
+            cbArtikelFilter.SelectedIndex = 1;
 
-            ArtikelEinlesen();
+            //ArtikelEinlesen(true);
 
             CheckEingeloggt();
 
@@ -94,6 +98,7 @@ namespace FutureFarm
 
         private void ArtikelEinlesen()
         {
+            listViewArtikel.Items.Clear();
             //Client für API
             var client = new RestClient("http://localhost:8888");
             var request = new RestRequest("artikel", Method.GET);
@@ -102,19 +107,18 @@ namespace FutureFarm
 
             foreach (Artikel a in response.Data)
             {
-                //MessageBox.Show(a.Bezeichnung.ToString());
                 lvItem = new ListViewItem(a.ArtikelID.ToString());
                 lvItem.SubItems.Add(a.ExterneID.ToString());
                 lvItem.SubItems.Add(a.Bezeichnung.ToString());
                 lvItem.SubItems.Add(a.PreisNetto.ToString());
                 lvItem.SubItems.Add(a.Ust.ToString());
-                lvItem.SubItems.Add(a.Lieferant.Firma.ToString() + ", " + a.Lieferant.Nachname.ToString());
+                lvItem.SubItems.Add(a.Lieferant.Firma.ToString());
                 lvItem.SubItems.Add(a.Lagerstand.ToString());
                 lvItem.SubItems.Add(a.Reserviert.ToString());
                 lvItem.SubItems.Add(a.Aktiv.ToString());
+                listViewArtikel.Items.Add(lvItem);
 
-                //if (a.Aktiv == true)
-                    listViewArtikel.Items.Add(lvItem);
+
             }
 
         }
@@ -140,7 +144,6 @@ namespace FutureFarm
                 lvItem.SubItems.Add(a.Reserviert.ToString());
                 lvItem.SubItems.Add(a.Aktiv.ToString());
 
-                listViewArtikel.Items.Add(lvItem);
             }
 
         }
@@ -742,6 +745,7 @@ namespace FutureFarm
                 txtArtikelLagerstand.Text = lvItem.SubItems[6].Text;
                 txtArtikelReserviert.Text = lvItem.SubItems[7].Text;
                 txtArtikelLieferant.Text = lvItem.SubItems[5].Text;
+            
 
             }
 
@@ -792,6 +796,32 @@ namespace FutureFarm
             var response = client.Execute(request);
 
             NewsEinlesen();
+        }
+
+        private void btArtikelNeu_Click(object sender, EventArgs e)
+        {
+            //var client = new RestClient("http://localhost:8888");
+            //var request = new RestRequest("artikel", Method.PUT);
+            //request.AddParameter("ExterneID", txtArtikelExterneID.Text);
+            //request.AddParameter("Bezeichnung", txtArtikelBezeichnung.Text);
+            //request.AddParameter("PreisNetto", Convert.ToDouble(txtArtikelNettopreis.Text));
+            //request.AddParameter("Ust", Convert.ToDouble(txtArtikelUST.Text));
+            //request.AddParameter("Reserviert", Convert.ToInt16(txtArtikelReserviert.Text));
+            //request.AddParameter("Lagerstand", Convert.ToInt16(txtArtikelLagerstand.Text));
+            //request.AddParameter("LieferantenID", Convert.ToInt16(txtArtikelLieferant.Text));
+            //request.AddParameter("Aktiv", true);
+
+            //var response = client.Execute(request);
+            //ArtikelEinlesen();
+        }
+
+        private void btArtikelSpeichern_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void cbArtikelFilter_SelectedIndexChanged(object sender, EventArgs e)
+        {
         }
     }
 }
