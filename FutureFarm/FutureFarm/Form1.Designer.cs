@@ -99,6 +99,8 @@
             this.txtFirmendatenName = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.panelArtikel = new System.Windows.Forms.Panel();
+            this.lbArtikelFilter = new System.Windows.Forms.Label();
+            this.cbArtikelFilter = new System.Windows.Forms.ComboBox();
             this.panelNews = new System.Windows.Forms.Panel();
             this.btNewsNeu = new System.Windows.Forms.Button();
             this.txtNewsID = new System.Windows.Forms.TextBox();
@@ -148,8 +150,6 @@
             this.columnHeader14 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader15 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader16 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.cbArtikelFilter = new System.Windows.Forms.ComboBox();
-            this.lbArtikelFilter = new System.Windows.Forms.Label();
             this.columnHeader22 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.panel1.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -437,6 +437,7 @@
             this.btLogin.Text = "  Log In";
             this.btLogin.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btLogin.UseVisualStyleBackColor = true;
+            this.btLogin.TextChanged += new System.EventHandler(this.btLogin_TextChanged);
             this.btLogin.Click += new System.EventHandler(this.btLogin_Click);
             // 
             // btBeenden
@@ -968,6 +969,30 @@
             this.panelArtikel.TabIndex = 23;
             this.panelArtikel.Visible = false;
             // 
+            // lbArtikelFilter
+            // 
+            this.lbArtikelFilter.AutoSize = true;
+            this.lbArtikelFilter.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbArtikelFilter.Location = new System.Drawing.Point(15, 454);
+            this.lbArtikelFilter.Name = "lbArtikelFilter";
+            this.lbArtikelFilter.Size = new System.Drawing.Size(50, 21);
+            this.lbArtikelFilter.TabIndex = 53;
+            this.lbArtikelFilter.Text = "Filter:";
+            // 
+            // cbArtikelFilter
+            // 
+            this.cbArtikelFilter.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbArtikelFilter.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbArtikelFilter.FormattingEnabled = true;
+            this.cbArtikelFilter.Items.AddRange(new object[] {
+            "Alle Artikel",
+            "Aktive Artikel"});
+            this.cbArtikelFilter.Location = new System.Drawing.Point(69, 450);
+            this.cbArtikelFilter.Name = "cbArtikelFilter";
+            this.cbArtikelFilter.Size = new System.Drawing.Size(183, 29);
+            this.cbArtikelFilter.TabIndex = 52;
+            this.cbArtikelFilter.SelectedIndexChanged += new System.EventHandler(this.cbArtikelFilter_SelectedIndexChanged);
+            // 
             // panelNews
             // 
             this.panelNews.Controls.Add(this.btNewsNeu);
@@ -1447,30 +1472,6 @@
             this.columnHeader16.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.columnHeader16.Width = 120;
             // 
-            // cbArtikelFilter
-            // 
-            this.cbArtikelFilter.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbArtikelFilter.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cbArtikelFilter.FormattingEnabled = true;
-            this.cbArtikelFilter.Items.AddRange(new object[] {
-            "Alle Artikel",
-            "Aktive Artikel"});
-            this.cbArtikelFilter.Location = new System.Drawing.Point(69, 450);
-            this.cbArtikelFilter.Name = "cbArtikelFilter";
-            this.cbArtikelFilter.Size = new System.Drawing.Size(183, 29);
-            this.cbArtikelFilter.TabIndex = 52;
-            this.cbArtikelFilter.SelectedIndexChanged += new System.EventHandler(this.cbArtikelFilter_SelectedIndexChanged);
-            // 
-            // lbArtikelFilter
-            // 
-            this.lbArtikelFilter.AutoSize = true;
-            this.lbArtikelFilter.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbArtikelFilter.Location = new System.Drawing.Point(15, 454);
-            this.lbArtikelFilter.Name = "lbArtikelFilter";
-            this.lbArtikelFilter.Size = new System.Drawing.Size(50, 21);
-            this.lbArtikelFilter.TabIndex = 53;
-            this.lbArtikelFilter.Text = "Filter:";
-            // 
             // columnHeader22
             // 
             this.columnHeader22.Text = "Aktiv";
@@ -1535,7 +1536,6 @@
         private System.Windows.Forms.ColumnHeader columnHeader2;
         private System.Windows.Forms.ColumnHeader columnHeader3;
         internal System.Windows.Forms.ListView listViewLoginDaten;
-        internal System.Windows.Forms.Button btLogin;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Button btAnfragen;
         private System.Windows.Forms.Button btTermine;
@@ -1642,6 +1642,7 @@
         private System.Windows.Forms.Label lbArtikelFilter;
         private System.Windows.Forms.ComboBox cbArtikelFilter;
         private System.Windows.Forms.ColumnHeader columnHeader22;
+        public System.Windows.Forms.Button btLogin;
     }
 }
 

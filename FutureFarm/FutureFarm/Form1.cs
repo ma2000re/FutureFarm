@@ -28,19 +28,16 @@ namespace FutureFarm
             db = new Datenbank();
         }
 
-        internal Boolean LogIn = false;
+        internal Boolean LogIn;
         internal String benutzerEingabe;
         internal String passwortEingabe;
         Datenbank db;
-        String sql;
-        StreamReader sr;
-        StreamWriter sw;
         ListViewItem lvItem;
-        OleDbDataReader dr;
         internal int anzahlBenutzer;
         internal double weite = Screen.PrimaryScreen.WorkingArea.Width;
         internal double höhe = Screen.PrimaryScreen.WorkingArea.Height;
         string pbBildName;
+        bool alle;
         
 
         private void btHome_Click(object sender, EventArgs e)
@@ -87,9 +84,9 @@ namespace FutureFarm
             panelArtikelInfo.Location = new Point(Convert.ToInt16(panelArtikel.Width * 0.05), Convert.ToInt16(panelArtikel.Height * 0.05));
             lbArtikelFilter.Location = new Point(10, (panelArtikel.Height-listViewArtikel.Height-40));
             cbArtikelFilter.Location = new Point((10 + lbArtikelFilter.Width), (panelArtikel.Height - listViewArtikel.Height - 43));
-            cbArtikelFilter.SelectedIndex = 1;
 
             //ArtikelEinlesen(true);
+            ArtikelEinlesen();
 
             CheckEingeloggt();
 
@@ -116,34 +113,14 @@ namespace FutureFarm
                 lvItem.SubItems.Add(a.Lagerstand.ToString());
                 lvItem.SubItems.Add(a.Reserviert.ToString());
                 lvItem.SubItems.Add(a.Aktiv.ToString());
-                listViewArtikel.Items.Add(lvItem);
 
-
-            }
-
-        }
-
-        private void AlleArtikelEinlesen()
-        {
-            //Client für API
-            var client = new RestClient("http://localhost:8888");
-            var request = new RestRequest("artikel", Method.GET);
-            request.AddHeader("Content-Type", "application/json");
-            var response = client.Execute<List<Artikel>>(request);
-
-            foreach (Artikel a in response.Data)
-            {
-                //MessageBox.Show(a.Bezeichnung.ToString());
-                lvItem = new ListViewItem(a.ArtikelID.ToString());
-                lvItem.SubItems.Add(a.ExterneID.ToString());
-                lvItem.SubItems.Add(a.Bezeichnung.ToString());
-                lvItem.SubItems.Add(a.PreisNetto.ToString());
-                lvItem.SubItems.Add(a.Ust.ToString());
-                lvItem.SubItems.Add(a.Lieferant.Firma.ToString() + ", " + a.Lieferant.Nachname.ToString());
-                lvItem.SubItems.Add(a.Lagerstand.ToString());
-                lvItem.SubItems.Add(a.Reserviert.ToString());
-                lvItem.SubItems.Add(a.Aktiv.ToString());
-
+                if(alle==false)
+                {
+                    if (a.Aktiv == true)
+                        listViewArtikel.Items.Add(lvItem);
+                }
+                else
+                    listViewArtikel.Items.Add(lvItem);
             }
 
         }
@@ -164,10 +141,16 @@ namespace FutureFarm
 
         private void btLogin_Click(object sender, EventArgs e)
         {
-            //panelsDeaktivieren();
-            if (LogIn == false)
-                Einloggen();
-            else
+            CheckEinAusloggen();
+
+            CheckEingeloggt();
+        }
+
+        internal void CheckEinAusloggen()
+        {
+            FrmLogin fLogin = new FrmLogin();
+
+            if (LogIn == true)
             {
                 DialogResult dialogResult = MessageBox.Show("Wollen Sie den Benutzer wirklich abmelden?", "Log Out", MessageBoxButtons.YesNo);
                 if (dialogResult == DialogResult.Yes)
@@ -181,55 +164,62 @@ namespace FutureFarm
                     this.Close();
                 }
             }
-            CheckEingeloggt();
+            else
+            {
+                fLogin.ShowDialog();
+                
+            }
+
         }
 
-        private void Einloggen()
+        internal void Einloggen()
         {
+            //Benutzer aus DB holen
+            listViewPanelBenutzerLogin.Items.Clear();
+            BenutzerEinlesen();
+
             FrmLogin fLogin = new FrmLogin();
-            fLogin.ShowDialog();
-            FrmArtikel fArtikel = new FrmArtikel();
 
-
+            //Daten aus TextBox holen
             benutzerEingabe = fLogin.txtBenutzername.Text;
             passwortEingabe = fLogin.txtPasswort.Text;
 
+            //MessageBox.Show(anzahlBenutzer.ToString());
             for (int i = 0; i < anzahlBenutzer; i++)
             {
                 //MessageBox.Show(listViewLoginDaten.Items[i].SubItems[1].ToString());
-                if (listViewLoginDaten.Items[i].SubItems[1].Text == benutzerEingabe)
+                if (listViewLoginDaten.Items[i].SubItems[1].Text.Equals(benutzerEingabe))
                 {
                     //MessageBox.Show(listViewLoginDaten.Items[i].SubItems[1].Text + "***" + benutzerEingabe);
-                    if (listViewLoginDaten.Items[i].SubItems[2].Text == passwortEingabe)
+                    if (listViewLoginDaten.Items[i].SubItems[2].Text.Equals(passwortEingabe))
                     {
                         LogIn = true;
                         btLogin.Text = benutzerEingabe;
 
                         btLogin.Image = Image.FromFile("D:\\OneDrive - BHAK und BHAS Mistelbach 316448\\Schule\\AP_SWE\\GitHub\\FutureFarmProgramm\\FutureFarm\\FutureFarm\\Properties\\login.png");
 
-                        fArtikel.btLöschen.Enabled = true;
-                        fArtikel.btNeu.Enabled = true;
-                        fArtikel.btSpeichern.Enabled = true;
-
                         //LetzteAnmeldungAktualisieren();
+                        //MessageBox.Show("Login abgeschlossen, break eingeleitet!\n"+btLogin.Text+"§§"+LogIn.ToString());
+                        
                     }
                     else
                     {
+                        MessageBox.Show("Passwort falsch!");
                         LogIn = false;
-
                     }
+                    MessageBox.Show("Checken");
                     CheckEingeloggt();
                 }
+                break;
             }
 
             if (LogIn == false)
             {
                 MessageBox.Show("Login fehlgeschlagen!");
             }
-
         }
 
-        private void CheckEingeloggt()
+        internal void CheckEingeloggt()
         {
             if (LogIn == false)
             {
@@ -246,6 +236,7 @@ namespace FutureFarm
             }
             else if (LogIn == true)
             {
+
                 btLöschen.Enabled = true;
                 btNeu.Enabled = true;
                 btÄndern.Enabled = true;
@@ -293,7 +284,7 @@ namespace FutureFarm
 
             foreach (Login l in response.Data)
             {
-                //MessageBox.Show(a.Bezeichnung.ToString());
+                //MessageBox.Show(l.Benutzername.ToString());
                 lvItem = new ListViewItem(l.BenutzernameID.ToString());
                 lvItem.SubItems.Add(l.Benutzername.ToString());
                 lvItem.SubItems.Add(l.Passwort.ToString());
@@ -313,6 +304,9 @@ namespace FutureFarm
             panelAuswahl.Top = btHome.Top;
             panelAuswahl.Height = btHome.Height;
             BenutzerEinlesen();
+            
+
+            cbArtikelFilter.SelectedIndex = 1;
         }
 
         internal void GoFullscreen()
@@ -800,19 +794,51 @@ namespace FutureFarm
 
         private void btArtikelNeu_Click(object sender, EventArgs e)
         {
-            //var client = new RestClient("http://localhost:8888");
-            //var request = new RestRequest("artikel", Method.PUT);
-            //request.AddParameter("ExterneID", txtArtikelExterneID.Text);
-            //request.AddParameter("Bezeichnung", txtArtikelBezeichnung.Text);
-            //request.AddParameter("PreisNetto", Convert.ToDouble(txtArtikelNettopreis.Text));
-            //request.AddParameter("Ust", Convert.ToDouble(txtArtikelUST.Text));
-            //request.AddParameter("Reserviert", Convert.ToInt16(txtArtikelReserviert.Text));
-            //request.AddParameter("Lagerstand", Convert.ToInt16(txtArtikelLagerstand.Text));
-            //request.AddParameter("LieferantenID", Convert.ToInt16(txtArtikelLieferant.Text));
-            //request.AddParameter("Aktiv", true);
+            try
+            {
+                var client = new RestClient("http://localhost:8888");
 
-            //var response = client.Execute(request);
-            //ArtikelEinlesen();
+                var request2 = new RestRequest("lieferanten", Method.GET);
+                request2.AddHeader("Content-Type", "application/json");
+                var response2 = client.Execute<List<Lieferanten>>(request2);
+
+                Lieferanten lieferant = new Lieferanten();
+                foreach (Lieferanten l in response2.Data)
+                {
+                    //lieferant.
+
+                    //LIEFERANT HOLEN
+
+                    //
+                }
+
+                Artikel artikel = new Artikel();
+                artikel.ExterneID = Convert.ToInt16(txtArtikelExterneID.Text);
+                artikel.Bezeichnung = txtArtikelBezeichnung.Text;
+                artikel.PreisNetto = Convert.ToDouble(txtArtikelNettopreis.Text);
+                artikel.Ust = Convert.ToDouble(txtArtikelUST.Text);
+                artikel.Reserviert = Convert.ToInt16(txtArtikelReserviert.Text);
+                artikel.Lagerstand = Convert.ToInt16(txtArtikelLagerstand.Text);
+                artikel.Lieferant = lieferant;
+
+                var request1 = new RestRequest("artikel", Method.POST);
+                request1.AddHeader("Content-Type", "application/json");
+                request1.AddJsonBody(artikel);
+
+
+
+
+
+
+                var response = client.Execute(request1);
+
+                ArtikelEinlesen();
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show("Fehler bei der Neuanlage: " + ex.Message);
+            }
+
         }
 
         private void btArtikelSpeichern_Click(object sender, EventArgs e)
@@ -822,6 +848,16 @@ namespace FutureFarm
 
         private void cbArtikelFilter_SelectedIndexChanged(object sender, EventArgs e)
         {
+            if (cbArtikelFilter.SelectedIndex==1)
+                alle = false;
+            else
+                alle = true;
+            ArtikelEinlesen();
+        }
+
+        private void btLogin_TextChanged(object sender, EventArgs e)
+        {
+            MessageBox.Show("Text wird geändert!");
         }
     }
 }
