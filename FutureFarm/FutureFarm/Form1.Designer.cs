@@ -119,13 +119,13 @@
             this.columnHeader20 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader21 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.panelArtikelInfo = new System.Windows.Forms.Panel();
+            this.txtArtikelLieferantenID = new System.Windows.Forms.TextBox();
             this.txtArtikelExterneID = new System.Windows.Forms.TextBox();
             this.label28 = new System.Windows.Forms.Label();
             this.label16 = new System.Windows.Forms.Label();
             this.label17 = new System.Windows.Forms.Label();
             this.btArtikelLöschen = new System.Windows.Forms.Button();
             this.txtArtikelReserviert = new System.Windows.Forms.TextBox();
-            this.txtArtikelLieferant = new System.Windows.Forms.TextBox();
             this.btArtikelSpeichern = new System.Windows.Forms.Button();
             this.label19 = new System.Windows.Forms.Label();
             this.btArtikelNeu = new System.Windows.Forms.Button();
@@ -151,6 +151,7 @@
             this.columnHeader15 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader16 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader22 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.cbArtikelLieferanten = new System.Windows.Forms.ComboBox();
             this.panel1.SuspendLayout();
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -1158,13 +1159,14 @@
             // 
             // panelArtikelInfo
             // 
+            this.panelArtikelInfo.Controls.Add(this.cbArtikelLieferanten);
+            this.panelArtikelInfo.Controls.Add(this.txtArtikelLieferantenID);
             this.panelArtikelInfo.Controls.Add(this.txtArtikelExterneID);
             this.panelArtikelInfo.Controls.Add(this.label28);
             this.panelArtikelInfo.Controls.Add(this.label16);
             this.panelArtikelInfo.Controls.Add(this.label17);
             this.panelArtikelInfo.Controls.Add(this.btArtikelLöschen);
             this.panelArtikelInfo.Controls.Add(this.txtArtikelReserviert);
-            this.panelArtikelInfo.Controls.Add(this.txtArtikelLieferant);
             this.panelArtikelInfo.Controls.Add(this.btArtikelSpeichern);
             this.panelArtikelInfo.Controls.Add(this.label19);
             this.panelArtikelInfo.Controls.Add(this.btArtikelNeu);
@@ -1184,6 +1186,15 @@
             this.panelArtikelInfo.Name = "panelArtikelInfo";
             this.panelArtikelInfo.Size = new System.Drawing.Size(854, 345);
             this.panelArtikelInfo.TabIndex = 51;
+            // 
+            // txtArtikelLieferantenID
+            // 
+            this.txtArtikelLieferantenID.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtArtikelLieferantenID.Location = new System.Drawing.Point(371, 124);
+            this.txtArtikelLieferantenID.Name = "txtArtikelLieferantenID";
+            this.txtArtikelLieferantenID.Size = new System.Drawing.Size(254, 31);
+            this.txtArtikelLieferantenID.TabIndex = 53;
+            this.txtArtikelLieferantenID.Text = "1";
             // 
             // txtArtikelExterneID
             // 
@@ -1232,6 +1243,7 @@
             this.btArtikelLöschen.TabIndex = 50;
             this.btArtikelLöschen.Text = "Löschen";
             this.btArtikelLöschen.UseVisualStyleBackColor = true;
+            this.btArtikelLöschen.Click += new System.EventHandler(this.btArtikelLöschen_Click);
             // 
             // txtArtikelReserviert
             // 
@@ -1241,14 +1253,6 @@
             this.txtArtikelReserviert.Size = new System.Drawing.Size(145, 31);
             this.txtArtikelReserviert.TabIndex = 44;
             this.txtArtikelReserviert.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            // 
-            // txtArtikelLieferant
-            // 
-            this.txtArtikelLieferant.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtArtikelLieferant.Location = new System.Drawing.Point(371, 87);
-            this.txtArtikelLieferant.Name = "txtArtikelLieferant";
-            this.txtArtikelLieferant.Size = new System.Drawing.Size(254, 31);
-            this.txtArtikelLieferant.TabIndex = 46;
             // 
             // btArtikelSpeichern
             // 
@@ -1364,6 +1368,7 @@
             this.txtArtikelUST.Name = "txtArtikelUST";
             this.txtArtikelUST.Size = new System.Drawing.Size(91, 31);
             this.txtArtikelUST.TabIndex = 37;
+            this.txtArtikelUST.Text = "20";
             this.txtArtikelUST.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // txtArtikelNettopreis
@@ -1374,6 +1379,7 @@
             this.txtArtikelNettopreis.Size = new System.Drawing.Size(145, 31);
             this.txtArtikelNettopreis.TabIndex = 35;
             this.txtArtikelNettopreis.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtArtikelNettopreis.TextChanged += new System.EventHandler(this.txtArtikelNettopreis_TextChanged);
             // 
             // label21
             // 
@@ -1475,6 +1481,16 @@
             // columnHeader22
             // 
             this.columnHeader22.Text = "Aktiv";
+            // 
+            // cbArtikelLieferanten
+            // 
+            this.cbArtikelLieferanten.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbArtikelLieferanten.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbArtikelLieferanten.FormattingEnabled = true;
+            this.cbArtikelLieferanten.Location = new System.Drawing.Point(371, 87);
+            this.cbArtikelLieferanten.Name = "cbArtikelLieferanten";
+            this.cbArtikelLieferanten.Size = new System.Drawing.Size(254, 29);
+            this.cbArtikelLieferanten.TabIndex = 54;
             // 
             // Form1
             // 
@@ -1594,7 +1610,6 @@
         public System.Windows.Forms.Button btArtikelSpeichern;
         public System.Windows.Forms.Button btArtikelNeu;
         private System.Windows.Forms.Label label16;
-        private System.Windows.Forms.TextBox txtArtikelLieferant;
         private System.Windows.Forms.Label label17;
         private System.Windows.Forms.TextBox txtArtikelReserviert;
         private System.Windows.Forms.Label label18;
@@ -1643,6 +1658,8 @@
         private System.Windows.Forms.ComboBox cbArtikelFilter;
         private System.Windows.Forms.ColumnHeader columnHeader22;
         public System.Windows.Forms.Button btLogin;
+        private System.Windows.Forms.TextBox txtArtikelLieferantenID;
+        private System.Windows.Forms.ComboBox cbArtikelLieferanten;
     }
 }
 
