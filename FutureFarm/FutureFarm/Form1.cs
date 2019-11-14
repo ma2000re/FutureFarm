@@ -41,6 +41,7 @@ namespace FutureFarm
         bool alle;
         Artikel aktArtikel;
         public bool reset=false;
+        internal string angBenutzer;
         
 
         private void btHome_Click(object sender, EventArgs e)
@@ -60,14 +61,36 @@ namespace FutureFarm
 
         private void btRechnungen_Click(object sender, EventArgs e)
         {
+            //panelAuswahl.Height = btRechnungen.Height;
+            //panelAuswahl.Top = btRechnungen.Top;
+            //panelsDeaktivieren();
+            //panelRechnung.Visible = true;
+            //panelArtikel.Dock = DockStyle.Fill;
+            //listViewArtikel.Height = Convert.ToInt16(panelArtikel.Height * 0.45);
+            //panelArtikelInfo.Location = new Point(Convert.ToInt16(panelArtikel.Width * 0.05), Convert.ToInt16(panelArtikel.Height * 0.05));
+            //lbArtikelFilter.Location = new Point(10, (panelArtikel.Height - listViewArtikel.Height - 40));
+            //cbArtikelFilter.Location = new Point((10 + lbArtikelFilter.Width), (panelArtikel.Height - listViewArtikel.Height - 43));
+            //btArtikelSpeichern.Enabled = false;
+
+            //ArtikelEinlesen();
+            //LieferantenEinlesen();
+
+            //CheckEingeloggt();
+
+            //panelUnterMenu.Visible = false;
+
+
+            //>>
             panelAuswahl.Height = btRechnungen.Height;
             panelAuswahl.Top = btRechnungen.Top;
             panelsDeaktivieren();
 
             FrmRechnungen fRechnungen = new FrmRechnungen();
-            fRechnungen.ShowDialog();
+            //fRechnungen.ShowDialog();
             panelAuswahl.Height = btHome.Height;
             panelAuswahl.Top = btHome.Top;
+
+
 
         }
 
@@ -89,7 +112,6 @@ namespace FutureFarm
             cbArtikelFilter.Location = new Point((10 + lbArtikelFilter.Width), (panelArtikel.Height - listViewArtikel.Height - 43));
             btArtikelSpeichern.Enabled = false;
 
-            //ArtikelEinlesen(true);
             ArtikelEinlesen();
             LieferantenEinlesen();
 
@@ -162,14 +184,15 @@ namespace FutureFarm
         private void btLogin_Click(object sender, EventArgs e)
         {
             CheckEinAusloggen();
-
             CheckEingeloggt();
         }
 
         internal void CheckEinAusloggen()
         {
+            //Prüfung ob jemand eingeloggt ist
             FrmLogin fLogin = new FrmLogin();
 
+            //Eingeloggt, dann Abmelden
             if (LogIn == true)
             {
                 DialogResult dialogResult = MessageBox.Show("Wollen Sie den Benutzer wirklich abmelden?", "Log Out", MessageBoxButtons.YesNo);
@@ -177,6 +200,7 @@ namespace FutureFarm
                 {
                     LogIn = false;
                     btLogin.Image = Image.FromFile("D:\\OneDrive - BHAK und BHAS Mistelbach 316448\\Schule\\AP_SWE\\GitHub\\FutureFarmProgramm\\FutureFarm\\FutureFarm\\Properties\\logout.png");
+                    
                     btLogin.Text = "Log In";
                 }
                 else if (dialogResult == DialogResult.No)
@@ -184,42 +208,43 @@ namespace FutureFarm
                     this.Close();
                 }
             }
+            //nicht eingeloggt, Anmelden
             else
             {
                 fLogin.ShowDialog();
-                
             }
 
         }
 
-        internal void Einloggen()
+        public void Einloggen()
         {
-            //Benutzer aus DB holen
+            //Benutzer die eingelesen sind löschen
             listViewPanelBenutzerLogin.Items.Clear();
+
+            //Benutzer neu aus DB holen
             BenutzerEinlesen();
 
             FrmLogin fLogin = new FrmLogin();
 
-            //Daten aus TextBox holen
+            //Daten aus TextBox aus FormLogin holen
             benutzerEingabe = fLogin.txtBenutzername.Text;
             passwortEingabe = fLogin.txtPasswort.Text;
 
             //MessageBox.Show(anzahlBenutzer.ToString());
             for (int i = 0; i < anzahlBenutzer; i++)
             {
-                //MessageBox.Show(listViewLoginDaten.Items[i].SubItems[1].ToString());
                 if (listViewLoginDaten.Items[i].SubItems[1].Text.Equals(benutzerEingabe))
                 {
-                    //MessageBox.Show(listViewLoginDaten.Items[i].SubItems[1].Text + "***" + benutzerEingabe);
                     if (listViewLoginDaten.Items[i].SubItems[2].Text.Equals(passwortEingabe))
                     {
                         LogIn = true;
                         btLogin.Text = benutzerEingabe;
+                        angBenutzer = benutzerEingabe;
 
                         btLogin.Image = Image.FromFile("D:\\OneDrive - BHAK und BHAS Mistelbach 316448\\Schule\\AP_SWE\\GitHub\\FutureFarmProgramm\\FutureFarm\\FutureFarm\\Properties\\login.png");
 
-                        //LetzteAnmeldungAktualisieren();
-                        //MessageBox.Show("Login abgeschlossen, break eingeleitet!\n"+btLogin.Text+"§§"+LogIn.ToString());
+                        LetzteAnmeldungAktualisieren();
+                        MessageBox.Show("Login abgeschlossen, break eingeleitet!\n"+btLogin.Text+"§§"+LogIn.ToString());
                         
                     }
                     else
@@ -227,7 +252,6 @@ namespace FutureFarm
                         MessageBox.Show("Passwort falsch!");
                         LogIn = false;
                     }
-                    MessageBox.Show("Checken");
                     CheckEingeloggt();
                 }
                 break;
@@ -243,16 +267,16 @@ namespace FutureFarm
         {
             if (LogIn == false)
             {
-                btLöschen.Enabled = false;
-                btNeu.Enabled = false;
-                btÄndern.Enabled = false;
-                pbPasswort.Enabled = false;
-                btSpeichern.Enabled = false;
-                //btArtikelLöschen.Enabled = false;
-                //btArtikelNeu.Enabled = false;
-                //btArtikelSpeichern.Enabled = false;
-                btNewsLöschen.Enabled = false;
-                btNewsSpeichern.Enabled = false;
+                //btLöschen.Enabled = false;
+                //btNeu.Enabled = false;
+                //btÄndern.Enabled = false;
+                //pbPasswort.Enabled = false;
+                //btSpeichern.Enabled = false;
+                ////btArtikelLöschen.Enabled = false;
+                ////btArtikelNeu.Enabled = false;
+                ////btArtikelSpeichern.Enabled = false;
+                //btNewsLöschen.Enabled = false;
+                //btNewsSpeichern.Enabled = false;
             }
             else if (LogIn == true)
             {
@@ -267,7 +291,6 @@ namespace FutureFarm
                 btArtikelSpeichern.Enabled = true;
                 btNewsLöschen.Enabled = true;
                 btNewsSpeichern.Enabled = true;
-
             }
 
         }
@@ -275,21 +298,30 @@ namespace FutureFarm
         private void LetzteAnmeldungAktualisieren()
         {
             //API Client
-            var client = new RestClient("http://localhost:8888");
-            var request = new RestRequest("logins", Method.PUT);
-            request.AddHeader("Content-Type", "application/json");
-            var response = client.Execute<List<Login>>(request);
-
-            foreach (Login l in response.Data)
+            var client = new RestClient("http://localhost:8888")
             {
-                //MessageBox.Show(a.Bezeichnung.ToString());
-                lvItem = new ListViewItem(l.BenutzernameID.ToString());
-                lvItem.SubItems.Add(l.Benutzername.ToString());
-                lvItem.SubItems.Add(l.Passwort.ToString());
-                lvItem.SubItems.Add(l.LetzteAnmeldung.ToString());
-                listViewLoginDaten.Items.Add(lvItem);
-                anzahlBenutzer++;
+                Authenticator = new HttpBasicAuthenticator("demo", "demo")
+            };
+
+            //Login schreiben
+            Login aktLogin = new Login();
+            aktLogin.Benutzername = angBenutzer;
+            aktLogin.LetzteAnmeldung = DateTime.Now;
+            //Login updaten
+            var request2 = new RestRequest("login", Method.PUT);
+            request2.AddHeader("Content-Type", "application/json");
+            request2.AddJsonBody(aktLogin);
+            var response2 = client.Execute(request2);
+            if (response2.StatusCode == System.Net.HttpStatusCode.BadRequest)
+            {
+                MessageBox.Show("An Error occured", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+            else
+            {
+                MessageBox.Show("Erfolgreich Anmeldezeit geändert!");
+                BenutzerEinlesen();
+            }
+
 
         }
 
@@ -652,9 +684,53 @@ namespace FutureFarm
 
             private void btNeu_Click(object sender, EventArgs e)
             {
-                //POST Methode
+            //POST Methode
+            FrmSuperpasswort fSuper = new FrmSuperpasswort();
+            fSuper.lbAktion.Text = "Benutzer anlegen...";
+            fSuper.lbText.Text = "Bitte Passwort eingeben, um Ihre Berechtigung zum Hinzufügen von Benutzern zu prüfen:";
+            fSuper.ShowDialog();
+            if (fSuper.berechtigt == true)
+            {
+                //Benutzer hinzufügen
+                try
+                {
+                    var client = new RestClient("http://localhost:8888")
+                    {
+                        Authenticator = new HttpBasicAuthenticator("demo", "demo")
+                    };
 
-                panelBenutzerLoginEinlesen();
+
+                    //Benutzer erzeugen
+                    Login login = new Login();
+                    
+
+                    //Artikel hinzufügen
+                    var request2 = new RestRequest("login", Method.POST);
+                    request2.AddHeader("Content-Type", "application/json");
+                    request2.AddJsonBody(login);
+                    var response2 = client.Execute(request2);
+                    if (response2.StatusCode == System.Net.HttpStatusCode.BadRequest)
+                    {
+                        MessageBox.Show("An Error occured", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Erfolgreich Benutzer hinzugefügt!");
+                        ArtikelEinlesen();
+                    }
+
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Fehler bei der Neuanlage: " + ex.Message);
+                }
+
+
+
+            }
+
+
+            panelBenutzerLoginEinlesen();
             }
 
             private void btLöschen_Click(object sender, EventArgs e)

@@ -92,6 +92,12 @@
     <Compile Include="FrmRechnungen.Designer.cs">
       <DependentUpon>FrmRechnungen.cs</DependentUpon>
     </Compile>
+    <Compile Include="FrmSuperpasswort.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmSuperpasswort.Designer.cs">
+      <DependentUpon>FrmSuperpasswort.cs</DependentUpon>
+    </Compile>
     <Compile Include="FrmWarnung.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -125,6 +131,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FrmRechnungen.resx">
       <DependentUpon>FrmRechnungen.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmSuperpasswort.resx">
+      <DependentUpon>FrmSuperpasswort.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmWarnung.resx">
       <DependentUpon>FrmWarnung.cs</DependentUpon>

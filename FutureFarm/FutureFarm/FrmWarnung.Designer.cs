@@ -31,7 +31,7 @@
             this.panel2 = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
             this.btAbbrechen = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
+            this.btWeiter = new System.Windows.Forms.Button();
             this.lbText = new System.Windows.Forms.Label();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
@@ -61,7 +61,7 @@
             // btAbbrechen
             // 
             this.btAbbrechen.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btAbbrechen.Location = new System.Drawing.Point(272, 244);
+            this.btAbbrechen.Location = new System.Drawing.Point(12, 244);
             this.btAbbrechen.Name = "btAbbrechen";
             this.btAbbrechen.Size = new System.Drawing.Size(250, 53);
             this.btAbbrechen.TabIndex = 20;
@@ -69,16 +69,16 @@
             this.btAbbrechen.UseVisualStyleBackColor = true;
             this.btAbbrechen.Click += new System.EventHandler(this.btAbbrechen_Click);
             // 
-            // button2
+            // btWeiter
             // 
-            this.button2.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button2.Location = new System.Drawing.Point(12, 244);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(250, 53);
-            this.button2.TabIndex = 21;
-            this.button2.Text = "Weiter";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            this.btWeiter.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btWeiter.Location = new System.Drawing.Point(272, 244);
+            this.btWeiter.Name = "btWeiter";
+            this.btWeiter.Size = new System.Drawing.Size(250, 53);
+            this.btWeiter.TabIndex = 21;
+            this.btWeiter.Text = "&Weiter";
+            this.btWeiter.UseVisualStyleBackColor = true;
+            this.btWeiter.Click += new System.EventHandler(this.button2_Click);
             // 
             // lbText
             // 
@@ -86,9 +86,9 @@
             this.lbText.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbText.Location = new System.Drawing.Point(16, 86);
             this.lbText.Name = "lbText";
-            this.lbText.Size = new System.Drawing.Size(43, 21);
+            this.lbText.Size = new System.Drawing.Size(55, 21);
             this.lbText.TabIndex = 22;
-            this.lbText.Text = "Text";
+            this.lbText.Text = "Text...";
             // 
             // FrmWarnung
             // 
@@ -96,7 +96,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(534, 309);
             this.Controls.Add(this.lbText);
-            this.Controls.Add(this.button2);
+            this.Controls.Add(this.btWeiter);
             this.Controls.Add(this.btAbbrechen);
             this.Controls.Add(this.panel2);
             this.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -118,7 +118,7 @@
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btAbbrechen;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button btWeiter;
         internal System.Windows.Forms.Label lbText;
     }
 }
