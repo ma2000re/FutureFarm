@@ -18,6 +18,8 @@ namespace FutureFarm
         }
 
         internal bool berechtigt;
+        Form1 f1 = new Form1();
+
 
         private void btWeiter_Click(object sender, EventArgs e)
         {
@@ -26,8 +28,15 @@ namespace FutureFarm
             else
                 MessageBox.Show("Passwort falsch");
 
+            f1.Enabled = true;
             this.Close();
             
+        }
+
+        private void FrmSuperpasswort_Load(object sender, EventArgs e)
+        {
+            f1.Enabled = false;
+            txtPasswort.Focus();
         }
     }
 }

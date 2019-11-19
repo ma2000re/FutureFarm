@@ -32,9 +32,22 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
             this.panelMenuUnten = new System.Windows.Forms.Panel();
+            this.btBestellungen = new System.Windows.Forms.Button();
+            this.btTermine = new System.Windows.Forms.Button();
+            this.btNews = new System.Windows.Forms.Button();
+            this.btAnfragen = new System.Windows.Forms.Button();
+            this.btHome = new System.Windows.Forms.Button();
             this.panelAuswahl = new System.Windows.Forms.Panel();
+            this.btEinstellungen = new System.Windows.Forms.Button();
+            this.btRechnungen = new System.Windows.Forms.Button();
+            this.btLieferanten = new System.Windows.Forms.Button();
+            this.btArtikel = new System.Windows.Forms.Button();
+            this.btKunden = new System.Windows.Forms.Button();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panel2 = new System.Windows.Forms.Panel();
             this.button1 = new System.Windows.Forms.Button();
+            this.btLogin = new System.Windows.Forms.Button();
+            this.btBeenden = new System.Windows.Forms.Button();
             this.listViewLoginDaten = new System.Windows.Forms.ListView();
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -45,14 +58,15 @@
             this.panel4 = new System.Windows.Forms.Panel();
             this.panelUnterMenu = new System.Windows.Forms.Panel();
             this.panelBenutzer = new System.Windows.Forms.Panel();
-            this.btNeu = new System.Windows.Forms.Button();
-            this.btLöschen = new System.Windows.Forms.Button();
-            this.btÄndern = new System.Windows.Forms.Button();
-            this.txtPasswort = new System.Windows.Forms.TextBox();
-            this.txtBenutzername = new System.Windows.Forms.TextBox();
+            this.btBenutzerNeu = new System.Windows.Forms.Button();
+            this.btBenutzerLöschen = new System.Windows.Forms.Button();
+            this.btBenutzerÄndern = new System.Windows.Forms.Button();
+            this.pbPasswort = new System.Windows.Forms.PictureBox();
+            this.txtBenutzerPasswort = new System.Windows.Forms.TextBox();
+            this.txtBenutzerBenutzername = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.txtID = new System.Windows.Forms.TextBox();
+            this.txtBenutzerBenutzerID = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.listViewPanelBenutzerLogin = new System.Windows.Forms.ListView();
             this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -87,6 +101,16 @@
             this.panelArtikel = new System.Windows.Forms.Panel();
             this.lbArtikelFilter = new System.Windows.Forms.Label();
             this.cbArtikelFilter = new System.Windows.Forms.ComboBox();
+            this.listViewArtikel = new System.Windows.Forms.ListView();
+            this.columnHeader9 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader10 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader11 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader12 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader13 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader14 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader15 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader16 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader22 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.panelNews = new System.Windows.Forms.Panel();
             this.btNewsNeu = new System.Windows.Forms.Button();
             this.txtNewsID = new System.Windows.Forms.TextBox();
@@ -104,66 +128,43 @@
             this.columnHeader19 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader20 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader21 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.listViewArtikel = new System.Windows.Forms.ListView();
-            this.columnHeader9 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader10 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader11 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader12 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader13 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader14 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader15 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader16 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader22 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.label24 = new System.Windows.Forms.Label();
-            this.label21 = new System.Windows.Forms.Label();
-            this.txtArtikelNettopreis = new System.Windows.Forms.TextBox();
-            this.txtArtikelUST = new System.Windows.Forms.TextBox();
-            this.label22 = new System.Windows.Forms.Label();
-            this.label20 = new System.Windows.Forms.Label();
-            this.txtArtikelBezeichnung = new System.Windows.Forms.TextBox();
-            this.txtArtikelBrutto = new System.Windows.Forms.TextBox();
-            this.label23 = new System.Windows.Forms.Label();
-            this.txtArtikelArtikelID = new System.Windows.Forms.TextBox();
-            this.txtArtikelLagerstand = new System.Windows.Forms.TextBox();
-            this.label18 = new System.Windows.Forms.Label();
-            this.btArtikelNeu = new System.Windows.Forms.Button();
-            this.label19 = new System.Windows.Forms.Label();
-            this.btArtikelSpeichern = new System.Windows.Forms.Button();
-            this.txtArtikelReserviert = new System.Windows.Forms.TextBox();
-            this.btArtikelLöschen = new System.Windows.Forms.Button();
-            this.label17 = new System.Windows.Forms.Label();
-            this.label16 = new System.Windows.Forms.Label();
-            this.label28 = new System.Windows.Forms.Label();
-            this.txtArtikelExterneID = new System.Windows.Forms.TextBox();
-            this.txtArtikelLieferantFirma = new System.Windows.Forms.TextBox();
-            this.cbArtikelLieferanten = new System.Windows.Forms.ComboBox();
-            this.btReset = new System.Windows.Forms.Button();
             this.panelArtikelInfo = new System.Windows.Forms.Panel();
             this.checkboxArtikelAktiv = new System.Windows.Forms.CheckBox();
-            this.pbPasswort = new System.Windows.Forms.PictureBox();
-            this.btLogin = new System.Windows.Forms.Button();
-            this.btBeenden = new System.Windows.Forms.Button();
-            this.btBestellungen = new System.Windows.Forms.Button();
-            this.btTermine = new System.Windows.Forms.Button();
-            this.btNews = new System.Windows.Forms.Button();
-            this.btAnfragen = new System.Windows.Forms.Button();
-            this.btHome = new System.Windows.Forms.Button();
-            this.btEinstellungen = new System.Windows.Forms.Button();
-            this.btRechnungen = new System.Windows.Forms.Button();
-            this.btLieferanten = new System.Windows.Forms.Button();
-            this.btArtikel = new System.Windows.Forms.Button();
-            this.btKunden = new System.Windows.Forms.Button();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.btReset = new System.Windows.Forms.Button();
+            this.cbArtikelLieferanten = new System.Windows.Forms.ComboBox();
+            this.txtArtikelLieferantFirma = new System.Windows.Forms.TextBox();
+            this.txtArtikelExterneID = new System.Windows.Forms.TextBox();
+            this.label28 = new System.Windows.Forms.Label();
+            this.label16 = new System.Windows.Forms.Label();
+            this.label17 = new System.Windows.Forms.Label();
+            this.btArtikelLöschen = new System.Windows.Forms.Button();
+            this.txtArtikelReserviert = new System.Windows.Forms.TextBox();
+            this.btArtikelSpeichern = new System.Windows.Forms.Button();
+            this.label19 = new System.Windows.Forms.Label();
+            this.btArtikelNeu = new System.Windows.Forms.Button();
+            this.label18 = new System.Windows.Forms.Label();
+            this.txtArtikelLagerstand = new System.Windows.Forms.TextBox();
+            this.txtArtikelArtikelID = new System.Windows.Forms.TextBox();
+            this.label23 = new System.Windows.Forms.Label();
+            this.txtArtikelBrutto = new System.Windows.Forms.TextBox();
+            this.txtArtikelBezeichnung = new System.Windows.Forms.TextBox();
+            this.label20 = new System.Windows.Forms.Label();
+            this.label22 = new System.Windows.Forms.Label();
+            this.txtArtikelUST = new System.Windows.Forms.TextBox();
+            this.txtArtikelNettopreis = new System.Windows.Forms.TextBox();
+            this.label21 = new System.Windows.Forms.Label();
+            this.label24 = new System.Windows.Forms.Label();
+            this.btNewsReset = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panel3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel2.SuspendLayout();
             this.panelBenutzer.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbPasswort)).BeginInit();
             this.panelFirmendaten.SuspendLayout();
             this.panelArtikel.SuspendLayout();
             this.panelNews.SuspendLayout();
             this.panelArtikelInfo.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pbPasswort)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -208,6 +209,91 @@
             this.panelMenuUnten.Size = new System.Drawing.Size(205, 5);
             this.panelMenuUnten.TabIndex = 3;
             // 
+            // btBestellungen
+            // 
+            this.btBestellungen.FlatAppearance.BorderSize = 0;
+            this.btBestellungen.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btBestellungen.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btBestellungen.Image = global::FutureFarm.Properties.Resources.Fax_icon;
+            this.btBestellungen.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btBestellungen.Location = new System.Drawing.Point(24, 571);
+            this.btBestellungen.Name = "btBestellungen";
+            this.btBestellungen.Size = new System.Drawing.Size(190, 87);
+            this.btBestellungen.TabIndex = 10;
+            this.btBestellungen.Text = "   Bestellungen";
+            this.btBestellungen.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btBestellungen.UseVisualStyleBackColor = true;
+            this.btBestellungen.Click += new System.EventHandler(this.btBestellungen_Click);
+            this.btBestellungen.MouseEnter += new System.EventHandler(this.btBestellungen_MouseEnter);
+            // 
+            // btTermine
+            // 
+            this.btTermine.FlatAppearance.BorderSize = 0;
+            this.btTermine.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btTermine.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btTermine.Image = global::FutureFarm.Properties.Resources.termin;
+            this.btTermine.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btTermine.Location = new System.Drawing.Point(3, 738);
+            this.btTermine.Name = "btTermine";
+            this.btTermine.Size = new System.Drawing.Size(190, 87);
+            this.btTermine.TabIndex = 9;
+            this.btTermine.Text = "   Termine";
+            this.btTermine.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btTermine.UseVisualStyleBackColor = true;
+            this.btTermine.Click += new System.EventHandler(this.btTermine_Click);
+            this.btTermine.MouseEnter += new System.EventHandler(this.btTermine_MouseEnter);
+            // 
+            // btNews
+            // 
+            this.btNews.FlatAppearance.BorderSize = 0;
+            this.btNews.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btNews.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btNews.Image = global::FutureFarm.Properties.Resources.news;
+            this.btNews.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btNews.Location = new System.Drawing.Point(15, 661);
+            this.btNews.Name = "btNews";
+            this.btNews.Size = new System.Drawing.Size(190, 87);
+            this.btNews.TabIndex = 8;
+            this.btNews.Text = "   News";
+            this.btNews.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btNews.UseVisualStyleBackColor = true;
+            this.btNews.Click += new System.EventHandler(this.btNews_Click);
+            this.btNews.MouseEnter += new System.EventHandler(this.btNews_MouseEnter);
+            // 
+            // btAnfragen
+            // 
+            this.btAnfragen.FlatAppearance.BorderSize = 0;
+            this.btAnfragen.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btAnfragen.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btAnfragen.Image = global::FutureFarm.Properties.Resources.Fax_icon;
+            this.btAnfragen.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btAnfragen.Location = new System.Drawing.Point(9, 478);
+            this.btAnfragen.Name = "btAnfragen";
+            this.btAnfragen.Size = new System.Drawing.Size(190, 87);
+            this.btAnfragen.TabIndex = 7;
+            this.btAnfragen.Text = "   Anfragen";
+            this.btAnfragen.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btAnfragen.UseVisualStyleBackColor = true;
+            this.btAnfragen.Click += new System.EventHandler(this.btAnfragen_Click);
+            this.btAnfragen.MouseEnter += new System.EventHandler(this.btAnfragen_MouseEnter);
+            // 
+            // btHome
+            // 
+            this.btHome.FlatAppearance.BorderSize = 0;
+            this.btHome.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btHome.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btHome.Image = global::FutureFarm.Properties.Resources.home1;
+            this.btHome.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btHome.Location = new System.Drawing.Point(12, 21);
+            this.btHome.Name = "btHome";
+            this.btHome.Size = new System.Drawing.Size(190, 87);
+            this.btHome.TabIndex = 2;
+            this.btHome.Text = "   Home";
+            this.btHome.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btHome.UseVisualStyleBackColor = true;
+            this.btHome.Click += new System.EventHandler(this.btHome_Click);
+            this.btHome.MouseEnter += new System.EventHandler(this.btHome_MouseEnter);
+            // 
             // panelAuswahl
             // 
             this.panelAuswahl.BackColor = System.Drawing.Color.DodgerBlue;
@@ -215,6 +301,103 @@
             this.panelAuswahl.Name = "panelAuswahl";
             this.panelAuswahl.Size = new System.Drawing.Size(10, 79);
             this.panelAuswahl.TabIndex = 2;
+            // 
+            // btEinstellungen
+            // 
+            this.btEinstellungen.FlatAppearance.BorderSize = 0;
+            this.btEinstellungen.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btEinstellungen.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btEinstellungen.Image = global::FutureFarm.Properties.Resources.customer_support1;
+            this.btEinstellungen.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btEinstellungen.Location = new System.Drawing.Point(24, 818);
+            this.btEinstellungen.Name = "btEinstellungen";
+            this.btEinstellungen.Size = new System.Drawing.Size(190, 87);
+            this.btEinstellungen.TabIndex = 3;
+            this.btEinstellungen.Text = "   Einstellungen";
+            this.btEinstellungen.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btEinstellungen.UseVisualStyleBackColor = true;
+            this.btEinstellungen.Click += new System.EventHandler(this.btEinstellungen_Click);
+            this.btEinstellungen.MouseEnter += new System.EventHandler(this.btEinstellungen_MouseEnter);
+            // 
+            // btRechnungen
+            // 
+            this.btRechnungen.FlatAppearance.BorderSize = 0;
+            this.btRechnungen.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btRechnungen.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btRechnungen.Image = global::FutureFarm.Properties.Resources.invoice1;
+            this.btRechnungen.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btRechnungen.Location = new System.Drawing.Point(12, 103);
+            this.btRechnungen.Name = "btRechnungen";
+            this.btRechnungen.Size = new System.Drawing.Size(190, 87);
+            this.btRechnungen.TabIndex = 3;
+            this.btRechnungen.Text = "   Rechnungen";
+            this.btRechnungen.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btRechnungen.UseVisualStyleBackColor = true;
+            this.btRechnungen.Click += new System.EventHandler(this.btRechnungen_Click);
+            this.btRechnungen.MouseEnter += new System.EventHandler(this.btRechnungen_MouseEnter);
+            // 
+            // btLieferanten
+            // 
+            this.btLieferanten.FlatAppearance.BorderSize = 0;
+            this.btLieferanten.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btLieferanten.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btLieferanten.Image = global::FutureFarm.Properties.Resources.delivery_truck1;
+            this.btLieferanten.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btLieferanten.Location = new System.Drawing.Point(24, 397);
+            this.btLieferanten.Name = "btLieferanten";
+            this.btLieferanten.Size = new System.Drawing.Size(190, 87);
+            this.btLieferanten.TabIndex = 6;
+            this.btLieferanten.Text = "   Lieferanten";
+            this.btLieferanten.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btLieferanten.UseVisualStyleBackColor = true;
+            this.btLieferanten.Click += new System.EventHandler(this.btLieferanten_Click);
+            this.btLieferanten.MouseEnter += new System.EventHandler(this.btLieferanten_MouseEnter);
+            // 
+            // btArtikel
+            // 
+            this.btArtikel.FlatAppearance.BorderSize = 0;
+            this.btArtikel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btArtikel.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btArtikel.Image = global::FutureFarm.Properties.Resources.artikel1;
+            this.btArtikel.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btArtikel.Location = new System.Drawing.Point(36, 220);
+            this.btArtikel.Name = "btArtikel";
+            this.btArtikel.Size = new System.Drawing.Size(190, 87);
+            this.btArtikel.TabIndex = 4;
+            this.btArtikel.Text = "   Artikel";
+            this.btArtikel.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btArtikel.UseVisualStyleBackColor = true;
+            this.btArtikel.Click += new System.EventHandler(this.btArtikel_Click);
+            this.btArtikel.MouseEnter += new System.EventHandler(this.btArtikel_MouseEnter);
+            // 
+            // btKunden
+            // 
+            this.btKunden.FlatAppearance.BorderSize = 0;
+            this.btKunden.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btKunden.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btKunden.Image = global::FutureFarm.Properties.Resources.multiple_users_silhouette1;
+            this.btKunden.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btKunden.Location = new System.Drawing.Point(36, 304);
+            this.btKunden.Name = "btKunden";
+            this.btKunden.Size = new System.Drawing.Size(190, 87);
+            this.btKunden.TabIndex = 5;
+            this.btKunden.Text = "   Kunden";
+            this.btKunden.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btKunden.UseVisualStyleBackColor = true;
+            this.btKunden.Click += new System.EventHandler(this.btKunden_Click);
+            this.btKunden.MouseEnter += new System.EventHandler(this.btKunden_MouseEnter);
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.pictureBox1.Image = global::FutureFarm.Properties.Resources.logoTransp;
+            this.pictureBox1.Location = new System.Drawing.Point(0, 0);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(205, 133);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox1.TabIndex = 7;
+            this.pictureBox1.TabStop = false;
+            this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
             // 
             // panel2
             // 
@@ -243,6 +426,36 @@
             this.button1.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // btLogin
+            // 
+            this.btLogin.FlatAppearance.BorderSize = 0;
+            this.btLogin.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btLogin.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btLogin.Image = global::FutureFarm.Properties.Resources.logout;
+            this.btLogin.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btLogin.Location = new System.Drawing.Point(123, 3);
+            this.btLogin.Name = "btLogin";
+            this.btLogin.Size = new System.Drawing.Size(371, 29);
+            this.btLogin.TabIndex = 1;
+            this.btLogin.Text = "  Log In";
+            this.btLogin.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btLogin.UseVisualStyleBackColor = true;
+            this.btLogin.TextChanged += new System.EventHandler(this.btLogin_TextChanged);
+            this.btLogin.Click += new System.EventHandler(this.btLogin_Click);
+            // 
+            // btBeenden
+            // 
+            this.btBeenden.Dock = System.Windows.Forms.DockStyle.Right;
+            this.btBeenden.FlatAppearance.BorderSize = 0;
+            this.btBeenden.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btBeenden.Image = global::FutureFarm.Properties.Resources.turn_off;
+            this.btBeenden.Location = new System.Drawing.Point(1500, 0);
+            this.btBeenden.Name = "btBeenden";
+            this.btBeenden.Size = new System.Drawing.Size(56, 36);
+            this.btBeenden.TabIndex = 0;
+            this.btBeenden.UseVisualStyleBackColor = true;
+            this.btBeenden.Click += new System.EventHandler(this.btBeenden_Click);
             // 
             // listViewLoginDaten
             // 
@@ -338,74 +551,85 @@
             // panelBenutzer
             // 
             this.panelBenutzer.BackColor = System.Drawing.SystemColors.Control;
-            this.panelBenutzer.Controls.Add(this.btNeu);
-            this.panelBenutzer.Controls.Add(this.btLöschen);
-            this.panelBenutzer.Controls.Add(this.btÄndern);
+            this.panelBenutzer.Controls.Add(this.btBenutzerNeu);
+            this.panelBenutzer.Controls.Add(this.btBenutzerLöschen);
+            this.panelBenutzer.Controls.Add(this.btBenutzerÄndern);
             this.panelBenutzer.Controls.Add(this.pbPasswort);
-            this.panelBenutzer.Controls.Add(this.txtPasswort);
-            this.panelBenutzer.Controls.Add(this.txtBenutzername);
+            this.panelBenutzer.Controls.Add(this.txtBenutzerPasswort);
+            this.panelBenutzer.Controls.Add(this.txtBenutzerBenutzername);
             this.panelBenutzer.Controls.Add(this.label3);
             this.panelBenutzer.Controls.Add(this.label2);
-            this.panelBenutzer.Controls.Add(this.txtID);
+            this.panelBenutzer.Controls.Add(this.txtBenutzerBenutzerID);
             this.panelBenutzer.Controls.Add(this.label1);
             this.panelBenutzer.Controls.Add(this.listViewPanelBenutzerLogin);
-            this.panelBenutzer.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelBenutzer.Location = new System.Drawing.Point(205, 36);
+            this.panelBenutzer.Location = new System.Drawing.Point(1140, 61);
             this.panelBenutzer.Name = "panelBenutzer";
-            this.panelBenutzer.Size = new System.Drawing.Size(1556, 1020);
+            this.panelBenutzer.Size = new System.Drawing.Size(52, 43);
             this.panelBenutzer.TabIndex = 21;
             this.panelBenutzer.Visible = false;
             this.panelBenutzer.MouseEnter += new System.EventHandler(this.panelBenutzer_MouseEnter);
             // 
-            // btNeu
+            // btBenutzerNeu
             // 
-            this.btNeu.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btNeu.Location = new System.Drawing.Point(35, 200);
-            this.btNeu.Name = "btNeu";
-            this.btNeu.Size = new System.Drawing.Size(120, 41);
-            this.btNeu.TabIndex = 28;
-            this.btNeu.Text = "Neu";
-            this.btNeu.UseVisualStyleBackColor = true;
-            this.btNeu.Click += new System.EventHandler(this.btNeu_Click);
+            this.btBenutzerNeu.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btBenutzerNeu.Location = new System.Drawing.Point(35, 200);
+            this.btBenutzerNeu.Name = "btBenutzerNeu";
+            this.btBenutzerNeu.Size = new System.Drawing.Size(120, 41);
+            this.btBenutzerNeu.TabIndex = 2;
+            this.btBenutzerNeu.Text = "Neu";
+            this.btBenutzerNeu.UseVisualStyleBackColor = true;
+            this.btBenutzerNeu.Click += new System.EventHandler(this.btNeu_Click);
             // 
-            // btLöschen
+            // btBenutzerLöschen
             // 
-            this.btLöschen.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btLöschen.Location = new System.Drawing.Point(291, 200);
-            this.btLöschen.Name = "btLöschen";
-            this.btLöschen.Size = new System.Drawing.Size(120, 41);
-            this.btLöschen.TabIndex = 27;
-            this.btLöschen.Text = "Löschen";
-            this.btLöschen.UseVisualStyleBackColor = true;
-            this.btLöschen.Click += new System.EventHandler(this.btLöschen_Click);
+            this.btBenutzerLöschen.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btBenutzerLöschen.Location = new System.Drawing.Point(291, 200);
+            this.btBenutzerLöschen.Name = "btBenutzerLöschen";
+            this.btBenutzerLöschen.Size = new System.Drawing.Size(120, 41);
+            this.btBenutzerLöschen.TabIndex = 4;
+            this.btBenutzerLöschen.Text = "Löschen";
+            this.btBenutzerLöschen.UseVisualStyleBackColor = true;
+            this.btBenutzerLöschen.Click += new System.EventHandler(this.btLöschen_Click);
             // 
-            // btÄndern
+            // btBenutzerÄndern
             // 
-            this.btÄndern.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btÄndern.Location = new System.Drawing.Point(163, 200);
-            this.btÄndern.Name = "btÄndern";
-            this.btÄndern.Size = new System.Drawing.Size(120, 41);
-            this.btÄndern.TabIndex = 26;
-            this.btÄndern.Text = "Ändern";
-            this.btÄndern.UseVisualStyleBackColor = true;
-            this.btÄndern.Click += new System.EventHandler(this.btÄndern_Click);
+            this.btBenutzerÄndern.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btBenutzerÄndern.Location = new System.Drawing.Point(163, 200);
+            this.btBenutzerÄndern.Name = "btBenutzerÄndern";
+            this.btBenutzerÄndern.Size = new System.Drawing.Size(120, 41);
+            this.btBenutzerÄndern.TabIndex = 3;
+            this.btBenutzerÄndern.Text = "Ändern";
+            this.btBenutzerÄndern.UseVisualStyleBackColor = true;
+            this.btBenutzerÄndern.Click += new System.EventHandler(this.btÄndern_Click);
             // 
-            // txtPasswort
+            // pbPasswort
             // 
-            this.txtPasswort.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtPasswort.Location = new System.Drawing.Point(161, 140);
-            this.txtPasswort.Name = "txtPasswort";
-            this.txtPasswort.PasswordChar = '*';
-            this.txtPasswort.Size = new System.Drawing.Size(220, 27);
-            this.txtPasswort.TabIndex = 24;
+            this.pbPasswort.Image = global::FutureFarm.Properties.Resources.eye_closed;
+            this.pbPasswort.Location = new System.Drawing.Point(387, 143);
+            this.pbPasswort.Name = "pbPasswort";
+            this.pbPasswort.Size = new System.Drawing.Size(25, 25);
+            this.pbPasswort.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pbPasswort.TabIndex = 25;
+            this.pbPasswort.TabStop = false;
+            this.pbPasswort.Click += new System.EventHandler(this.pictureBox2_Click);
+            this.pbPasswort.MouseHover += new System.EventHandler(this.pbPasswort_MouseHover);
             // 
-            // txtBenutzername
+            // txtBenutzerPasswort
             // 
-            this.txtBenutzername.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtBenutzername.Location = new System.Drawing.Point(161, 106);
-            this.txtBenutzername.Name = "txtBenutzername";
-            this.txtBenutzername.Size = new System.Drawing.Size(220, 27);
-            this.txtBenutzername.TabIndex = 23;
+            this.txtBenutzerPasswort.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtBenutzerPasswort.Location = new System.Drawing.Point(161, 140);
+            this.txtBenutzerPasswort.Name = "txtBenutzerPasswort";
+            this.txtBenutzerPasswort.PasswordChar = '*';
+            this.txtBenutzerPasswort.Size = new System.Drawing.Size(220, 27);
+            this.txtBenutzerPasswort.TabIndex = 1;
+            // 
+            // txtBenutzerBenutzername
+            // 
+            this.txtBenutzerBenutzername.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtBenutzerBenutzername.Location = new System.Drawing.Point(161, 106);
+            this.txtBenutzerBenutzername.Name = "txtBenutzerBenutzername";
+            this.txtBenutzerBenutzername.Size = new System.Drawing.Size(220, 27);
+            this.txtBenutzerBenutzername.TabIndex = 0;
             // 
             // label3
             // 
@@ -427,13 +651,14 @@
             this.label2.TabIndex = 21;
             this.label2.Text = "Benutzername";
             // 
-            // txtID
+            // txtBenutzerBenutzerID
             // 
-            this.txtID.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtID.Location = new System.Drawing.Point(161, 72);
-            this.txtID.Name = "txtID";
-            this.txtID.Size = new System.Drawing.Size(41, 27);
-            this.txtID.TabIndex = 20;
+            this.txtBenutzerBenutzerID.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtBenutzerBenutzerID.Location = new System.Drawing.Point(161, 72);
+            this.txtBenutzerBenutzerID.Name = "txtBenutzerBenutzerID";
+            this.txtBenutzerBenutzerID.ReadOnly = true;
+            this.txtBenutzerBenutzerID.Size = new System.Drawing.Size(41, 27);
+            this.txtBenutzerBenutzerID.TabIndex = 20;
             // 
             // label1
             // 
@@ -455,9 +680,9 @@
             this.listViewPanelBenutzerLogin.Dock = System.Windows.Forms.DockStyle.Right;
             this.listViewPanelBenutzerLogin.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.listViewPanelBenutzerLogin.FullRowSelect = true;
-            this.listViewPanelBenutzerLogin.Location = new System.Drawing.Point(952, 0);
+            this.listViewPanelBenutzerLogin.Location = new System.Drawing.Point(-552, 0);
             this.listViewPanelBenutzerLogin.Name = "listViewPanelBenutzerLogin";
-            this.listViewPanelBenutzerLogin.Size = new System.Drawing.Size(604, 1020);
+            this.listViewPanelBenutzerLogin.Size = new System.Drawing.Size(604, 43);
             this.listViewPanelBenutzerLogin.TabIndex = 18;
             this.listViewPanelBenutzerLogin.UseCompatibleStateImageBehavior = false;
             this.listViewPanelBenutzerLogin.View = System.Windows.Forms.View.Details;
@@ -509,7 +734,7 @@
             this.panelFirmendaten.Controls.Add(this.label5);
             this.panelFirmendaten.Controls.Add(this.txtFirmendatenName);
             this.panelFirmendaten.Controls.Add(this.label4);
-            this.panelFirmendaten.Location = new System.Drawing.Point(1161, 123);
+            this.panelFirmendaten.Location = new System.Drawing.Point(966, 128);
             this.panelFirmendaten.Name = "panelFirmendaten";
             this.panelFirmendaten.Size = new System.Drawing.Size(50, 37);
             this.panelFirmendaten.TabIndex = 22;
@@ -739,8 +964,6 @@
             // 
             this.panelArtikel.Controls.Add(this.lbArtikelFilter);
             this.panelArtikel.Controls.Add(this.cbArtikelFilter);
-            this.panelArtikel.Controls.Add(this.panelNews);
-            this.panelArtikel.Controls.Add(this.panelArtikelInfo);
             this.panelArtikel.Controls.Add(this.listViewArtikel);
             this.panelArtikel.Location = new System.Drawing.Point(1161, 192);
             this.panelArtikel.Name = "panelArtikel";
@@ -771,169 +994,6 @@
             this.cbArtikelFilter.Size = new System.Drawing.Size(227, 29);
             this.cbArtikelFilter.TabIndex = 52;
             this.cbArtikelFilter.SelectedIndexChanged += new System.EventHandler(this.cbArtikelFilter_SelectedIndexChanged);
-            // 
-            // panelNews
-            // 
-            this.panelNews.Controls.Add(this.btNewsNeu);
-            this.panelNews.Controls.Add(this.txtNewsID);
-            this.panelNews.Controls.Add(this.btNewsLöschen);
-            this.panelNews.Controls.Add(this.btNewsSpeichern);
-            this.panelNews.Controls.Add(this.dtpNews);
-            this.panelNews.Controls.Add(this.label27);
-            this.panelNews.Controls.Add(this.txtNewsBeitrag);
-            this.panelNews.Controls.Add(this.label26);
-            this.panelNews.Controls.Add(this.txtNewsTitel);
-            this.panelNews.Controls.Add(this.label25);
-            this.panelNews.Controls.Add(this.listViewNews);
-            this.panelNews.Location = new System.Drawing.Point(1087, 47);
-            this.panelNews.Name = "panelNews";
-            this.panelNews.Size = new System.Drawing.Size(64, 51);
-            this.panelNews.TabIndex = 24;
-            this.panelNews.Visible = false;
-            // 
-            // btNewsNeu
-            // 
-            this.btNewsNeu.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btNewsNeu.Location = new System.Drawing.Point(57, 712);
-            this.btNewsNeu.Name = "btNewsNeu";
-            this.btNewsNeu.Size = new System.Drawing.Size(180, 61);
-            this.btNewsNeu.TabIndex = 11;
-            this.btNewsNeu.Text = "Neu";
-            this.btNewsNeu.UseVisualStyleBackColor = true;
-            this.btNewsNeu.Click += new System.EventHandler(this.btNewsNeu_Click);
-            // 
-            // txtNewsID
-            // 
-            this.txtNewsID.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtNewsID.Location = new System.Drawing.Point(57, 41);
-            this.txtNewsID.Name = "txtNewsID";
-            this.txtNewsID.ReadOnly = true;
-            this.txtNewsID.Size = new System.Drawing.Size(74, 27);
-            this.txtNewsID.TabIndex = 10;
-            // 
-            // btNewsLöschen
-            // 
-            this.btNewsLöschen.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btNewsLöschen.Location = new System.Drawing.Point(245, 712);
-            this.btNewsLöschen.Name = "btNewsLöschen";
-            this.btNewsLöschen.Size = new System.Drawing.Size(180, 61);
-            this.btNewsLöschen.TabIndex = 8;
-            this.btNewsLöschen.Text = "Löschen";
-            this.btNewsLöschen.UseVisualStyleBackColor = true;
-            // 
-            // btNewsSpeichern
-            // 
-            this.btNewsSpeichern.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btNewsSpeichern.Location = new System.Drawing.Point(433, 712);
-            this.btNewsSpeichern.Name = "btNewsSpeichern";
-            this.btNewsSpeichern.Size = new System.Drawing.Size(180, 61);
-            this.btNewsSpeichern.TabIndex = 7;
-            this.btNewsSpeichern.Text = "Speichern";
-            this.btNewsSpeichern.UseVisualStyleBackColor = true;
-            this.btNewsSpeichern.Click += new System.EventHandler(this.btNewsSpeichern_Click);
-            // 
-            // dtpNews
-            // 
-            this.dtpNews.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dtpNews.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpNews.Location = new System.Drawing.Point(448, 125);
-            this.dtpNews.Name = "dtpNews";
-            this.dtpNews.Size = new System.Drawing.Size(165, 31);
-            this.dtpNews.TabIndex = 6;
-            this.dtpNews.ValueChanged += new System.EventHandler(this.dtpNews_ValueChanged);
-            // 
-            // label27
-            // 
-            this.label27.AutoSize = true;
-            this.label27.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label27.Location = new System.Drawing.Point(444, 92);
-            this.label27.Name = "label27";
-            this.label27.Size = new System.Drawing.Size(65, 21);
-            this.label27.TabIndex = 5;
-            this.label27.Text = "Datum";
-            // 
-            // txtNewsBeitrag
-            // 
-            this.txtNewsBeitrag.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtNewsBeitrag.Location = new System.Drawing.Point(57, 203);
-            this.txtNewsBeitrag.Multiline = true;
-            this.txtNewsBeitrag.Name = "txtNewsBeitrag";
-            this.txtNewsBeitrag.Size = new System.Drawing.Size(556, 503);
-            this.txtNewsBeitrag.TabIndex = 4;
-            // 
-            // label26
-            // 
-            this.label26.AutoSize = true;
-            this.label26.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label26.Location = new System.Drawing.Point(53, 172);
-            this.label26.Name = "label26";
-            this.label26.Size = new System.Drawing.Size(66, 21);
-            this.label26.TabIndex = 3;
-            this.label26.Text = "Beitrag";
-            // 
-            // txtNewsTitel
-            // 
-            this.txtNewsTitel.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtNewsTitel.Location = new System.Drawing.Point(57, 112);
-            this.txtNewsTitel.Multiline = true;
-            this.txtNewsTitel.Name = "txtNewsTitel";
-            this.txtNewsTitel.Size = new System.Drawing.Size(363, 48);
-            this.txtNewsTitel.TabIndex = 2;
-            // 
-            // label25
-            // 
-            this.label25.AutoSize = true;
-            this.label25.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label25.Location = new System.Drawing.Point(53, 81);
-            this.label25.Name = "label25";
-            this.label25.Size = new System.Drawing.Size(41, 21);
-            this.label25.TabIndex = 1;
-            this.label25.Text = "Titel";
-            // 
-            // listViewNews
-            // 
-            this.listViewNews.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.columnHeader17,
-            this.columnHeader18,
-            this.columnHeader19,
-            this.columnHeader20,
-            this.columnHeader21});
-            this.listViewNews.Dock = System.Windows.Forms.DockStyle.Right;
-            this.listViewNews.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.listViewNews.FullRowSelect = true;
-            this.listViewNews.Location = new System.Drawing.Point(-722, 0);
-            this.listViewNews.Name = "listViewNews";
-            this.listViewNews.Size = new System.Drawing.Size(786, 51);
-            this.listViewNews.TabIndex = 0;
-            this.listViewNews.UseCompatibleStateImageBehavior = false;
-            this.listViewNews.View = System.Windows.Forms.View.Details;
-            this.listViewNews.SelectedIndexChanged += new System.EventHandler(this.listViewNews_SelectedIndexChanged);
-            // 
-            // columnHeader17
-            // 
-            this.columnHeader17.Text = "NewsID";
-            this.columnHeader17.Width = 80;
-            // 
-            // columnHeader18
-            // 
-            this.columnHeader18.Text = "Titel";
-            this.columnHeader18.Width = 300;
-            // 
-            // columnHeader19
-            // 
-            this.columnHeader19.Text = "Beitrag";
-            this.columnHeader19.Width = 180;
-            // 
-            // columnHeader20
-            // 
-            this.columnHeader20.Text = "Datum";
-            this.columnHeader20.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.columnHeader20.Width = 120;
-            // 
-            // columnHeader21
-            // 
-            this.columnHeader21.Text = "Benutzer";
-            this.columnHeader21.Width = 200;
             // 
             // listViewArtikel
             // 
@@ -1016,241 +1076,171 @@
             // 
             this.columnHeader22.Text = "Aktiv";
             // 
-            // label24
+            // panelNews
             // 
-            this.label24.AutoSize = true;
-            this.label24.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label24.Location = new System.Drawing.Point(44, 216);
-            this.label24.Name = "label24";
-            this.label24.Size = new System.Drawing.Size(240, 22);
-            this.label24.TabIndex = 41;
-            this.label24.Text = "_______________________";
+            this.panelNews.Controls.Add(this.btNewsReset);
+            this.panelNews.Controls.Add(this.btNewsNeu);
+            this.panelNews.Controls.Add(this.txtNewsID);
+            this.panelNews.Controls.Add(this.btNewsLöschen);
+            this.panelNews.Controls.Add(this.btNewsSpeichern);
+            this.panelNews.Controls.Add(this.dtpNews);
+            this.panelNews.Controls.Add(this.label27);
+            this.panelNews.Controls.Add(this.txtNewsBeitrag);
+            this.panelNews.Controls.Add(this.label26);
+            this.panelNews.Controls.Add(this.txtNewsTitel);
+            this.panelNews.Controls.Add(this.label25);
+            this.panelNews.Controls.Add(this.listViewNews);
+            this.panelNews.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panelNews.Location = new System.Drawing.Point(205, 36);
+            this.panelNews.Name = "panelNews";
+            this.panelNews.Size = new System.Drawing.Size(1556, 1020);
+            this.panelNews.TabIndex = 24;
+            this.panelNews.Visible = false;
             // 
-            // label21
+            // btNewsNeu
             // 
-            this.label21.AutoSize = true;
-            this.label21.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label21.Location = new System.Drawing.Point(27, 162);
-            this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(103, 22);
-            this.label21.TabIndex = 36;
-            this.label21.Text = "Nettopreis";
+            this.btNewsNeu.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btNewsNeu.Location = new System.Drawing.Point(57, 712);
+            this.btNewsNeu.Name = "btNewsNeu";
+            this.btNewsNeu.Size = new System.Drawing.Size(180, 61);
+            this.btNewsNeu.TabIndex = 11;
+            this.btNewsNeu.Text = "Neu";
+            this.btNewsNeu.UseVisualStyleBackColor = true;
+            this.btNewsNeu.Click += new System.EventHandler(this.btNewsNeu_Click);
             // 
-            // txtArtikelNettopreis
+            // txtNewsID
             // 
-            this.txtArtikelNettopreis.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtArtikelNettopreis.Location = new System.Drawing.Point(139, 159);
-            this.txtArtikelNettopreis.Name = "txtArtikelNettopreis";
-            this.txtArtikelNettopreis.Size = new System.Drawing.Size(145, 31);
-            this.txtArtikelNettopreis.TabIndex = 35;
-            this.txtArtikelNettopreis.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.txtArtikelNettopreis.TextChanged += new System.EventHandler(this.txtArtikelNettopreis_TextChanged);
+            this.txtNewsID.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtNewsID.Location = new System.Drawing.Point(57, 41);
+            this.txtNewsID.Name = "txtNewsID";
+            this.txtNewsID.ReadOnly = true;
+            this.txtNewsID.Size = new System.Drawing.Size(74, 27);
+            this.txtNewsID.TabIndex = 10;
             // 
-            // txtArtikelUST
+            // btNewsLöschen
             // 
-            this.txtArtikelUST.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtArtikelUST.Location = new System.Drawing.Point(193, 196);
-            this.txtArtikelUST.Name = "txtArtikelUST";
-            this.txtArtikelUST.Size = new System.Drawing.Size(91, 31);
-            this.txtArtikelUST.TabIndex = 37;
-            this.txtArtikelUST.Text = "20";
-            this.txtArtikelUST.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.btNewsLöschen.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btNewsLöschen.Location = new System.Drawing.Point(245, 712);
+            this.btNewsLöschen.Name = "btNewsLöschen";
+            this.btNewsLöschen.Size = new System.Drawing.Size(180, 61);
+            this.btNewsLöschen.TabIndex = 8;
+            this.btNewsLöschen.Text = "Löschen";
+            this.btNewsLöschen.UseVisualStyleBackColor = true;
+            this.btNewsLöschen.Click += new System.EventHandler(this.btNewsLöschen_Click);
             // 
-            // label22
+            // btNewsSpeichern
             // 
-            this.label22.AutoSize = true;
-            this.label22.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label22.Location = new System.Drawing.Point(27, 70);
-            this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(129, 22);
-            this.label22.TabIndex = 34;
-            this.label22.Text = "Bezeichnung";
+            this.btNewsSpeichern.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btNewsSpeichern.Location = new System.Drawing.Point(433, 712);
+            this.btNewsSpeichern.Name = "btNewsSpeichern";
+            this.btNewsSpeichern.Size = new System.Drawing.Size(180, 61);
+            this.btNewsSpeichern.TabIndex = 7;
+            this.btNewsSpeichern.Text = "Speichern";
+            this.btNewsSpeichern.UseVisualStyleBackColor = true;
+            this.btNewsSpeichern.Click += new System.EventHandler(this.btNewsSpeichern_Click);
             // 
-            // label20
+            // dtpNews
             // 
-            this.label20.AutoSize = true;
-            this.label20.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label20.Location = new System.Drawing.Point(26, 199);
-            this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(79, 22);
-            this.label20.TabIndex = 38;
-            this.label20.Text = "UST in %";
+            this.dtpNews.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dtpNews.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtpNews.Location = new System.Drawing.Point(448, 125);
+            this.dtpNews.Name = "dtpNews";
+            this.dtpNews.Size = new System.Drawing.Size(165, 31);
+            this.dtpNews.TabIndex = 6;
+            this.dtpNews.ValueChanged += new System.EventHandler(this.dtpNews_ValueChanged);
             // 
-            // txtArtikelBezeichnung
+            // label27
             // 
-            this.txtArtikelBezeichnung.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtArtikelBezeichnung.Location = new System.Drawing.Point(30, 95);
-            this.txtArtikelBezeichnung.Name = "txtArtikelBezeichnung";
-            this.txtArtikelBezeichnung.Size = new System.Drawing.Size(254, 31);
-            this.txtArtikelBezeichnung.TabIndex = 33;
+            this.label27.AutoSize = true;
+            this.label27.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label27.Location = new System.Drawing.Point(444, 92);
+            this.label27.Name = "label27";
+            this.label27.Size = new System.Drawing.Size(65, 21);
+            this.label27.TabIndex = 5;
+            this.label27.Text = "Datum";
             // 
-            // txtArtikelBrutto
+            // txtNewsBeitrag
             // 
-            this.txtArtikelBrutto.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtArtikelBrutto.Location = new System.Drawing.Point(139, 246);
-            this.txtArtikelBrutto.Name = "txtArtikelBrutto";
-            this.txtArtikelBrutto.Size = new System.Drawing.Size(145, 31);
-            this.txtArtikelBrutto.TabIndex = 39;
-            this.txtArtikelBrutto.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtNewsBeitrag.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtNewsBeitrag.Location = new System.Drawing.Point(57, 203);
+            this.txtNewsBeitrag.Multiline = true;
+            this.txtNewsBeitrag.Name = "txtNewsBeitrag";
+            this.txtNewsBeitrag.Size = new System.Drawing.Size(556, 503);
+            this.txtNewsBeitrag.TabIndex = 4;
             // 
-            // label23
+            // label26
             // 
-            this.label23.AutoSize = true;
-            this.label23.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label23.Location = new System.Drawing.Point(26, 23);
-            this.label23.Name = "label23";
-            this.label23.Size = new System.Drawing.Size(90, 22);
-            this.label23.TabIndex = 32;
-            this.label23.Text = "Artikel ID";
+            this.label26.AutoSize = true;
+            this.label26.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label26.Location = new System.Drawing.Point(53, 172);
+            this.label26.Name = "label26";
+            this.label26.Size = new System.Drawing.Size(66, 21);
+            this.label26.TabIndex = 3;
+            this.label26.Text = "Beitrag";
             // 
-            // txtArtikelArtikelID
+            // txtNewsTitel
             // 
-            this.txtArtikelArtikelID.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtArtikelArtikelID.Location = new System.Drawing.Point(115, 20);
-            this.txtArtikelArtikelID.Name = "txtArtikelArtikelID";
-            this.txtArtikelArtikelID.ReadOnly = true;
-            this.txtArtikelArtikelID.Size = new System.Drawing.Size(91, 31);
-            this.txtArtikelArtikelID.TabIndex = 31;
+            this.txtNewsTitel.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtNewsTitel.Location = new System.Drawing.Point(57, 112);
+            this.txtNewsTitel.Multiline = true;
+            this.txtNewsTitel.Name = "txtNewsTitel";
+            this.txtNewsTitel.Size = new System.Drawing.Size(363, 48);
+            this.txtNewsTitel.TabIndex = 2;
             // 
-            // txtArtikelLagerstand
+            // label25
             // 
-            this.txtArtikelLagerstand.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtArtikelLagerstand.Location = new System.Drawing.Point(371, 168);
-            this.txtArtikelLagerstand.Name = "txtArtikelLagerstand";
-            this.txtArtikelLagerstand.Size = new System.Drawing.Size(145, 31);
-            this.txtArtikelLagerstand.TabIndex = 42;
-            this.txtArtikelLagerstand.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.label25.AutoSize = true;
+            this.label25.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label25.Location = new System.Drawing.Point(53, 81);
+            this.label25.Name = "label25";
+            this.label25.Size = new System.Drawing.Size(41, 21);
+            this.label25.TabIndex = 1;
+            this.label25.Text = "Titel";
             // 
-            // label18
+            // listViewNews
             // 
-            this.label18.AutoSize = true;
-            this.label18.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label18.Location = new System.Drawing.Point(367, 143);
-            this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(115, 22);
-            this.label18.TabIndex = 43;
-            this.label18.Text = "Lagerstand";
+            this.listViewNews.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader17,
+            this.columnHeader18,
+            this.columnHeader19,
+            this.columnHeader20,
+            this.columnHeader21});
+            this.listViewNews.Dock = System.Windows.Forms.DockStyle.Right;
+            this.listViewNews.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.listViewNews.FullRowSelect = true;
+            this.listViewNews.Location = new System.Drawing.Point(770, 0);
+            this.listViewNews.Name = "listViewNews";
+            this.listViewNews.Size = new System.Drawing.Size(786, 1020);
+            this.listViewNews.TabIndex = 0;
+            this.listViewNews.UseCompatibleStateImageBehavior = false;
+            this.listViewNews.View = System.Windows.Forms.View.Details;
+            this.listViewNews.SelectedIndexChanged += new System.EventHandler(this.listViewNews_SelectedIndexChanged);
             // 
-            // btArtikelNeu
+            // columnHeader17
             // 
-            this.btArtikelNeu.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btArtikelNeu.Location = new System.Drawing.Point(827, 3);
-            this.btArtikelNeu.Name = "btArtikelNeu";
-            this.btArtikelNeu.Size = new System.Drawing.Size(161, 59);
-            this.btArtikelNeu.TabIndex = 48;
-            this.btArtikelNeu.Text = "Neu";
-            this.btArtikelNeu.UseVisualStyleBackColor = true;
-            this.btArtikelNeu.Click += new System.EventHandler(this.btArtikelNeu_Click);
+            this.columnHeader17.Text = "NewsID";
+            this.columnHeader17.Width = 80;
             // 
-            // label19
+            // columnHeader18
             // 
-            this.label19.AutoSize = true;
-            this.label19.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label19.Location = new System.Drawing.Point(27, 249);
-            this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(106, 22);
-            this.label19.TabIndex = 40;
-            this.label19.Text = "Bruttopreis";
+            this.columnHeader18.Text = "Titel";
+            this.columnHeader18.Width = 300;
             // 
-            // btArtikelSpeichern
+            // columnHeader19
             // 
-            this.btArtikelSpeichern.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btArtikelSpeichern.Location = new System.Drawing.Point(827, 68);
-            this.btArtikelSpeichern.Name = "btArtikelSpeichern";
-            this.btArtikelSpeichern.Size = new System.Drawing.Size(161, 59);
-            this.btArtikelSpeichern.TabIndex = 49;
-            this.btArtikelSpeichern.Text = "Speichern";
-            this.btArtikelSpeichern.UseVisualStyleBackColor = true;
-            this.btArtikelSpeichern.Click += new System.EventHandler(this.btArtikelSpeichern_Click);
+            this.columnHeader19.Text = "Beitrag";
+            this.columnHeader19.Width = 180;
             // 
-            // txtArtikelReserviert
+            // columnHeader20
             // 
-            this.txtArtikelReserviert.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtArtikelReserviert.Location = new System.Drawing.Point(371, 244);
-            this.txtArtikelReserviert.Name = "txtArtikelReserviert";
-            this.txtArtikelReserviert.Size = new System.Drawing.Size(145, 31);
-            this.txtArtikelReserviert.TabIndex = 44;
-            this.txtArtikelReserviert.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.columnHeader20.Text = "Datum";
+            this.columnHeader20.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.columnHeader20.Width = 120;
             // 
-            // btArtikelLöschen
+            // columnHeader21
             // 
-            this.btArtikelLöschen.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btArtikelLöschen.Location = new System.Drawing.Point(827, 133);
-            this.btArtikelLöschen.Name = "btArtikelLöschen";
-            this.btArtikelLöschen.Size = new System.Drawing.Size(161, 58);
-            this.btArtikelLöschen.TabIndex = 50;
-            this.btArtikelLöschen.Text = "Löschen";
-            this.btArtikelLöschen.UseVisualStyleBackColor = true;
-            this.btArtikelLöschen.Click += new System.EventHandler(this.btArtikelLöschen_Click);
-            // 
-            // label17
-            // 
-            this.label17.AutoSize = true;
-            this.label17.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label17.Location = new System.Drawing.Point(367, 219);
-            this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(100, 22);
-            this.label17.TabIndex = 45;
-            this.label17.Text = "Reserviert";
-            // 
-            // label16
-            // 
-            this.label16.AutoSize = true;
-            this.label16.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label16.Location = new System.Drawing.Point(367, 62);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(90, 22);
-            this.label16.TabIndex = 47;
-            this.label16.Text = "Lieferant";
-            // 
-            // label28
-            // 
-            this.label28.AutoSize = true;
-            this.label28.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label28.Location = new System.Drawing.Point(237, 23);
-            this.label28.Name = "label28";
-            this.label28.Size = new System.Drawing.Size(97, 22);
-            this.label28.TabIndex = 52;
-            this.label28.Text = "ExterneID";
-            // 
-            // txtArtikelExterneID
-            // 
-            this.txtArtikelExterneID.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtArtikelExterneID.Location = new System.Drawing.Point(340, 18);
-            this.txtArtikelExterneID.Name = "txtArtikelExterneID";
-            this.txtArtikelExterneID.Size = new System.Drawing.Size(91, 31);
-            this.txtArtikelExterneID.TabIndex = 51;
-            // 
-            // txtArtikelLieferantFirma
-            // 
-            this.txtArtikelLieferantFirma.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtArtikelLieferantFirma.Location = new System.Drawing.Point(443, 95);
-            this.txtArtikelLieferantFirma.Name = "txtArtikelLieferantFirma";
-            this.txtArtikelLieferantFirma.ReadOnly = true;
-            this.txtArtikelLieferantFirma.Size = new System.Drawing.Size(254, 31);
-            this.txtArtikelLieferantFirma.TabIndex = 53;
-            // 
-            // cbArtikelLieferanten
-            // 
-            this.cbArtikelLieferanten.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbArtikelLieferanten.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cbArtikelLieferanten.FormattingEnabled = true;
-            this.cbArtikelLieferanten.Location = new System.Drawing.Point(373, 96);
-            this.cbArtikelLieferanten.Name = "cbArtikelLieferanten";
-            this.cbArtikelLieferanten.Size = new System.Drawing.Size(64, 29);
-            this.cbArtikelLieferanten.TabIndex = 54;
-            this.cbArtikelLieferanten.SelectedIndexChanged += new System.EventHandler(this.cbArtikelLieferanten_SelectedIndexChanged);
-            // 
-            // btReset
-            // 
-            this.btReset.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btReset.Location = new System.Drawing.Point(885, 309);
-            this.btReset.Name = "btReset";
-            this.btReset.Size = new System.Drawing.Size(103, 33);
-            this.btReset.TabIndex = 55;
-            this.btReset.Text = "Reset";
-            this.btReset.UseVisualStyleBackColor = true;
-            this.btReset.Click += new System.EventHandler(this.btReset_Click);
+            this.columnHeader21.Text = "Benutzer";
+            this.columnHeader21.Width = 200;
             // 
             // panelArtikelInfo
             // 
@@ -1279,10 +1269,11 @@
             this.panelArtikelInfo.Controls.Add(this.txtArtikelNettopreis);
             this.panelArtikelInfo.Controls.Add(this.label21);
             this.panelArtikelInfo.Controls.Add(this.label24);
-            this.panelArtikelInfo.Location = new System.Drawing.Point(12, 19);
+            this.panelArtikelInfo.Location = new System.Drawing.Point(1161, 324);
             this.panelArtikelInfo.Name = "panelArtikelInfo";
-            this.panelArtikelInfo.Size = new System.Drawing.Size(991, 345);
+            this.panelArtikelInfo.Size = new System.Drawing.Size(45, 43);
             this.panelArtikelInfo.TabIndex = 51;
+            this.panelArtikelInfo.Visible = false;
             // 
             // checkboxArtikelAktiv
             // 
@@ -1295,229 +1286,252 @@
             this.checkboxArtikelAktiv.Text = "Aktiv";
             this.checkboxArtikelAktiv.UseVisualStyleBackColor = true;
             // 
-            // pbPasswort
+            // btReset
             // 
-            this.pbPasswort.Image = global::FutureFarm.Properties.Resources.eye_closed;
-            this.pbPasswort.Location = new System.Drawing.Point(387, 143);
-            this.pbPasswort.Name = "pbPasswort";
-            this.pbPasswort.Size = new System.Drawing.Size(25, 25);
-            this.pbPasswort.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pbPasswort.TabIndex = 25;
-            this.pbPasswort.TabStop = false;
-            this.pbPasswort.Click += new System.EventHandler(this.pictureBox2_Click);
-            this.pbPasswort.MouseHover += new System.EventHandler(this.pbPasswort_MouseHover);
+            this.btReset.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btReset.Location = new System.Drawing.Point(885, 309);
+            this.btReset.Name = "btReset";
+            this.btReset.Size = new System.Drawing.Size(103, 33);
+            this.btReset.TabIndex = 55;
+            this.btReset.Text = "Reset";
+            this.btReset.UseVisualStyleBackColor = true;
+            this.btReset.Click += new System.EventHandler(this.btReset_Click);
             // 
-            // btLogin
+            // cbArtikelLieferanten
             // 
-            this.btLogin.FlatAppearance.BorderSize = 0;
-            this.btLogin.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btLogin.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btLogin.Image = global::FutureFarm.Properties.Resources.logout;
-            this.btLogin.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btLogin.Location = new System.Drawing.Point(123, 3);
-            this.btLogin.Name = "btLogin";
-            this.btLogin.Size = new System.Drawing.Size(371, 29);
-            this.btLogin.TabIndex = 1;
-            this.btLogin.Text = "  Log In";
-            this.btLogin.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btLogin.UseVisualStyleBackColor = true;
-            this.btLogin.TextChanged += new System.EventHandler(this.btLogin_TextChanged);
-            this.btLogin.Click += new System.EventHandler(this.btLogin_Click);
+            this.cbArtikelLieferanten.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbArtikelLieferanten.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbArtikelLieferanten.FormattingEnabled = true;
+            this.cbArtikelLieferanten.Location = new System.Drawing.Point(373, 96);
+            this.cbArtikelLieferanten.Name = "cbArtikelLieferanten";
+            this.cbArtikelLieferanten.Size = new System.Drawing.Size(64, 29);
+            this.cbArtikelLieferanten.TabIndex = 54;
+            this.cbArtikelLieferanten.SelectedIndexChanged += new System.EventHandler(this.cbArtikelLieferanten_SelectedIndexChanged);
             // 
-            // btBeenden
+            // txtArtikelLieferantFirma
             // 
-            this.btBeenden.Dock = System.Windows.Forms.DockStyle.Right;
-            this.btBeenden.FlatAppearance.BorderSize = 0;
-            this.btBeenden.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btBeenden.Image = global::FutureFarm.Properties.Resources.turn_off;
-            this.btBeenden.Location = new System.Drawing.Point(1500, 0);
-            this.btBeenden.Name = "btBeenden";
-            this.btBeenden.Size = new System.Drawing.Size(56, 36);
-            this.btBeenden.TabIndex = 0;
-            this.btBeenden.UseVisualStyleBackColor = true;
-            this.btBeenden.Click += new System.EventHandler(this.btBeenden_Click);
+            this.txtArtikelLieferantFirma.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtArtikelLieferantFirma.Location = new System.Drawing.Point(443, 95);
+            this.txtArtikelLieferantFirma.Name = "txtArtikelLieferantFirma";
+            this.txtArtikelLieferantFirma.ReadOnly = true;
+            this.txtArtikelLieferantFirma.Size = new System.Drawing.Size(254, 31);
+            this.txtArtikelLieferantFirma.TabIndex = 53;
             // 
-            // btBestellungen
+            // txtArtikelExterneID
             // 
-            this.btBestellungen.FlatAppearance.BorderSize = 0;
-            this.btBestellungen.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btBestellungen.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btBestellungen.Image = global::FutureFarm.Properties.Resources.Fax_icon;
-            this.btBestellungen.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btBestellungen.Location = new System.Drawing.Point(24, 571);
-            this.btBestellungen.Name = "btBestellungen";
-            this.btBestellungen.Size = new System.Drawing.Size(190, 87);
-            this.btBestellungen.TabIndex = 10;
-            this.btBestellungen.Text = "   Bestellungen";
-            this.btBestellungen.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btBestellungen.UseVisualStyleBackColor = true;
-            this.btBestellungen.Click += new System.EventHandler(this.btBestellungen_Click);
-            this.btBestellungen.MouseEnter += new System.EventHandler(this.btBestellungen_MouseEnter);
+            this.txtArtikelExterneID.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtArtikelExterneID.Location = new System.Drawing.Point(340, 18);
+            this.txtArtikelExterneID.Name = "txtArtikelExterneID";
+            this.txtArtikelExterneID.Size = new System.Drawing.Size(91, 31);
+            this.txtArtikelExterneID.TabIndex = 51;
             // 
-            // btTermine
+            // label28
             // 
-            this.btTermine.FlatAppearance.BorderSize = 0;
-            this.btTermine.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btTermine.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btTermine.Image = global::FutureFarm.Properties.Resources.termin;
-            this.btTermine.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btTermine.Location = new System.Drawing.Point(3, 738);
-            this.btTermine.Name = "btTermine";
-            this.btTermine.Size = new System.Drawing.Size(190, 87);
-            this.btTermine.TabIndex = 9;
-            this.btTermine.Text = "   Termine";
-            this.btTermine.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btTermine.UseVisualStyleBackColor = true;
-            this.btTermine.Click += new System.EventHandler(this.btTermine_Click);
-            this.btTermine.MouseEnter += new System.EventHandler(this.btTermine_MouseEnter);
+            this.label28.AutoSize = true;
+            this.label28.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label28.Location = new System.Drawing.Point(237, 23);
+            this.label28.Name = "label28";
+            this.label28.Size = new System.Drawing.Size(97, 22);
+            this.label28.TabIndex = 52;
+            this.label28.Text = "ExterneID";
             // 
-            // btNews
+            // label16
             // 
-            this.btNews.FlatAppearance.BorderSize = 0;
-            this.btNews.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btNews.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btNews.Image = global::FutureFarm.Properties.Resources.news;
-            this.btNews.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btNews.Location = new System.Drawing.Point(15, 661);
-            this.btNews.Name = "btNews";
-            this.btNews.Size = new System.Drawing.Size(190, 87);
-            this.btNews.TabIndex = 8;
-            this.btNews.Text = "   News";
-            this.btNews.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btNews.UseVisualStyleBackColor = true;
-            this.btNews.Click += new System.EventHandler(this.btNews_Click);
-            this.btNews.MouseEnter += new System.EventHandler(this.btNews_MouseEnter);
+            this.label16.AutoSize = true;
+            this.label16.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label16.Location = new System.Drawing.Point(367, 62);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(90, 22);
+            this.label16.TabIndex = 47;
+            this.label16.Text = "Lieferant";
             // 
-            // btAnfragen
+            // label17
             // 
-            this.btAnfragen.FlatAppearance.BorderSize = 0;
-            this.btAnfragen.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btAnfragen.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btAnfragen.Image = global::FutureFarm.Properties.Resources.Fax_icon;
-            this.btAnfragen.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btAnfragen.Location = new System.Drawing.Point(9, 478);
-            this.btAnfragen.Name = "btAnfragen";
-            this.btAnfragen.Size = new System.Drawing.Size(190, 87);
-            this.btAnfragen.TabIndex = 7;
-            this.btAnfragen.Text = "   Anfragen";
-            this.btAnfragen.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btAnfragen.UseVisualStyleBackColor = true;
-            this.btAnfragen.Click += new System.EventHandler(this.btAnfragen_Click);
-            this.btAnfragen.MouseEnter += new System.EventHandler(this.btAnfragen_MouseEnter);
+            this.label17.AutoSize = true;
+            this.label17.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label17.Location = new System.Drawing.Point(367, 219);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(100, 22);
+            this.label17.TabIndex = 45;
+            this.label17.Text = "Reserviert";
             // 
-            // btHome
+            // btArtikelLöschen
             // 
-            this.btHome.FlatAppearance.BorderSize = 0;
-            this.btHome.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btHome.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btHome.Image = global::FutureFarm.Properties.Resources.home1;
-            this.btHome.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btHome.Location = new System.Drawing.Point(12, 21);
-            this.btHome.Name = "btHome";
-            this.btHome.Size = new System.Drawing.Size(190, 87);
-            this.btHome.TabIndex = 2;
-            this.btHome.Text = "   Home";
-            this.btHome.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btHome.UseVisualStyleBackColor = true;
-            this.btHome.Click += new System.EventHandler(this.btHome_Click);
-            this.btHome.MouseEnter += new System.EventHandler(this.btHome_MouseEnter);
+            this.btArtikelLöschen.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btArtikelLöschen.Location = new System.Drawing.Point(827, 133);
+            this.btArtikelLöschen.Name = "btArtikelLöschen";
+            this.btArtikelLöschen.Size = new System.Drawing.Size(161, 58);
+            this.btArtikelLöschen.TabIndex = 50;
+            this.btArtikelLöschen.Text = "Löschen";
+            this.btArtikelLöschen.UseVisualStyleBackColor = true;
+            this.btArtikelLöschen.Click += new System.EventHandler(this.btArtikelLöschen_Click);
             // 
-            // btEinstellungen
+            // txtArtikelReserviert
             // 
-            this.btEinstellungen.FlatAppearance.BorderSize = 0;
-            this.btEinstellungen.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btEinstellungen.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btEinstellungen.Image = global::FutureFarm.Properties.Resources.customer_support1;
-            this.btEinstellungen.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btEinstellungen.Location = new System.Drawing.Point(24, 818);
-            this.btEinstellungen.Name = "btEinstellungen";
-            this.btEinstellungen.Size = new System.Drawing.Size(190, 87);
-            this.btEinstellungen.TabIndex = 3;
-            this.btEinstellungen.Text = "   Einstellungen";
-            this.btEinstellungen.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btEinstellungen.UseVisualStyleBackColor = true;
-            this.btEinstellungen.Click += new System.EventHandler(this.btEinstellungen_Click);
-            this.btEinstellungen.MouseEnter += new System.EventHandler(this.btEinstellungen_MouseEnter);
+            this.txtArtikelReserviert.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtArtikelReserviert.Location = new System.Drawing.Point(371, 244);
+            this.txtArtikelReserviert.Name = "txtArtikelReserviert";
+            this.txtArtikelReserviert.Size = new System.Drawing.Size(145, 31);
+            this.txtArtikelReserviert.TabIndex = 44;
+            this.txtArtikelReserviert.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
-            // btRechnungen
+            // btArtikelSpeichern
             // 
-            this.btRechnungen.FlatAppearance.BorderSize = 0;
-            this.btRechnungen.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btRechnungen.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btRechnungen.Image = global::FutureFarm.Properties.Resources.invoice1;
-            this.btRechnungen.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btRechnungen.Location = new System.Drawing.Point(12, 103);
-            this.btRechnungen.Name = "btRechnungen";
-            this.btRechnungen.Size = new System.Drawing.Size(190, 87);
-            this.btRechnungen.TabIndex = 3;
-            this.btRechnungen.Text = "   Rechnungen";
-            this.btRechnungen.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btRechnungen.UseVisualStyleBackColor = true;
-            this.btRechnungen.Click += new System.EventHandler(this.btRechnungen_Click);
-            this.btRechnungen.MouseEnter += new System.EventHandler(this.btRechnungen_MouseEnter);
+            this.btArtikelSpeichern.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btArtikelSpeichern.Location = new System.Drawing.Point(827, 68);
+            this.btArtikelSpeichern.Name = "btArtikelSpeichern";
+            this.btArtikelSpeichern.Size = new System.Drawing.Size(161, 59);
+            this.btArtikelSpeichern.TabIndex = 49;
+            this.btArtikelSpeichern.Text = "Speichern";
+            this.btArtikelSpeichern.UseVisualStyleBackColor = true;
+            this.btArtikelSpeichern.Click += new System.EventHandler(this.btArtikelSpeichern_Click);
             // 
-            // btLieferanten
+            // label19
             // 
-            this.btLieferanten.FlatAppearance.BorderSize = 0;
-            this.btLieferanten.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btLieferanten.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btLieferanten.Image = global::FutureFarm.Properties.Resources.delivery_truck1;
-            this.btLieferanten.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btLieferanten.Location = new System.Drawing.Point(24, 397);
-            this.btLieferanten.Name = "btLieferanten";
-            this.btLieferanten.Size = new System.Drawing.Size(190, 87);
-            this.btLieferanten.TabIndex = 6;
-            this.btLieferanten.Text = "   Lieferanten";
-            this.btLieferanten.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btLieferanten.UseVisualStyleBackColor = true;
-            this.btLieferanten.Click += new System.EventHandler(this.btLieferanten_Click);
-            this.btLieferanten.MouseEnter += new System.EventHandler(this.btLieferanten_MouseEnter);
+            this.label19.AutoSize = true;
+            this.label19.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label19.Location = new System.Drawing.Point(27, 249);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(106, 22);
+            this.label19.TabIndex = 40;
+            this.label19.Text = "Bruttopreis";
             // 
-            // btArtikel
+            // btArtikelNeu
             // 
-            this.btArtikel.FlatAppearance.BorderSize = 0;
-            this.btArtikel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btArtikel.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btArtikel.Image = global::FutureFarm.Properties.Resources.artikel1;
-            this.btArtikel.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btArtikel.Location = new System.Drawing.Point(36, 220);
-            this.btArtikel.Name = "btArtikel";
-            this.btArtikel.Size = new System.Drawing.Size(190, 87);
-            this.btArtikel.TabIndex = 4;
-            this.btArtikel.Text = "   Artikel";
-            this.btArtikel.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btArtikel.UseVisualStyleBackColor = true;
-            this.btArtikel.Click += new System.EventHandler(this.btArtikel_Click);
-            this.btArtikel.MouseEnter += new System.EventHandler(this.btArtikel_MouseEnter);
+            this.btArtikelNeu.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btArtikelNeu.Location = new System.Drawing.Point(827, 3);
+            this.btArtikelNeu.Name = "btArtikelNeu";
+            this.btArtikelNeu.Size = new System.Drawing.Size(161, 59);
+            this.btArtikelNeu.TabIndex = 48;
+            this.btArtikelNeu.Text = "Neu";
+            this.btArtikelNeu.UseVisualStyleBackColor = true;
+            this.btArtikelNeu.Click += new System.EventHandler(this.btArtikelNeu_Click);
             // 
-            // btKunden
+            // label18
             // 
-            this.btKunden.FlatAppearance.BorderSize = 0;
-            this.btKunden.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btKunden.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btKunden.Image = global::FutureFarm.Properties.Resources.multiple_users_silhouette1;
-            this.btKunden.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btKunden.Location = new System.Drawing.Point(36, 304);
-            this.btKunden.Name = "btKunden";
-            this.btKunden.Size = new System.Drawing.Size(190, 87);
-            this.btKunden.TabIndex = 5;
-            this.btKunden.Text = "   Kunden";
-            this.btKunden.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btKunden.UseVisualStyleBackColor = true;
-            this.btKunden.Click += new System.EventHandler(this.btKunden_Click);
-            this.btKunden.MouseEnter += new System.EventHandler(this.btKunden_MouseEnter);
+            this.label18.AutoSize = true;
+            this.label18.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label18.Location = new System.Drawing.Point(367, 143);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(115, 22);
+            this.label18.TabIndex = 43;
+            this.label18.Text = "Lagerstand";
             // 
-            // pictureBox1
+            // txtArtikelLagerstand
             // 
-            this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.pictureBox1.Image = global::FutureFarm.Properties.Resources.logoTransp;
-            this.pictureBox1.Location = new System.Drawing.Point(0, 0);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(205, 133);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox1.TabIndex = 7;
-            this.pictureBox1.TabStop = false;
-            this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
+            this.txtArtikelLagerstand.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtArtikelLagerstand.Location = new System.Drawing.Point(371, 168);
+            this.txtArtikelLagerstand.Name = "txtArtikelLagerstand";
+            this.txtArtikelLagerstand.Size = new System.Drawing.Size(145, 31);
+            this.txtArtikelLagerstand.TabIndex = 42;
+            this.txtArtikelLagerstand.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // txtArtikelArtikelID
+            // 
+            this.txtArtikelArtikelID.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtArtikelArtikelID.Location = new System.Drawing.Point(115, 20);
+            this.txtArtikelArtikelID.Name = "txtArtikelArtikelID";
+            this.txtArtikelArtikelID.ReadOnly = true;
+            this.txtArtikelArtikelID.Size = new System.Drawing.Size(91, 31);
+            this.txtArtikelArtikelID.TabIndex = 31;
+            // 
+            // label23
+            // 
+            this.label23.AutoSize = true;
+            this.label23.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label23.Location = new System.Drawing.Point(26, 23);
+            this.label23.Name = "label23";
+            this.label23.Size = new System.Drawing.Size(90, 22);
+            this.label23.TabIndex = 32;
+            this.label23.Text = "Artikel ID";
+            // 
+            // txtArtikelBrutto
+            // 
+            this.txtArtikelBrutto.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtArtikelBrutto.Location = new System.Drawing.Point(139, 246);
+            this.txtArtikelBrutto.Name = "txtArtikelBrutto";
+            this.txtArtikelBrutto.Size = new System.Drawing.Size(145, 31);
+            this.txtArtikelBrutto.TabIndex = 39;
+            this.txtArtikelBrutto.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // txtArtikelBezeichnung
+            // 
+            this.txtArtikelBezeichnung.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtArtikelBezeichnung.Location = new System.Drawing.Point(30, 95);
+            this.txtArtikelBezeichnung.Name = "txtArtikelBezeichnung";
+            this.txtArtikelBezeichnung.Size = new System.Drawing.Size(254, 31);
+            this.txtArtikelBezeichnung.TabIndex = 33;
+            // 
+            // label20
+            // 
+            this.label20.AutoSize = true;
+            this.label20.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label20.Location = new System.Drawing.Point(26, 199);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(79, 22);
+            this.label20.TabIndex = 38;
+            this.label20.Text = "UST in %";
+            // 
+            // label22
+            // 
+            this.label22.AutoSize = true;
+            this.label22.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label22.Location = new System.Drawing.Point(27, 70);
+            this.label22.Name = "label22";
+            this.label22.Size = new System.Drawing.Size(129, 22);
+            this.label22.TabIndex = 34;
+            this.label22.Text = "Bezeichnung";
+            // 
+            // txtArtikelUST
+            // 
+            this.txtArtikelUST.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtArtikelUST.Location = new System.Drawing.Point(193, 196);
+            this.txtArtikelUST.Name = "txtArtikelUST";
+            this.txtArtikelUST.Size = new System.Drawing.Size(91, 31);
+            this.txtArtikelUST.TabIndex = 37;
+            this.txtArtikelUST.Text = "20";
+            this.txtArtikelUST.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // txtArtikelNettopreis
+            // 
+            this.txtArtikelNettopreis.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtArtikelNettopreis.Location = new System.Drawing.Point(139, 159);
+            this.txtArtikelNettopreis.Name = "txtArtikelNettopreis";
+            this.txtArtikelNettopreis.Size = new System.Drawing.Size(145, 31);
+            this.txtArtikelNettopreis.TabIndex = 35;
+            this.txtArtikelNettopreis.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtArtikelNettopreis.TextChanged += new System.EventHandler(this.txtArtikelNettopreis_TextChanged);
+            // 
+            // label21
+            // 
+            this.label21.AutoSize = true;
+            this.label21.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label21.Location = new System.Drawing.Point(27, 162);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(103, 22);
+            this.label21.TabIndex = 36;
+            this.label21.Text = "Nettopreis";
+            // 
+            // label24
+            // 
+            this.label24.AutoSize = true;
+            this.label24.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label24.Location = new System.Drawing.Point(44, 216);
+            this.label24.Name = "label24";
+            this.label24.Size = new System.Drawing.Size(240, 22);
+            this.label24.TabIndex = 41;
+            this.label24.Text = "_______________________";
+            // 
+            // btNewsReset
+            // 
+            this.btNewsReset.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btNewsReset.Location = new System.Drawing.Point(530, 812);
+            this.btNewsReset.Name = "btNewsReset";
+            this.btNewsReset.Size = new System.Drawing.Size(83, 33);
+            this.btNewsReset.TabIndex = 12;
+            this.btNewsReset.Text = "Reset";
+            this.btNewsReset.UseVisualStyleBackColor = true;
+            this.btNewsReset.Click += new System.EventHandler(this.btNewsReset_Click);
             // 
             // Form1
             // 
@@ -1527,7 +1541,9 @@
             this.Controls.Add(this.panelArtikel);
             this.Controls.Add(this.panelFirmendaten);
             this.Controls.Add(this.panelBenutzer);
+            this.Controls.Add(this.panelArtikelInfo);
             this.Controls.Add(this.panelUnterMenu);
+            this.Controls.Add(this.panelNews);
             this.Controls.Add(this.panel4);
             this.Controls.Add(this.btBenutzer);
             this.Controls.Add(this.btFirmendaten);
@@ -1545,9 +1561,11 @@
             this.MouseEnter += new System.EventHandler(this.Form1_MouseEnter);
             this.panel1.ResumeLayout(false);
             this.panel3.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.panel2.ResumeLayout(false);
             this.panelBenutzer.ResumeLayout(false);
             this.panelBenutzer.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbPasswort)).EndInit();
             this.panelFirmendaten.ResumeLayout(false);
             this.panelFirmendaten.PerformLayout();
             this.panelArtikel.ResumeLayout(false);
@@ -1556,8 +1574,6 @@
             this.panelNews.PerformLayout();
             this.panelArtikelInfo.ResumeLayout(false);
             this.panelArtikelInfo.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pbPasswort)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1598,15 +1614,15 @@
         private System.Windows.Forms.ColumnHeader columnHeader7;
         private System.Windows.Forms.ColumnHeader columnHeader8;
         private System.Windows.Forms.PictureBox pbPasswort;
-        private System.Windows.Forms.TextBox txtPasswort;
-        private System.Windows.Forms.TextBox txtBenutzername;
+        private System.Windows.Forms.TextBox txtBenutzerPasswort;
+        private System.Windows.Forms.TextBox txtBenutzerBenutzername;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox txtID;
+        private System.Windows.Forms.TextBox txtBenutzerBenutzerID;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Button btNeu;
-        private System.Windows.Forms.Button btLöschen;
-        private System.Windows.Forms.Button btÄndern;
+        private System.Windows.Forms.Button btBenutzerNeu;
+        private System.Windows.Forms.Button btBenutzerLöschen;
+        private System.Windows.Forms.Button btBenutzerÄndern;
         private System.Windows.Forms.Panel panelFirmendaten;
         private System.Windows.Forms.Button btSpeichern;
         private System.Windows.Forms.Label label15;
@@ -1689,6 +1705,7 @@
         private System.Windows.Forms.TextBox txtArtikelNettopreis;
         private System.Windows.Forms.Label label21;
         private System.Windows.Forms.Label label24;
+        private System.Windows.Forms.Button btNewsReset;
     }
 }
 

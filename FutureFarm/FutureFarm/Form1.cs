@@ -281,9 +281,9 @@ namespace FutureFarm
             else if (LogIn == true)
             {
 
-                btLöschen.Enabled = true;
-                btNeu.Enabled = true;
-                btÄndern.Enabled = true;
+                btBenutzerLöschen.Enabled = true;
+                btBenutzerNeu.Enabled = true;
+                btBenutzerÄndern.Enabled = true;
                 pbPasswort.Enabled = true;
                 btSpeichern.Enabled = true;
                 btArtikelLöschen.Enabled = true;
@@ -297,24 +297,42 @@ namespace FutureFarm
 
         private void LetzteAnmeldungAktualisieren()
         {
+            panelBenutzerLoginEinlesen();
+
             //API Client
             var client = new RestClient("http://localhost:8888")
             {
                 Authenticator = new HttpBasicAuthenticator("demo", "demo")
             };
 
+            int aktuelleID = 0;
+            string aktuellesPW="";
+            
+            for(int i=0; i < listViewPanelBenutzerLogin.Items.Count;i++)
+            {
+                lvItem = listViewPanelBenutzerLogin.Items[i];
+                if (angBenutzer.Equals(lvItem.SubItems[1].Text))
+                {
+                    aktuelleID = Convert.ToInt16(lvItem.SubItems[0].Text);
+                    aktuellesPW = lvItem.SubItems[2].Text;
+                    break;
+                }
+            }
+
             //Login schreiben
             Login aktLogin = new Login();
+            aktLogin.BenutzernameID = aktuelleID;
             aktLogin.Benutzername = angBenutzer;
+            aktLogin.Passwort = aktuellesPW;
             aktLogin.LetzteAnmeldung = DateTime.Now;
             //Login updaten
-            var request2 = new RestRequest("login", Method.PUT);
+            var request2 = new RestRequest("logins", Method.PUT);
             request2.AddHeader("Content-Type", "application/json");
             request2.AddJsonBody(aktLogin);
             var response2 = client.Execute(request2);
             if (response2.StatusCode == System.Net.HttpStatusCode.BadRequest)
             {
-                MessageBox.Show("An Error occured", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("LETZTE Anmeldung: An Error occured", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             else
             {
@@ -582,9 +600,9 @@ namespace FutureFarm
 
             if (LogIn == true)
             {
-                btNeu.Enabled = true;
-                btÄndern.Enabled = true;
-                btLöschen.Enabled = true;
+                btBenutzerNeu.Enabled = true;
+                btBenutzerÄndern.Enabled = true;
+                btBenutzerLöschen.Enabled = true;
                 pbPasswort.Enabled = true;
             }
         }
@@ -653,9 +671,9 @@ namespace FutureFarm
                 }
                 lvItem = listViewPanelBenutzerLogin.SelectedItems[0];
 
-                txtID.Text = lvItem.SubItems[0].Text;
-                txtBenutzername.Text = lvItem.SubItems[1].Text;
-                txtPasswort.Text = lvItem.SubItems[2].Text;
+                txtBenutzerBenutzerID.Text = lvItem.SubItems[0].Text;
+                txtBenutzerBenutzername.Text = lvItem.SubItems[1].Text;
+                txtBenutzerPasswort.Text = lvItem.SubItems[2].Text;
                 // inlesenKunden();
 
             }
@@ -666,13 +684,13 @@ namespace FutureFarm
                 {
                     pbBildName = "eye-open.png";
                     pbPasswort.Image = Image.FromFile(@"D:\\OneDrive - BHAK und BHAS Mistelbach 316448\\Schule\\AP_SWE\\GitHub\\FutureFarmProgramm\\FutureFarm\\FutureFarm\\Properties\\" + pbBildName);
-                    txtPasswort.PasswordChar = '\0';
+                    txtBenutzerPasswort.PasswordChar = '\0';
                 }
                 else
                 {
                     pbBildName = "eye-closed.png";
                     pbPasswort.Image = Image.FromFile(@"D:\\OneDrive - BHAK und BHAS Mistelbach 316448\\Schule\\AP_SWE\\GitHub\\FutureFarmProgramm\\FutureFarm\\FutureFarm\\Properties\\" + pbBildName);
-                    txtPasswort.PasswordChar = '*';
+                    txtBenutzerPasswort.PasswordChar = '*';
                 }
 
             }
@@ -702,12 +720,16 @@ namespace FutureFarm
 
                     //Benutzer erzeugen
                     Login login = new Login();
+                    login.Benutzername = txtBenutzerBenutzername.Text;
+                    login.Passwort = txtBenutzerPasswort.Text;
+                    login.LetzteAnmeldung = DateTime.Now;
                     
 
-                    //Artikel hinzufügen
-                    var request2 = new RestRequest("login", Method.POST);
+                    //Benutezr hinzufügen
+                    var request2 = new RestRequest("logins", Method.POST);
                     request2.AddHeader("Content-Type", "application/json");
                     request2.AddJsonBody(login);
+                    //MessageBox.Show(login.Benutzername.ToString() + " ... " + login.Passwort.ToString());
                     var response2 = client.Execute(request2);
                     if (response2.StatusCode == System.Net.HttpStatusCode.BadRequest)
                     {
@@ -716,7 +738,7 @@ namespace FutureFarm
                     else
                     {
                         MessageBox.Show("Erfolgreich Benutzer hinzugefügt!");
-                        ArtikelEinlesen();
+                        panelBenutzerLoginEinlesen();
                     }
 
                 }
@@ -728,68 +750,159 @@ namespace FutureFarm
 
 
             }
-
-
+            
             panelBenutzerLoginEinlesen();
             }
 
-            private void btLöschen_Click(object sender, EventArgs e)
+        private void btLöschen_Click(object sender, EventArgs e)
+        {            
+            //DELETE Methode
+            FrmSuperpasswort fSuper = new FrmSuperpasswort();
+            fSuper.lbAktion.Text = "Benutzer löschen...";
+            fSuper.lbText.Text = "Bitte Passwort eingeben, um Ihre Berechtigung zum Löschen von Benutzern zu prüfen:";
+            fSuper.ShowDialog();
+            if (fSuper.berechtigt == true)
             {
-                //DELETE Methode
-
-                panelBenutzerLoginEinlesen();
-
-            }
-
-            private void btÄndern_Click(object sender, EventArgs e)
-            {
-                //PUT Methode
-
-                panelBenutzerLoginEinlesen();
-            }
-
-            private void btFirmendaten_Click(object sender, EventArgs e)
-            {
-                panelFirmendaten.Dock = DockStyle.Fill;
-                panelFirmendaten.Visible = true;
-                FirmendatenEinlesen();
-
-                CheckEingeloggt();
-                panelUnterMenu.Visible = false;
-
-            }
-
-            private void FirmendatenEinlesen()
-            {
-                listViewPanelBenutzerLogin.Items.Clear();
-                //API Client
-                var client = new RestClient("http://localhost:8888");
-                var request = new RestRequest("firmendaten", Method.GET);
-                request.AddHeader("Content-Type", "application/json");
-                var response = client.Execute<List<Firmendaten>>(request);
-
-                foreach (Firmendaten f in response.Data)
+                try
                 {
-                    //MessageBox.Show(a.Bezeichnung.ToString());
-                    //lvItem = new ListViewItem(f.FirmendatenID.ToString());
-                    //lvItem.SubItems.Add(f.Name.ToString());
-                    //lvItem.SubItems.Add(f.Rechtsform.ToString());
-                    //lvItem.SubItems.Add(l.LetzteAnmeldung.ToString());
-                    //listViewFirmendaten.Items.Add(lvItem);
-                    txtFirmendatenName.Text = f.Name;
-                    txtFirmendatenAnschrift.Text = f.Anschrift;
-                    txtFirmendatenEmail.Text = f.Email;
-                    txtFirmendatenTelefonnummer.Text = f.Telefon;
-                    txtFirmendatenRechtsform.Text = f.Rechtsform;
-                    txtFirmendatenSitz.Text = f.Sitz;
-                    txtFirmendatenFirmenbuchnummer.Text = f.Firmenbuchnummer;
-                    txtFirmendatenUIDNummer.Text = f.UIDNummer;
-                    txtFirmendatenWKOMitglied.Text = f.MitgliedWKO;
-                    txtFirmendatenAufsichtsbehörde.Text = f.Aufsichtsbehörde;
-                    txtFirmendatenBerufsbezeichnung.Text = f.Berufsbezeichnung;
+                    //DELETE Methode
+                    var client = new RestClient("http://localhost:8888")
+                    {
+                        Authenticator = new HttpBasicAuthenticator("demo", "demo")
+                    };
+
+                    if (listViewPanelBenutzerLogin.SelectedItems.Count == 0)
+                    {
+                        MessageBox.Show("Wählen Sie einen Benutzer aus!");
+                        return;
+                    }
+                    lvItem = listViewPanelBenutzerLogin.SelectedItems[0];
+                    Login login = new Login();
+                    login.BenutzernameID = Convert.ToInt32(lvItem.SubItems[0].Text);
+                    var request = new RestRequest("logins/{id}", Method.DELETE);
+                    request.AddUrlSegment("id", login.BenutzernameID.ToString());
+                    request.AddHeader("Content-Type", "application/json");
+                    request.AddJsonBody(login);
+                    var response = client.Execute(request);
+                    if (response.StatusCode == System.Net.HttpStatusCode.BadRequest)
+                    {
+                        MessageBox.Show("An Error occured", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Erfolgreich gelöscht");
+                        panelBenutzerLoginEinlesen();
+
+                        txtBenutzerBenutzername.Clear();
+                        txtBenutzerBenutzerID.Clear();
+                        txtBenutzerPasswort.Clear();
+                    }
+
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Fehler bei der Neuanlage: " + ex.Message);
                 }
 
+
             }
+        }
+
+        private void btÄndern_Click(object sender, EventArgs e)
+        {
+            //PUT Methode
+            FrmSuperpasswort fSuper = new FrmSuperpasswort();
+            fSuper.lbAktion.Text = "Benutzer ändern...";
+            fSuper.lbText.Text = "Bitte Passwort eingeben, \num Ihre Berechtigung zum Ändern von Benutzern zu prüfen:";
+            fSuper.ShowDialog();
+            if (fSuper.berechtigt == true)
+            {
+                try
+                {
+                    var client = new RestClient("http://localhost:8888")
+                    {
+                        Authenticator = new HttpBasicAuthenticator("demo", "demo")
+                    };
+
+                    if (listViewPanelBenutzerLogin.SelectedItems.Count == 0)
+                    {
+                        MessageBox.Show("Wählen Sie einen Benutzer aus!");
+                        return;
+                    }
+                    lvItem = listViewPanelBenutzerLogin.SelectedItems[0];
+
+                    Login login = new Login();
+                    login.BenutzernameID = Convert.ToInt32(lvItem.SubItems[0].Text);
+                    login.Benutzername = txtBenutzerBenutzername.Text;
+                    login.Passwort = txtBenutzerPasswort.Text;
+                    login.LetzteAnmeldung = Convert.ToDateTime(lvItem.SubItems[3].Text);
+
+                    var request = new RestRequest("logins", Method.PUT);
+                    request.AddHeader("Content-Type", "application/json");
+                    request.AddJsonBody(login);
+                    var response = client.Execute(request);
+                    if (response.StatusCode == System.Net.HttpStatusCode.BadRequest)
+                    {
+                        MessageBox.Show("An Error occured", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Erfolgreich geändert!");
+                        panelBenutzerLoginEinlesen();
+                    }
+
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Fehler bei der Änderung: " + ex.Message);
+                }
+
+
+            }
+        }
+
+        private void btFirmendaten_Click(object sender, EventArgs e)
+        {
+            panelFirmendaten.Dock = DockStyle.Fill;
+            panelFirmendaten.Visible = true;
+            FirmendatenEinlesen();
+
+            CheckEingeloggt();
+            panelUnterMenu.Visible = false;
+
+        }
+
+        private void FirmendatenEinlesen()
+        {
+            listViewPanelBenutzerLogin.Items.Clear();
+            //API Client
+            var client = new RestClient("http://localhost:8888");
+            var request = new RestRequest("firmendaten", Method.GET);
+            request.AddHeader("Content-Type", "application/json");
+            var response = client.Execute<List<Firmendaten>>(request);
+
+            foreach (Firmendaten f in response.Data)
+            {
+                //MessageBox.Show(a.Bezeichnung.ToString());
+                //lvItem = new ListViewItem(f.FirmendatenID.ToString());
+                //lvItem.SubItems.Add(f.Name.ToString());
+                //lvItem.SubItems.Add(f.Rechtsform.ToString());
+                //lvItem.SubItems.Add(l.LetzteAnmeldung.ToString());
+                //listViewFirmendaten.Items.Add(lvItem);
+                txtFirmendatenName.Text = f.Name;
+                txtFirmendatenAnschrift.Text = f.Anschrift;
+                txtFirmendatenEmail.Text = f.Email;
+                txtFirmendatenTelefonnummer.Text = f.Telefon;
+                txtFirmendatenRechtsform.Text = f.Rechtsform;
+                txtFirmendatenSitz.Text = f.Sitz;
+                txtFirmendatenFirmenbuchnummer.Text = f.Firmenbuchnummer;
+                txtFirmendatenUIDNummer.Text = f.UIDNummer;
+                txtFirmendatenWKOMitglied.Text = f.MitgliedWKO;
+                txtFirmendatenAufsichtsbehörde.Text = f.Aufsichtsbehörde;
+                txtFirmendatenBerufsbezeichnung.Text = f.Berufsbezeichnung;
+            }
+
+        }
 
             private void pictureBox1_Click(object sender, EventArgs e)
             {
@@ -813,10 +926,63 @@ namespace FutureFarm
 
             private void btSpeichern_Click(object sender, EventArgs e)
             {
-                //UPDATE
+
+            //PUT Methode
+            FrmSuperpasswort fSuper = new FrmSuperpasswort();
+            fSuper.lbAktion.Text = "Firmendaten ändern...";
+            fSuper.lbText.Text = "Bitte Passwort eingeben, \num Ihre Berechtigung zum Ändern von Firmendaten zu prüfen:";
+            fSuper.ShowDialog();
+            if (fSuper.berechtigt == true)
+            {
+                try
+                {
+                    var client = new RestClient("http://localhost:8888")
+                    {
+                        Authenticator = new HttpBasicAuthenticator("demo", "demo")
+                    };
+
+                    Firmendaten fi = new Firmendaten();
+                    fi.FirmendatenID = 11;
+                    fi.Name = txtFirmendatenName.Text;
+                    fi.Anschrift = txtFirmendatenAnschrift.Text;
+                    fi.Email = txtFirmendatenEmail.Text;
+                    fi.Telefon = txtFirmendatenTelefonnummer.Text;
+                    fi.Rechtsform = txtFirmendatenRechtsform.Text;
+                    fi.Sitz = txtFirmendatenSitz.Text;
+                    fi.Firmenbuchnummer = txtFirmendatenFirmenbuchnummer.Text;
+                    fi.UIDNummer = txtFirmendatenUIDNummer.Text;
+                    fi.MitgliedWKO = txtFirmendatenWKOMitglied.Text;
+                    fi.Aufsichtsbehörde = txtFirmendatenAufsichtsbehörde.Text;
+                    fi.Berufsbezeichnung = txtFirmendatenBerufsbezeichnung.Text;
+                    fi.Datum = Convert.ToDateTime(DateTime.Now.ToShortDateString());
+
+                    var request = new RestRequest("firmendaten", Method.PUT);
+                    request.AddHeader("Content-Type", "application/json");
+                    request.AddJsonBody(fi);
+                    var response = client.Execute(request);
+                    if (response.StatusCode == System.Net.HttpStatusCode.BadRequest)
+                    {
+                        MessageBox.Show("An Error occured", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Firmendaten erfolgreich geändert!");
+                        FirmendatenEinlesen();
+                    }
+
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Fehler bei der Änderung: " + ex.Message);
+                }
+
+
             }
 
-            private void listViewArtikel_SelectedIndexChanged(object sender, EventArgs e)
+
+        }
+
+        private void listViewArtikel_SelectedIndexChanged(object sender, EventArgs e)
             {
                 btArtikelSpeichern.Enabled = true;
                 if (listViewArtikel.SelectedItems.Count == 0)
@@ -872,6 +1038,7 @@ namespace FutureFarm
 
         private void listViewNews_SelectedIndexChanged(object sender, EventArgs e)
         {
+            btNewsNeu.Enabled = false;
             if (listViewNews.SelectedItems.Count == 0)
             {
                 MessageBox.Show("Wählen Sie bitte einen Beitrag aus!");
@@ -887,12 +1054,67 @@ namespace FutureFarm
 
         private void btNewsNeu_Click(object sender, EventArgs e)
         {
-            txtNewsID.Clear();
-            txtNewsTitel.Clear();
-            txtNewsBeitrag.Clear();
-            dtpNews.Value = DateTime.Now;
+            try
+            {
+                var client = new RestClient("http://localhost:8888")
+                {
+                    Authenticator = new HttpBasicAuthenticator("demo", "demo")
+                };
 
-            
+                //Benutzer holen
+                int aktuelleID = 0;
+                
+                
+                //ACHTUNG ÄNDERN WENN LOGIN WIEDER GEHT!!!!!!!!!!!!!!!!!!!!!!!!!!
+                angBenutzer = "Manuel.Reisinger";
+
+                panelBenutzerLoginEinlesen();
+                for (int i = 0; i < listViewPanelBenutzerLogin.Items.Count; i++)
+                {
+                    lvItem = listViewPanelBenutzerLogin.Items[i];
+                    if (angBenutzer.Equals(lvItem.SubItems[1].Text))
+                    {
+                        aktuelleID = Convert.ToInt16(lvItem.SubItems[0].Text);
+                        break;
+                    }
+                }
+
+                var request1 = new RestRequest("logins/{id}", Method.GET);
+                request1.AddUrlSegment("id", aktuelleID.ToString());
+                request1.AddHeader("Content-Type", "application/json");
+                var response1 = client.Execute<Login>(request1);
+                Login l = response1.Data;
+                MessageBox.Show(l.Benutzername.ToString());
+
+                //News erzeugen
+                News news = new News();
+                news.Titel = txtNewsTitel.Text;
+                news.Beitrag = txtNewsBeitrag.Text;
+                news.Datum = Convert.ToDateTime(dtpNews.Value);
+                news.Login = l;
+                
+
+                //Benutezr hinzufügen
+                var request2 = new RestRequest("news", Method.POST);
+                request2.AddHeader("Content-Type", "application/json");
+                request2.AddJsonBody(news);
+                var response2 = client.Execute(request2);
+                if (response2.StatusCode == System.Net.HttpStatusCode.BadRequest)
+                {
+                    MessageBox.Show("An Error occured", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                else
+                {
+                    MessageBox.Show("Erfolgreich News hinzugefügt!");
+                    NewsEinlesen();
+                }
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Fehler bei der Neuanlage: " + ex.Message);
+            }
+
         }
 
         private void btNewsSpeichern_Click(object sender, EventArgs e)
@@ -1149,6 +1371,56 @@ namespace FutureFarm
             txtArtikelReserviert.Clear();
             txtArtikelLieferantFirma.Clear();
             cbArtikelLieferanten.SelectedValue="";
+        }
+
+        private void btNewsReset_Click(object sender, EventArgs e)
+        {
+            txtNewsBeitrag.Clear();
+            txtNewsID.Clear();
+            txtNewsTitel.Clear();
+            dtpNews.Value = DateTime.Now;
+            btNewsNeu.Enabled = true;
+        }
+
+        private void btNewsLöschen_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                //DELETE Methode
+                var client = new RestClient("http://localhost:8888")
+                {
+                    Authenticator = new HttpBasicAuthenticator("demo", "demo")
+                };
+
+                lvItem = listViewNews.SelectedItems[0];
+
+                News news = new News();
+                news.NewsID = Convert.ToInt32(lvItem.SubItems[0].Text);
+                var request = new RestRequest("news/{id}", Method.DELETE);
+                request.AddUrlSegment("id", news.NewsID.ToString());
+                request.AddHeader("Content-Type", "application/json");
+                request.AddJsonBody(news);
+                var response = client.Execute(request);
+                if (response.StatusCode == System.Net.HttpStatusCode.BadRequest)
+                {
+                    MessageBox.Show("An Error occured", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                else
+                {
+                    MessageBox.Show("Erfolgreich gelöscht");
+                    NewsEinlesen();
+                    txtNewsTitel.Clear();
+                    txtNewsID.Clear();
+                    txtNewsBeitrag.Clear();
+                    dtpNews.Value = DateTime.Now;
+                }
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Fehler beim Löschen: " + ex.Message);
+            }
+
         }
     }
 }

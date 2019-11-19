@@ -11,7 +11,7 @@ namespace Common.Models
         public virtual int NewsID { get; set; }
         public virtual string Titel { get; set; }
         public virtual string Beitrag { get; set; }
-        public virtual string Datum { get; set; }
+        public virtual DateTime Datum { get; set; }
         public virtual Login Login { get; set; }
 
         //[JsonIgnore]
