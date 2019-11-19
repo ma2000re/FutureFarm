@@ -45,6 +45,7 @@
             this.btKunden = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.btLogin2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.btLogin = new System.Windows.Forms.Button();
             this.btBeenden = new System.Windows.Forms.Button();
@@ -155,7 +156,55 @@
             this.txtArtikelNettopreis = new System.Windows.Forms.TextBox();
             this.label21 = new System.Windows.Forms.Label();
             this.label24 = new System.Windows.Forms.Label();
-            this.btLogin2 = new System.Windows.Forms.Button();
+            this.panelRechnungen = new System.Windows.Forms.Panel();
+            this.btRechnungSuchen = new System.Windows.Forms.Button();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.label29 = new System.Windows.Forms.Label();
+            this.listViewRechnungArtikel = new System.Windows.Forms.ListView();
+            this.columnHeader29 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader30 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader31 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader32 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader33 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader34 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.listViewRechnungen = new System.Windows.Forms.ListView();
+            this.columnHeader23 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader24 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader25 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader26 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader27 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader28 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.listView1 = new System.Windows.Forms.ListView();
+            this.columnHeader44 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader45 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader46 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader47 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader48 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.label30 = new System.Windows.Forms.Label();
+            this.label31 = new System.Windows.Forms.Label();
+            this.label32 = new System.Windows.Forms.Label();
+            this.label33 = new System.Windows.Forms.Label();
+            this.label34 = new System.Windows.Forms.Label();
+            this.label35 = new System.Windows.Forms.Label();
+            this.txtRechnungID = new System.Windows.Forms.TextBox();
+            this.txtBestellungID = new System.Windows.Forms.TextBox();
+            this.txtRechnungKunde = new System.Windows.Forms.TextBox();
+            this.cbRechnungBezahlt = new System.Windows.Forms.CheckBox();
+            this.dtpRechnungBezahlt = new System.Windows.Forms.DateTimePicker();
+            this.listViewRechnungSuche = new System.Windows.Forms.ListView();
+            this.columnHeader35 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader36 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader37 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader38 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.dtpRechnungDatum = new System.Windows.Forms.DateTimePicker();
+            this.txtSummeNetto = new System.Windows.Forms.TextBox();
+            this.label36 = new System.Windows.Forms.Label();
+            this.txtSummeUST = new System.Windows.Forms.TextBox();
+            this.label37 = new System.Windows.Forms.Label();
+            this.txtSummeBrutto = new System.Windows.Forms.TextBox();
+            this.label38 = new System.Windows.Forms.Label();
+            this.label39 = new System.Windows.Forms.Label();
+            this.btRechnungSpeichern = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -166,6 +215,7 @@
             this.panelArtikel.SuspendLayout();
             this.panelNews.SuspendLayout();
             this.panelArtikelInfo.SuspendLayout();
+            this.panelRechnungen.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
@@ -413,6 +463,22 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(1556, 36);
             this.panel2.TabIndex = 1;
+            // 
+            // btLogin2
+            // 
+            this.btLogin2.FlatAppearance.BorderSize = 0;
+            this.btLogin2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btLogin2.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btLogin2.Image = global::FutureFarm.Properties.Resources.logout;
+            this.btLogin2.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btLogin2.Location = new System.Drawing.Point(593, 4);
+            this.btLogin2.Name = "btLogin2";
+            this.btLogin2.Size = new System.Drawing.Size(371, 29);
+            this.btLogin2.TabIndex = 3;
+            this.btLogin2.Text = "  Log In";
+            this.btLogin2.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btLogin2.UseVisualStyleBackColor = true;
+            this.btLogin2.Click += new System.EventHandler(this.btLogin2_Click);
             // 
             // button1
             // 
@@ -736,7 +802,7 @@
             this.panelFirmendaten.Controls.Add(this.label5);
             this.panelFirmendaten.Controls.Add(this.txtFirmendatenName);
             this.panelFirmendaten.Controls.Add(this.label4);
-            this.panelFirmendaten.Location = new System.Drawing.Point(966, 128);
+            this.panelFirmendaten.Location = new System.Drawing.Point(714, 25);
             this.panelFirmendaten.Name = "panelFirmendaten";
             this.panelFirmendaten.Size = new System.Drawing.Size(50, 37);
             this.panelFirmendaten.TabIndex = 22;
@@ -964,12 +1030,14 @@
             // 
             // panelArtikel
             // 
+            this.panelArtikel.Controls.Add(this.panelArtikelInfo);
             this.panelArtikel.Controls.Add(this.lbArtikelFilter);
             this.panelArtikel.Controls.Add(this.cbArtikelFilter);
             this.panelArtikel.Controls.Add(this.listViewArtikel);
-            this.panelArtikel.Location = new System.Drawing.Point(1161, 192);
+            this.panelArtikel.Cursor = System.Windows.Forms.Cursors.Default;
+            this.panelArtikel.Location = new System.Drawing.Point(1015, 61);
             this.panelArtikel.Name = "panelArtikel";
-            this.panelArtikel.Size = new System.Drawing.Size(64, 49);
+            this.panelArtikel.Size = new System.Drawing.Size(67, 62);
             this.panelArtikel.TabIndex = 23;
             this.panelArtikel.Visible = false;
             // 
@@ -1014,10 +1082,10 @@
             this.listViewArtikel.FullRowSelect = true;
             this.listViewArtikel.GridLines = true;
             this.listViewArtikel.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
-            this.listViewArtikel.Location = new System.Drawing.Point(0, -461);
+            this.listViewArtikel.Location = new System.Drawing.Point(0, -448);
             this.listViewArtikel.MultiSelect = false;
             this.listViewArtikel.Name = "listViewArtikel";
-            this.listViewArtikel.Size = new System.Drawing.Size(64, 510);
+            this.listViewArtikel.Size = new System.Drawing.Size(67, 510);
             this.listViewArtikel.TabIndex = 30;
             this.listViewArtikel.UseCompatibleStateImageBehavior = false;
             this.listViewArtikel.View = System.Windows.Forms.View.Details;
@@ -1081,6 +1149,7 @@
             // panelNews
             // 
             this.panelNews.Controls.Add(this.btNewsReset);
+            this.panelNews.Controls.Add(this.panelFirmendaten);
             this.panelNews.Controls.Add(this.btNewsNeu);
             this.panelNews.Controls.Add(this.txtNewsID);
             this.panelNews.Controls.Add(this.btNewsLöschen);
@@ -1092,10 +1161,9 @@
             this.panelNews.Controls.Add(this.txtNewsTitel);
             this.panelNews.Controls.Add(this.label25);
             this.panelNews.Controls.Add(this.listViewNews);
-            this.panelNews.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelNews.Location = new System.Drawing.Point(205, 36);
+            this.panelNews.Location = new System.Drawing.Point(1395, 437);
             this.panelNews.Name = "panelNews";
-            this.panelNews.Size = new System.Drawing.Size(1556, 1020);
+            this.panelNews.Size = new System.Drawing.Size(50, 42);
             this.panelNews.TabIndex = 24;
             this.panelNews.Visible = false;
             // 
@@ -1221,9 +1289,9 @@
             this.listViewNews.Dock = System.Windows.Forms.DockStyle.Right;
             this.listViewNews.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.listViewNews.FullRowSelect = true;
-            this.listViewNews.Location = new System.Drawing.Point(770, 0);
+            this.listViewNews.Location = new System.Drawing.Point(-736, 0);
             this.listViewNews.Name = "listViewNews";
-            this.listViewNews.Size = new System.Drawing.Size(786, 1020);
+            this.listViewNews.Size = new System.Drawing.Size(786, 42);
             this.listViewNews.TabIndex = 0;
             this.listViewNews.UseCompatibleStateImageBehavior = false;
             this.listViewNews.View = System.Windows.Forms.View.Details;
@@ -1282,11 +1350,10 @@
             this.panelArtikelInfo.Controls.Add(this.txtArtikelNettopreis);
             this.panelArtikelInfo.Controls.Add(this.label21);
             this.panelArtikelInfo.Controls.Add(this.label24);
-            this.panelArtikelInfo.Location = new System.Drawing.Point(1161, 324);
+            this.panelArtikelInfo.Location = new System.Drawing.Point(62, 46);
             this.panelArtikelInfo.Name = "panelArtikelInfo";
-            this.panelArtikelInfo.Size = new System.Drawing.Size(45, 43);
+            this.panelArtikelInfo.Size = new System.Drawing.Size(1004, 358);
             this.panelArtikelInfo.TabIndex = 51;
-            this.panelArtikelInfo.Visible = false;
             // 
             // checkboxArtikelAktiv
             // 
@@ -1535,31 +1602,447 @@
             this.label24.TabIndex = 41;
             this.label24.Text = "_______________________";
             // 
-            // btLogin2
+            // panelRechnungen
             // 
-            this.btLogin2.FlatAppearance.BorderSize = 0;
-            this.btLogin2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btLogin2.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btLogin2.Image = global::FutureFarm.Properties.Resources.logout;
-            this.btLogin2.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btLogin2.Location = new System.Drawing.Point(593, 4);
-            this.btLogin2.Name = "btLogin2";
-            this.btLogin2.Size = new System.Drawing.Size(371, 29);
-            this.btLogin2.TabIndex = 3;
-            this.btLogin2.Text = "  Log In";
-            this.btLogin2.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btLogin2.UseVisualStyleBackColor = true;
-            this.btLogin2.Click += new System.EventHandler(this.btLogin2_Click);
+            this.panelRechnungen.Controls.Add(this.btRechnungSpeichern);
+            this.panelRechnungen.Controls.Add(this.txtSummeBrutto);
+            this.panelRechnungen.Controls.Add(this.label38);
+            this.panelRechnungen.Controls.Add(this.txtSummeUST);
+            this.panelRechnungen.Controls.Add(this.label37);
+            this.panelRechnungen.Controls.Add(this.txtSummeNetto);
+            this.panelRechnungen.Controls.Add(this.label36);
+            this.panelRechnungen.Controls.Add(this.dtpRechnungDatum);
+            this.panelRechnungen.Controls.Add(this.listViewRechnungSuche);
+            this.panelRechnungen.Controls.Add(this.dtpRechnungBezahlt);
+            this.panelRechnungen.Controls.Add(this.cbRechnungBezahlt);
+            this.panelRechnungen.Controls.Add(this.txtRechnungKunde);
+            this.panelRechnungen.Controls.Add(this.txtBestellungID);
+            this.panelRechnungen.Controls.Add(this.txtRechnungID);
+            this.panelRechnungen.Controls.Add(this.label35);
+            this.panelRechnungen.Controls.Add(this.label34);
+            this.panelRechnungen.Controls.Add(this.label33);
+            this.panelRechnungen.Controls.Add(this.label32);
+            this.panelRechnungen.Controls.Add(this.label31);
+            this.panelRechnungen.Controls.Add(this.label30);
+            this.panelRechnungen.Controls.Add(this.listView1);
+            this.panelRechnungen.Controls.Add(this.btRechnungSuchen);
+            this.panelRechnungen.Controls.Add(this.textBox1);
+            this.panelRechnungen.Controls.Add(this.label29);
+            this.panelRechnungen.Controls.Add(this.listViewRechnungArtikel);
+            this.panelRechnungen.Controls.Add(this.listViewRechnungen);
+            this.panelRechnungen.Controls.Add(this.label39);
+            this.panelRechnungen.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panelRechnungen.Location = new System.Drawing.Point(205, 36);
+            this.panelRechnungen.Name = "panelRechnungen";
+            this.panelRechnungen.Size = new System.Drawing.Size(1556, 1020);
+            this.panelRechnungen.TabIndex = 52;
+            // 
+            // btRechnungSuchen
+            // 
+            this.btRechnungSuchen.Location = new System.Drawing.Point(645, 73);
+            this.btRechnungSuchen.Name = "btRechnungSuchen";
+            this.btRechnungSuchen.Size = new System.Drawing.Size(92, 27);
+            this.btRechnungSuchen.TabIndex = 4;
+            this.btRechnungSuchen.Text = "Suchen";
+            this.btRechnungSuchen.UseVisualStyleBackColor = true;
+            this.btRechnungSuchen.Click += new System.EventHandler(this.btRechnungSuchen_Click);
+            // 
+            // textBox1
+            // 
+            this.textBox1.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox1.Location = new System.Drawing.Point(216, 73);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(423, 27);
+            this.textBox1.TabIndex = 3;
+            this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
+            // 
+            // label29
+            // 
+            this.label29.AutoSize = true;
+            this.label29.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label29.Location = new System.Drawing.Point(55, 76);
+            this.label29.Name = "label29";
+            this.label29.Size = new System.Drawing.Size(155, 21);
+            this.label29.TabIndex = 2;
+            this.label29.Text = "Rechnung suchen:";
+            // 
+            // listViewRechnungArtikel
+            // 
+            this.listViewRechnungArtikel.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader29,
+            this.columnHeader30,
+            this.columnHeader31,
+            this.columnHeader32,
+            this.columnHeader33,
+            this.columnHeader34});
+            this.listViewRechnungArtikel.Location = new System.Drawing.Point(1053, 272);
+            this.listViewRechnungArtikel.Name = "listViewRechnungArtikel";
+            this.listViewRechnungArtikel.Size = new System.Drawing.Size(491, 259);
+            this.listViewRechnungArtikel.TabIndex = 1;
+            this.listViewRechnungArtikel.UseCompatibleStateImageBehavior = false;
+            this.listViewRechnungArtikel.View = System.Windows.Forms.View.Details;
+            this.listViewRechnungArtikel.Visible = false;
+            // 
+            // columnHeader29
+            // 
+            this.columnHeader29.Text = "RechnungArtikelID";
+            this.columnHeader29.Width = 120;
+            // 
+            // columnHeader30
+            // 
+            this.columnHeader30.Text = "Menge";
+            // 
+            // columnHeader31
+            // 
+            this.columnHeader31.Text = "NettoPreis";
+            this.columnHeader31.Width = 80;
+            // 
+            // columnHeader32
+            // 
+            this.columnHeader32.Text = "Ust";
+            this.columnHeader32.Width = 50;
+            // 
+            // columnHeader33
+            // 
+            this.columnHeader33.Text = "RechnungID";
+            this.columnHeader33.Width = 80;
+            // 
+            // columnHeader34
+            // 
+            this.columnHeader34.Text = "ArtikelID";
+            this.columnHeader34.Width = 80;
+            // 
+            // listViewRechnungen
+            // 
+            this.listViewRechnungen.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader23,
+            this.columnHeader24,
+            this.columnHeader25,
+            this.columnHeader26,
+            this.columnHeader27,
+            this.columnHeader28});
+            this.listViewRechnungen.Location = new System.Drawing.Point(1053, 7);
+            this.listViewRechnungen.Name = "listViewRechnungen";
+            this.listViewRechnungen.Size = new System.Drawing.Size(491, 259);
+            this.listViewRechnungen.TabIndex = 0;
+            this.listViewRechnungen.UseCompatibleStateImageBehavior = false;
+            this.listViewRechnungen.View = System.Windows.Forms.View.Details;
+            // 
+            // columnHeader23
+            // 
+            this.columnHeader23.Text = "RechnungID";
+            this.columnHeader23.Width = 80;
+            // 
+            // columnHeader24
+            // 
+            this.columnHeader24.Text = "Datum";
+            this.columnHeader24.Width = 80;
+            // 
+            // columnHeader25
+            // 
+            this.columnHeader25.Text = "Bezahlt";
+            // 
+            // columnHeader26
+            // 
+            this.columnHeader26.Text = "BezahltAm";
+            this.columnHeader26.Width = 100;
+            // 
+            // columnHeader27
+            // 
+            this.columnHeader27.Text = "KundenID";
+            this.columnHeader27.Width = 80;
+            // 
+            // columnHeader28
+            // 
+            this.columnHeader28.Text = "BestellungID";
+            this.columnHeader28.Width = 80;
+            // 
+            // listView1
+            // 
+            this.listView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader44,
+            this.columnHeader45,
+            this.columnHeader46,
+            this.columnHeader47,
+            this.columnHeader48});
+            this.listView1.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.listView1.FullRowSelect = true;
+            this.listView1.GridLines = true;
+            this.listView1.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
+            this.listView1.Location = new System.Drawing.Point(59, 401);
+            this.listView1.MultiSelect = false;
+            this.listView1.Name = "listView1";
+            this.listView1.Size = new System.Drawing.Size(770, 320);
+            this.listView1.TabIndex = 31;
+            this.listView1.UseCompatibleStateImageBehavior = false;
+            this.listView1.View = System.Windows.Forms.View.Details;
+            // 
+            // columnHeader44
+            // 
+            this.columnHeader44.Text = "ArtikelID";
+            this.columnHeader44.Width = 100;
+            // 
+            // columnHeader45
+            // 
+            this.columnHeader45.Text = "Bezeichnung";
+            this.columnHeader45.Width = 400;
+            // 
+            // columnHeader46
+            // 
+            this.columnHeader46.Text = "Menge";
+            this.columnHeader46.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.columnHeader46.Width = 80;
+            // 
+            // columnHeader47
+            // 
+            this.columnHeader47.Text = "Nettopreis";
+            this.columnHeader47.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.columnHeader47.Width = 120;
+            // 
+            // columnHeader48
+            // 
+            this.columnHeader48.Text = "UST";
+            this.columnHeader48.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // label30
+            // 
+            this.label30.AutoSize = true;
+            this.label30.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label30.Location = new System.Drawing.Point(55, 258);
+            this.label30.Name = "label30";
+            this.label30.Size = new System.Drawing.Size(112, 21);
+            this.label30.TabIndex = 32;
+            this.label30.Text = "Rechnung ID";
+            // 
+            // label31
+            // 
+            this.label31.AutoSize = true;
+            this.label31.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label31.Location = new System.Drawing.Point(410, 258);
+            this.label31.Name = "label31";
+            this.label31.Size = new System.Drawing.Size(65, 21);
+            this.label31.TabIndex = 33;
+            this.label31.Text = "Datum";
+            // 
+            // label32
+            // 
+            this.label32.AutoSize = true;
+            this.label32.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label32.Location = new System.Drawing.Point(55, 326);
+            this.label32.Name = "label32";
+            this.label32.Size = new System.Drawing.Size(60, 21);
+            this.label32.TabIndex = 34;
+            this.label32.Text = "Kunde";
+            // 
+            // label33
+            // 
+            this.label33.AutoSize = true;
+            this.label33.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label33.Location = new System.Drawing.Point(55, 292);
+            this.label33.Name = "label33";
+            this.label33.Size = new System.Drawing.Size(110, 21);
+            this.label33.TabIndex = 35;
+            this.label33.Text = "Bestellung ID";
+            // 
+            // label34
+            // 
+            this.label34.AutoSize = true;
+            this.label34.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label34.Location = new System.Drawing.Point(55, 361);
+            this.label34.Name = "label34";
+            this.label34.Size = new System.Drawing.Size(67, 21);
+            this.label34.TabIndex = 36;
+            this.label34.Text = "Bezahlt";
+            // 
+            // label35
+            // 
+            this.label35.AutoSize = true;
+            this.label35.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label35.Location = new System.Drawing.Point(200, 361);
+            this.label35.Name = "label35";
+            this.label35.Size = new System.Drawing.Size(36, 21);
+            this.label35.TabIndex = 37;
+            this.label35.Text = "am";
+            // 
+            // txtRechnungID
+            // 
+            this.txtRechnungID.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtRechnungID.Location = new System.Drawing.Point(173, 255);
+            this.txtRechnungID.Name = "txtRechnungID";
+            this.txtRechnungID.ReadOnly = true;
+            this.txtRechnungID.Size = new System.Drawing.Size(100, 27);
+            this.txtRechnungID.TabIndex = 38;
+            // 
+            // txtBestellungID
+            // 
+            this.txtBestellungID.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtBestellungID.Location = new System.Drawing.Point(173, 289);
+            this.txtBestellungID.Name = "txtBestellungID";
+            this.txtBestellungID.ReadOnly = true;
+            this.txtBestellungID.Size = new System.Drawing.Size(100, 27);
+            this.txtBestellungID.TabIndex = 39;
+            // 
+            // txtRechnungKunde
+            // 
+            this.txtRechnungKunde.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtRechnungKunde.Location = new System.Drawing.Point(173, 323);
+            this.txtRechnungKunde.Name = "txtRechnungKunde";
+            this.txtRechnungKunde.ReadOnly = true;
+            this.txtRechnungKunde.Size = new System.Drawing.Size(302, 27);
+            this.txtRechnungKunde.TabIndex = 40;
+            // 
+            // cbRechnungBezahlt
+            // 
+            this.cbRechnungBezahlt.AutoSize = true;
+            this.cbRechnungBezahlt.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbRechnungBezahlt.Location = new System.Drawing.Point(172, 365);
+            this.cbRechnungBezahlt.Name = "cbRechnungBezahlt";
+            this.cbRechnungBezahlt.Size = new System.Drawing.Size(15, 14);
+            this.cbRechnungBezahlt.TabIndex = 41;
+            this.cbRechnungBezahlt.UseVisualStyleBackColor = true;
+            // 
+            // dtpRechnungBezahlt
+            // 
+            this.dtpRechnungBezahlt.CalendarFont = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dtpRechnungBezahlt.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dtpRechnungBezahlt.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtpRechnungBezahlt.Location = new System.Drawing.Point(242, 357);
+            this.dtpRechnungBezahlt.Name = "dtpRechnungBezahlt";
+            this.dtpRechnungBezahlt.Size = new System.Drawing.Size(136, 27);
+            this.dtpRechnungBezahlt.TabIndex = 42;
+            // 
+            // listViewRechnungSuche
+            // 
+            this.listViewRechnungSuche.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader35,
+            this.columnHeader36,
+            this.columnHeader37,
+            this.columnHeader38});
+            this.listViewRechnungSuche.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.listViewRechnungSuche.FullRowSelect = true;
+            this.listViewRechnungSuche.GridLines = true;
+            this.listViewRechnungSuche.Location = new System.Drawing.Point(59, 108);
+            this.listViewRechnungSuche.MultiSelect = false;
+            this.listViewRechnungSuche.Name = "listViewRechnungSuche";
+            this.listViewRechnungSuche.Size = new System.Drawing.Size(678, 128);
+            this.listViewRechnungSuche.TabIndex = 43;
+            this.listViewRechnungSuche.UseCompatibleStateImageBehavior = false;
+            this.listViewRechnungSuche.View = System.Windows.Forms.View.Details;
+            // 
+            // columnHeader35
+            // 
+            this.columnHeader35.Text = "Rechnung ID";
+            this.columnHeader35.Width = 115;
+            // 
+            // columnHeader36
+            // 
+            this.columnHeader36.Text = "Datum";
+            this.columnHeader36.Width = 104;
+            // 
+            // columnHeader37
+            // 
+            this.columnHeader37.Text = "Kunde";
+            this.columnHeader37.Width = 340;
+            // 
+            // columnHeader38
+            // 
+            this.columnHeader38.Text = "Bestellung ID";
+            this.columnHeader38.Width = 115;
+            // 
+            // dtpRechnungDatum
+            // 
+            this.dtpRechnungDatum.CalendarFont = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dtpRechnungDatum.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dtpRechnungDatum.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtpRechnungDatum.Location = new System.Drawing.Point(481, 255);
+            this.dtpRechnungDatum.Name = "dtpRechnungDatum";
+            this.dtpRechnungDatum.Size = new System.Drawing.Size(136, 27);
+            this.dtpRechnungDatum.TabIndex = 44;
+            // 
+            // txtSummeNetto
+            // 
+            this.txtSummeNetto.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtSummeNetto.Location = new System.Drawing.Point(694, 728);
+            this.txtSummeNetto.Name = "txtSummeNetto";
+            this.txtSummeNetto.ReadOnly = true;
+            this.txtSummeNetto.Size = new System.Drawing.Size(135, 27);
+            this.txtSummeNetto.TabIndex = 46;
+            // 
+            // label36
+            // 
+            this.label36.AutoSize = true;
+            this.label36.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label36.Location = new System.Drawing.Point(611, 731);
+            this.label36.Name = "label36";
+            this.label36.Size = new System.Drawing.Size(56, 21);
+            this.label36.TabIndex = 45;
+            this.label36.Text = "Netto";
+            // 
+            // txtSummeUST
+            // 
+            this.txtSummeUST.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtSummeUST.Location = new System.Drawing.Point(694, 761);
+            this.txtSummeUST.Name = "txtSummeUST";
+            this.txtSummeUST.ReadOnly = true;
+            this.txtSummeUST.Size = new System.Drawing.Size(135, 27);
+            this.txtSummeUST.TabIndex = 48;
+            // 
+            // label37
+            // 
+            this.label37.AutoSize = true;
+            this.label37.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label37.Location = new System.Drawing.Point(611, 764);
+            this.label37.Name = "label37";
+            this.label37.Size = new System.Drawing.Size(37, 21);
+            this.label37.TabIndex = 47;
+            this.label37.Text = "UST";
+            // 
+            // txtSummeBrutto
+            // 
+            this.txtSummeBrutto.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtSummeBrutto.Location = new System.Drawing.Point(694, 800);
+            this.txtSummeBrutto.Name = "txtSummeBrutto";
+            this.txtSummeBrutto.ReadOnly = true;
+            this.txtSummeBrutto.Size = new System.Drawing.Size(135, 27);
+            this.txtSummeBrutto.TabIndex = 50;
+            // 
+            // label38
+            // 
+            this.label38.AutoSize = true;
+            this.label38.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label38.Location = new System.Drawing.Point(611, 803);
+            this.label38.Name = "label38";
+            this.label38.Size = new System.Drawing.Size(58, 21);
+            this.label38.TabIndex = 49;
+            this.label38.Text = "Brutto";
+            // 
+            // label39
+            // 
+            this.label39.AutoSize = true;
+            this.label39.Location = new System.Drawing.Point(612, 781);
+            this.label39.Name = "label39";
+            this.label39.Size = new System.Drawing.Size(224, 16);
+            this.label39.TabIndex = 51;
+            this.label39.Text = "____________________________________";
+            // 
+            // btRechnungSpeichern
+            // 
+            this.btRechnungSpeichern.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btRechnungSpeichern.Location = new System.Drawing.Point(615, 860);
+            this.btRechnungSpeichern.Name = "btRechnungSpeichern";
+            this.btRechnungSpeichern.Size = new System.Drawing.Size(214, 47);
+            this.btRechnungSpeichern.TabIndex = 52;
+            this.btRechnungSpeichern.Text = "Speichern";
+            this.btRechnungSpeichern.UseVisualStyleBackColor = true;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1761, 1061);
+            this.Controls.Add(this.panelRechnungen);
             this.Controls.Add(this.panelArtikel);
-            this.Controls.Add(this.panelFirmendaten);
             this.Controls.Add(this.panelBenutzer);
-            this.Controls.Add(this.panelArtikelInfo);
             this.Controls.Add(this.panelUnterMenu);
             this.Controls.Add(this.panelNews);
             this.Controls.Add(this.panel4);
@@ -1592,6 +2075,8 @@
             this.panelNews.PerformLayout();
             this.panelArtikelInfo.ResumeLayout(false);
             this.panelArtikelInfo.PerformLayout();
+            this.panelRechnungen.ResumeLayout(false);
+            this.panelRechnungen.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -1725,6 +2210,55 @@
         private System.Windows.Forms.Label label24;
         private System.Windows.Forms.Button btNewsReset;
         private System.Windows.Forms.Button btLogin2;
+        private System.Windows.Forms.Panel panelRechnungen;
+        private System.Windows.Forms.ListView listViewRechnungen;
+        private System.Windows.Forms.ColumnHeader columnHeader23;
+        private System.Windows.Forms.ColumnHeader columnHeader24;
+        private System.Windows.Forms.ColumnHeader columnHeader25;
+        private System.Windows.Forms.ColumnHeader columnHeader26;
+        private System.Windows.Forms.ColumnHeader columnHeader27;
+        private System.Windows.Forms.ColumnHeader columnHeader28;
+        private System.Windows.Forms.ListView listViewRechnungArtikel;
+        private System.Windows.Forms.ColumnHeader columnHeader29;
+        private System.Windows.Forms.ColumnHeader columnHeader30;
+        private System.Windows.Forms.ColumnHeader columnHeader31;
+        private System.Windows.Forms.ColumnHeader columnHeader32;
+        private System.Windows.Forms.ColumnHeader columnHeader33;
+        private System.Windows.Forms.ColumnHeader columnHeader34;
+        private System.Windows.Forms.Button btRechnungSuchen;
+        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.Label label29;
+        private System.Windows.Forms.DateTimePicker dtpRechnungBezahlt;
+        private System.Windows.Forms.CheckBox cbRechnungBezahlt;
+        private System.Windows.Forms.TextBox txtRechnungKunde;
+        private System.Windows.Forms.TextBox txtBestellungID;
+        private System.Windows.Forms.TextBox txtRechnungID;
+        private System.Windows.Forms.Label label35;
+        private System.Windows.Forms.Label label34;
+        private System.Windows.Forms.Label label33;
+        private System.Windows.Forms.Label label32;
+        private System.Windows.Forms.Label label31;
+        private System.Windows.Forms.Label label30;
+        private System.Windows.Forms.ListView listView1;
+        private System.Windows.Forms.ColumnHeader columnHeader44;
+        private System.Windows.Forms.ColumnHeader columnHeader45;
+        private System.Windows.Forms.ColumnHeader columnHeader46;
+        private System.Windows.Forms.ColumnHeader columnHeader47;
+        private System.Windows.Forms.ColumnHeader columnHeader48;
+        private System.Windows.Forms.ListView listViewRechnungSuche;
+        private System.Windows.Forms.ColumnHeader columnHeader35;
+        private System.Windows.Forms.ColumnHeader columnHeader36;
+        private System.Windows.Forms.ColumnHeader columnHeader37;
+        private System.Windows.Forms.ColumnHeader columnHeader38;
+        private System.Windows.Forms.DateTimePicker dtpRechnungDatum;
+        private System.Windows.Forms.TextBox txtSummeBrutto;
+        private System.Windows.Forms.Label label38;
+        private System.Windows.Forms.TextBox txtSummeUST;
+        private System.Windows.Forms.Label label37;
+        private System.Windows.Forms.TextBox txtSummeNetto;
+        private System.Windows.Forms.Label label36;
+        private System.Windows.Forms.Button btRechnungSpeichern;
+        private System.Windows.Forms.Label label39;
     }
 }
 

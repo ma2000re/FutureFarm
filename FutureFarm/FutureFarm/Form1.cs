@@ -61,36 +61,95 @@ namespace FutureFarm
 
         private void btRechnungen_Click(object sender, EventArgs e)
         {
-            //panelAuswahl.Height = btRechnungen.Height;
-            //panelAuswahl.Top = btRechnungen.Top;
-            //panelsDeaktivieren();
-            //panelRechnung.Visible = true;
-            //panelArtikel.Dock = DockStyle.Fill;
-            //listViewArtikel.Height = Convert.ToInt16(panelArtikel.Height * 0.45);
-            //panelArtikelInfo.Location = new Point(Convert.ToInt16(panelArtikel.Width * 0.05), Convert.ToInt16(panelArtikel.Height * 0.05));
-            //lbArtikelFilter.Location = new Point(10, (panelArtikel.Height - listViewArtikel.Height - 40));
-            //cbArtikelFilter.Location = new Point((10 + lbArtikelFilter.Width), (panelArtikel.Height - listViewArtikel.Height - 43));
-            //btArtikelSpeichern.Enabled = false;
-
-            //ArtikelEinlesen();
-            //LieferantenEinlesen();
-
-            //CheckEingeloggt();
-
-            //panelUnterMenu.Visible = false;
-
-
-            //>>
             panelAuswahl.Height = btRechnungen.Height;
             panelAuswahl.Top = btRechnungen.Top;
             panelsDeaktivieren();
+            panelRechnungen.Visible = true;
+            panelRechnungen.Dock = DockStyle.Fill;
 
-            FrmRechnungen fRechnungen = new FrmRechnungen();
-            //fRechnungen.ShowDialog();
-            panelAuswahl.Height = btHome.Height;
-            panelAuswahl.Top = btHome.Top;
+            RechnungenEinlesen();
+            RechnungArtikelEinlesen();
+            RechnungSucheEinlesen();
 
 
+
+
+        }
+
+        private void RechnungenEinlesen()
+        {
+            listViewRechnungen.Items.Clear();
+            //Client für API
+            var client = new RestClient("http://localhost:8888")
+            {
+                Authenticator = new HttpBasicAuthenticator("demo", "demo")
+            };
+            var request = new RestRequest("rechnungen", Method.GET);
+            request.AddHeader("Content-Type", "application/json");
+            var response = client.Execute<List<Rechnung>>(request);
+
+            foreach (Rechnung r in response.Data)
+            {
+                lvItem = new ListViewItem(r.RechnungID.ToString());
+                lvItem.SubItems.Add(r.Datum.ToString());
+                lvItem.SubItems.Add(r.Bezahlt.ToString());
+                lvItem.SubItems.Add(r.BezahltAm.ToString());
+                lvItem.SubItems.Add(r.Kunde.KundenID.ToString());
+                lvItem.SubItems.Add(r.Bestellung.BestellungID.ToString());
+                
+                listViewRechnungen.Items.Add(lvItem);
+            }
+
+
+        }
+
+        private void RechnungArtikelEinlesen()
+        {
+            listViewRechnungArtikel.Items.Clear();
+
+            var client = new RestClient("http://localhost:8888")
+            {
+                Authenticator = new HttpBasicAuthenticator("demo", "demo")
+            };
+            var request = new RestRequest("rechnungartikel", Method.GET);
+            request.AddHeader("Content-Type", "application/json");
+            var response = client.Execute<List<RechnungArtikel>>(request);
+
+            foreach(RechnungArtikel ra in response.Data)
+            {
+                lvItem = new ListViewItem(ra.RechnungArtikelID.ToString());
+                lvItem.SubItems.Add(ra.Menge.ToString());
+                lvItem.SubItems.Add(ra.NettoPreis.ToString());
+                lvItem.SubItems.Add(ra.Ust.ToString());
+                lvItem.SubItems.Add(ra.Rechnung.RechnungID.ToString());
+                lvItem.SubItems.Add(ra.Artikel.ArtikelID.ToString());
+
+                listViewRechnungArtikel.Items.Add(lvItem);
+            }
+        }
+
+        private void RechnungSucheEinlesen()
+        {
+            listViewRechnungSuche.Items.Clear();
+            //Client für API
+            var client = new RestClient("http://localhost:8888")
+            {
+                Authenticator = new HttpBasicAuthenticator("demo", "demo")
+            };
+            var request = new RestRequest("rechnungen", Method.GET);
+            request.AddHeader("Content-Type", "application/json");
+            var response = client.Execute<List<Rechnung>>(request);
+
+            foreach (Rechnung r in response.Data)
+            {
+                lvItem = new ListViewItem(r.RechnungID.ToString());
+                lvItem.SubItems.Add(r.Datum.ToString());
+                lvItem.SubItems.Add(r.Kunde.Nachname.ToString()+" "+r.Kunde.Vorname.ToString());
+                lvItem.SubItems.Add(r.Bestellung.BestellungID.ToString());
+                lvItem.SubItems.Add(r.Bestellung.BestellungID.ToString());
+
+                listViewRechnungSuche.Items.Add(lvItem);
+            }
 
         }
 
@@ -124,7 +183,10 @@ namespace FutureFarm
         {
             listViewArtikel.Items.Clear();
             //Client für API
-            var client = new RestClient("http://localhost:8888");
+            var client = new RestClient("http://localhost:8888")
+            {
+                Authenticator = new HttpBasicAuthenticator("demo", "demo")
+            };
             var request = new RestRequest("artikel", Method.GET);
             request.AddHeader("Content-Type", "application/json");
             var response = client.Execute<List<Artikel>>(request);
@@ -155,7 +217,10 @@ namespace FutureFarm
         private void LieferantenEinlesen()
         {
             cbArtikelLieferanten.Items.Clear();
-            var client = new RestClient("http://localhost:8888");
+            var client = new RestClient("http://localhost:8888")
+            {
+                Authenticator = new HttpBasicAuthenticator("demo", "demo")
+            };
             var request = new RestRequest("lieferanten", Method.GET);
             request.AddHeader("Content-Type", "application/json");
             var response = client.Execute<List<Lieferanten>>(request);
@@ -347,7 +412,10 @@ namespace FutureFarm
         {
             listViewPanelBenutzerLogin.Items.Clear();
             //API Client
-            var client = new RestClient("http://localhost:8888");
+            var client = new RestClient("http://localhost:8888")
+            {
+                Authenticator = new HttpBasicAuthenticator("demo", "demo")
+            };
             var request = new RestRequest("logins", Method.GET);
             request.AddHeader("Content-Type", "application/json");
             var response = client.Execute<List<Login>>(request);
@@ -574,7 +642,10 @@ namespace FutureFarm
         {
             listViewPanelBenutzerLogin.Items.Clear();
             //API Client
-            var client = new RestClient("http://localhost:8888");
+            var client = new RestClient("http://localhost:8888")
+            {
+                Authenticator = new HttpBasicAuthenticator("demo", "demo")
+            };
             var request = new RestRequest("logins", Method.GET);
             request.AddHeader("Content-Type", "application/json");
             var response = client.Execute<List<Login>>(request);
@@ -597,14 +668,15 @@ namespace FutureFarm
             panelBenutzer.Visible = false;
             panelFirmendaten.Visible = false;
             panelArtikel.Visible = false;
+            panelRechnungen.Visible = false;
 
-            if (LogIn == true)
-            {
-                btBenutzerNeu.Enabled = true;
-                btBenutzerÄndern.Enabled = true;
-                btBenutzerLöschen.Enabled = true;
-                pbPasswort.Enabled = true;
-            }
+            //if (LogIn == true)
+            //{
+            //    btBenutzerNeu.Enabled = true;
+            //    btBenutzerÄndern.Enabled = true;
+            //    btBenutzerLöschen.Enabled = true;
+            //    pbPasswort.Enabled = true;
+            //}
         }
 
         private void btAnfragen_Click(object sender, EventArgs e)
@@ -638,7 +710,10 @@ namespace FutureFarm
         {
             listViewNews.Items.Clear();
             //API Client
-            var client = new RestClient("http://localhost:8888");
+            var client = new RestClient("http://localhost:8888")
+            {
+                Authenticator = new HttpBasicAuthenticator("demo", "demo")
+            };
             var request = new RestRequest("news", Method.GET);
             request.AddHeader("Content-Type", "application/json");
             var response = client.Execute<List<News>>(request);
@@ -876,7 +951,10 @@ namespace FutureFarm
         {
             listViewPanelBenutzerLogin.Items.Clear();
             //API Client
-            var client = new RestClient("http://localhost:8888");
+            var client = new RestClient("http://localhost:8888")
+            {
+                Authenticator = new HttpBasicAuthenticator("demo", "demo")
+            };
             var request = new RestRequest("firmendaten", Method.GET);
             request.AddHeader("Content-Type", "application/json");
             var response = client.Execute<List<Firmendaten>>(request);
@@ -1516,6 +1594,21 @@ namespace FutureFarm
 
                 CheckEingeloggt();
             }
+        }
+
+        private void btRechnungSuchen_Click(object sender, EventArgs e)
+        {
+            //Rechnung in lv Suchen
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+            RechnungSuchen();
+        }
+
+        private void RechnungSuchen()
+        {
+
         }
     }
 }
