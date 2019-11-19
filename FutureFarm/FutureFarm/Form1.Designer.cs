@@ -112,6 +112,7 @@
             this.columnHeader16 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader22 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.panelNews = new System.Windows.Forms.Panel();
+            this.btNewsReset = new System.Windows.Forms.Button();
             this.btNewsNeu = new System.Windows.Forms.Button();
             this.txtNewsID = new System.Windows.Forms.TextBox();
             this.btNewsLöschen = new System.Windows.Forms.Button();
@@ -154,7 +155,7 @@
             this.txtArtikelNettopreis = new System.Windows.Forms.TextBox();
             this.label21 = new System.Windows.Forms.Label();
             this.label24 = new System.Windows.Forms.Label();
-            this.btNewsReset = new System.Windows.Forms.Button();
+            this.btLogin2 = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -402,6 +403,7 @@
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.Color.DodgerBlue;
+            this.panel2.Controls.Add(this.btLogin2);
             this.panel2.Controls.Add(this.button1);
             this.panel2.Controls.Add(this.btLogin);
             this.panel2.Controls.Add(this.btBeenden);
@@ -1097,6 +1099,17 @@
             this.panelNews.TabIndex = 24;
             this.panelNews.Visible = false;
             // 
+            // btNewsReset
+            // 
+            this.btNewsReset.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btNewsReset.Location = new System.Drawing.Point(530, 812);
+            this.btNewsReset.Name = "btNewsReset";
+            this.btNewsReset.Size = new System.Drawing.Size(83, 33);
+            this.btNewsReset.TabIndex = 12;
+            this.btNewsReset.Text = "Reset";
+            this.btNewsReset.UseVisualStyleBackColor = true;
+            this.btNewsReset.Click += new System.EventHandler(this.btNewsReset_Click);
+            // 
             // btNewsNeu
             // 
             this.btNewsNeu.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -1522,16 +1535,21 @@
             this.label24.TabIndex = 41;
             this.label24.Text = "_______________________";
             // 
-            // btNewsReset
+            // btLogin2
             // 
-            this.btNewsReset.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btNewsReset.Location = new System.Drawing.Point(530, 812);
-            this.btNewsReset.Name = "btNewsReset";
-            this.btNewsReset.Size = new System.Drawing.Size(83, 33);
-            this.btNewsReset.TabIndex = 12;
-            this.btNewsReset.Text = "Reset";
-            this.btNewsReset.UseVisualStyleBackColor = true;
-            this.btNewsReset.Click += new System.EventHandler(this.btNewsReset_Click);
+            this.btLogin2.FlatAppearance.BorderSize = 0;
+            this.btLogin2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btLogin2.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btLogin2.Image = global::FutureFarm.Properties.Resources.logout;
+            this.btLogin2.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btLogin2.Location = new System.Drawing.Point(593, 4);
+            this.btLogin2.Name = "btLogin2";
+            this.btLogin2.Size = new System.Drawing.Size(371, 29);
+            this.btLogin2.TabIndex = 3;
+            this.btLogin2.Text = "  Log In";
+            this.btLogin2.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btLogin2.UseVisualStyleBackColor = true;
+            this.btLogin2.Click += new System.EventHandler(this.btLogin2_Click);
             // 
             // Form1
             // 
@@ -1706,6 +1724,7 @@
         private System.Windows.Forms.Label label21;
         private System.Windows.Forms.Label label24;
         private System.Windows.Forms.Button btNewsReset;
+        private System.Windows.Forms.Button btLogin2;
     }
 }
 

@@ -1094,7 +1094,7 @@ namespace FutureFarm
                 news.Login = l;
                 
 
-                //Benutezr hinzufügen
+                //Benutzer hinzufügen
                 var request2 = new RestRequest("news", Method.POST);
                 request2.AddHeader("Content-Type", "application/json");
                 request2.AddJsonBody(news);
@@ -1105,8 +1105,13 @@ namespace FutureFarm
                 }
                 else
                 {
-                    MessageBox.Show("Erfolgreich News hinzugefügt!");
+                    //MessageBox.Show("Erfolgreich News hinzugefügt!");
                     NewsEinlesen();
+                    txtNewsTitel.Clear();
+                    txtNewsID.Clear();
+                    txtNewsBeitrag.Clear();
+                    dtpNews.Value = DateTime.Now;
+
                 }
 
             }
@@ -1119,24 +1124,69 @@ namespace FutureFarm
 
         private void btNewsSpeichern_Click(object sender, EventArgs e)
         {
-            var client = new RestClient("http://localhost:8888");
-            //var request = new RestRequest("firmendaten", Method.GET);
-            //request.AddHeader("Content-Type", "application/json");
-            //var response = client.Execute<List<Firmendaten>>(request);
+            try
+            {
+                var client = new RestClient("http://localhost:8888")
+                {
+                    Authenticator = new HttpBasicAuthenticator("demo", "demo")
+                };
 
-            var request = new RestRequest("news", Method.POST);
-            request.AddParameter("Titel", txtNewsTitel.Text);
-            request.AddParameter("Beitrag", txtNewsBeitrag.Text);
-            request.AddParameter("Datum", dtpNews.Value);
-            request.AddParameter("Benutzer", btLogin.Text);
-            request.AddHeader("content-type", "application/json");
+                //Benutzer holen
+                int aktuelleID = 0;
 
-            var response = client.Execute(request);
 
-            NewsEinlesen();
+                //ACHTUNG ÄNDERN WENN LOGIN WIEDER GEHT!!!!!!!!!!!!!!!!!!!!!!!!!!
+                angBenutzer = "Manuel.Reisinger";
+
+                panelBenutzerLoginEinlesen();
+                for (int i = 0; i < listViewPanelBenutzerLogin.Items.Count; i++)
+                {
+                    lvItem = listViewPanelBenutzerLogin.Items[i];
+                    if (angBenutzer.Equals(lvItem.SubItems[1].Text))
+                    {
+                        aktuelleID = Convert.ToInt16(lvItem.SubItems[0].Text);
+                        break;
+                    }
+                }
+
+                var request1 = new RestRequest("logins/{id}", Method.GET);
+                request1.AddUrlSegment("id", aktuelleID.ToString());
+                request1.AddHeader("Content-Type", "application/json");
+                var response1 = client.Execute<Login>(request1);
+                Login l = response1.Data;
+                //MessageBox.Show(l.Benutzername.ToString());
+
+
+                News news = new News();
+                news.NewsID = Convert.ToInt16(txtNewsID.Text);
+                news.Beitrag = txtNewsBeitrag.Text;
+                news.Titel = txtNewsTitel.Text;
+                news.Login = l;
+                news.Datum = dtpNews.Value;
+
+                var request = new RestRequest("news", Method.PUT);
+                request.AddHeader("Content-Type", "application/json");
+                request.AddJsonBody(news);
+                var response = client.Execute(request);
+                if (response.StatusCode == System.Net.HttpStatusCode.BadRequest)
+                {
+                    MessageBox.Show("An Error occured", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                else
+                {
+                    //MessageBox.Show("News erfolgreich geändert!");
+                    NewsEinlesen();
+                }
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Fehler bei der Änderung: " + ex.Message);
+            }
         }
+            
 
-        private void btArtikelNeu_Click(object sender, EventArgs e)
+            private void btArtikelNeu_Click(object sender, EventArgs e)
         {
             try
             {
@@ -1407,7 +1457,7 @@ namespace FutureFarm
                 }
                 else
                 {
-                    MessageBox.Show("Erfolgreich gelöscht");
+                    //MessageBox.Show("Erfolgreich gelöscht");
                     NewsEinlesen();
                     txtNewsTitel.Clear();
                     txtNewsID.Clear();
@@ -1421,6 +1471,51 @@ namespace FutureFarm
                 MessageBox.Show("Fehler beim Löschen: " + ex.Message);
             }
 
+        }
+
+        private void btLogin2_Click(object sender, EventArgs e)
+        {
+            FrmLogin fl = new FrmLogin();
+
+            if(LogIn==false)
+            fl.ShowDialog();
+            else
+            {
+                MessageBox.Show("Benutzer wird abgemeldet!");
+                LogIn = false;
+                btLogin2.Text = "   Log In";
+                btLogin2.Image = Image.FromFile("D:\\OneDrive - BHAK und BHAS Mistelbach 316448\\Schule\\AP_SWE\\GitHub\\FutureFarmProgramm\\FutureFarm\\FutureFarm\\Properties\\logout.png");
+            }
+        }
+
+        public void EinloggenNeu()
+        {
+            //Benutzereingaben aus FrmLogin
+            FrmLogin fl = new FrmLogin();
+            string eingabeBenutzername = fl.txtBenutzername.Text;
+            string eingabePasswort = fl.txtPasswort.Text;
+
+            panelBenutzerLoginEinlesen();
+
+            //einzelne Benutzer in der Listview durchgehen
+            for(int i=0; i<listViewPanelBenutzerLogin.Items.Count;i++)
+            {
+                //Item prüfen
+                lvItem = listViewPanelBenutzerLogin.Items[i];
+                if (eingabeBenutzername.Equals(lvItem.SubItems[1].Text) && eingabePasswort.Equals(lvItem.SubItems[2].Text))
+                {
+                    LogIn = true;
+                    btLogin2.Text = eingabeBenutzername;
+                    btLogin2.Image = Image.FromFile("D:\\OneDrive - BHAK und BHAS Mistelbach 316448\\Schule\\AP_SWE\\GitHub\\FutureFarmProgramm\\FutureFarm\\FutureFarm\\Properties\\login.png");
+
+                    MessageBox.Show("Anmeldung erfolgreich!");
+                    break;
+                }
+                else
+                    MessageBox.Show("Anmelden fehlgeschlagen!");
+
+                CheckEingeloggt();
+            }
         }
     }
 }
