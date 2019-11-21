@@ -28,9 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.panel3 = new System.Windows.Forms.Panel();
+            this.panelLinks = new System.Windows.Forms.Panel();
+            this.panelMenü = new System.Windows.Forms.Panel();
             this.panelMenuUnten = new System.Windows.Forms.Panel();
             this.btBestellungen = new System.Windows.Forms.Button();
             this.btTermine = new System.Windows.Forms.Button();
@@ -43,8 +44,8 @@
             this.btLieferanten = new System.Windows.Forms.Button();
             this.btArtikel = new System.Windows.Forms.Button();
             this.btKunden = new System.Windows.Forms.Button();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.panel2 = new System.Windows.Forms.Panel();
+            this.pbLogoHome = new System.Windows.Forms.PictureBox();
+            this.panelOben = new System.Windows.Forms.Panel();
             this.btLogin2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.btLogin = new System.Windows.Forms.Button();
@@ -56,7 +57,7 @@
             this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.btFirmendaten = new System.Windows.Forms.Button();
             this.btBenutzer = new System.Windows.Forms.Button();
-            this.panel4 = new System.Windows.Forms.Panel();
+            this.panelUnten = new System.Windows.Forms.Panel();
             this.panelUnterMenu = new System.Windows.Forms.Panel();
             this.panelBenutzer = new System.Windows.Forms.Panel();
             this.btBenutzerNeu = new System.Windows.Forms.Button();
@@ -100,6 +101,32 @@
             this.txtFirmendatenName = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.panelArtikel = new System.Windows.Forms.Panel();
+            this.panelArtikelInfo = new System.Windows.Forms.Panel();
+            this.checkboxArtikelAktiv = new System.Windows.Forms.CheckBox();
+            this.btReset = new System.Windows.Forms.Button();
+            this.cbArtikelLieferanten = new System.Windows.Forms.ComboBox();
+            this.txtArtikelLieferantFirma = new System.Windows.Forms.TextBox();
+            this.txtArtikelExterneID = new System.Windows.Forms.TextBox();
+            this.label28 = new System.Windows.Forms.Label();
+            this.label16 = new System.Windows.Forms.Label();
+            this.label17 = new System.Windows.Forms.Label();
+            this.btArtikelLöschen = new System.Windows.Forms.Button();
+            this.txtArtikelReserviert = new System.Windows.Forms.TextBox();
+            this.btArtikelSpeichern = new System.Windows.Forms.Button();
+            this.label19 = new System.Windows.Forms.Label();
+            this.btArtikelNeu = new System.Windows.Forms.Button();
+            this.label18 = new System.Windows.Forms.Label();
+            this.txtArtikelLagerstand = new System.Windows.Forms.TextBox();
+            this.txtArtikelArtikelID = new System.Windows.Forms.TextBox();
+            this.label23 = new System.Windows.Forms.Label();
+            this.txtArtikelBrutto = new System.Windows.Forms.TextBox();
+            this.txtArtikelBezeichnung = new System.Windows.Forms.TextBox();
+            this.label20 = new System.Windows.Forms.Label();
+            this.label22 = new System.Windows.Forms.Label();
+            this.txtArtikelUST = new System.Windows.Forms.TextBox();
+            this.txtArtikelNettopreis = new System.Windows.Forms.TextBox();
+            this.label21 = new System.Windows.Forms.Label();
+            this.label24 = new System.Windows.Forms.Label();
             this.lbArtikelFilter = new System.Windows.Forms.Label();
             this.cbArtikelFilter = new System.Windows.Forms.ComboBox();
             this.listViewArtikel = new System.Windows.Forms.ListView();
@@ -130,35 +157,33 @@
             this.columnHeader19 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader20 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader21 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.panelArtikelInfo = new System.Windows.Forms.Panel();
-            this.checkboxArtikelAktiv = new System.Windows.Forms.CheckBox();
-            this.btReset = new System.Windows.Forms.Button();
-            this.cbArtikelLieferanten = new System.Windows.Forms.ComboBox();
-            this.txtArtikelLieferantFirma = new System.Windows.Forms.TextBox();
-            this.txtArtikelExterneID = new System.Windows.Forms.TextBox();
-            this.label28 = new System.Windows.Forms.Label();
-            this.label16 = new System.Windows.Forms.Label();
-            this.label17 = new System.Windows.Forms.Label();
-            this.btArtikelLöschen = new System.Windows.Forms.Button();
-            this.txtArtikelReserviert = new System.Windows.Forms.TextBox();
-            this.btArtikelSpeichern = new System.Windows.Forms.Button();
-            this.label19 = new System.Windows.Forms.Label();
-            this.btArtikelNeu = new System.Windows.Forms.Button();
-            this.label18 = new System.Windows.Forms.Label();
-            this.txtArtikelLagerstand = new System.Windows.Forms.TextBox();
-            this.txtArtikelArtikelID = new System.Windows.Forms.TextBox();
-            this.label23 = new System.Windows.Forms.Label();
-            this.txtArtikelBrutto = new System.Windows.Forms.TextBox();
-            this.txtArtikelBezeichnung = new System.Windows.Forms.TextBox();
-            this.label20 = new System.Windows.Forms.Label();
-            this.label22 = new System.Windows.Forms.Label();
-            this.txtArtikelUST = new System.Windows.Forms.TextBox();
-            this.txtArtikelNettopreis = new System.Windows.Forms.TextBox();
-            this.label21 = new System.Windows.Forms.Label();
-            this.label24 = new System.Windows.Forms.Label();
             this.panelRechnungen = new System.Windows.Forms.Panel();
+            this.btRechnungSpeichern = new System.Windows.Forms.Button();
+            this.txtSummeBrutto = new System.Windows.Forms.TextBox();
+            this.label38 = new System.Windows.Forms.Label();
+            this.txtSummeUST = new System.Windows.Forms.TextBox();
+            this.label37 = new System.Windows.Forms.Label();
+            this.txtSummeNetto = new System.Windows.Forms.TextBox();
+            this.label36 = new System.Windows.Forms.Label();
+            this.dtpRechnungDatum = new System.Windows.Forms.DateTimePicker();
+            this.listViewRechnungSuche = new System.Windows.Forms.ListView();
+            this.columnHeader35 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader36 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader37 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader38 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.dtpRechnungBezahlt = new System.Windows.Forms.DateTimePicker();
+            this.cbRechnungBezahlt = new System.Windows.Forms.CheckBox();
+            this.txtRechnungKunde = new System.Windows.Forms.TextBox();
+            this.txtRechnungenBestellungID = new System.Windows.Forms.TextBox();
+            this.txtRechnungID = new System.Windows.Forms.TextBox();
+            this.label35 = new System.Windows.Forms.Label();
+            this.label34 = new System.Windows.Forms.Label();
+            this.label33 = new System.Windows.Forms.Label();
+            this.label32 = new System.Windows.Forms.Label();
+            this.label31 = new System.Windows.Forms.Label();
+            this.label30 = new System.Windows.Forms.Label();
             this.btRechnungSuchen = new System.Windows.Forms.Button();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.txtRechnungSuche = new System.Windows.Forms.TextBox();
             this.label29 = new System.Windows.Forms.Label();
             this.listViewRechnungArtikel = new System.Windows.Forms.ListView();
             this.columnHeader29 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -174,82 +199,180 @@
             this.columnHeader26 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader27 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader28 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.listView1 = new System.Windows.Forms.ListView();
-            this.columnHeader44 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader45 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader46 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader47 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader48 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.label30 = new System.Windows.Forms.Label();
-            this.label31 = new System.Windows.Forms.Label();
-            this.label32 = new System.Windows.Forms.Label();
-            this.label33 = new System.Windows.Forms.Label();
-            this.label34 = new System.Windows.Forms.Label();
-            this.label35 = new System.Windows.Forms.Label();
-            this.txtRechnungID = new System.Windows.Forms.TextBox();
-            this.txtBestellungID = new System.Windows.Forms.TextBox();
-            this.txtRechnungKunde = new System.Windows.Forms.TextBox();
-            this.cbRechnungBezahlt = new System.Windows.Forms.CheckBox();
-            this.dtpRechnungBezahlt = new System.Windows.Forms.DateTimePicker();
-            this.listViewRechnungSuche = new System.Windows.Forms.ListView();
-            this.columnHeader35 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader36 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader37 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader38 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.dtpRechnungDatum = new System.Windows.Forms.DateTimePicker();
-            this.txtSummeNetto = new System.Windows.Forms.TextBox();
-            this.label36 = new System.Windows.Forms.Label();
-            this.txtSummeUST = new System.Windows.Forms.TextBox();
-            this.label37 = new System.Windows.Forms.Label();
-            this.txtSummeBrutto = new System.Windows.Forms.TextBox();
-            this.label38 = new System.Windows.Forms.Label();
             this.label39 = new System.Windows.Forms.Label();
-            this.btRechnungSpeichern = new System.Windows.Forms.Button();
-            this.panel1.SuspendLayout();
-            this.panel3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            this.panel2.SuspendLayout();
+            this.btRechnungNeu = new System.Windows.Forms.Button();
+            this.panelRechnungNeu = new System.Windows.Forms.Panel();
+            this.btRechnungNeuSpeichern = new System.Windows.Forms.Button();
+            this.cbRechnungNeuBezahlt = new System.Windows.Forms.CheckBox();
+            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.btRechnungNeuWordErstellen = new System.Windows.Forms.Button();
+            this.txtRechnungNeuBrutto = new System.Windows.Forms.TextBox();
+            this.label44 = new System.Windows.Forms.Label();
+            this.txtRechnungNeuUst = new System.Windows.Forms.TextBox();
+            this.label45 = new System.Windows.Forms.Label();
+            this.txtRechnungNeuNetto = new System.Windows.Forms.TextBox();
+            this.label46 = new System.Windows.Forms.Label();
+            this.label47 = new System.Windows.Forms.Label();
+            this.listViewRechnungNeuArtikel = new System.Windows.Forms.ListView();
+            this.columnHeader39 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader40 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader41 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader42 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader43 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.label42 = new System.Windows.Forms.Label();
+            this.cbBestellungRechnungNeu = new System.Windows.Forms.ComboBox();
+            this.label41 = new System.Windows.Forms.Label();
+            this.label40 = new System.Windows.Forms.Label();
+            this.cbKundeRechnungNeu = new System.Windows.Forms.ComboBox();
+            this.dtpRechnungNeu = new System.Windows.Forms.DateTimePicker();
+            this.label43 = new System.Windows.Forms.Label();
+            this.panelTermine = new System.Windows.Forms.Panel();
+            this.btTerminLöschen = new System.Windows.Forms.Button();
+            this.btTerminSpeichern = new System.Windows.Forms.Button();
+            this.btTerminNeu = new System.Windows.Forms.Button();
+            this.label53 = new System.Windows.Forms.Label();
+            this.dtpTermineZeitBis = new System.Windows.Forms.DateTimePicker();
+            this.dtpTermineZeitVon = new System.Windows.Forms.DateTimePicker();
+            this.label54 = new System.Windows.Forms.Label();
+            this.label52 = new System.Windows.Forms.Label();
+            this.dtpTerminDatumBis = new System.Windows.Forms.DateTimePicker();
+            this.dtpTerminDatumVon = new System.Windows.Forms.DateTimePicker();
+            this.label51 = new System.Windows.Forms.Label();
+            this.txtTerminBeschreibung = new System.Windows.Forms.TextBox();
+            this.label50 = new System.Windows.Forms.Label();
+            this.txtTerminTitel = new System.Windows.Forms.TextBox();
+            this.label49 = new System.Windows.Forms.Label();
+            this.txtTerminID = new System.Windows.Forms.TextBox();
+            this.label48 = new System.Windows.Forms.Label();
+            this.listViewTermine = new System.Windows.Forms.ListView();
+            this.columnHeader49 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader50 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader51 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader52 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader54 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader56 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.panelBestellungen = new System.Windows.Forms.Panel();
+            this.listViewBestellungen = new System.Windows.Forms.ListView();
+            this.columnHeader53 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader55 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader57 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader58 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.label55 = new System.Windows.Forms.Label();
+            this.txtBestellungID = new System.Windows.Forms.TextBox();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.label56 = new System.Windows.Forms.Label();
+            this.label57 = new System.Windows.Forms.Label();
+            this.dtpBestellungenLieferdatum = new System.Windows.Forms.DateTimePicker();
+            this.cbBestellungenKunde = new System.Windows.Forms.ComboBox();
+            this.label58 = new System.Windows.Forms.Label();
+            this.listViewBestellungArtikelAlle = new System.Windows.Forms.ListView();
+            this.columnHeader59 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader60 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader61 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader62 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader65 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader66 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader63 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.listViewBestellungenArtikelGewählt = new System.Windows.Forms.ListView();
+            this.columnHeader73 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader74 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader75 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader76 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader64 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.btBestellungSpeichern = new System.Windows.Forms.Button();
+            this.panelKunden = new System.Windows.Forms.Panel();
+            this.listViewKunden = new System.Windows.Forms.ListView();
+            this.columnHeader67 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader68 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader69 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader70 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader71 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader72 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader77 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader78 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader79 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader80 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.label59 = new System.Windows.Forms.Label();
+            this.txtKundenID = new System.Windows.Forms.TextBox();
+            this.txtKundenVorname = new System.Windows.Forms.TextBox();
+            this.label60 = new System.Windows.Forms.Label();
+            this.cbKundenAnrede = new System.Windows.Forms.ComboBox();
+            this.label61 = new System.Windows.Forms.Label();
+            this.label62 = new System.Windows.Forms.Label();
+            this.txtKundenNachname = new System.Windows.Forms.TextBox();
+            this.label63 = new System.Windows.Forms.Label();
+            this.txtKundenFirma = new System.Windows.Forms.TextBox();
+            this.label64 = new System.Windows.Forms.Label();
+            this.txtKundenTelefonnummer = new System.Windows.Forms.TextBox();
+            this.label65 = new System.Windows.Forms.Label();
+            this.txtKudenEmail = new System.Windows.Forms.TextBox();
+            this.label66 = new System.Windows.Forms.Label();
+            this.txtKundenStrasse = new System.Windows.Forms.TextBox();
+            this.label67 = new System.Windows.Forms.Label();
+            this.txtKundenPLZ = new System.Windows.Forms.TextBox();
+            this.cbKundenOrt = new System.Windows.Forms.ComboBox();
+            this.btKundenSpeichern = new System.Windows.Forms.Button();
+            this.btKundenLöschen = new System.Windows.Forms.Button();
+            this.panelAnfragen = new System.Windows.Forms.Panel();
+            this.listViewAnfragen = new System.Windows.Forms.ListView();
+            this.columnHeader45 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader48 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader84 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader85 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.label68 = new System.Windows.Forms.Label();
+            this.cbsAnfragen = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.bestellungÜbernehmenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.panelLinks.SuspendLayout();
+            this.panelMenü.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbLogoHome)).BeginInit();
+            this.panelOben.SuspendLayout();
             this.panelBenutzer.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbPasswort)).BeginInit();
             this.panelFirmendaten.SuspendLayout();
             this.panelArtikel.SuspendLayout();
-            this.panelNews.SuspendLayout();
             this.panelArtikelInfo.SuspendLayout();
+            this.panelNews.SuspendLayout();
             this.panelRechnungen.SuspendLayout();
+            this.panelRechnungNeu.SuspendLayout();
+            this.panelTermine.SuspendLayout();
+            this.panelBestellungen.SuspendLayout();
+            this.panelKunden.SuspendLayout();
+            this.panelAnfragen.SuspendLayout();
+            this.cbsAnfragen.SuspendLayout();
             this.SuspendLayout();
             // 
-            // panel1
+            // panelLinks
             // 
-            this.panel1.BackColor = System.Drawing.SystemColors.AppWorkspace;
-            this.panel1.Controls.Add(this.panel3);
-            this.panel1.Controls.Add(this.pictureBox1);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(205, 1061);
-            this.panel1.TabIndex = 0;
+            this.panelLinks.BackColor = System.Drawing.SystemColors.AppWorkspace;
+            this.panelLinks.Controls.Add(this.panelMenü);
+            this.panelLinks.Controls.Add(this.pbLogoHome);
+            this.panelLinks.Dock = System.Windows.Forms.DockStyle.Left;
+            this.panelLinks.Location = new System.Drawing.Point(0, 0);
+            this.panelLinks.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.panelLinks.Name = "panelLinks";
+            this.panelLinks.Size = new System.Drawing.Size(205, 1061);
+            this.panelLinks.TabIndex = 0;
             // 
-            // panel3
+            // panelMenü
             // 
-            this.panel3.BackColor = System.Drawing.SystemColors.AppWorkspace;
-            this.panel3.Controls.Add(this.panelMenuUnten);
-            this.panel3.Controls.Add(this.btBestellungen);
-            this.panel3.Controls.Add(this.btTermine);
-            this.panel3.Controls.Add(this.btNews);
-            this.panel3.Controls.Add(this.btAnfragen);
-            this.panel3.Controls.Add(this.btHome);
-            this.panel3.Controls.Add(this.panelAuswahl);
-            this.panel3.Controls.Add(this.btEinstellungen);
-            this.panel3.Controls.Add(this.btRechnungen);
-            this.panel3.Controls.Add(this.btLieferanten);
-            this.panel3.Controls.Add(this.btArtikel);
-            this.panel3.Controls.Add(this.btKunden);
-            this.panel3.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel3.Location = new System.Drawing.Point(0, 133);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(205, 955);
-            this.panel3.TabIndex = 8;
+            this.panelMenü.BackColor = System.Drawing.SystemColors.AppWorkspace;
+            this.panelMenü.Controls.Add(this.panelMenuUnten);
+            this.panelMenü.Controls.Add(this.btBestellungen);
+            this.panelMenü.Controls.Add(this.btTermine);
+            this.panelMenü.Controls.Add(this.btNews);
+            this.panelMenü.Controls.Add(this.btAnfragen);
+            this.panelMenü.Controls.Add(this.btHome);
+            this.panelMenü.Controls.Add(this.panelAuswahl);
+            this.panelMenü.Controls.Add(this.btEinstellungen);
+            this.panelMenü.Controls.Add(this.btRechnungen);
+            this.panelMenü.Controls.Add(this.btLieferanten);
+            this.panelMenü.Controls.Add(this.btArtikel);
+            this.panelMenü.Controls.Add(this.btKunden);
+            this.panelMenü.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panelMenü.Location = new System.Drawing.Point(0, 133);
+            this.panelMenü.Name = "panelMenü";
+            this.panelMenü.Size = new System.Drawing.Size(205, 955);
+            this.panelMenü.TabIndex = 8;
             // 
             // panelMenuUnten
             // 
@@ -438,31 +561,31 @@
             this.btKunden.Click += new System.EventHandler(this.btKunden_Click);
             this.btKunden.MouseEnter += new System.EventHandler(this.btKunden_MouseEnter);
             // 
-            // pictureBox1
+            // pbLogoHome
             // 
-            this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.pictureBox1.Image = global::FutureFarm.Properties.Resources.logoTransp;
-            this.pictureBox1.Location = new System.Drawing.Point(0, 0);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(205, 133);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox1.TabIndex = 7;
-            this.pictureBox1.TabStop = false;
-            this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
+            this.pbLogoHome.Dock = System.Windows.Forms.DockStyle.Top;
+            this.pbLogoHome.Image = global::FutureFarm.Properties.Resources.logoTransp;
+            this.pbLogoHome.Location = new System.Drawing.Point(0, 0);
+            this.pbLogoHome.Name = "pbLogoHome";
+            this.pbLogoHome.Size = new System.Drawing.Size(205, 133);
+            this.pbLogoHome.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pbLogoHome.TabIndex = 7;
+            this.pbLogoHome.TabStop = false;
+            this.pbLogoHome.Click += new System.EventHandler(this.pictureBox1_Click);
             // 
-            // panel2
+            // panelOben
             // 
-            this.panel2.BackColor = System.Drawing.Color.DodgerBlue;
-            this.panel2.Controls.Add(this.btLogin2);
-            this.panel2.Controls.Add(this.button1);
-            this.panel2.Controls.Add(this.btLogin);
-            this.panel2.Controls.Add(this.btBeenden);
-            this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel2.Location = new System.Drawing.Point(205, 0);
-            this.panel2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(1556, 36);
-            this.panel2.TabIndex = 1;
+            this.panelOben.BackColor = System.Drawing.Color.DodgerBlue;
+            this.panelOben.Controls.Add(this.btLogin2);
+            this.panelOben.Controls.Add(this.button1);
+            this.panelOben.Controls.Add(this.btLogin);
+            this.panelOben.Controls.Add(this.btBeenden);
+            this.panelOben.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panelOben.Location = new System.Drawing.Point(205, 0);
+            this.panelOben.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.panelOben.Name = "panelOben";
+            this.panelOben.Size = new System.Drawing.Size(1556, 41);
+            this.panelOben.TabIndex = 1;
             // 
             // btLogin2
             // 
@@ -488,7 +611,7 @@
             this.button1.Font = new System.Drawing.Font("Century Gothic", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button1.Location = new System.Drawing.Point(1444, 0);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(56, 36);
+            this.button1.Size = new System.Drawing.Size(56, 41);
             this.button1.TabIndex = 2;
             this.button1.Text = "__";
             this.button1.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
@@ -520,7 +643,7 @@
             this.btBeenden.Image = global::FutureFarm.Properties.Resources.turn_off;
             this.btBeenden.Location = new System.Drawing.Point(1500, 0);
             this.btBeenden.Name = "btBeenden";
-            this.btBeenden.Size = new System.Drawing.Size(56, 36);
+            this.btBeenden.Size = new System.Drawing.Size(56, 41);
             this.btBeenden.TabIndex = 0;
             this.btBeenden.UseVisualStyleBackColor = true;
             this.btBeenden.Click += new System.EventHandler(this.btBeenden_Click);
@@ -598,14 +721,14 @@
             this.btBenutzer.Click += new System.EventHandler(this.btBenutzer_Click);
             this.btBenutzer.MouseEnter += new System.EventHandler(this.btBenutzer_MouseEnter);
             // 
-            // panel4
+            // panelUnten
             // 
-            this.panel4.BackColor = System.Drawing.Color.DodgerBlue;
-            this.panel4.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel4.Location = new System.Drawing.Point(205, 1056);
-            this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(1556, 5);
-            this.panel4.TabIndex = 20;
+            this.panelUnten.BackColor = System.Drawing.Color.DodgerBlue;
+            this.panelUnten.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panelUnten.Location = new System.Drawing.Point(205, 1056);
+            this.panelUnten.Name = "panelUnten";
+            this.panelUnten.Size = new System.Drawing.Size(1556, 5);
+            this.panelUnten.TabIndex = 20;
             // 
             // panelUnterMenu
             // 
@@ -1041,6 +1164,285 @@
             this.panelArtikel.TabIndex = 23;
             this.panelArtikel.Visible = false;
             // 
+            // panelArtikelInfo
+            // 
+            this.panelArtikelInfo.Controls.Add(this.checkboxArtikelAktiv);
+            this.panelArtikelInfo.Controls.Add(this.btReset);
+            this.panelArtikelInfo.Controls.Add(this.cbArtikelLieferanten);
+            this.panelArtikelInfo.Controls.Add(this.txtArtikelLieferantFirma);
+            this.panelArtikelInfo.Controls.Add(this.txtArtikelExterneID);
+            this.panelArtikelInfo.Controls.Add(this.label28);
+            this.panelArtikelInfo.Controls.Add(this.label16);
+            this.panelArtikelInfo.Controls.Add(this.label17);
+            this.panelArtikelInfo.Controls.Add(this.btArtikelLöschen);
+            this.panelArtikelInfo.Controls.Add(this.txtArtikelReserviert);
+            this.panelArtikelInfo.Controls.Add(this.btArtikelSpeichern);
+            this.panelArtikelInfo.Controls.Add(this.label19);
+            this.panelArtikelInfo.Controls.Add(this.btArtikelNeu);
+            this.panelArtikelInfo.Controls.Add(this.label18);
+            this.panelArtikelInfo.Controls.Add(this.txtArtikelLagerstand);
+            this.panelArtikelInfo.Controls.Add(this.txtArtikelArtikelID);
+            this.panelArtikelInfo.Controls.Add(this.label23);
+            this.panelArtikelInfo.Controls.Add(this.txtArtikelBrutto);
+            this.panelArtikelInfo.Controls.Add(this.txtArtikelBezeichnung);
+            this.panelArtikelInfo.Controls.Add(this.label20);
+            this.panelArtikelInfo.Controls.Add(this.label22);
+            this.panelArtikelInfo.Controls.Add(this.txtArtikelUST);
+            this.panelArtikelInfo.Controls.Add(this.txtArtikelNettopreis);
+            this.panelArtikelInfo.Controls.Add(this.label21);
+            this.panelArtikelInfo.Controls.Add(this.label24);
+            this.panelArtikelInfo.Location = new System.Drawing.Point(62, 46);
+            this.panelArtikelInfo.Name = "panelArtikelInfo";
+            this.panelArtikelInfo.Size = new System.Drawing.Size(1004, 358);
+            this.panelArtikelInfo.TabIndex = 51;
+            // 
+            // checkboxArtikelAktiv
+            // 
+            this.checkboxArtikelAktiv.AutoSize = true;
+            this.checkboxArtikelAktiv.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.checkboxArtikelAktiv.Location = new System.Drawing.Point(594, 171);
+            this.checkboxArtikelAktiv.Name = "checkboxArtikelAktiv";
+            this.checkboxArtikelAktiv.Size = new System.Drawing.Size(70, 25);
+            this.checkboxArtikelAktiv.TabIndex = 56;
+            this.checkboxArtikelAktiv.Text = "Aktiv";
+            this.checkboxArtikelAktiv.UseVisualStyleBackColor = true;
+            // 
+            // btReset
+            // 
+            this.btReset.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btReset.Location = new System.Drawing.Point(885, 309);
+            this.btReset.Name = "btReset";
+            this.btReset.Size = new System.Drawing.Size(103, 33);
+            this.btReset.TabIndex = 55;
+            this.btReset.Text = "Reset";
+            this.btReset.UseVisualStyleBackColor = true;
+            this.btReset.Click += new System.EventHandler(this.btReset_Click);
+            // 
+            // cbArtikelLieferanten
+            // 
+            this.cbArtikelLieferanten.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbArtikelLieferanten.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbArtikelLieferanten.FormattingEnabled = true;
+            this.cbArtikelLieferanten.Location = new System.Drawing.Point(373, 96);
+            this.cbArtikelLieferanten.Name = "cbArtikelLieferanten";
+            this.cbArtikelLieferanten.Size = new System.Drawing.Size(64, 29);
+            this.cbArtikelLieferanten.TabIndex = 54;
+            this.cbArtikelLieferanten.SelectedIndexChanged += new System.EventHandler(this.cbArtikelLieferanten_SelectedIndexChanged);
+            // 
+            // txtArtikelLieferantFirma
+            // 
+            this.txtArtikelLieferantFirma.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtArtikelLieferantFirma.Location = new System.Drawing.Point(443, 95);
+            this.txtArtikelLieferantFirma.Name = "txtArtikelLieferantFirma";
+            this.txtArtikelLieferantFirma.ReadOnly = true;
+            this.txtArtikelLieferantFirma.Size = new System.Drawing.Size(254, 31);
+            this.txtArtikelLieferantFirma.TabIndex = 53;
+            // 
+            // txtArtikelExterneID
+            // 
+            this.txtArtikelExterneID.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtArtikelExterneID.Location = new System.Drawing.Point(340, 18);
+            this.txtArtikelExterneID.Name = "txtArtikelExterneID";
+            this.txtArtikelExterneID.Size = new System.Drawing.Size(91, 31);
+            this.txtArtikelExterneID.TabIndex = 51;
+            // 
+            // label28
+            // 
+            this.label28.AutoSize = true;
+            this.label28.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label28.Location = new System.Drawing.Point(237, 23);
+            this.label28.Name = "label28";
+            this.label28.Size = new System.Drawing.Size(97, 22);
+            this.label28.TabIndex = 52;
+            this.label28.Text = "ExterneID";
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label16.Location = new System.Drawing.Point(367, 62);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(90, 22);
+            this.label16.TabIndex = 47;
+            this.label16.Text = "Lieferant";
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label17.Location = new System.Drawing.Point(367, 219);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(100, 22);
+            this.label17.TabIndex = 45;
+            this.label17.Text = "Reserviert";
+            // 
+            // btArtikelLöschen
+            // 
+            this.btArtikelLöschen.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btArtikelLöschen.Location = new System.Drawing.Point(827, 133);
+            this.btArtikelLöschen.Name = "btArtikelLöschen";
+            this.btArtikelLöschen.Size = new System.Drawing.Size(161, 58);
+            this.btArtikelLöschen.TabIndex = 50;
+            this.btArtikelLöschen.Text = "Löschen";
+            this.btArtikelLöschen.UseVisualStyleBackColor = true;
+            this.btArtikelLöschen.Click += new System.EventHandler(this.btArtikelLöschen_Click);
+            // 
+            // txtArtikelReserviert
+            // 
+            this.txtArtikelReserviert.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtArtikelReserviert.Location = new System.Drawing.Point(371, 244);
+            this.txtArtikelReserviert.Name = "txtArtikelReserviert";
+            this.txtArtikelReserviert.Size = new System.Drawing.Size(145, 31);
+            this.txtArtikelReserviert.TabIndex = 44;
+            this.txtArtikelReserviert.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // btArtikelSpeichern
+            // 
+            this.btArtikelSpeichern.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btArtikelSpeichern.Location = new System.Drawing.Point(827, 68);
+            this.btArtikelSpeichern.Name = "btArtikelSpeichern";
+            this.btArtikelSpeichern.Size = new System.Drawing.Size(161, 59);
+            this.btArtikelSpeichern.TabIndex = 49;
+            this.btArtikelSpeichern.Text = "Speichern";
+            this.btArtikelSpeichern.UseVisualStyleBackColor = true;
+            this.btArtikelSpeichern.Click += new System.EventHandler(this.btArtikelSpeichern_Click);
+            // 
+            // label19
+            // 
+            this.label19.AutoSize = true;
+            this.label19.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label19.Location = new System.Drawing.Point(27, 249);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(106, 22);
+            this.label19.TabIndex = 40;
+            this.label19.Text = "Bruttopreis";
+            // 
+            // btArtikelNeu
+            // 
+            this.btArtikelNeu.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btArtikelNeu.Location = new System.Drawing.Point(827, 3);
+            this.btArtikelNeu.Name = "btArtikelNeu";
+            this.btArtikelNeu.Size = new System.Drawing.Size(161, 59);
+            this.btArtikelNeu.TabIndex = 48;
+            this.btArtikelNeu.Text = "Neu";
+            this.btArtikelNeu.UseVisualStyleBackColor = true;
+            this.btArtikelNeu.Click += new System.EventHandler(this.btArtikelNeu_Click);
+            // 
+            // label18
+            // 
+            this.label18.AutoSize = true;
+            this.label18.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label18.Location = new System.Drawing.Point(367, 143);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(115, 22);
+            this.label18.TabIndex = 43;
+            this.label18.Text = "Lagerstand";
+            // 
+            // txtArtikelLagerstand
+            // 
+            this.txtArtikelLagerstand.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtArtikelLagerstand.Location = new System.Drawing.Point(371, 168);
+            this.txtArtikelLagerstand.Name = "txtArtikelLagerstand";
+            this.txtArtikelLagerstand.Size = new System.Drawing.Size(145, 31);
+            this.txtArtikelLagerstand.TabIndex = 42;
+            this.txtArtikelLagerstand.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // txtArtikelArtikelID
+            // 
+            this.txtArtikelArtikelID.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtArtikelArtikelID.Location = new System.Drawing.Point(115, 20);
+            this.txtArtikelArtikelID.Name = "txtArtikelArtikelID";
+            this.txtArtikelArtikelID.ReadOnly = true;
+            this.txtArtikelArtikelID.Size = new System.Drawing.Size(91, 31);
+            this.txtArtikelArtikelID.TabIndex = 31;
+            // 
+            // label23
+            // 
+            this.label23.AutoSize = true;
+            this.label23.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label23.Location = new System.Drawing.Point(26, 23);
+            this.label23.Name = "label23";
+            this.label23.Size = new System.Drawing.Size(90, 22);
+            this.label23.TabIndex = 32;
+            this.label23.Text = "Artikel ID";
+            // 
+            // txtArtikelBrutto
+            // 
+            this.txtArtikelBrutto.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtArtikelBrutto.Location = new System.Drawing.Point(139, 246);
+            this.txtArtikelBrutto.Name = "txtArtikelBrutto";
+            this.txtArtikelBrutto.Size = new System.Drawing.Size(145, 31);
+            this.txtArtikelBrutto.TabIndex = 39;
+            this.txtArtikelBrutto.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // txtArtikelBezeichnung
+            // 
+            this.txtArtikelBezeichnung.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtArtikelBezeichnung.Location = new System.Drawing.Point(30, 95);
+            this.txtArtikelBezeichnung.Name = "txtArtikelBezeichnung";
+            this.txtArtikelBezeichnung.Size = new System.Drawing.Size(254, 31);
+            this.txtArtikelBezeichnung.TabIndex = 33;
+            // 
+            // label20
+            // 
+            this.label20.AutoSize = true;
+            this.label20.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label20.Location = new System.Drawing.Point(26, 199);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(79, 22);
+            this.label20.TabIndex = 38;
+            this.label20.Text = "UST in %";
+            // 
+            // label22
+            // 
+            this.label22.AutoSize = true;
+            this.label22.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label22.Location = new System.Drawing.Point(27, 70);
+            this.label22.Name = "label22";
+            this.label22.Size = new System.Drawing.Size(129, 22);
+            this.label22.TabIndex = 34;
+            this.label22.Text = "Bezeichnung";
+            // 
+            // txtArtikelUST
+            // 
+            this.txtArtikelUST.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtArtikelUST.Location = new System.Drawing.Point(193, 196);
+            this.txtArtikelUST.Name = "txtArtikelUST";
+            this.txtArtikelUST.Size = new System.Drawing.Size(91, 31);
+            this.txtArtikelUST.TabIndex = 37;
+            this.txtArtikelUST.Text = "20";
+            this.txtArtikelUST.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // txtArtikelNettopreis
+            // 
+            this.txtArtikelNettopreis.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtArtikelNettopreis.Location = new System.Drawing.Point(139, 159);
+            this.txtArtikelNettopreis.Name = "txtArtikelNettopreis";
+            this.txtArtikelNettopreis.Size = new System.Drawing.Size(145, 31);
+            this.txtArtikelNettopreis.TabIndex = 35;
+            this.txtArtikelNettopreis.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtArtikelNettopreis.TextChanged += new System.EventHandler(this.txtArtikelNettopreis_TextChanged);
+            // 
+            // label21
+            // 
+            this.label21.AutoSize = true;
+            this.label21.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label21.Location = new System.Drawing.Point(27, 162);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(103, 22);
+            this.label21.TabIndex = 36;
+            this.label21.Text = "Nettopreis";
+            // 
+            // label24
+            // 
+            this.label24.AutoSize = true;
+            this.label24.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label24.Location = new System.Drawing.Point(44, 216);
+            this.label24.Name = "label24";
+            this.label24.Size = new System.Drawing.Size(240, 22);
+            this.label24.TabIndex = 41;
+            this.label24.Text = "_______________________";
+            // 
             // lbArtikelFilter
             // 
             this.lbArtikelFilter.AutoSize = true;
@@ -1323,285 +1725,6 @@
             this.columnHeader21.Text = "Benutzer";
             this.columnHeader21.Width = 200;
             // 
-            // panelArtikelInfo
-            // 
-            this.panelArtikelInfo.Controls.Add(this.checkboxArtikelAktiv);
-            this.panelArtikelInfo.Controls.Add(this.btReset);
-            this.panelArtikelInfo.Controls.Add(this.cbArtikelLieferanten);
-            this.panelArtikelInfo.Controls.Add(this.txtArtikelLieferantFirma);
-            this.panelArtikelInfo.Controls.Add(this.txtArtikelExterneID);
-            this.panelArtikelInfo.Controls.Add(this.label28);
-            this.panelArtikelInfo.Controls.Add(this.label16);
-            this.panelArtikelInfo.Controls.Add(this.label17);
-            this.panelArtikelInfo.Controls.Add(this.btArtikelLöschen);
-            this.panelArtikelInfo.Controls.Add(this.txtArtikelReserviert);
-            this.panelArtikelInfo.Controls.Add(this.btArtikelSpeichern);
-            this.panelArtikelInfo.Controls.Add(this.label19);
-            this.panelArtikelInfo.Controls.Add(this.btArtikelNeu);
-            this.panelArtikelInfo.Controls.Add(this.label18);
-            this.panelArtikelInfo.Controls.Add(this.txtArtikelLagerstand);
-            this.panelArtikelInfo.Controls.Add(this.txtArtikelArtikelID);
-            this.panelArtikelInfo.Controls.Add(this.label23);
-            this.panelArtikelInfo.Controls.Add(this.txtArtikelBrutto);
-            this.panelArtikelInfo.Controls.Add(this.txtArtikelBezeichnung);
-            this.panelArtikelInfo.Controls.Add(this.label20);
-            this.panelArtikelInfo.Controls.Add(this.label22);
-            this.panelArtikelInfo.Controls.Add(this.txtArtikelUST);
-            this.panelArtikelInfo.Controls.Add(this.txtArtikelNettopreis);
-            this.panelArtikelInfo.Controls.Add(this.label21);
-            this.panelArtikelInfo.Controls.Add(this.label24);
-            this.panelArtikelInfo.Location = new System.Drawing.Point(62, 46);
-            this.panelArtikelInfo.Name = "panelArtikelInfo";
-            this.panelArtikelInfo.Size = new System.Drawing.Size(1004, 358);
-            this.panelArtikelInfo.TabIndex = 51;
-            // 
-            // checkboxArtikelAktiv
-            // 
-            this.checkboxArtikelAktiv.AutoSize = true;
-            this.checkboxArtikelAktiv.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.checkboxArtikelAktiv.Location = new System.Drawing.Point(594, 171);
-            this.checkboxArtikelAktiv.Name = "checkboxArtikelAktiv";
-            this.checkboxArtikelAktiv.Size = new System.Drawing.Size(70, 25);
-            this.checkboxArtikelAktiv.TabIndex = 56;
-            this.checkboxArtikelAktiv.Text = "Aktiv";
-            this.checkboxArtikelAktiv.UseVisualStyleBackColor = true;
-            // 
-            // btReset
-            // 
-            this.btReset.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btReset.Location = new System.Drawing.Point(885, 309);
-            this.btReset.Name = "btReset";
-            this.btReset.Size = new System.Drawing.Size(103, 33);
-            this.btReset.TabIndex = 55;
-            this.btReset.Text = "Reset";
-            this.btReset.UseVisualStyleBackColor = true;
-            this.btReset.Click += new System.EventHandler(this.btReset_Click);
-            // 
-            // cbArtikelLieferanten
-            // 
-            this.cbArtikelLieferanten.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbArtikelLieferanten.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cbArtikelLieferanten.FormattingEnabled = true;
-            this.cbArtikelLieferanten.Location = new System.Drawing.Point(373, 96);
-            this.cbArtikelLieferanten.Name = "cbArtikelLieferanten";
-            this.cbArtikelLieferanten.Size = new System.Drawing.Size(64, 29);
-            this.cbArtikelLieferanten.TabIndex = 54;
-            this.cbArtikelLieferanten.SelectedIndexChanged += new System.EventHandler(this.cbArtikelLieferanten_SelectedIndexChanged);
-            // 
-            // txtArtikelLieferantFirma
-            // 
-            this.txtArtikelLieferantFirma.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtArtikelLieferantFirma.Location = new System.Drawing.Point(443, 95);
-            this.txtArtikelLieferantFirma.Name = "txtArtikelLieferantFirma";
-            this.txtArtikelLieferantFirma.ReadOnly = true;
-            this.txtArtikelLieferantFirma.Size = new System.Drawing.Size(254, 31);
-            this.txtArtikelLieferantFirma.TabIndex = 53;
-            // 
-            // txtArtikelExterneID
-            // 
-            this.txtArtikelExterneID.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtArtikelExterneID.Location = new System.Drawing.Point(340, 18);
-            this.txtArtikelExterneID.Name = "txtArtikelExterneID";
-            this.txtArtikelExterneID.Size = new System.Drawing.Size(91, 31);
-            this.txtArtikelExterneID.TabIndex = 51;
-            // 
-            // label28
-            // 
-            this.label28.AutoSize = true;
-            this.label28.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label28.Location = new System.Drawing.Point(237, 23);
-            this.label28.Name = "label28";
-            this.label28.Size = new System.Drawing.Size(97, 22);
-            this.label28.TabIndex = 52;
-            this.label28.Text = "ExterneID";
-            // 
-            // label16
-            // 
-            this.label16.AutoSize = true;
-            this.label16.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label16.Location = new System.Drawing.Point(367, 62);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(90, 22);
-            this.label16.TabIndex = 47;
-            this.label16.Text = "Lieferant";
-            // 
-            // label17
-            // 
-            this.label17.AutoSize = true;
-            this.label17.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label17.Location = new System.Drawing.Point(367, 219);
-            this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(100, 22);
-            this.label17.TabIndex = 45;
-            this.label17.Text = "Reserviert";
-            // 
-            // btArtikelLöschen
-            // 
-            this.btArtikelLöschen.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btArtikelLöschen.Location = new System.Drawing.Point(827, 133);
-            this.btArtikelLöschen.Name = "btArtikelLöschen";
-            this.btArtikelLöschen.Size = new System.Drawing.Size(161, 58);
-            this.btArtikelLöschen.TabIndex = 50;
-            this.btArtikelLöschen.Text = "Löschen";
-            this.btArtikelLöschen.UseVisualStyleBackColor = true;
-            this.btArtikelLöschen.Click += new System.EventHandler(this.btArtikelLöschen_Click);
-            // 
-            // txtArtikelReserviert
-            // 
-            this.txtArtikelReserviert.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtArtikelReserviert.Location = new System.Drawing.Point(371, 244);
-            this.txtArtikelReserviert.Name = "txtArtikelReserviert";
-            this.txtArtikelReserviert.Size = new System.Drawing.Size(145, 31);
-            this.txtArtikelReserviert.TabIndex = 44;
-            this.txtArtikelReserviert.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            // 
-            // btArtikelSpeichern
-            // 
-            this.btArtikelSpeichern.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btArtikelSpeichern.Location = new System.Drawing.Point(827, 68);
-            this.btArtikelSpeichern.Name = "btArtikelSpeichern";
-            this.btArtikelSpeichern.Size = new System.Drawing.Size(161, 59);
-            this.btArtikelSpeichern.TabIndex = 49;
-            this.btArtikelSpeichern.Text = "Speichern";
-            this.btArtikelSpeichern.UseVisualStyleBackColor = true;
-            this.btArtikelSpeichern.Click += new System.EventHandler(this.btArtikelSpeichern_Click);
-            // 
-            // label19
-            // 
-            this.label19.AutoSize = true;
-            this.label19.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label19.Location = new System.Drawing.Point(27, 249);
-            this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(106, 22);
-            this.label19.TabIndex = 40;
-            this.label19.Text = "Bruttopreis";
-            // 
-            // btArtikelNeu
-            // 
-            this.btArtikelNeu.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btArtikelNeu.Location = new System.Drawing.Point(827, 3);
-            this.btArtikelNeu.Name = "btArtikelNeu";
-            this.btArtikelNeu.Size = new System.Drawing.Size(161, 59);
-            this.btArtikelNeu.TabIndex = 48;
-            this.btArtikelNeu.Text = "Neu";
-            this.btArtikelNeu.UseVisualStyleBackColor = true;
-            this.btArtikelNeu.Click += new System.EventHandler(this.btArtikelNeu_Click);
-            // 
-            // label18
-            // 
-            this.label18.AutoSize = true;
-            this.label18.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label18.Location = new System.Drawing.Point(367, 143);
-            this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(115, 22);
-            this.label18.TabIndex = 43;
-            this.label18.Text = "Lagerstand";
-            // 
-            // txtArtikelLagerstand
-            // 
-            this.txtArtikelLagerstand.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtArtikelLagerstand.Location = new System.Drawing.Point(371, 168);
-            this.txtArtikelLagerstand.Name = "txtArtikelLagerstand";
-            this.txtArtikelLagerstand.Size = new System.Drawing.Size(145, 31);
-            this.txtArtikelLagerstand.TabIndex = 42;
-            this.txtArtikelLagerstand.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            // 
-            // txtArtikelArtikelID
-            // 
-            this.txtArtikelArtikelID.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtArtikelArtikelID.Location = new System.Drawing.Point(115, 20);
-            this.txtArtikelArtikelID.Name = "txtArtikelArtikelID";
-            this.txtArtikelArtikelID.ReadOnly = true;
-            this.txtArtikelArtikelID.Size = new System.Drawing.Size(91, 31);
-            this.txtArtikelArtikelID.TabIndex = 31;
-            // 
-            // label23
-            // 
-            this.label23.AutoSize = true;
-            this.label23.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label23.Location = new System.Drawing.Point(26, 23);
-            this.label23.Name = "label23";
-            this.label23.Size = new System.Drawing.Size(90, 22);
-            this.label23.TabIndex = 32;
-            this.label23.Text = "Artikel ID";
-            // 
-            // txtArtikelBrutto
-            // 
-            this.txtArtikelBrutto.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtArtikelBrutto.Location = new System.Drawing.Point(139, 246);
-            this.txtArtikelBrutto.Name = "txtArtikelBrutto";
-            this.txtArtikelBrutto.Size = new System.Drawing.Size(145, 31);
-            this.txtArtikelBrutto.TabIndex = 39;
-            this.txtArtikelBrutto.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            // 
-            // txtArtikelBezeichnung
-            // 
-            this.txtArtikelBezeichnung.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtArtikelBezeichnung.Location = new System.Drawing.Point(30, 95);
-            this.txtArtikelBezeichnung.Name = "txtArtikelBezeichnung";
-            this.txtArtikelBezeichnung.Size = new System.Drawing.Size(254, 31);
-            this.txtArtikelBezeichnung.TabIndex = 33;
-            // 
-            // label20
-            // 
-            this.label20.AutoSize = true;
-            this.label20.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label20.Location = new System.Drawing.Point(26, 199);
-            this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(79, 22);
-            this.label20.TabIndex = 38;
-            this.label20.Text = "UST in %";
-            // 
-            // label22
-            // 
-            this.label22.AutoSize = true;
-            this.label22.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label22.Location = new System.Drawing.Point(27, 70);
-            this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(129, 22);
-            this.label22.TabIndex = 34;
-            this.label22.Text = "Bezeichnung";
-            // 
-            // txtArtikelUST
-            // 
-            this.txtArtikelUST.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtArtikelUST.Location = new System.Drawing.Point(193, 196);
-            this.txtArtikelUST.Name = "txtArtikelUST";
-            this.txtArtikelUST.Size = new System.Drawing.Size(91, 31);
-            this.txtArtikelUST.TabIndex = 37;
-            this.txtArtikelUST.Text = "20";
-            this.txtArtikelUST.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            // 
-            // txtArtikelNettopreis
-            // 
-            this.txtArtikelNettopreis.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtArtikelNettopreis.Location = new System.Drawing.Point(139, 159);
-            this.txtArtikelNettopreis.Name = "txtArtikelNettopreis";
-            this.txtArtikelNettopreis.Size = new System.Drawing.Size(145, 31);
-            this.txtArtikelNettopreis.TabIndex = 35;
-            this.txtArtikelNettopreis.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.txtArtikelNettopreis.TextChanged += new System.EventHandler(this.txtArtikelNettopreis_TextChanged);
-            // 
-            // label21
-            // 
-            this.label21.AutoSize = true;
-            this.label21.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label21.Location = new System.Drawing.Point(27, 162);
-            this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(103, 22);
-            this.label21.TabIndex = 36;
-            this.label21.Text = "Nettopreis";
-            // 
-            // label24
-            // 
-            this.label24.AutoSize = true;
-            this.label24.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label24.Location = new System.Drawing.Point(44, 216);
-            this.label24.Name = "label24";
-            this.label24.Size = new System.Drawing.Size(240, 22);
-            this.label24.TabIndex = 41;
-            this.label24.Text = "_______________________";
-            // 
             // panelRechnungen
             // 
             this.panelRechnungen.Controls.Add(this.btRechnungSpeichern);
@@ -1616,7 +1739,7 @@
             this.panelRechnungen.Controls.Add(this.dtpRechnungBezahlt);
             this.panelRechnungen.Controls.Add(this.cbRechnungBezahlt);
             this.panelRechnungen.Controls.Add(this.txtRechnungKunde);
-            this.panelRechnungen.Controls.Add(this.txtBestellungID);
+            this.panelRechnungen.Controls.Add(this.txtRechnungenBestellungID);
             this.panelRechnungen.Controls.Add(this.txtRechnungID);
             this.panelRechnungen.Controls.Add(this.label35);
             this.panelRechnungen.Controls.Add(this.label34);
@@ -1624,18 +1747,238 @@
             this.panelRechnungen.Controls.Add(this.label32);
             this.panelRechnungen.Controls.Add(this.label31);
             this.panelRechnungen.Controls.Add(this.label30);
-            this.panelRechnungen.Controls.Add(this.listView1);
             this.panelRechnungen.Controls.Add(this.btRechnungSuchen);
-            this.panelRechnungen.Controls.Add(this.textBox1);
+            this.panelRechnungen.Controls.Add(this.txtRechnungSuche);
             this.panelRechnungen.Controls.Add(this.label29);
             this.panelRechnungen.Controls.Add(this.listViewRechnungArtikel);
             this.panelRechnungen.Controls.Add(this.listViewRechnungen);
             this.panelRechnungen.Controls.Add(this.label39);
-            this.panelRechnungen.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelRechnungen.Location = new System.Drawing.Point(205, 36);
+            this.panelRechnungen.Location = new System.Drawing.Point(1161, 240);
             this.panelRechnungen.Name = "panelRechnungen";
-            this.panelRechnungen.Size = new System.Drawing.Size(1556, 1020);
+            this.panelRechnungen.Size = new System.Drawing.Size(57, 57);
             this.panelRechnungen.TabIndex = 52;
+            // 
+            // btRechnungSpeichern
+            // 
+            this.btRechnungSpeichern.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btRechnungSpeichern.Location = new System.Drawing.Point(615, 860);
+            this.btRechnungSpeichern.Name = "btRechnungSpeichern";
+            this.btRechnungSpeichern.Size = new System.Drawing.Size(214, 47);
+            this.btRechnungSpeichern.TabIndex = 52;
+            this.btRechnungSpeichern.Text = "Speichern";
+            this.btRechnungSpeichern.UseVisualStyleBackColor = true;
+            // 
+            // txtSummeBrutto
+            // 
+            this.txtSummeBrutto.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtSummeBrutto.Location = new System.Drawing.Point(694, 800);
+            this.txtSummeBrutto.Name = "txtSummeBrutto";
+            this.txtSummeBrutto.ReadOnly = true;
+            this.txtSummeBrutto.Size = new System.Drawing.Size(135, 27);
+            this.txtSummeBrutto.TabIndex = 50;
+            // 
+            // label38
+            // 
+            this.label38.AutoSize = true;
+            this.label38.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label38.Location = new System.Drawing.Point(611, 803);
+            this.label38.Name = "label38";
+            this.label38.Size = new System.Drawing.Size(58, 21);
+            this.label38.TabIndex = 49;
+            this.label38.Text = "Brutto";
+            // 
+            // txtSummeUST
+            // 
+            this.txtSummeUST.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtSummeUST.Location = new System.Drawing.Point(694, 761);
+            this.txtSummeUST.Name = "txtSummeUST";
+            this.txtSummeUST.ReadOnly = true;
+            this.txtSummeUST.Size = new System.Drawing.Size(135, 27);
+            this.txtSummeUST.TabIndex = 48;
+            // 
+            // label37
+            // 
+            this.label37.AutoSize = true;
+            this.label37.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label37.Location = new System.Drawing.Point(611, 764);
+            this.label37.Name = "label37";
+            this.label37.Size = new System.Drawing.Size(37, 21);
+            this.label37.TabIndex = 47;
+            this.label37.Text = "UST";
+            // 
+            // txtSummeNetto
+            // 
+            this.txtSummeNetto.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtSummeNetto.Location = new System.Drawing.Point(694, 728);
+            this.txtSummeNetto.Name = "txtSummeNetto";
+            this.txtSummeNetto.ReadOnly = true;
+            this.txtSummeNetto.Size = new System.Drawing.Size(135, 27);
+            this.txtSummeNetto.TabIndex = 46;
+            // 
+            // label36
+            // 
+            this.label36.AutoSize = true;
+            this.label36.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label36.Location = new System.Drawing.Point(611, 731);
+            this.label36.Name = "label36";
+            this.label36.Size = new System.Drawing.Size(56, 21);
+            this.label36.TabIndex = 45;
+            this.label36.Text = "Netto";
+            // 
+            // dtpRechnungDatum
+            // 
+            this.dtpRechnungDatum.CalendarFont = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dtpRechnungDatum.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dtpRechnungDatum.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtpRechnungDatum.Location = new System.Drawing.Point(481, 255);
+            this.dtpRechnungDatum.Name = "dtpRechnungDatum";
+            this.dtpRechnungDatum.Size = new System.Drawing.Size(136, 27);
+            this.dtpRechnungDatum.TabIndex = 44;
+            // 
+            // listViewRechnungSuche
+            // 
+            this.listViewRechnungSuche.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader35,
+            this.columnHeader36,
+            this.columnHeader37,
+            this.columnHeader38});
+            this.listViewRechnungSuche.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.listViewRechnungSuche.FullRowSelect = true;
+            this.listViewRechnungSuche.GridLines = true;
+            this.listViewRechnungSuche.Location = new System.Drawing.Point(59, 108);
+            this.listViewRechnungSuche.MultiSelect = false;
+            this.listViewRechnungSuche.Name = "listViewRechnungSuche";
+            this.listViewRechnungSuche.Size = new System.Drawing.Size(678, 128);
+            this.listViewRechnungSuche.TabIndex = 43;
+            this.listViewRechnungSuche.UseCompatibleStateImageBehavior = false;
+            this.listViewRechnungSuche.View = System.Windows.Forms.View.Details;
+            // 
+            // columnHeader35
+            // 
+            this.columnHeader35.Text = "Rechnung ID";
+            this.columnHeader35.Width = 115;
+            // 
+            // columnHeader36
+            // 
+            this.columnHeader36.Text = "Datum";
+            this.columnHeader36.Width = 104;
+            // 
+            // columnHeader37
+            // 
+            this.columnHeader37.Text = "Kunde";
+            this.columnHeader37.Width = 340;
+            // 
+            // columnHeader38
+            // 
+            this.columnHeader38.Text = "Bestellung ID";
+            this.columnHeader38.Width = 115;
+            // 
+            // dtpRechnungBezahlt
+            // 
+            this.dtpRechnungBezahlt.CalendarFont = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dtpRechnungBezahlt.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dtpRechnungBezahlt.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtpRechnungBezahlt.Location = new System.Drawing.Point(242, 357);
+            this.dtpRechnungBezahlt.Name = "dtpRechnungBezahlt";
+            this.dtpRechnungBezahlt.Size = new System.Drawing.Size(136, 27);
+            this.dtpRechnungBezahlt.TabIndex = 42;
+            // 
+            // cbRechnungBezahlt
+            // 
+            this.cbRechnungBezahlt.AutoSize = true;
+            this.cbRechnungBezahlt.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbRechnungBezahlt.Location = new System.Drawing.Point(172, 365);
+            this.cbRechnungBezahlt.Name = "cbRechnungBezahlt";
+            this.cbRechnungBezahlt.Size = new System.Drawing.Size(15, 14);
+            this.cbRechnungBezahlt.TabIndex = 41;
+            this.cbRechnungBezahlt.UseVisualStyleBackColor = true;
+            // 
+            // txtRechnungKunde
+            // 
+            this.txtRechnungKunde.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtRechnungKunde.Location = new System.Drawing.Point(173, 323);
+            this.txtRechnungKunde.Name = "txtRechnungKunde";
+            this.txtRechnungKunde.ReadOnly = true;
+            this.txtRechnungKunde.Size = new System.Drawing.Size(302, 27);
+            this.txtRechnungKunde.TabIndex = 40;
+            // 
+            // txtRechnungenBestellungID
+            // 
+            this.txtRechnungenBestellungID.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtRechnungenBestellungID.Location = new System.Drawing.Point(173, 289);
+            this.txtRechnungenBestellungID.Name = "txtRechnungenBestellungID";
+            this.txtRechnungenBestellungID.ReadOnly = true;
+            this.txtRechnungenBestellungID.Size = new System.Drawing.Size(100, 27);
+            this.txtRechnungenBestellungID.TabIndex = 39;
+            // 
+            // txtRechnungID
+            // 
+            this.txtRechnungID.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtRechnungID.Location = new System.Drawing.Point(173, 255);
+            this.txtRechnungID.Name = "txtRechnungID";
+            this.txtRechnungID.ReadOnly = true;
+            this.txtRechnungID.Size = new System.Drawing.Size(100, 27);
+            this.txtRechnungID.TabIndex = 38;
+            // 
+            // label35
+            // 
+            this.label35.AutoSize = true;
+            this.label35.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label35.Location = new System.Drawing.Point(200, 361);
+            this.label35.Name = "label35";
+            this.label35.Size = new System.Drawing.Size(36, 21);
+            this.label35.TabIndex = 37;
+            this.label35.Text = "am";
+            // 
+            // label34
+            // 
+            this.label34.AutoSize = true;
+            this.label34.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label34.Location = new System.Drawing.Point(55, 361);
+            this.label34.Name = "label34";
+            this.label34.Size = new System.Drawing.Size(67, 21);
+            this.label34.TabIndex = 36;
+            this.label34.Text = "Bezahlt";
+            // 
+            // label33
+            // 
+            this.label33.AutoSize = true;
+            this.label33.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label33.Location = new System.Drawing.Point(55, 292);
+            this.label33.Name = "label33";
+            this.label33.Size = new System.Drawing.Size(110, 21);
+            this.label33.TabIndex = 35;
+            this.label33.Text = "Bestellung ID";
+            // 
+            // label32
+            // 
+            this.label32.AutoSize = true;
+            this.label32.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label32.Location = new System.Drawing.Point(55, 326);
+            this.label32.Name = "label32";
+            this.label32.Size = new System.Drawing.Size(60, 21);
+            this.label32.TabIndex = 34;
+            this.label32.Text = "Kunde";
+            // 
+            // label31
+            // 
+            this.label31.AutoSize = true;
+            this.label31.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label31.Location = new System.Drawing.Point(410, 258);
+            this.label31.Name = "label31";
+            this.label31.Size = new System.Drawing.Size(65, 21);
+            this.label31.TabIndex = 33;
+            this.label31.Text = "Datum";
+            // 
+            // label30
+            // 
+            this.label30.AutoSize = true;
+            this.label30.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label30.Location = new System.Drawing.Point(55, 258);
+            this.label30.Name = "label30";
+            this.label30.Size = new System.Drawing.Size(112, 21);
+            this.label30.TabIndex = 32;
+            this.label30.Text = "Rechnung ID";
             // 
             // btRechnungSuchen
             // 
@@ -1647,14 +1990,14 @@
             this.btRechnungSuchen.UseVisualStyleBackColor = true;
             this.btRechnungSuchen.Click += new System.EventHandler(this.btRechnungSuchen_Click);
             // 
-            // textBox1
+            // txtRechnungSuche
             // 
-            this.textBox1.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox1.Location = new System.Drawing.Point(216, 73);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(423, 27);
-            this.textBox1.TabIndex = 3;
-            this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
+            this.txtRechnungSuche.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtRechnungSuche.Location = new System.Drawing.Point(216, 73);
+            this.txtRechnungSuche.Name = "txtRechnungSuche";
+            this.txtRechnungSuche.Size = new System.Drawing.Size(423, 27);
+            this.txtRechnungSuche.TabIndex = 3;
+            this.txtRechnungSuche.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
             // label29
             // 
@@ -1757,265 +2100,6 @@
             this.columnHeader28.Text = "BestellungID";
             this.columnHeader28.Width = 80;
             // 
-            // listView1
-            // 
-            this.listView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.columnHeader44,
-            this.columnHeader45,
-            this.columnHeader46,
-            this.columnHeader47,
-            this.columnHeader48});
-            this.listView1.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.listView1.FullRowSelect = true;
-            this.listView1.GridLines = true;
-            this.listView1.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
-            this.listView1.Location = new System.Drawing.Point(59, 401);
-            this.listView1.MultiSelect = false;
-            this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(770, 320);
-            this.listView1.TabIndex = 31;
-            this.listView1.UseCompatibleStateImageBehavior = false;
-            this.listView1.View = System.Windows.Forms.View.Details;
-            // 
-            // columnHeader44
-            // 
-            this.columnHeader44.Text = "ArtikelID";
-            this.columnHeader44.Width = 100;
-            // 
-            // columnHeader45
-            // 
-            this.columnHeader45.Text = "Bezeichnung";
-            this.columnHeader45.Width = 400;
-            // 
-            // columnHeader46
-            // 
-            this.columnHeader46.Text = "Menge";
-            this.columnHeader46.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.columnHeader46.Width = 80;
-            // 
-            // columnHeader47
-            // 
-            this.columnHeader47.Text = "Nettopreis";
-            this.columnHeader47.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.columnHeader47.Width = 120;
-            // 
-            // columnHeader48
-            // 
-            this.columnHeader48.Text = "UST";
-            this.columnHeader48.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            // 
-            // label30
-            // 
-            this.label30.AutoSize = true;
-            this.label30.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label30.Location = new System.Drawing.Point(55, 258);
-            this.label30.Name = "label30";
-            this.label30.Size = new System.Drawing.Size(112, 21);
-            this.label30.TabIndex = 32;
-            this.label30.Text = "Rechnung ID";
-            // 
-            // label31
-            // 
-            this.label31.AutoSize = true;
-            this.label31.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label31.Location = new System.Drawing.Point(410, 258);
-            this.label31.Name = "label31";
-            this.label31.Size = new System.Drawing.Size(65, 21);
-            this.label31.TabIndex = 33;
-            this.label31.Text = "Datum";
-            // 
-            // label32
-            // 
-            this.label32.AutoSize = true;
-            this.label32.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label32.Location = new System.Drawing.Point(55, 326);
-            this.label32.Name = "label32";
-            this.label32.Size = new System.Drawing.Size(60, 21);
-            this.label32.TabIndex = 34;
-            this.label32.Text = "Kunde";
-            // 
-            // label33
-            // 
-            this.label33.AutoSize = true;
-            this.label33.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label33.Location = new System.Drawing.Point(55, 292);
-            this.label33.Name = "label33";
-            this.label33.Size = new System.Drawing.Size(110, 21);
-            this.label33.TabIndex = 35;
-            this.label33.Text = "Bestellung ID";
-            // 
-            // label34
-            // 
-            this.label34.AutoSize = true;
-            this.label34.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label34.Location = new System.Drawing.Point(55, 361);
-            this.label34.Name = "label34";
-            this.label34.Size = new System.Drawing.Size(67, 21);
-            this.label34.TabIndex = 36;
-            this.label34.Text = "Bezahlt";
-            // 
-            // label35
-            // 
-            this.label35.AutoSize = true;
-            this.label35.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label35.Location = new System.Drawing.Point(200, 361);
-            this.label35.Name = "label35";
-            this.label35.Size = new System.Drawing.Size(36, 21);
-            this.label35.TabIndex = 37;
-            this.label35.Text = "am";
-            // 
-            // txtRechnungID
-            // 
-            this.txtRechnungID.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtRechnungID.Location = new System.Drawing.Point(173, 255);
-            this.txtRechnungID.Name = "txtRechnungID";
-            this.txtRechnungID.ReadOnly = true;
-            this.txtRechnungID.Size = new System.Drawing.Size(100, 27);
-            this.txtRechnungID.TabIndex = 38;
-            // 
-            // txtBestellungID
-            // 
-            this.txtBestellungID.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtBestellungID.Location = new System.Drawing.Point(173, 289);
-            this.txtBestellungID.Name = "txtBestellungID";
-            this.txtBestellungID.ReadOnly = true;
-            this.txtBestellungID.Size = new System.Drawing.Size(100, 27);
-            this.txtBestellungID.TabIndex = 39;
-            // 
-            // txtRechnungKunde
-            // 
-            this.txtRechnungKunde.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtRechnungKunde.Location = new System.Drawing.Point(173, 323);
-            this.txtRechnungKunde.Name = "txtRechnungKunde";
-            this.txtRechnungKunde.ReadOnly = true;
-            this.txtRechnungKunde.Size = new System.Drawing.Size(302, 27);
-            this.txtRechnungKunde.TabIndex = 40;
-            // 
-            // cbRechnungBezahlt
-            // 
-            this.cbRechnungBezahlt.AutoSize = true;
-            this.cbRechnungBezahlt.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cbRechnungBezahlt.Location = new System.Drawing.Point(172, 365);
-            this.cbRechnungBezahlt.Name = "cbRechnungBezahlt";
-            this.cbRechnungBezahlt.Size = new System.Drawing.Size(15, 14);
-            this.cbRechnungBezahlt.TabIndex = 41;
-            this.cbRechnungBezahlt.UseVisualStyleBackColor = true;
-            // 
-            // dtpRechnungBezahlt
-            // 
-            this.dtpRechnungBezahlt.CalendarFont = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dtpRechnungBezahlt.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dtpRechnungBezahlt.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpRechnungBezahlt.Location = new System.Drawing.Point(242, 357);
-            this.dtpRechnungBezahlt.Name = "dtpRechnungBezahlt";
-            this.dtpRechnungBezahlt.Size = new System.Drawing.Size(136, 27);
-            this.dtpRechnungBezahlt.TabIndex = 42;
-            // 
-            // listViewRechnungSuche
-            // 
-            this.listViewRechnungSuche.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.columnHeader35,
-            this.columnHeader36,
-            this.columnHeader37,
-            this.columnHeader38});
-            this.listViewRechnungSuche.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.listViewRechnungSuche.FullRowSelect = true;
-            this.listViewRechnungSuche.GridLines = true;
-            this.listViewRechnungSuche.Location = new System.Drawing.Point(59, 108);
-            this.listViewRechnungSuche.MultiSelect = false;
-            this.listViewRechnungSuche.Name = "listViewRechnungSuche";
-            this.listViewRechnungSuche.Size = new System.Drawing.Size(678, 128);
-            this.listViewRechnungSuche.TabIndex = 43;
-            this.listViewRechnungSuche.UseCompatibleStateImageBehavior = false;
-            this.listViewRechnungSuche.View = System.Windows.Forms.View.Details;
-            // 
-            // columnHeader35
-            // 
-            this.columnHeader35.Text = "Rechnung ID";
-            this.columnHeader35.Width = 115;
-            // 
-            // columnHeader36
-            // 
-            this.columnHeader36.Text = "Datum";
-            this.columnHeader36.Width = 104;
-            // 
-            // columnHeader37
-            // 
-            this.columnHeader37.Text = "Kunde";
-            this.columnHeader37.Width = 340;
-            // 
-            // columnHeader38
-            // 
-            this.columnHeader38.Text = "Bestellung ID";
-            this.columnHeader38.Width = 115;
-            // 
-            // dtpRechnungDatum
-            // 
-            this.dtpRechnungDatum.CalendarFont = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dtpRechnungDatum.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dtpRechnungDatum.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpRechnungDatum.Location = new System.Drawing.Point(481, 255);
-            this.dtpRechnungDatum.Name = "dtpRechnungDatum";
-            this.dtpRechnungDatum.Size = new System.Drawing.Size(136, 27);
-            this.dtpRechnungDatum.TabIndex = 44;
-            // 
-            // txtSummeNetto
-            // 
-            this.txtSummeNetto.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtSummeNetto.Location = new System.Drawing.Point(694, 728);
-            this.txtSummeNetto.Name = "txtSummeNetto";
-            this.txtSummeNetto.ReadOnly = true;
-            this.txtSummeNetto.Size = new System.Drawing.Size(135, 27);
-            this.txtSummeNetto.TabIndex = 46;
-            // 
-            // label36
-            // 
-            this.label36.AutoSize = true;
-            this.label36.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label36.Location = new System.Drawing.Point(611, 731);
-            this.label36.Name = "label36";
-            this.label36.Size = new System.Drawing.Size(56, 21);
-            this.label36.TabIndex = 45;
-            this.label36.Text = "Netto";
-            // 
-            // txtSummeUST
-            // 
-            this.txtSummeUST.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtSummeUST.Location = new System.Drawing.Point(694, 761);
-            this.txtSummeUST.Name = "txtSummeUST";
-            this.txtSummeUST.ReadOnly = true;
-            this.txtSummeUST.Size = new System.Drawing.Size(135, 27);
-            this.txtSummeUST.TabIndex = 48;
-            // 
-            // label37
-            // 
-            this.label37.AutoSize = true;
-            this.label37.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label37.Location = new System.Drawing.Point(611, 764);
-            this.label37.Name = "label37";
-            this.label37.Size = new System.Drawing.Size(37, 21);
-            this.label37.TabIndex = 47;
-            this.label37.Text = "UST";
-            // 
-            // txtSummeBrutto
-            // 
-            this.txtSummeBrutto.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtSummeBrutto.Location = new System.Drawing.Point(694, 800);
-            this.txtSummeBrutto.Name = "txtSummeBrutto";
-            this.txtSummeBrutto.ReadOnly = true;
-            this.txtSummeBrutto.Size = new System.Drawing.Size(135, 27);
-            this.txtSummeBrutto.TabIndex = 50;
-            // 
-            // label38
-            // 
-            this.label38.AutoSize = true;
-            this.label38.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label38.Location = new System.Drawing.Point(611, 803);
-            this.label38.Name = "label38";
-            this.label38.Size = new System.Drawing.Size(58, 21);
-            this.label38.TabIndex = 49;
-            this.label38.Text = "Brutto";
-            // 
             // label39
             // 
             this.label39.AutoSize = true;
@@ -2025,32 +2109,1176 @@
             this.label39.TabIndex = 51;
             this.label39.Text = "____________________________________";
             // 
-            // btRechnungSpeichern
+            // btRechnungNeu
             // 
-            this.btRechnungSpeichern.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btRechnungSpeichern.Location = new System.Drawing.Point(615, 860);
-            this.btRechnungSpeichern.Name = "btRechnungSpeichern";
-            this.btRechnungSpeichern.Size = new System.Drawing.Size(214, 47);
-            this.btRechnungSpeichern.TabIndex = 52;
-            this.btRechnungSpeichern.Text = "Speichern";
-            this.btRechnungSpeichern.UseVisualStyleBackColor = true;
+            this.btRechnungNeu.BackColor = System.Drawing.SystemColors.AppWorkspace;
+            this.btRechnungNeu.FlatAppearance.BorderColor = System.Drawing.SystemColors.AppWorkspace;
+            this.btRechnungNeu.FlatAppearance.BorderSize = 0;
+            this.btRechnungNeu.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btRechnungNeu.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btRechnungNeu.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btRechnungNeu.Location = new System.Drawing.Point(205, 236);
+            this.btRechnungNeu.Name = "btRechnungNeu";
+            this.btRechnungNeu.Size = new System.Drawing.Size(190, 87);
+            this.btRechnungNeu.TabIndex = 53;
+            this.btRechnungNeu.Text = "   Neu erstellen";
+            this.btRechnungNeu.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btRechnungNeu.UseVisualStyleBackColor = false;
+            this.btRechnungNeu.Visible = false;
+            this.btRechnungNeu.Click += new System.EventHandler(this.btRechnungNeu_Click);
+            this.btRechnungNeu.MouseEnter += new System.EventHandler(this.btRechnungNeu_MouseEnter);
+            // 
+            // panelRechnungNeu
+            // 
+            this.panelRechnungNeu.Controls.Add(this.btRechnungNeuSpeichern);
+            this.panelRechnungNeu.Controls.Add(this.cbRechnungNeuBezahlt);
+            this.panelRechnungNeu.Controls.Add(this.dateTimePicker1);
+            this.panelRechnungNeu.Controls.Add(this.btRechnungNeuWordErstellen);
+            this.panelRechnungNeu.Controls.Add(this.txtRechnungNeuBrutto);
+            this.panelRechnungNeu.Controls.Add(this.label44);
+            this.panelRechnungNeu.Controls.Add(this.txtRechnungNeuUst);
+            this.panelRechnungNeu.Controls.Add(this.label45);
+            this.panelRechnungNeu.Controls.Add(this.txtRechnungNeuNetto);
+            this.panelRechnungNeu.Controls.Add(this.label46);
+            this.panelRechnungNeu.Controls.Add(this.label47);
+            this.panelRechnungNeu.Controls.Add(this.listViewRechnungNeuArtikel);
+            this.panelRechnungNeu.Controls.Add(this.label42);
+            this.panelRechnungNeu.Controls.Add(this.cbBestellungRechnungNeu);
+            this.panelRechnungNeu.Controls.Add(this.label41);
+            this.panelRechnungNeu.Controls.Add(this.label40);
+            this.panelRechnungNeu.Controls.Add(this.cbKundeRechnungNeu);
+            this.panelRechnungNeu.Controls.Add(this.dtpRechnungNeu);
+            this.panelRechnungNeu.Controls.Add(this.label43);
+            this.panelRechnungNeu.Location = new System.Drawing.Point(1161, 305);
+            this.panelRechnungNeu.Name = "panelRechnungNeu";
+            this.panelRechnungNeu.Size = new System.Drawing.Size(60, 46);
+            this.panelRechnungNeu.TabIndex = 54;
+            this.panelRechnungNeu.MouseEnter += new System.EventHandler(this.panelRechnungNeu_MouseEnter);
+            // 
+            // btRechnungNeuSpeichern
+            // 
+            this.btRechnungNeuSpeichern.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btRechnungNeuSpeichern.Location = new System.Drawing.Point(385, 773);
+            this.btRechnungNeuSpeichern.Name = "btRechnungNeuSpeichern";
+            this.btRechnungNeuSpeichern.Size = new System.Drawing.Size(214, 44);
+            this.btRechnungNeuSpeichern.TabIndex = 71;
+            this.btRechnungNeuSpeichern.Text = "Rechnung speichern";
+            this.btRechnungNeuSpeichern.UseVisualStyleBackColor = true;
+            this.btRechnungNeuSpeichern.Click += new System.EventHandler(this.button2_Click);
+            // 
+            // cbRechnungNeuBezahlt
+            // 
+            this.cbRechnungNeuBezahlt.AutoSize = true;
+            this.cbRechnungNeuBezahlt.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbRechnungNeuBezahlt.Location = new System.Drawing.Point(511, 282);
+            this.cbRechnungNeuBezahlt.Name = "cbRechnungNeuBezahlt";
+            this.cbRechnungNeuBezahlt.Size = new System.Drawing.Size(116, 25);
+            this.cbRechnungNeuBezahlt.TabIndex = 70;
+            this.cbRechnungNeuBezahlt.Text = "Bezahlt am";
+            this.cbRechnungNeuBezahlt.UseVisualStyleBackColor = true;
+            // 
+            // dateTimePicker1
+            // 
+            this.dateTimePicker1.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dateTimePicker1.Location = new System.Drawing.Point(633, 280);
+            this.dateTimePicker1.Name = "dateTimePicker1";
+            this.dateTimePicker1.Size = new System.Drawing.Size(186, 31);
+            this.dateTimePicker1.TabIndex = 69;
+            // 
+            // btRechnungNeuWordErstellen
+            // 
+            this.btRechnungNeuWordErstellen.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btRechnungNeuWordErstellen.Location = new System.Drawing.Point(605, 773);
+            this.btRechnungNeuWordErstellen.Name = "btRechnungNeuWordErstellen";
+            this.btRechnungNeuWordErstellen.Size = new System.Drawing.Size(214, 44);
+            this.btRechnungNeuWordErstellen.TabIndex = 68;
+            this.btRechnungNeuWordErstellen.Text = "Dokument erstellen";
+            this.btRechnungNeuWordErstellen.UseVisualStyleBackColor = true;
+            this.btRechnungNeuWordErstellen.Click += new System.EventHandler(this.btWordErstellen_Click);
+            // 
+            // txtRechnungNeuBrutto
+            // 
+            this.txtRechnungNeuBrutto.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtRechnungNeuBrutto.Location = new System.Drawing.Point(684, 728);
+            this.txtRechnungNeuBrutto.Name = "txtRechnungNeuBrutto";
+            this.txtRechnungNeuBrutto.ReadOnly = true;
+            this.txtRechnungNeuBrutto.Size = new System.Drawing.Size(135, 27);
+            this.txtRechnungNeuBrutto.TabIndex = 66;
+            this.txtRechnungNeuBrutto.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // label44
+            // 
+            this.label44.AutoSize = true;
+            this.label44.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label44.Location = new System.Drawing.Point(601, 731);
+            this.label44.Name = "label44";
+            this.label44.Size = new System.Drawing.Size(58, 21);
+            this.label44.TabIndex = 65;
+            this.label44.Text = "Brutto";
+            // 
+            // txtRechnungNeuUst
+            // 
+            this.txtRechnungNeuUst.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtRechnungNeuUst.Location = new System.Drawing.Point(684, 689);
+            this.txtRechnungNeuUst.Name = "txtRechnungNeuUst";
+            this.txtRechnungNeuUst.ReadOnly = true;
+            this.txtRechnungNeuUst.Size = new System.Drawing.Size(135, 27);
+            this.txtRechnungNeuUst.TabIndex = 64;
+            this.txtRechnungNeuUst.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // label45
+            // 
+            this.label45.AutoSize = true;
+            this.label45.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label45.Location = new System.Drawing.Point(601, 692);
+            this.label45.Name = "label45";
+            this.label45.Size = new System.Drawing.Size(37, 21);
+            this.label45.TabIndex = 63;
+            this.label45.Text = "UST";
+            // 
+            // txtRechnungNeuNetto
+            // 
+            this.txtRechnungNeuNetto.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtRechnungNeuNetto.Location = new System.Drawing.Point(684, 656);
+            this.txtRechnungNeuNetto.Name = "txtRechnungNeuNetto";
+            this.txtRechnungNeuNetto.ReadOnly = true;
+            this.txtRechnungNeuNetto.Size = new System.Drawing.Size(135, 27);
+            this.txtRechnungNeuNetto.TabIndex = 62;
+            this.txtRechnungNeuNetto.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // label46
+            // 
+            this.label46.AutoSize = true;
+            this.label46.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label46.Location = new System.Drawing.Point(601, 659);
+            this.label46.Name = "label46";
+            this.label46.Size = new System.Drawing.Size(56, 21);
+            this.label46.TabIndex = 61;
+            this.label46.Text = "Netto";
+            // 
+            // label47
+            // 
+            this.label47.AutoSize = true;
+            this.label47.Location = new System.Drawing.Point(602, 709);
+            this.label47.Name = "label47";
+            this.label47.Size = new System.Drawing.Size(224, 16);
+            this.label47.TabIndex = 67;
+            this.label47.Text = "____________________________________";
+            // 
+            // listViewRechnungNeuArtikel
+            // 
+            this.listViewRechnungNeuArtikel.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader39,
+            this.columnHeader40,
+            this.columnHeader41,
+            this.columnHeader42,
+            this.columnHeader43});
+            this.listViewRechnungNeuArtikel.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.listViewRechnungNeuArtikel.FullRowSelect = true;
+            this.listViewRechnungNeuArtikel.GridLines = true;
+            this.listViewRechnungNeuArtikel.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
+            this.listViewRechnungNeuArtikel.Location = new System.Drawing.Point(49, 320);
+            this.listViewRechnungNeuArtikel.MultiSelect = false;
+            this.listViewRechnungNeuArtikel.Name = "listViewRechnungNeuArtikel";
+            this.listViewRechnungNeuArtikel.Size = new System.Drawing.Size(770, 320);
+            this.listViewRechnungNeuArtikel.TabIndex = 60;
+            this.listViewRechnungNeuArtikel.UseCompatibleStateImageBehavior = false;
+            this.listViewRechnungNeuArtikel.View = System.Windows.Forms.View.Details;
+            // 
+            // columnHeader39
+            // 
+            this.columnHeader39.Text = "ArtikelID";
+            this.columnHeader39.Width = 100;
+            // 
+            // columnHeader40
+            // 
+            this.columnHeader40.Text = "Bezeichnung";
+            this.columnHeader40.Width = 400;
+            // 
+            // columnHeader41
+            // 
+            this.columnHeader41.Text = "Menge";
+            this.columnHeader41.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.columnHeader41.Width = 80;
+            // 
+            // columnHeader42
+            // 
+            this.columnHeader42.Text = "Nettopreis";
+            this.columnHeader42.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.columnHeader42.Width = 120;
+            // 
+            // columnHeader43
+            // 
+            this.columnHeader43.Text = "UST";
+            this.columnHeader43.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // label42
+            // 
+            this.label42.AutoSize = true;
+            this.label42.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label42.Location = new System.Drawing.Point(44, 252);
+            this.label42.Name = "label42";
+            this.label42.Size = new System.Drawing.Size(155, 21);
+            this.label42.TabIndex = 59;
+            this.label42.Text = "Bestellung wählen:";
+            // 
+            // cbBestellungRechnungNeu
+            // 
+            this.cbBestellungRechnungNeu.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbBestellungRechnungNeu.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbBestellungRechnungNeu.FormattingEnabled = true;
+            this.cbBestellungRechnungNeu.Location = new System.Drawing.Point(48, 280);
+            this.cbBestellungRechnungNeu.Name = "cbBestellungRechnungNeu";
+            this.cbBestellungRechnungNeu.Size = new System.Drawing.Size(343, 29);
+            this.cbBestellungRechnungNeu.TabIndex = 58;
+            this.cbBestellungRechnungNeu.SelectedIndexChanged += new System.EventHandler(this.cbBestellungRechnungNeu_SelectedIndexChanged);
+            // 
+            // label41
+            // 
+            this.label41.AutoSize = true;
+            this.label41.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label41.Location = new System.Drawing.Point(44, 131);
+            this.label41.Name = "label41";
+            this.label41.Size = new System.Drawing.Size(155, 21);
+            this.label41.TabIndex = 57;
+            this.label41.Text = "Rechnungsdatum:";
+            // 
+            // label40
+            // 
+            this.label40.AutoSize = true;
+            this.label40.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label40.Location = new System.Drawing.Point(44, 172);
+            this.label40.Name = "label40";
+            this.label40.Size = new System.Drawing.Size(126, 21);
+            this.label40.TabIndex = 56;
+            this.label40.Text = "Kunde wählen:";
+            // 
+            // cbKundeRechnungNeu
+            // 
+            this.cbKundeRechnungNeu.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbKundeRechnungNeu.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbKundeRechnungNeu.FormattingEnabled = true;
+            this.cbKundeRechnungNeu.Location = new System.Drawing.Point(48, 200);
+            this.cbKundeRechnungNeu.Name = "cbKundeRechnungNeu";
+            this.cbKundeRechnungNeu.Size = new System.Drawing.Size(343, 29);
+            this.cbKundeRechnungNeu.TabIndex = 55;
+            this.cbKundeRechnungNeu.SelectedIndexChanged += new System.EventHandler(this.cbKundeRechnungNeu_SelectedIndexChanged);
+            // 
+            // dtpRechnungNeu
+            // 
+            this.dtpRechnungNeu.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dtpRechnungNeu.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtpRechnungNeu.Location = new System.Drawing.Point(205, 124);
+            this.dtpRechnungNeu.Name = "dtpRechnungNeu";
+            this.dtpRechnungNeu.Size = new System.Drawing.Size(186, 31);
+            this.dtpRechnungNeu.TabIndex = 54;
+            // 
+            // label43
+            // 
+            this.label43.AutoSize = true;
+            this.label43.Font = new System.Drawing.Font("Century Gothic", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label43.Location = new System.Drawing.Point(42, 65);
+            this.label43.Name = "label43";
+            this.label43.Size = new System.Drawing.Size(349, 32);
+            this.label43.TabIndex = 53;
+            this.label43.Text = "Neue Rechnung erstellen:";
+            // 
+            // panelTermine
+            // 
+            this.panelTermine.Controls.Add(this.btTerminLöschen);
+            this.panelTermine.Controls.Add(this.btTerminSpeichern);
+            this.panelTermine.Controls.Add(this.btTerminNeu);
+            this.panelTermine.Controls.Add(this.label53);
+            this.panelTermine.Controls.Add(this.dtpTermineZeitBis);
+            this.panelTermine.Controls.Add(this.dtpTermineZeitVon);
+            this.panelTermine.Controls.Add(this.label54);
+            this.panelTermine.Controls.Add(this.label52);
+            this.panelTermine.Controls.Add(this.dtpTerminDatumBis);
+            this.panelTermine.Controls.Add(this.dtpTerminDatumVon);
+            this.panelTermine.Controls.Add(this.label51);
+            this.panelTermine.Controls.Add(this.txtTerminBeschreibung);
+            this.panelTermine.Controls.Add(this.label50);
+            this.panelTermine.Controls.Add(this.txtTerminTitel);
+            this.panelTermine.Controls.Add(this.label49);
+            this.panelTermine.Controls.Add(this.txtTerminID);
+            this.panelTermine.Controls.Add(this.label48);
+            this.panelTermine.Controls.Add(this.listViewTermine);
+            this.panelTermine.Location = new System.Drawing.Point(1167, 357);
+            this.panelTermine.Name = "panelTermine";
+            this.panelTermine.Size = new System.Drawing.Size(54, 45);
+            this.panelTermine.TabIndex = 55;
+            this.panelTermine.MouseEnter += new System.EventHandler(this.panelTermine_MouseEnter);
+            // 
+            // btTerminLöschen
+            // 
+            this.btTerminLöschen.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btTerminLöschen.Location = new System.Drawing.Point(395, 468);
+            this.btTerminLöschen.Name = "btTerminLöschen";
+            this.btTerminLöschen.Size = new System.Drawing.Size(159, 39);
+            this.btTerminLöschen.TabIndex = 17;
+            this.btTerminLöschen.Text = "Löschen";
+            this.btTerminLöschen.UseVisualStyleBackColor = true;
+            // 
+            // btTerminSpeichern
+            // 
+            this.btTerminSpeichern.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btTerminSpeichern.Location = new System.Drawing.Point(395, 423);
+            this.btTerminSpeichern.Name = "btTerminSpeichern";
+            this.btTerminSpeichern.Size = new System.Drawing.Size(159, 39);
+            this.btTerminSpeichern.TabIndex = 16;
+            this.btTerminSpeichern.Text = "Speichern";
+            this.btTerminSpeichern.UseVisualStyleBackColor = true;
+            // 
+            // btTerminNeu
+            // 
+            this.btTerminNeu.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btTerminNeu.Location = new System.Drawing.Point(395, 380);
+            this.btTerminNeu.Name = "btTerminNeu";
+            this.btTerminNeu.Size = new System.Drawing.Size(159, 39);
+            this.btTerminNeu.TabIndex = 15;
+            this.btTerminNeu.Text = "Neu";
+            this.btTerminNeu.UseVisualStyleBackColor = true;
+            this.btTerminNeu.Click += new System.EventHandler(this.btTerminNeu_Click);
+            // 
+            // label53
+            // 
+            this.label53.AutoSize = true;
+            this.label53.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label53.Location = new System.Drawing.Point(323, 336);
+            this.label53.Name = "label53";
+            this.label53.Size = new System.Drawing.Size(30, 21);
+            this.label53.TabIndex = 14;
+            this.label53.Text = "bis";
+            // 
+            // dtpTermineZeitBis
+            // 
+            this.dtpTermineZeitBis.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dtpTermineZeitBis.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dtpTermineZeitBis.Location = new System.Drawing.Point(359, 334);
+            this.dtpTermineZeitBis.Name = "dtpTermineZeitBis";
+            this.dtpTermineZeitBis.Size = new System.Drawing.Size(147, 27);
+            this.dtpTermineZeitBis.TabIndex = 13;
+            // 
+            // dtpTermineZeitVon
+            // 
+            this.dtpTermineZeitVon.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dtpTermineZeitVon.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dtpTermineZeitVon.Location = new System.Drawing.Point(170, 334);
+            this.dtpTermineZeitVon.Name = "dtpTermineZeitVon";
+            this.dtpTermineZeitVon.Size = new System.Drawing.Size(147, 27);
+            this.dtpTermineZeitVon.TabIndex = 12;
+            // 
+            // label54
+            // 
+            this.label54.AutoSize = true;
+            this.label54.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label54.Location = new System.Drawing.Point(49, 339);
+            this.label54.Name = "label54";
+            this.label54.Size = new System.Drawing.Size(63, 21);
+            this.label54.TabIndex = 11;
+            this.label54.Text = "Uhrzeit";
+            // 
+            // label52
+            // 
+            this.label52.AutoSize = true;
+            this.label52.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label52.Location = new System.Drawing.Point(323, 294);
+            this.label52.Name = "label52";
+            this.label52.Size = new System.Drawing.Size(30, 21);
+            this.label52.TabIndex = 10;
+            this.label52.Text = "bis";
+            // 
+            // dtpTerminDatumBis
+            // 
+            this.dtpTerminDatumBis.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dtpTerminDatumBis.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtpTerminDatumBis.Location = new System.Drawing.Point(359, 292);
+            this.dtpTerminDatumBis.Name = "dtpTerminDatumBis";
+            this.dtpTerminDatumBis.Size = new System.Drawing.Size(147, 27);
+            this.dtpTerminDatumBis.TabIndex = 9;
+            // 
+            // dtpTerminDatumVon
+            // 
+            this.dtpTerminDatumVon.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dtpTerminDatumVon.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtpTerminDatumVon.Location = new System.Drawing.Point(170, 292);
+            this.dtpTerminDatumVon.Name = "dtpTerminDatumVon";
+            this.dtpTerminDatumVon.Size = new System.Drawing.Size(147, 27);
+            this.dtpTerminDatumVon.TabIndex = 8;
+            // 
+            // label51
+            // 
+            this.label51.AutoSize = true;
+            this.label51.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label51.Location = new System.Drawing.Point(49, 297);
+            this.label51.Name = "label51";
+            this.label51.Size = new System.Drawing.Size(65, 21);
+            this.label51.TabIndex = 7;
+            this.label51.Text = "Datum";
+            // 
+            // txtTerminBeschreibung
+            // 
+            this.txtTerminBeschreibung.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtTerminBeschreibung.Location = new System.Drawing.Point(170, 162);
+            this.txtTerminBeschreibung.Multiline = true;
+            this.txtTerminBeschreibung.Name = "txtTerminBeschreibung";
+            this.txtTerminBeschreibung.Size = new System.Drawing.Size(384, 122);
+            this.txtTerminBeschreibung.TabIndex = 6;
+            // 
+            // label50
+            // 
+            this.label50.AutoSize = true;
+            this.label50.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label50.Location = new System.Drawing.Point(49, 165);
+            this.label50.Name = "label50";
+            this.label50.Size = new System.Drawing.Size(115, 21);
+            this.label50.TabIndex = 5;
+            this.label50.Text = "Beschreibung";
+            // 
+            // txtTerminTitel
+            // 
+            this.txtTerminTitel.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtTerminTitel.Location = new System.Drawing.Point(170, 114);
+            this.txtTerminTitel.Name = "txtTerminTitel";
+            this.txtTerminTitel.Size = new System.Drawing.Size(384, 27);
+            this.txtTerminTitel.TabIndex = 4;
+            // 
+            // label49
+            // 
+            this.label49.AutoSize = true;
+            this.label49.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label49.Location = new System.Drawing.Point(49, 117);
+            this.label49.Name = "label49";
+            this.label49.Size = new System.Drawing.Size(41, 21);
+            this.label49.TabIndex = 3;
+            this.label49.Text = "Titel";
+            // 
+            // txtTerminID
+            // 
+            this.txtTerminID.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtTerminID.Location = new System.Drawing.Point(170, 64);
+            this.txtTerminID.Name = "txtTerminID";
+            this.txtTerminID.ReadOnly = true;
+            this.txtTerminID.Size = new System.Drawing.Size(100, 27);
+            this.txtTerminID.TabIndex = 2;
+            // 
+            // label48
+            // 
+            this.label48.AutoSize = true;
+            this.label48.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label48.Location = new System.Drawing.Point(49, 67);
+            this.label48.Name = "label48";
+            this.label48.Size = new System.Drawing.Size(78, 21);
+            this.label48.TabIndex = 1;
+            this.label48.Text = "TerminID";
+            // 
+            // listViewTermine
+            // 
+            this.listViewTermine.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader49,
+            this.columnHeader50,
+            this.columnHeader51,
+            this.columnHeader52,
+            this.columnHeader54,
+            this.columnHeader56});
+            this.listViewTermine.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.listViewTermine.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.listViewTermine.FullRowSelect = true;
+            this.listViewTermine.Location = new System.Drawing.Point(0, -357);
+            this.listViewTermine.MultiSelect = false;
+            this.listViewTermine.Name = "listViewTermine";
+            this.listViewTermine.Size = new System.Drawing.Size(54, 402);
+            this.listViewTermine.TabIndex = 0;
+            this.listViewTermine.UseCompatibleStateImageBehavior = false;
+            this.listViewTermine.View = System.Windows.Forms.View.Details;
+            this.listViewTermine.SelectedIndexChanged += new System.EventHandler(this.listViewTermine_SelectedIndexChanged);
+            // 
+            // columnHeader49
+            // 
+            this.columnHeader49.Text = "TerminID";
+            this.columnHeader49.Width = 80;
+            // 
+            // columnHeader50
+            // 
+            this.columnHeader50.Text = "Titel";
+            this.columnHeader50.Width = 250;
+            // 
+            // columnHeader51
+            // 
+            this.columnHeader51.Text = "Beschreibung";
+            this.columnHeader51.Width = 300;
+            // 
+            // columnHeader52
+            // 
+            this.columnHeader52.Text = "Datum";
+            this.columnHeader52.Width = 185;
+            // 
+            // columnHeader54
+            // 
+            this.columnHeader54.Text = "Uhrzeit";
+            this.columnHeader54.Width = 185;
+            // 
+            // columnHeader56
+            // 
+            this.columnHeader56.Text = "BenutzernameID";
+            this.columnHeader56.Width = 145;
+            // 
+            // panelBestellungen
+            // 
+            this.panelBestellungen.Controls.Add(this.btBestellungSpeichern);
+            this.panelBestellungen.Controls.Add(this.listViewBestellungenArtikelGewählt);
+            this.panelBestellungen.Controls.Add(this.listViewBestellungArtikelAlle);
+            this.panelBestellungen.Controls.Add(this.label58);
+            this.panelBestellungen.Controls.Add(this.cbBestellungenKunde);
+            this.panelBestellungen.Controls.Add(this.dtpBestellungenLieferdatum);
+            this.panelBestellungen.Controls.Add(this.label57);
+            this.panelBestellungen.Controls.Add(this.label56);
+            this.panelBestellungen.Controls.Add(this.comboBox1);
+            this.panelBestellungen.Controls.Add(this.txtBestellungID);
+            this.panelBestellungen.Controls.Add(this.label55);
+            this.panelBestellungen.Controls.Add(this.listViewBestellungen);
+            this.panelBestellungen.Location = new System.Drawing.Point(1159, 186);
+            this.panelBestellungen.Name = "panelBestellungen";
+            this.panelBestellungen.Size = new System.Drawing.Size(59, 48);
+            this.panelBestellungen.TabIndex = 56;
+            // 
+            // listViewBestellungen
+            // 
+            this.listViewBestellungen.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader53,
+            this.columnHeader55,
+            this.columnHeader57,
+            this.columnHeader58});
+            this.listViewBestellungen.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.listViewBestellungen.Location = new System.Drawing.Point(694, 66);
+            this.listViewBestellungen.Name = "listViewBestellungen";
+            this.listViewBestellungen.Size = new System.Drawing.Size(395, 162);
+            this.listViewBestellungen.TabIndex = 0;
+            this.listViewBestellungen.UseCompatibleStateImageBehavior = false;
+            this.listViewBestellungen.View = System.Windows.Forms.View.Details;
+            // 
+            // columnHeader53
+            // 
+            this.columnHeader53.Text = "BestellungID";
+            this.columnHeader53.Width = 110;
+            // 
+            // columnHeader55
+            // 
+            this.columnHeader55.Text = "Status";
+            this.columnHeader55.Width = 80;
+            // 
+            // columnHeader57
+            // 
+            this.columnHeader57.Text = "Lieferdatum";
+            this.columnHeader57.Width = 110;
+            // 
+            // columnHeader58
+            // 
+            this.columnHeader58.Text = "KundenID";
+            this.columnHeader58.Width = 90;
+            // 
+            // label55
+            // 
+            this.label55.AutoSize = true;
+            this.label55.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label55.Location = new System.Drawing.Point(95, 78);
+            this.label55.Name = "label55";
+            this.label55.Size = new System.Drawing.Size(106, 21);
+            this.label55.TabIndex = 1;
+            this.label55.Text = "BestellungID";
+            // 
+            // txtBestellungID
+            // 
+            this.txtBestellungID.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtBestellungID.Location = new System.Drawing.Point(207, 75);
+            this.txtBestellungID.Name = "txtBestellungID";
+            this.txtBestellungID.ReadOnly = true;
+            this.txtBestellungID.Size = new System.Drawing.Size(100, 27);
+            this.txtBestellungID.TabIndex = 2;
+            // 
+            // comboBox1
+            // 
+            this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox1.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Items.AddRange(new object[] {
+            "Neu",
+            "Bearbeitet",
+            "Abgeschlossen"});
+            this.comboBox1.Location = new System.Drawing.Point(207, 114);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(164, 29);
+            this.comboBox1.TabIndex = 3;
+            // 
+            // label56
+            // 
+            this.label56.AutoSize = true;
+            this.label56.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label56.Location = new System.Drawing.Point(95, 117);
+            this.label56.Name = "label56";
+            this.label56.Size = new System.Drawing.Size(59, 21);
+            this.label56.TabIndex = 4;
+            this.label56.Text = "Status";
+            // 
+            // label57
+            // 
+            this.label57.AutoSize = true;
+            this.label57.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label57.Location = new System.Drawing.Point(95, 161);
+            this.label57.Name = "label57";
+            this.label57.Size = new System.Drawing.Size(104, 21);
+            this.label57.TabIndex = 5;
+            this.label57.Text = "Lieferdatum";
+            // 
+            // dtpBestellungenLieferdatum
+            // 
+            this.dtpBestellungenLieferdatum.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dtpBestellungenLieferdatum.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtpBestellungenLieferdatum.Location = new System.Drawing.Point(205, 155);
+            this.dtpBestellungenLieferdatum.Name = "dtpBestellungenLieferdatum";
+            this.dtpBestellungenLieferdatum.Size = new System.Drawing.Size(166, 27);
+            this.dtpBestellungenLieferdatum.TabIndex = 6;
+            // 
+            // cbBestellungenKunde
+            // 
+            this.cbBestellungenKunde.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbBestellungenKunde.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbBestellungenKunde.FormattingEnabled = true;
+            this.cbBestellungenKunde.Items.AddRange(new object[] {
+            "Neu",
+            "Bearbeitet",
+            "Abgeschlossen"});
+            this.cbBestellungenKunde.Location = new System.Drawing.Point(207, 199);
+            this.cbBestellungenKunde.Name = "cbBestellungenKunde";
+            this.cbBestellungenKunde.Size = new System.Drawing.Size(315, 29);
+            this.cbBestellungenKunde.TabIndex = 7;
+            // 
+            // label58
+            // 
+            this.label58.AutoSize = true;
+            this.label58.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label58.Location = new System.Drawing.Point(95, 200);
+            this.label58.Name = "label58";
+            this.label58.Size = new System.Drawing.Size(60, 21);
+            this.label58.TabIndex = 8;
+            this.label58.Text = "Kunde";
+            // 
+            // listViewBestellungArtikelAlle
+            // 
+            this.listViewBestellungArtikelAlle.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader59,
+            this.columnHeader61,
+            this.columnHeader62,
+            this.columnHeader65,
+            this.columnHeader66,
+            this.columnHeader60,
+            this.columnHeader63});
+            this.listViewBestellungArtikelAlle.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.listViewBestellungArtikelAlle.FullRowSelect = true;
+            this.listViewBestellungArtikelAlle.GridLines = true;
+            this.listViewBestellungArtikelAlle.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
+            this.listViewBestellungArtikelAlle.Location = new System.Drawing.Point(27, 272);
+            this.listViewBestellungArtikelAlle.MultiSelect = false;
+            this.listViewBestellungArtikelAlle.Name = "listViewBestellungArtikelAlle";
+            this.listViewBestellungArtikelAlle.Size = new System.Drawing.Size(1063, 301);
+            this.listViewBestellungArtikelAlle.TabIndex = 31;
+            this.listViewBestellungArtikelAlle.UseCompatibleStateImageBehavior = false;
+            this.listViewBestellungArtikelAlle.View = System.Windows.Forms.View.Details;
+            this.listViewBestellungArtikelAlle.SelectedIndexChanged += new System.EventHandler(this.listViewBestellungArtikelAlle_SelectedIndexChanged);
+            // 
+            // columnHeader59
+            // 
+            this.columnHeader59.Text = "Artikel ID";
+            this.columnHeader59.Width = 85;
+            // 
+            // columnHeader60
+            // 
+            this.columnHeader60.Text = "externe ID";
+            this.columnHeader60.Width = 100;
+            // 
+            // columnHeader61
+            // 
+            this.columnHeader61.Text = "Bezeichnung";
+            this.columnHeader61.Width = 450;
+            // 
+            // columnHeader62
+            // 
+            this.columnHeader62.Text = "Nettopreis";
+            this.columnHeader62.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.columnHeader62.Width = 120;
+            // 
+            // columnHeader65
+            // 
+            this.columnHeader65.Text = "Lagerstand";
+            this.columnHeader65.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.columnHeader65.Width = 120;
+            // 
+            // columnHeader66
+            // 
+            this.columnHeader66.Text = "Reserviert";
+            this.columnHeader66.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.columnHeader66.Width = 120;
+            // 
+            // columnHeader63
+            // 
+            this.columnHeader63.Text = "Aktiv";
+            // 
+            // listViewBestellungenArtikelGewählt
+            // 
+            this.listViewBestellungenArtikelGewählt.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader73,
+            this.columnHeader74,
+            this.columnHeader75,
+            this.columnHeader76,
+            this.columnHeader64});
+            this.listViewBestellungenArtikelGewählt.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.listViewBestellungenArtikelGewählt.FullRowSelect = true;
+            this.listViewBestellungenArtikelGewählt.GridLines = true;
+            this.listViewBestellungenArtikelGewählt.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
+            this.listViewBestellungenArtikelGewählt.Location = new System.Drawing.Point(27, 589);
+            this.listViewBestellungenArtikelGewählt.MultiSelect = false;
+            this.listViewBestellungenArtikelGewählt.Name = "listViewBestellungenArtikelGewählt";
+            this.listViewBestellungenArtikelGewählt.Size = new System.Drawing.Size(1063, 301);
+            this.listViewBestellungenArtikelGewählt.TabIndex = 32;
+            this.listViewBestellungenArtikelGewählt.UseCompatibleStateImageBehavior = false;
+            this.listViewBestellungenArtikelGewählt.View = System.Windows.Forms.View.Details;
+            // 
+            // columnHeader73
+            // 
+            this.columnHeader73.Text = "ArtikelID";
+            this.columnHeader73.Width = 85;
+            // 
+            // columnHeader74
+            // 
+            this.columnHeader74.Text = "Bezeichnung";
+            this.columnHeader74.Width = 450;
+            // 
+            // columnHeader75
+            // 
+            this.columnHeader75.Text = "Menge";
+            this.columnHeader75.Width = 80;
+            // 
+            // columnHeader76
+            // 
+            this.columnHeader76.Text = "Netto";
+            this.columnHeader76.Width = 80;
+            // 
+            // columnHeader64
+            // 
+            this.columnHeader64.Text = "UST";
+            // 
+            // btBestellungSpeichern
+            // 
+            this.btBestellungSpeichern.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btBestellungSpeichern.Location = new System.Drawing.Point(891, 910);
+            this.btBestellungSpeichern.Name = "btBestellungSpeichern";
+            this.btBestellungSpeichern.Size = new System.Drawing.Size(199, 61);
+            this.btBestellungSpeichern.TabIndex = 33;
+            this.btBestellungSpeichern.Text = "Speichern";
+            this.btBestellungSpeichern.UseVisualStyleBackColor = true;
+            // 
+            // panelKunden
+            // 
+            this.panelKunden.Controls.Add(this.btKundenLöschen);
+            this.panelKunden.Controls.Add(this.btKundenSpeichern);
+            this.panelKunden.Controls.Add(this.cbKundenOrt);
+            this.panelKunden.Controls.Add(this.label67);
+            this.panelKunden.Controls.Add(this.txtKundenPLZ);
+            this.panelKunden.Controls.Add(this.label66);
+            this.panelKunden.Controls.Add(this.txtKundenStrasse);
+            this.panelKunden.Controls.Add(this.label65);
+            this.panelKunden.Controls.Add(this.txtKudenEmail);
+            this.panelKunden.Controls.Add(this.label64);
+            this.panelKunden.Controls.Add(this.txtKundenTelefonnummer);
+            this.panelKunden.Controls.Add(this.label63);
+            this.panelKunden.Controls.Add(this.txtKundenFirma);
+            this.panelKunden.Controls.Add(this.label62);
+            this.panelKunden.Controls.Add(this.txtKundenNachname);
+            this.panelKunden.Controls.Add(this.label61);
+            this.panelKunden.Controls.Add(this.cbKundenAnrede);
+            this.panelKunden.Controls.Add(this.txtKundenVorname);
+            this.panelKunden.Controls.Add(this.label60);
+            this.panelKunden.Controls.Add(this.txtKundenID);
+            this.panelKunden.Controls.Add(this.label59);
+            this.panelKunden.Controls.Add(this.listViewKunden);
+            this.panelKunden.Location = new System.Drawing.Point(1183, 141);
+            this.panelKunden.Name = "panelKunden";
+            this.panelKunden.Size = new System.Drawing.Size(38, 39);
+            this.panelKunden.TabIndex = 57;
+            // 
+            // listViewKunden
+            // 
+            this.listViewKunden.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader67,
+            this.columnHeader68,
+            this.columnHeader69,
+            this.columnHeader70,
+            this.columnHeader71,
+            this.columnHeader72,
+            this.columnHeader77,
+            this.columnHeader78,
+            this.columnHeader79,
+            this.columnHeader80});
+            this.listViewKunden.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.listViewKunden.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.listViewKunden.FullRowSelect = true;
+            this.listViewKunden.Location = new System.Drawing.Point(0, -280);
+            this.listViewKunden.Name = "listViewKunden";
+            this.listViewKunden.Size = new System.Drawing.Size(38, 319);
+            this.listViewKunden.TabIndex = 0;
+            this.listViewKunden.UseCompatibleStateImageBehavior = false;
+            this.listViewKunden.View = System.Windows.Forms.View.Details;
+            this.listViewKunden.SelectedIndexChanged += new System.EventHandler(this.listViewKunden_SelectedIndexChanged);
+            // 
+            // columnHeader67
+            // 
+            this.columnHeader67.Text = "KundenID";
+            this.columnHeader67.Width = 89;
+            // 
+            // columnHeader68
+            // 
+            this.columnHeader68.Text = "Anrede";
+            this.columnHeader68.Width = 80;
+            // 
+            // columnHeader69
+            // 
+            this.columnHeader69.Text = "Vorname";
+            this.columnHeader69.Width = 210;
+            // 
+            // columnHeader70
+            // 
+            this.columnHeader70.Text = "Nachname";
+            this.columnHeader70.Width = 210;
+            // 
+            // columnHeader71
+            // 
+            this.columnHeader71.Text = "Firma";
+            this.columnHeader71.Width = 200;
+            // 
+            // columnHeader72
+            // 
+            this.columnHeader72.Text = "Telefonnummer";
+            this.columnHeader72.Width = 150;
+            // 
+            // columnHeader77
+            // 
+            this.columnHeader77.Text = "Email";
+            this.columnHeader77.Width = 220;
+            // 
+            // columnHeader78
+            // 
+            this.columnHeader78.Text = "Strasse";
+            this.columnHeader78.Width = 220;
+            // 
+            // columnHeader79
+            // 
+            this.columnHeader79.Text = "PLZ";
+            this.columnHeader79.Width = 80;
+            // 
+            // columnHeader80
+            // 
+            this.columnHeader80.Text = "Aktiv";
+            // 
+            // label59
+            // 
+            this.label59.AutoSize = true;
+            this.label59.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label59.Location = new System.Drawing.Point(95, 68);
+            this.label59.Name = "label59";
+            this.label59.Size = new System.Drawing.Size(87, 21);
+            this.label59.TabIndex = 1;
+            this.label59.Text = "KundenID";
+            // 
+            // txtKundenID
+            // 
+            this.txtKundenID.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtKundenID.Location = new System.Drawing.Point(245, 65);
+            this.txtKundenID.Name = "txtKundenID";
+            this.txtKundenID.ReadOnly = true;
+            this.txtKundenID.Size = new System.Drawing.Size(100, 27);
+            this.txtKundenID.TabIndex = 2;
+            // 
+            // txtKundenVorname
+            // 
+            this.txtKundenVorname.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtKundenVorname.Location = new System.Drawing.Point(245, 133);
+            this.txtKundenVorname.Name = "txtKundenVorname";
+            this.txtKundenVorname.Size = new System.Drawing.Size(298, 27);
+            this.txtKundenVorname.TabIndex = 4;
+            // 
+            // label60
+            // 
+            this.label60.AutoSize = true;
+            this.label60.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label60.Location = new System.Drawing.Point(95, 104);
+            this.label60.Name = "label60";
+            this.label60.Size = new System.Drawing.Size(69, 21);
+            this.label60.TabIndex = 3;
+            this.label60.Text = "Anrede";
+            // 
+            // cbKundenAnrede
+            // 
+            this.cbKundenAnrede.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbKundenAnrede.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbKundenAnrede.FormattingEnabled = true;
+            this.cbKundenAnrede.Items.AddRange(new object[] {
+            "Frau",
+            "Herr",
+            "Firma"});
+            this.cbKundenAnrede.Location = new System.Drawing.Point(245, 98);
+            this.cbKundenAnrede.Name = "cbKundenAnrede";
+            this.cbKundenAnrede.Size = new System.Drawing.Size(156, 29);
+            this.cbKundenAnrede.TabIndex = 5;
+            // 
+            // label61
+            // 
+            this.label61.AutoSize = true;
+            this.label61.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label61.Location = new System.Drawing.Point(95, 137);
+            this.label61.Name = "label61";
+            this.label61.Size = new System.Drawing.Size(82, 21);
+            this.label61.TabIndex = 6;
+            this.label61.Text = "Vorname";
+            // 
+            // label62
+            // 
+            this.label62.AutoSize = true;
+            this.label62.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label62.Location = new System.Drawing.Point(95, 170);
+            this.label62.Name = "label62";
+            this.label62.Size = new System.Drawing.Size(99, 21);
+            this.label62.TabIndex = 8;
+            this.label62.Text = "Nachname";
+            // 
+            // txtKundenNachname
+            // 
+            this.txtKundenNachname.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtKundenNachname.Location = new System.Drawing.Point(245, 166);
+            this.txtKundenNachname.Name = "txtKundenNachname";
+            this.txtKundenNachname.Size = new System.Drawing.Size(298, 27);
+            this.txtKundenNachname.TabIndex = 7;
+            // 
+            // label63
+            // 
+            this.label63.AutoSize = true;
+            this.label63.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label63.Location = new System.Drawing.Point(95, 203);
+            this.label63.Name = "label63";
+            this.label63.Size = new System.Drawing.Size(52, 21);
+            this.label63.TabIndex = 10;
+            this.label63.Text = "Firma";
+            // 
+            // txtKundenFirma
+            // 
+            this.txtKundenFirma.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtKundenFirma.Location = new System.Drawing.Point(245, 199);
+            this.txtKundenFirma.Name = "txtKundenFirma";
+            this.txtKundenFirma.Size = new System.Drawing.Size(298, 27);
+            this.txtKundenFirma.TabIndex = 9;
+            // 
+            // label64
+            // 
+            this.label64.AutoSize = true;
+            this.label64.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label64.Location = new System.Drawing.Point(95, 236);
+            this.label64.Name = "label64";
+            this.label64.Size = new System.Drawing.Size(131, 21);
+            this.label64.TabIndex = 12;
+            this.label64.Text = "Telefonnummer";
+            // 
+            // txtKundenTelefonnummer
+            // 
+            this.txtKundenTelefonnummer.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtKundenTelefonnummer.Location = new System.Drawing.Point(245, 232);
+            this.txtKundenTelefonnummer.Name = "txtKundenTelefonnummer";
+            this.txtKundenTelefonnummer.Size = new System.Drawing.Size(298, 27);
+            this.txtKundenTelefonnummer.TabIndex = 11;
+            // 
+            // label65
+            // 
+            this.label65.AutoSize = true;
+            this.label65.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label65.Location = new System.Drawing.Point(95, 269);
+            this.label65.Name = "label65";
+            this.label65.Size = new System.Drawing.Size(56, 21);
+            this.label65.TabIndex = 14;
+            this.label65.Text = "E-Mail";
+            // 
+            // txtKudenEmail
+            // 
+            this.txtKudenEmail.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtKudenEmail.Location = new System.Drawing.Point(245, 265);
+            this.txtKudenEmail.Name = "txtKudenEmail";
+            this.txtKudenEmail.Size = new System.Drawing.Size(298, 27);
+            this.txtKudenEmail.TabIndex = 13;
+            // 
+            // label66
+            // 
+            this.label66.AutoSize = true;
+            this.label66.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label66.Location = new System.Drawing.Point(95, 302);
+            this.label66.Name = "label66";
+            this.label66.Size = new System.Drawing.Size(89, 21);
+            this.label66.TabIndex = 16;
+            this.label66.Text = "Straße, Nr.";
+            // 
+            // txtKundenStrasse
+            // 
+            this.txtKundenStrasse.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtKundenStrasse.Location = new System.Drawing.Point(245, 298);
+            this.txtKundenStrasse.Name = "txtKundenStrasse";
+            this.txtKundenStrasse.Size = new System.Drawing.Size(298, 27);
+            this.txtKundenStrasse.TabIndex = 15;
+            // 
+            // label67
+            // 
+            this.label67.AutoSize = true;
+            this.label67.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label67.Location = new System.Drawing.Point(95, 335);
+            this.label67.Name = "label67";
+            this.label67.Size = new System.Drawing.Size(34, 21);
+            this.label67.TabIndex = 18;
+            this.label67.Text = "PLZ";
+            // 
+            // txtKundenPLZ
+            // 
+            this.txtKundenPLZ.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtKundenPLZ.Location = new System.Drawing.Point(245, 331);
+            this.txtKundenPLZ.Name = "txtKundenPLZ";
+            this.txtKundenPLZ.Size = new System.Drawing.Size(77, 27);
+            this.txtKundenPLZ.TabIndex = 17;
+            // 
+            // cbKundenOrt
+            // 
+            this.cbKundenOrt.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbKundenOrt.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbKundenOrt.FormattingEnabled = true;
+            this.cbKundenOrt.Items.AddRange(new object[] {
+            "Frau",
+            "Herr",
+            "Firma"});
+            this.cbKundenOrt.Location = new System.Drawing.Point(328, 330);
+            this.cbKundenOrt.Name = "cbKundenOrt";
+            this.cbKundenOrt.Size = new System.Drawing.Size(215, 29);
+            this.cbKundenOrt.TabIndex = 19;
+            // 
+            // btKundenSpeichern
+            // 
+            this.btKundenSpeichern.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btKundenSpeichern.Location = new System.Drawing.Point(407, 401);
+            this.btKundenSpeichern.Name = "btKundenSpeichern";
+            this.btKundenSpeichern.Size = new System.Drawing.Size(136, 53);
+            this.btKundenSpeichern.TabIndex = 20;
+            this.btKundenSpeichern.Text = "Speichern";
+            this.btKundenSpeichern.UseVisualStyleBackColor = true;
+            this.btKundenSpeichern.Click += new System.EventHandler(this.btKundenSpeichern_Click);
+            // 
+            // btKundenLöschen
+            // 
+            this.btKundenLöschen.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btKundenLöschen.Location = new System.Drawing.Point(407, 460);
+            this.btKundenLöschen.Name = "btKundenLöschen";
+            this.btKundenLöschen.Size = new System.Drawing.Size(136, 53);
+            this.btKundenLöschen.TabIndex = 21;
+            this.btKundenLöschen.Text = "Löschen";
+            this.btKundenLöschen.UseVisualStyleBackColor = true;
+            this.btKundenLöschen.Click += new System.EventHandler(this.btKundenLöschen_Click);
+            // 
+            // panelAnfragen
+            // 
+            this.panelAnfragen.Controls.Add(this.label68);
+            this.panelAnfragen.Controls.Add(this.listViewAnfragen);
+            this.panelAnfragen.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panelAnfragen.Location = new System.Drawing.Point(205, 41);
+            this.panelAnfragen.Name = "panelAnfragen";
+            this.panelAnfragen.Size = new System.Drawing.Size(1556, 1015);
+            this.panelAnfragen.TabIndex = 58;
+            // 
+            // listViewAnfragen
+            // 
+            this.listViewAnfragen.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader45,
+            this.columnHeader48,
+            this.columnHeader84,
+            this.columnHeader85});
+            this.listViewAnfragen.ContextMenuStrip = this.cbsAnfragen;
+            this.listViewAnfragen.Dock = System.Windows.Forms.DockStyle.Right;
+            this.listViewAnfragen.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.listViewAnfragen.FullRowSelect = true;
+            this.listViewAnfragen.Location = new System.Drawing.Point(981, 0);
+            this.listViewAnfragen.Name = "listViewAnfragen";
+            this.listViewAnfragen.Size = new System.Drawing.Size(575, 1015);
+            this.listViewAnfragen.TabIndex = 0;
+            this.listViewAnfragen.UseCompatibleStateImageBehavior = false;
+            this.listViewAnfragen.View = System.Windows.Forms.View.Details;
+            // 
+            // columnHeader45
+            // 
+            this.columnHeader45.Text = "FormularID";
+            this.columnHeader45.Width = 100;
+            // 
+            // columnHeader48
+            // 
+            this.columnHeader48.Text = "Datum";
+            this.columnHeader48.Width = 100;
+            // 
+            // columnHeader84
+            // 
+            this.columnHeader84.Text = "Art";
+            this.columnHeader84.Width = 120;
+            // 
+            // columnHeader85
+            // 
+            this.columnHeader85.Text = "Name";
+            this.columnHeader85.Width = 250;
+            // 
+            // label68
+            // 
+            this.label68.AutoSize = true;
+            this.label68.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label68.Location = new System.Drawing.Point(15, 981);
+            this.label68.Name = "label68";
+            this.label68.Size = new System.Drawing.Size(613, 21);
+            this.label68.TabIndex = 1;
+            this.label68.Text = "Bestellungen können direkt übernommen werden! (Rechtsklick - Übernehmen)";
+            // 
+            // cbsAnfragen
+            // 
+            this.cbsAnfragen.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.bestellungÜbernehmenToolStripMenuItem});
+            this.cbsAnfragen.Name = "cbsAnfragen";
+            this.cbsAnfragen.Size = new System.Drawing.Size(201, 26);
+            // 
+            // bestellungÜbernehmenToolStripMenuItem
+            // 
+            this.bestellungÜbernehmenToolStripMenuItem.Name = "bestellungÜbernehmenToolStripMenuItem";
+            this.bestellungÜbernehmenToolStripMenuItem.Size = new System.Drawing.Size(200, 22);
+            this.bestellungÜbernehmenToolStripMenuItem.Text = "Bestellung übernehmen";
+            this.bestellungÜbernehmenToolStripMenuItem.Click += new System.EventHandler(this.bestellungÜbernehmenToolStripMenuItem_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1761, 1061);
+            this.Controls.Add(this.panelAnfragen);
+            this.Controls.Add(this.panelKunden);
+            this.Controls.Add(this.panelBestellungen);
+            this.Controls.Add(this.panelTermine);
+            this.Controls.Add(this.panelRechnungNeu);
+            this.Controls.Add(this.btRechnungNeu);
             this.Controls.Add(this.panelRechnungen);
             this.Controls.Add(this.panelArtikel);
             this.Controls.Add(this.panelBenutzer);
             this.Controls.Add(this.panelUnterMenu);
             this.Controls.Add(this.panelNews);
-            this.Controls.Add(this.panel4);
+            this.Controls.Add(this.panelUnten);
             this.Controls.Add(this.btBenutzer);
             this.Controls.Add(this.btFirmendaten);
             this.Controls.Add(this.listViewLoginDaten);
-            this.Controls.Add(this.panel2);
-            this.Controls.Add(this.panel1);
+            this.Controls.Add(this.panelOben);
+            this.Controls.Add(this.panelLinks);
             this.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -2060,10 +3288,10 @@
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.MouseEnter += new System.EventHandler(this.Form1_MouseEnter);
-            this.panel1.ResumeLayout(false);
-            this.panel3.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            this.panel2.ResumeLayout(false);
+            this.panelLinks.ResumeLayout(false);
+            this.panelMenü.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pbLogoHome)).EndInit();
+            this.panelOben.ResumeLayout(false);
             this.panelBenutzer.ResumeLayout(false);
             this.panelBenutzer.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbPasswort)).EndInit();
@@ -2071,20 +3299,31 @@
             this.panelFirmendaten.PerformLayout();
             this.panelArtikel.ResumeLayout(false);
             this.panelArtikel.PerformLayout();
-            this.panelNews.ResumeLayout(false);
-            this.panelNews.PerformLayout();
             this.panelArtikelInfo.ResumeLayout(false);
             this.panelArtikelInfo.PerformLayout();
+            this.panelNews.ResumeLayout(false);
+            this.panelNews.PerformLayout();
             this.panelRechnungen.ResumeLayout(false);
             this.panelRechnungen.PerformLayout();
+            this.panelRechnungNeu.ResumeLayout(false);
+            this.panelRechnungNeu.PerformLayout();
+            this.panelTermine.ResumeLayout(false);
+            this.panelTermine.PerformLayout();
+            this.panelBestellungen.ResumeLayout(false);
+            this.panelBestellungen.PerformLayout();
+            this.panelKunden.ResumeLayout(false);
+            this.panelKunden.PerformLayout();
+            this.panelAnfragen.ResumeLayout(false);
+            this.panelAnfragen.PerformLayout();
+            this.cbsAnfragen.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Panel panelLinks;
+        private System.Windows.Forms.Panel panelOben;
         private System.Windows.Forms.Button btHome;
         private System.Windows.Forms.Button btEinstellungen;
         private System.Windows.Forms.Button btLieferanten;
@@ -2093,12 +3332,12 @@
         private System.Windows.Forms.Button btRechnungen;
         private System.Windows.Forms.Panel panelAuswahl;
         private System.Windows.Forms.Button btBeenden;
-        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.PictureBox pbLogoHome;
         private System.Windows.Forms.ColumnHeader columnHeader1;
         private System.Windows.Forms.ColumnHeader columnHeader2;
         private System.Windows.Forms.ColumnHeader columnHeader3;
         internal System.Windows.Forms.ListView listViewLoginDaten;
-        private System.Windows.Forms.Panel panel3;
+        private System.Windows.Forms.Panel panelMenü;
         private System.Windows.Forms.Button btAnfragen;
         private System.Windows.Forms.Button btTermine;
         private System.Windows.Forms.Button btNews;
@@ -2106,7 +3345,7 @@
         private System.Windows.Forms.Button btFirmendaten;
         private System.Windows.Forms.Button btBenutzer;
         private System.Windows.Forms.Panel panelMenuUnten;
-        private System.Windows.Forms.Panel panel4;
+        private System.Windows.Forms.Panel panelUnten;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Panel panelUnterMenu;
         private System.Windows.Forms.ColumnHeader columnHeader4;
@@ -2226,12 +3465,12 @@
         private System.Windows.Forms.ColumnHeader columnHeader33;
         private System.Windows.Forms.ColumnHeader columnHeader34;
         private System.Windows.Forms.Button btRechnungSuchen;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox txtRechnungSuche;
         private System.Windows.Forms.Label label29;
         private System.Windows.Forms.DateTimePicker dtpRechnungBezahlt;
         private System.Windows.Forms.CheckBox cbRechnungBezahlt;
         private System.Windows.Forms.TextBox txtRechnungKunde;
-        private System.Windows.Forms.TextBox txtBestellungID;
+        private System.Windows.Forms.TextBox txtRechnungenBestellungID;
         private System.Windows.Forms.TextBox txtRechnungID;
         private System.Windows.Forms.Label label35;
         private System.Windows.Forms.Label label34;
@@ -2239,12 +3478,6 @@
         private System.Windows.Forms.Label label32;
         private System.Windows.Forms.Label label31;
         private System.Windows.Forms.Label label30;
-        private System.Windows.Forms.ListView listView1;
-        private System.Windows.Forms.ColumnHeader columnHeader44;
-        private System.Windows.Forms.ColumnHeader columnHeader45;
-        private System.Windows.Forms.ColumnHeader columnHeader46;
-        private System.Windows.Forms.ColumnHeader columnHeader47;
-        private System.Windows.Forms.ColumnHeader columnHeader48;
         private System.Windows.Forms.ListView listViewRechnungSuche;
         private System.Windows.Forms.ColumnHeader columnHeader35;
         private System.Windows.Forms.ColumnHeader columnHeader36;
@@ -2259,6 +3492,128 @@
         private System.Windows.Forms.Label label36;
         private System.Windows.Forms.Button btRechnungSpeichern;
         private System.Windows.Forms.Label label39;
+        private System.Windows.Forms.Button btRechnungNeu;
+        private System.Windows.Forms.Panel panelRechnungNeu;
+        private System.Windows.Forms.Label label43;
+        private System.Windows.Forms.DateTimePicker dtpRechnungNeu;
+        private System.Windows.Forms.ComboBox cbKundeRechnungNeu;
+        private System.Windows.Forms.Label label42;
+        private System.Windows.Forms.ComboBox cbBestellungRechnungNeu;
+        private System.Windows.Forms.Label label41;
+        private System.Windows.Forms.Label label40;
+        private System.Windows.Forms.ListView listViewRechnungNeuArtikel;
+        private System.Windows.Forms.ColumnHeader columnHeader39;
+        private System.Windows.Forms.ColumnHeader columnHeader40;
+        private System.Windows.Forms.ColumnHeader columnHeader41;
+        private System.Windows.Forms.ColumnHeader columnHeader42;
+        private System.Windows.Forms.ColumnHeader columnHeader43;
+        private System.Windows.Forms.TextBox txtRechnungNeuBrutto;
+        private System.Windows.Forms.Label label44;
+        private System.Windows.Forms.TextBox txtRechnungNeuUst;
+        private System.Windows.Forms.Label label45;
+        private System.Windows.Forms.TextBox txtRechnungNeuNetto;
+        private System.Windows.Forms.Label label46;
+        private System.Windows.Forms.Label label47;
+        private System.Windows.Forms.Button btRechnungNeuWordErstellen;
+        private System.Windows.Forms.DateTimePicker dateTimePicker1;
+        private System.Windows.Forms.CheckBox cbRechnungNeuBezahlt;
+        private System.Windows.Forms.Button btRechnungNeuSpeichern;
+        private System.Windows.Forms.Panel panelTermine;
+        private System.Windows.Forms.ListView listViewTermine;
+        private System.Windows.Forms.ColumnHeader columnHeader49;
+        private System.Windows.Forms.ColumnHeader columnHeader50;
+        private System.Windows.Forms.ColumnHeader columnHeader51;
+        private System.Windows.Forms.ColumnHeader columnHeader52;
+        private System.Windows.Forms.ColumnHeader columnHeader54;
+        private System.Windows.Forms.ColumnHeader columnHeader56;
+        private System.Windows.Forms.Label label53;
+        private System.Windows.Forms.DateTimePicker dtpTermineZeitBis;
+        private System.Windows.Forms.DateTimePicker dtpTermineZeitVon;
+        private System.Windows.Forms.Label label54;
+        private System.Windows.Forms.Label label52;
+        private System.Windows.Forms.DateTimePicker dtpTerminDatumBis;
+        private System.Windows.Forms.DateTimePicker dtpTerminDatumVon;
+        private System.Windows.Forms.Label label51;
+        private System.Windows.Forms.TextBox txtTerminBeschreibung;
+        private System.Windows.Forms.Label label50;
+        private System.Windows.Forms.TextBox txtTerminTitel;
+        private System.Windows.Forms.Label label49;
+        private System.Windows.Forms.TextBox txtTerminID;
+        private System.Windows.Forms.Label label48;
+        private System.Windows.Forms.Button btTerminLöschen;
+        private System.Windows.Forms.Button btTerminSpeichern;
+        private System.Windows.Forms.Button btTerminNeu;
+        private System.Windows.Forms.Panel panelBestellungen;
+        private System.Windows.Forms.ListView listViewBestellungen;
+        private System.Windows.Forms.ColumnHeader columnHeader53;
+        private System.Windows.Forms.ColumnHeader columnHeader55;
+        private System.Windows.Forms.ColumnHeader columnHeader57;
+        private System.Windows.Forms.ColumnHeader columnHeader58;
+        private System.Windows.Forms.TextBox txtBestellungID;
+        private System.Windows.Forms.Label label55;
+        private System.Windows.Forms.ListView listViewBestellungArtikelAlle;
+        private System.Windows.Forms.ColumnHeader columnHeader59;
+        private System.Windows.Forms.ColumnHeader columnHeader60;
+        private System.Windows.Forms.ColumnHeader columnHeader61;
+        private System.Windows.Forms.ColumnHeader columnHeader62;
+        private System.Windows.Forms.ColumnHeader columnHeader65;
+        private System.Windows.Forms.ColumnHeader columnHeader66;
+        private System.Windows.Forms.Label label58;
+        private System.Windows.Forms.ComboBox cbBestellungenKunde;
+        private System.Windows.Forms.DateTimePicker dtpBestellungenLieferdatum;
+        private System.Windows.Forms.Label label57;
+        private System.Windows.Forms.Label label56;
+        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ColumnHeader columnHeader63;
+        private System.Windows.Forms.Button btBestellungSpeichern;
+        private System.Windows.Forms.ListView listViewBestellungenArtikelGewählt;
+        private System.Windows.Forms.ColumnHeader columnHeader73;
+        private System.Windows.Forms.ColumnHeader columnHeader74;
+        private System.Windows.Forms.ColumnHeader columnHeader75;
+        private System.Windows.Forms.ColumnHeader columnHeader76;
+        private System.Windows.Forms.ColumnHeader columnHeader64;
+        private System.Windows.Forms.Panel panelKunden;
+        private System.Windows.Forms.ListView listViewKunden;
+        private System.Windows.Forms.ColumnHeader columnHeader67;
+        private System.Windows.Forms.ColumnHeader columnHeader68;
+        private System.Windows.Forms.ColumnHeader columnHeader69;
+        private System.Windows.Forms.ColumnHeader columnHeader70;
+        private System.Windows.Forms.ColumnHeader columnHeader71;
+        private System.Windows.Forms.ColumnHeader columnHeader72;
+        private System.Windows.Forms.ColumnHeader columnHeader77;
+        private System.Windows.Forms.ColumnHeader columnHeader78;
+        private System.Windows.Forms.ColumnHeader columnHeader79;
+        private System.Windows.Forms.ColumnHeader columnHeader80;
+        private System.Windows.Forms.Button btKundenLöschen;
+        private System.Windows.Forms.Button btKundenSpeichern;
+        private System.Windows.Forms.ComboBox cbKundenOrt;
+        private System.Windows.Forms.Label label67;
+        private System.Windows.Forms.TextBox txtKundenPLZ;
+        private System.Windows.Forms.Label label66;
+        private System.Windows.Forms.TextBox txtKundenStrasse;
+        private System.Windows.Forms.Label label65;
+        private System.Windows.Forms.TextBox txtKudenEmail;
+        private System.Windows.Forms.Label label64;
+        private System.Windows.Forms.TextBox txtKundenTelefonnummer;
+        private System.Windows.Forms.Label label63;
+        private System.Windows.Forms.TextBox txtKundenFirma;
+        private System.Windows.Forms.Label label62;
+        private System.Windows.Forms.TextBox txtKundenNachname;
+        private System.Windows.Forms.Label label61;
+        private System.Windows.Forms.ComboBox cbKundenAnrede;
+        private System.Windows.Forms.TextBox txtKundenVorname;
+        private System.Windows.Forms.Label label60;
+        private System.Windows.Forms.TextBox txtKundenID;
+        private System.Windows.Forms.Label label59;
+        private System.Windows.Forms.Panel panelAnfragen;
+        private System.Windows.Forms.ListView listViewAnfragen;
+        private System.Windows.Forms.ColumnHeader columnHeader45;
+        private System.Windows.Forms.ColumnHeader columnHeader48;
+        private System.Windows.Forms.ColumnHeader columnHeader84;
+        private System.Windows.Forms.ColumnHeader columnHeader85;
+        private System.Windows.Forms.Label label68;
+        private System.Windows.Forms.ContextMenuStrip cbsAnfragen;
+        private System.Windows.Forms.ToolStripMenuItem bestellungÜbernehmenToolStripMenuItem;
     }
 }
 

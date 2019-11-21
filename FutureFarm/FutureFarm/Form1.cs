@@ -13,6 +13,9 @@ using RestSharp;
 using System.Diagnostics;
 using Common.Models;
 using RestSharp.Authenticators;
+using Word = Microsoft.Office.Interop.Word;
+using System.Reflection;
+
 
 namespace FutureFarm
 {
@@ -42,6 +45,7 @@ namespace FutureFarm
         Artikel aktArtikel;
         public bool reset=false;
         internal string angBenutzer;
+        internal string rechnungNeuKunde;
         
 
         private void btHome_Click(object sender, EventArgs e)
@@ -203,13 +207,27 @@ namespace FutureFarm
                 lvItem.SubItems.Add(a.Reserviert.ToString());
                 lvItem.SubItems.Add(a.Aktiv.ToString());
 
-                if(alle==false)
+
+
+                if (alle==false)
                 {
                     if (a.Aktiv == true)
+                    {
                         listViewArtikel.Items.Add(lvItem);
+                    }
                 }
                 else
+                {
                     listViewArtikel.Items.Add(lvItem);
+                }
+            }
+
+            for(int i=0; i<listViewArtikel.Items.Count;i++)
+            {
+                if (listViewArtikel.Items[i].SubItems[8].Text.Equals("True"))
+                    listViewArtikel.Items[i].BackColor = Color.White;
+                else
+                    listViewArtikel.Items[i].BackColor = Color.LightGray;
             }
 
         }
@@ -244,6 +262,42 @@ namespace FutureFarm
             panelAuswahl.Height = btKunden.Height;
             panelAuswahl.Top = btKunden.Top;
             panelsDeaktivieren();
+
+            panelKunden.Visible = true;
+            panelKunden.Dock = DockStyle.Fill;
+
+            KundenEinlesen();
+        }
+
+        private void KundenEinlesen()
+        {
+            listViewKunden.Items.Clear();
+            //API Client
+            var client = new RestClient("http://localhost:8888")
+            {
+                Authenticator = new HttpBasicAuthenticator("demo", "demo")
+            };
+            var request = new RestRequest("kunden", Method.GET);
+            request.AddHeader("Content-Type", "application/json");
+            var response = client.Execute<List<Kunden>>(request);
+
+            foreach (Kunden k in response.Data)
+            {
+                //MessageBox.Show(l.Benutzername.ToString());
+                lvItem = new ListViewItem(k.KundenID.ToString());
+                lvItem.SubItems.Add(k.Anrede.ToString());
+                lvItem.SubItems.Add(k.Vorname.ToString());
+                lvItem.SubItems.Add(k.Nachname.ToString());
+                lvItem.SubItems.Add(k.Firma.ToString());
+                lvItem.SubItems.Add(k.Telefonnummer.ToString());
+                lvItem.SubItems.Add(k.Email.ToString());
+                lvItem.SubItems.Add(k.Strasse.ToString());
+                lvItem.SubItems.Add(k.Postleitzahl.PLZ.ToString());
+                lvItem.SubItems.Add(k.Aktiv.ToString());
+                
+                listViewKunden.Items.Add(lvItem);
+            }
+
         }
 
         private void btLogin_Click(object sender, EventArgs e)
@@ -284,7 +338,7 @@ namespace FutureFarm
         public void Einloggen()
         {
             //Benutzer die eingelesen sind löschen
-            listViewPanelBenutzerLogin.Items.Clear();
+            listViewLoginDaten.Items.Clear();
 
             //Benutzer neu aus DB holen
             BenutzerEinlesen();
@@ -467,6 +521,18 @@ namespace FutureFarm
         {
             panelAuswahl.Top = btRechnungen.Top;
             umenu();
+
+
+            //Unterauswahl anzeigen
+            btRechnungNeu.Location = new Point(Convert.ToInt16(weite * 0.1), (pbLogoHome.Height + (btHome.Height * 1)));
+            btRechnungNeu.Visible = true;
+            btRechnungNeu.Height = btRechnungen.Height;
+            btRechnungNeu.BringToFront();
+            panelUnterMenu.BringToFront();
+            panelUnterMenu.Height = btRechnungNeu.Height;
+            panelUnterMenu.Visible = false;
+
+
         }
 
         private void btHome_MouseEnter(object sender, EventArgs e)
@@ -522,8 +588,8 @@ namespace FutureFarm
             panelAuswahl.Top = btEinstellungen.Top;
 
             //Unterauswahl anzeigen
-            btFirmendaten.Location = new Point(Convert.ToInt16(weite * 0.1), (pictureBox1.Height + (btHome.Height * 9)));
-            btBenutzer.Location = new Point(Convert.ToInt16(weite * 0.1), Convert.ToInt16((pictureBox1.Height + (btHome.Height * 9.5))));
+            btFirmendaten.Location = new Point(Convert.ToInt16(weite * 0.1), (pbLogoHome.Height + (btHome.Height * 9)));
+            btBenutzer.Location = new Point(Convert.ToInt16(weite * 0.1), Convert.ToInt16((pbLogoHome.Height + (btHome.Height * 9.5))));
             btFirmendaten.Visible = true;
             btBenutzer.Visible = true;
             btFirmendaten.BringToFront();
@@ -538,6 +604,7 @@ namespace FutureFarm
         {
             btFirmendaten.Visible = false;
             btBenutzer.Visible = false;
+            btRechnungNeu.Visible = false;
             panelUnterMenu.Visible = false;
         }
 
@@ -561,19 +628,19 @@ namespace FutureFarm
         private void MenuErstellen()
         {
             int anzahlTasks = 10;
-            int menuHöhe = Convert.ToInt16(höhe - pictureBox1.Height);
+            int menuHöhe = Convert.ToInt16(höhe - pbLogoHome.Height);
             int menuWeite = Convert.ToInt16(weite * 0.10);
 
-            panel1.Width = menuWeite;
-            panel1.Height = Convert.ToInt16(höhe);
+            panelLinks.Width = menuWeite;
+            panelLinks.Height = Convert.ToInt16(höhe);
 
-            panel3.Width = menuWeite;
-            panel3.Height = menuHöhe;
+            panelMenü.Width = menuWeite;
+            panelMenü.Height = menuHöhe;
 
             int btHöhe = Convert.ToInt16(menuHöhe / anzahlTasks);
             int btWeite = Convert.ToInt16(menuWeite - 10);
             int btPositionX = 10;
-            int btPositionY = Convert.ToInt16(pictureBox1.Height);
+            int btPositionY = Convert.ToInt16(pbLogoHome.Height);
 
             //Button Höhe und Weite
             btHome.Height = btHöhe;
@@ -669,6 +736,10 @@ namespace FutureFarm
             panelFirmendaten.Visible = false;
             panelArtikel.Visible = false;
             panelRechnungen.Visible = false;
+            panelRechnungNeu.Visible = false;
+            panelBestellungen.Visible = false;
+            panelKunden.Visible = false;
+            panelAnfragen.Visible = false;
 
             //if (LogIn == true)
             //{
@@ -682,11 +753,112 @@ namespace FutureFarm
         private void btAnfragen_Click(object sender, EventArgs e)
         {
             panelsDeaktivieren();
+
+            panelAnfragen.Visible = true;
+            panelAnfragen.BringToFront();
+
+            AnfragenEinlesen();
+        }
+
+        private void AnfragenEinlesen()
+        {
+            listViewAnfragen.Items.Clear();
+            //Client für API
+            var client = new RestClient("http://localhost:8888")
+            {
+                Authenticator = new HttpBasicAuthenticator("demo", "demo")
+            };
+            var request = new RestRequest("formulare", Method.GET);
+            request.AddHeader("Content-Type", "application/json");
+            var response = client.Execute<List<Formular>>(request);
+
+            foreach (Formular f in response.Data)
+            {
+                lvItem = new ListViewItem(f.FormularID.ToString());
+                lvItem.SubItems.Add(f.Datum.ToShortDateString());
+                lvItem.SubItems.Add(f.Art.Bezeichnung.ToString());
+                lvItem.SubItems.Add(f.Nachname + " " + f.Vorname).ToString();
+
+                listViewAnfragen.Items.Add(lvItem);
+            }
+
+            for (int i = 0; i < listViewAnfragen.Items.Count; i++)
+            {
+                if (listViewAnfragen.Items[i].SubItems[2].Text.Equals("Kontakt"))
+                    listViewAnfragen.Items[i].BackColor = Color.LightBlue;
+                else
+                    listViewAnfragen.Items[i].BackColor = Color.White;
+            }
+
         }
 
         private void btBestellungen_Click(object sender, EventArgs e)
         {
             panelsDeaktivieren();
+
+            panelBestellungen.Visible = true;
+            panelBestellungen.Dock = DockStyle.Fill;
+
+            BestellungenEinlesen();
+            BestellungenArtikelEinlesen();
+        }
+
+        private void BestellungenArtikelEinlesen()
+        {
+            listViewBestellungArtikelAlle.Items.Clear();
+            //Client für API
+            var client = new RestClient("http://localhost:8888")
+            {
+                Authenticator = new HttpBasicAuthenticator("demo", "demo")
+            };
+            var request = new RestRequest("artikel", Method.GET);
+            request.AddHeader("Content-Type", "application/json");
+            var response = client.Execute<List<Artikel>>(request);
+
+            foreach (Artikel a in response.Data)
+            {
+                lvItem = new ListViewItem(a.ArtikelID.ToString());
+                lvItem.SubItems.Add(a.Bezeichnung.ToString());
+                lvItem.SubItems.Add(a.PreisNetto.ToString());
+                lvItem.SubItems.Add(a.Lagerstand.ToString());
+                lvItem.SubItems.Add(a.Reserviert.ToString());
+                lvItem.SubItems.Add(a.ExterneID.ToString());
+                lvItem.SubItems.Add(a.Aktiv.ToString());
+
+                listViewBestellungArtikelAlle.Items.Add(lvItem);
+            }
+
+            for (int i = 0; i < listViewBestellungArtikelAlle.Items.Count; i++)
+            {
+                if (listViewBestellungArtikelAlle.Items[i].SubItems[6].Text.Equals("True"))
+                    listViewBestellungArtikelAlle.Items[i].BackColor = Color.White;
+                else
+                    listViewBestellungArtikelAlle.Items[i].BackColor = Color.LightGray;
+            }
+
+        }
+
+        private void BestellungenEinlesen()
+        {
+            listViewBestellungen.Items.Clear();
+            //API Client
+            var client = new RestClient("http://localhost:8888")
+            {
+                Authenticator = new HttpBasicAuthenticator("demo", "demo")
+            };
+            var request = new RestRequest("bestellungen", Method.GET);
+            request.AddHeader("Content-Type", "application/json");
+            var response = client.Execute<List<Bestellung>>(request);
+
+            foreach (Bestellung b in response.Data)
+            {
+                lvItem = new ListViewItem(b.BestellungID.ToString());
+                lvItem.SubItems.Add(b.Status.ToString());
+                lvItem.SubItems.Add(b.Lieferdatum.ToString("dd.MM.yyyy"));
+                lvItem.SubItems.Add(b.Kunde.KundenID.ToString());
+                listViewBestellungen.Items.Add(lvItem);
+            }
+
         }
 
         private void btNews_Click(object sender, EventArgs e)
@@ -733,11 +905,54 @@ namespace FutureFarm
 
 
         private void btTermine_Click(object sender, EventArgs e)
+        {
+            panelsDeaktivieren();
+            panelTermine.Visible = true;
+            panelTermine.BringToFront();
+
+            dtpTermineZeitVon.CustomFormat = "HH:mm";
+            dtpTermineZeitVon.Format = DateTimePickerFormat.Custom;
+            dtpTermineZeitVon.ShowUpDown = true;
+            dtpTermineZeitBis.CustomFormat = "HH:mm";
+            dtpTermineZeitBis.Format = DateTimePickerFormat.Custom;
+            dtpTermineZeitBis.ShowUpDown = true;
+
+            TermineEinlesen();
+        }
+
+        private void TermineEinlesen()
+        {
+            listViewTermine.Items.Clear();
+            //API Client
+            var client = new RestClient("http://localhost:8888")
             {
-                panelsDeaktivieren();
+                Authenticator = new HttpBasicAuthenticator("demo", "demo")
+            };
+            var request = new RestRequest("termine", Method.GET);
+            request.AddHeader("Content-Type", "application/json");
+            var response = client.Execute<List<Termine>>(request);
+
+            foreach (Termine t in response.Data)
+            {
+                //MessageBox.Show(a.Bezeichnung.ToString());
+                lvItem = new ListViewItem(t.TerminID.ToString());
+                lvItem.SubItems.Add(t.Titel.ToString());
+                lvItem.SubItems.Add(t.Beschreibung.ToString());
+                DateTime datumVon = Convert.ToDateTime(t.DatumVon);
+                DateTime datumBis = Convert.ToDateTime(t.DatumBis);
+                DateTime uhrzeitVon = Convert.ToDateTime(t.UhrzeitVon);
+                DateTime uhrzeitBis = Convert.ToDateTime(t.UhrzeitBis);
+                lvItem.SubItems.Add(datumVon.ToShortDateString()+"-"+datumBis.ToShortDateString());
+                lvItem.SubItems.Add(uhrzeitVon.ToShortTimeString()+"-"+uhrzeitBis.ToShortTimeString());
+                lvItem.SubItems.Add(t.Login.BenutzernameID.ToString());
+                listViewTermine.Items.Add(lvItem);
             }
 
-            private void listViewPanelBenutzerLogin_SelectedIndexChanged(object sender, EventArgs e)
+        }
+
+
+
+        private void listViewPanelBenutzerLogin_SelectedIndexChanged(object sender, EventArgs e)
             {
                 if (listViewPanelBenutzerLogin.SelectedItems.Count == 0)
                 {
@@ -1070,10 +1285,6 @@ namespace FutureFarm
                 }
                 lvItem = listViewArtikel.SelectedItems[0];
 
-                for(int i=0; i<lvItem.SubItems.Count;i++)
-            {
-                MessageBox.Show(lvItem.SubItems[i].Text);
-            }
 
                 txtArtikelArtikelID.Text = lvItem.SubItems[0].Text;
                 txtArtikelExterneID.Text = lvItem.SubItems[1].Text;
@@ -1365,7 +1576,7 @@ namespace FutureFarm
                 aktArtikel.Reserviert = Convert.ToInt16(txtArtikelReserviert.Text);
                 aktArtikel.PreisNetto = Convert.ToDouble(txtArtikelNettopreis.Text);
                 aktArtikel.Ust = Convert.ToDouble(txtArtikelUST.Text);
-                aktArtikel.Aktiv = Convert.ToBoolean(checkboxArtikelAktiv.Text);
+                aktArtikel.Aktiv = Convert.ToBoolean(checkboxArtikelAktiv.Checked);
                 aktArtikel.ArtikelID = Convert.ToInt32(txtArtikelArtikelID.Text);
                 aktArtikel.Bild = "";
 
@@ -1383,7 +1594,6 @@ namespace FutureFarm
                 {
                     MessageBox.Show("Erfolgreich Artikel geändert!");
                     ArtikelEinlesen();
-                    btArtikelSpeichern.Enabled = false;
                 }
 
             }
@@ -1434,33 +1644,35 @@ namespace FutureFarm
 
         private void btArtikelLöschen_Click(object sender, EventArgs e)
         {
-            var client = new RestClient("http://localhost:8888")
-            {
-                Authenticator = new HttpBasicAuthenticator("demo", "demo")
-            };
+            MessageBox.Show("Löschen: Aktiv ist inaktiv");
 
-            if (listViewArtikel.SelectedItems.Count==0)
-            {
-                MessageBox.Show("Wählen Sie einen Artikel aus!");
-                return;
-            }
-            lvItem = listViewArtikel.SelectedItems[0];
-            Artikel artikel = new Artikel();
-            artikel.ArtikelID = Convert.ToInt32(lvItem.SubItems[0].Text);
-            var request = new RestRequest("artikel/{id}", Method.DELETE);
-            request.AddUrlSegment("id", artikel.ArtikelID.ToString());
-            request.AddHeader("Content-Type", "application/json");
-            request.AddJsonBody(artikel);
-            var response = client.Execute(request);
-            if (response.StatusCode == System.Net.HttpStatusCode.BadRequest)
-            {
-                MessageBox.Show("An Error occured", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            else
-            {
-                MessageBox.Show("Erfolgreich gelöscht");
-                ArtikelEinlesen();
-            }
+            //var client = new RestClient("http://localhost:8888")
+            //{
+            //    Authenticator = new HttpBasicAuthenticator("demo", "demo")
+            //};
+
+            //if (listViewArtikel.SelectedItems.Count==0)
+            //{
+            //    MessageBox.Show("Wählen Sie einen Artikel aus!");
+            //    return;
+            //}
+            //lvItem = listViewArtikel.SelectedItems[0];
+            //Artikel artikel = new Artikel();
+            //artikel.ArtikelID = Convert.ToInt32(lvItem.SubItems[0].Text);
+            //var request = new RestRequest("artikel/{id}", Method.DELETE);
+            //request.AddUrlSegment("id", artikel.ArtikelID.ToString());
+            //request.AddHeader("Content-Type", "application/json");
+            //request.AddJsonBody(artikel);
+            //var response = client.Execute(request);
+            //if (response.StatusCode == System.Net.HttpStatusCode.BadRequest)
+            //{
+            //    MessageBox.Show("An Error occured", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            //}
+            //else
+            //{
+            //    MessageBox.Show("Erfolgreich gelöscht");
+            //    ArtikelEinlesen();
+            //}
 
         }
 
@@ -1603,12 +1815,392 @@ namespace FutureFarm
 
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
-            RechnungSuchen();
+            RechnungSuchen(txtRechnungSuche.Text);
         }
 
-        private void RechnungSuchen()
+        private void RechnungSuchen(string suchtext)
+        {
+            try
+            {
+                listViewRechnungSuche.Items.Clear();
+                if (suchtext.Equals(""))
+                {
+                    RechnungSucheEinlesen();
+                }
+                else
+                {
+                    //if
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
+        }
+
+        private void btRechnungNeu_MouseEnter(object sender, EventArgs e)
+        {
+            panelUnterMenu.Visible = true;
+            panelUnterMenu.Location = btRechnungNeu.Location;
+        }
+
+        private void btRechnungNeu_Click(object sender, EventArgs e)
+        {
+            panelsDeaktivieren();
+            btRechnungNeu.Visible = false;
+            panelUnterMenu.Visible = false;
+
+            panelRechnungNeu.Visible = true;
+            panelRechnungNeu.Dock = DockStyle.Fill;
+
+            ComboRechnungNeuKundenEinlesen();
+            
+        }
+
+        private void ComboRechnungNeuKundenEinlesen()
+        {
+            cbKundeRechnungNeu.Items.Clear();
+            //Client für API
+            var client = new RestClient("http://localhost:8888")
+            {
+                Authenticator = new HttpBasicAuthenticator("demo", "demo")
+            };
+            var request = new RestRequest("kunden", Method.GET);
+            request.AddHeader("Content-Type", "application/json");
+            var response = client.Execute<List<Kunden>>(request);
+
+            foreach (Kunden k in response.Data)
+            {
+                cbKundeRechnungNeu.Items.Add(k.KundenID+" "+k.Nachname+" "+k.Vorname+", "+k.Postleitzahl.PLZ);
+            }
+
+        }
+
+        private void ComboRechnungNeuBestellungenEinlesen()
+        {
+            cbBestellungRechnungNeu.Items.Clear();
+            //Client für API
+            var client = new RestClient("http://localhost:8888")
+            {
+                Authenticator = new HttpBasicAuthenticator("demo", "demo")
+            };
+            var request = new RestRequest("bestellungen", Method.GET);
+            request.AddHeader("Content-Type", "application/json");
+            var response = client.Execute<List<Bestellung>>(request);
+
+            cbBestellungRechnungNeu.Items.Add("Bestellung erstellen...");
+            foreach (Bestellung b in response.Data)
+            {
+                if (b.Kunde.KundenID.ToString().Equals(rechnungNeuKunde))
+                cbBestellungRechnungNeu.Items.Add(b.BestellungID+" | Status: "+b.Status);
+            }
+
+        }
+
+        private void cbKundeRechnungNeu_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            rechnungNeuKunde = "77";
+            ComboRechnungNeuBestellungenEinlesen();
+
+        }
+
+        private void cbBestellungRechnungNeu_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if(cbBestellungRechnungNeu.Text.Equals("Bestellung erstellen..."))
+            {
+                //panelBestellung.Visible = true;
+                //panelBestellung.BringToFront();
+                MessageBox.Show("Neue Bestellung erstellen");
+
+                FrmWarnung fw = new FrmWarnung();
+                fw.lbText.Text="Wollen Sie eine neue Bestellung erstellen?";
+                fw.ShowDialog();
+                if (fw.weiter == true)
+                {
+                    //panelBestellung.Visible = 0;
+                    //panelBestellung.BringToFront();
+                }
+
+            }
+            else
+            {
+                string BestellungID = cbBestellungRechnungNeu.Text.Substring(0, cbBestellungRechnungNeu.Text.IndexOf(" "));
+                double ustSumme = 0;
+                double nettoSumme = 0;
+                int anzahlArtikel = 0;
+
+                //Client für API
+                var client = new RestClient("http://localhost:8888")
+                {
+                    Authenticator = new HttpBasicAuthenticator("demo", "demo")
+                };
+                var request = new RestRequest("bestellungartikel", Method.GET);
+                request.AddHeader("Content-Type", "application/json");
+                var response = client.Execute<List<BestellungArtikel>>(request);
+
+                foreach (BestellungArtikel b in response.Data)
+                {
+                    if (b.Bestellung.BestellungID.ToString().Equals(BestellungID))
+                    {
+                        lvItem = new ListViewItem(b.Artikel.ArtikelID.ToString());
+                        lvItem.SubItems.Add(b.Artikel.Bezeichnung);
+                        lvItem.SubItems.Add(b.Menge.ToString());
+                        lvItem.SubItems.Add(b.Nettopreis.ToString());
+                        lvItem.SubItems.Add(b.Ust.ToString());
+
+                        listViewRechnungNeuArtikel.Items.Add(lvItem);
+
+                        ustSumme += Math.Round(Convert.ToDouble(b.Ust / 100 * b.Nettopreis), 2);
+                        nettoSumme += Math.Round(Convert.ToDouble(b.Nettopreis), 2);
+                        anzahlArtikel++;
+                    }
+                }
+
+                txtRechnungNeuNetto.Text = Math.Round(nettoSumme, 2).ToString("0.00");
+                txtRechnungNeuUst.Text = Math.Round(ustSumme, 2).ToString("0.00");
+                txtRechnungNeuBrutto.Text = (nettoSumme + ustSumme).ToString("0.00");
+
+            }
+
+        }
+
+        private void panelRechnungNeu_MouseEnter(object sender, EventArgs e)
+        {
+            panelUnterMenu.Visible = false;
+            btRechnungNeu.Visible = false;
+        }
+
+        private void btWordErstellen_Click(object sender, EventArgs e)
         {
 
+            ////Word Dokument erstellen
+            //string path = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.FullName;
+            //string vorlage = path + @"\RechnungVorlage.docx";
+            //string speicherort = path + @"\Speiseplan.docx";
+
+            //CreateWordDocument(vorlage, speicherort);
+
+        }
+
+
+        internal void CreateWordDocument(object filename, object saveAs)
+        {
+            Word.Application wordApp = new Word.Application();
+
+            object missing = Missing.Value;
+            Word.Document myWordDoc = null;
+
+            if (File.Exists((string)filename))
+            {
+
+                object readOnly = false;
+                object isVisible = false;
+                wordApp.Visible = false;
+
+
+                myWordDoc = wordApp.Documents.Open(ref filename, ref missing, ref readOnly,
+                    ref missing, ref missing, ref missing,
+                    ref missing, ref missing, ref missing,
+                    ref missing, ref missing, ref missing,
+                    ref missing, ref missing, ref missing, ref missing);
+
+
+                myWordDoc.Activate();
+                wordApp.Visible = false;
+
+                //suche
+                //this.FindAndReplace(wordApp, "<vorMontag>", cbVorMontag.Text);
+                //this.FindAndReplace(wordApp, "<hauptMontag>", cbHauptMontag.Text);
+                //this.FindAndReplace(wordApp, "<nachMontag>", cbNachMontag.Text);
+
+                //this.FindAndReplace(wordApp, "<vorDienstag>", cbVorDienstag.Text);
+                //this.FindAndReplace(wordApp, "<hauptDienstag>", cbHauptDienstag.Text);
+                //this.FindAndReplace(wordApp, "<nachDienstag>", cbNachDienstag.Text);
+
+                //this.FindAndReplace(wordApp, "<vorMittwoch>", cbVorMittwoch.Text);
+                //this.FindAndReplace(wordApp, "<hauptMittwoch>", cbHauptMittwoch.Text);
+                //this.FindAndReplace(wordApp, "<nachMittwoch>", cbNachMittwoch.Text);
+
+                //this.FindAndReplace(wordApp, "<vorDonnerstag>", cbVorDonnerstag.Text);
+                //this.FindAndReplace(wordApp, "<hauptDonnerstag>", cbHauptDonnerstag.Text);
+                //this.FindAndReplace(wordApp, "<nachDonnerstag>", cbNachDonnerstag.Text);
+
+                //this.FindAndReplace(wordApp, "<vorFreitag>", cbVorFreitag.Text);
+                //this.FindAndReplace(wordApp, "<hauptFreitag>", cbHauptFreitag.Text);
+                //this.FindAndReplace(wordApp, "<nachFreitag>", cbNachFreitag.Text);
+
+                //this.FindAndReplace(wordApp, "<datum>", DateTime.Now.ToShortDateString());
+            }
+            else
+            {
+                MessageBox.Show("Dokument konnte nicht gefunden werden");
+            }
+
+            ////Speichern
+            myWordDoc.SaveAs2(ref saveAs, ref missing, ref missing, ref missing,
+                ref missing, ref missing, ref missing,
+                ref missing, ref missing, ref missing,
+                ref missing, ref missing, ref missing);
+
+            DialogResult dialogResult = MessageBox.Show("Rechnung wurde angelegt,\nsoll diese direkt geöffnet werden?", "", MessageBoxButtons.YesNo);
+            if (dialogResult == DialogResult.Yes)
+            {
+                wordApp.Visible = true;
+            }
+            else if (dialogResult == DialogResult.No)
+            {
+                myWordDoc.Close();
+                wordApp.Quit();
+            }
+
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void panelTermine_MouseEnter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void listViewTermine_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (listViewTermine.SelectedItems.Count == 0)
+            {
+                MessageBox.Show("Wählen Sie bitte einen Termin aus!");
+                return;
+            }
+
+            lvItem = listViewTermine.SelectedItems[0];
+
+            txtTerminID.Text = lvItem.SubItems[0].Text;
+            txtTerminTitel.Text = lvItem.SubItems[1].Text;
+            txtTerminBeschreibung.Text = lvItem.SubItems[2].Text;
+
+            //Datum
+            string gesamtesDatum = lvItem.SubItems[3].Text;
+            string datumVor = gesamtesDatum.Substring(0, gesamtesDatum.IndexOf('-'));
+            dtpTerminDatumVon.Value = Convert.ToDateTime(datumVor);
+            string datumNach = gesamtesDatum.Substring(gesamtesDatum.IndexOf('-') + 1, 10);
+            dtpTerminDatumBis.Value = Convert.ToDateTime(datumNach);
+
+            //Uhrzeit
+            string gesamteZeit = lvItem.SubItems[4].Text;
+            string zeitVon = gesamteZeit.Substring(0, gesamteZeit.IndexOf('-'));
+            dtpTermineZeitVon.Value = Convert.ToDateTime(zeitVon);
+            string zeitBis=gesamteZeit.Substring(gesamteZeit.IndexOf('-')+1, 5);
+            dtpTermineZeitBis.Value = Convert.ToDateTime(zeitBis);
+
+
+        }
+
+        private void btTerminNeu_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var client = new RestClient("http://localhost:8888")
+                {
+                    Authenticator = new HttpBasicAuthenticator("demo", "demo")
+                };
+                
+
+                //Artikel erzeugen
+                Termine termin = new Termine();
+                termin.Titel = txtTerminTitel.Text;
+                termin.Beschreibung = txtTerminBeschreibung.Text;
+                //termin.
+
+
+                //    //Artikel hinzufügen
+                //    var request2 = new RestRequest("artikel", Method.POST);
+                //    request2.AddHeader("Content-Type", "application/json");
+                //    request2.AddJsonBody(artikel);
+                //    var response2 = client.Execute(request2);
+                //    if (response2.StatusCode == System.Net.HttpStatusCode.BadRequest)
+                //    {
+                //        MessageBox.Show("An Error occured", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                //    }
+                //    else
+                //    {
+                //        MessageBox.Show("Erfolgreich Artikel hinzugefügt!");
+                //        ArtikelEinlesen();
+                //    }
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Fehler bei der Neuanlage: " + ex.Message);
+            }
+
+        }
+
+        private void listViewBestellungArtikelAlle_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            FrmWarnung fw = new FrmWarnung();
+            if (listViewBestellungArtikelAlle.SelectedItems[0].SubItems[6].Text.Equals("False"))
+            {
+                fw.lbText.Text = "Gewählter Artikel ist inaktiv,\ntrotzdem hinzufügen?";
+                fw.ShowDialog();
+                if(fw.weiter==true)
+                {
+                    //Artikel hinzufügen
+                    //Menge
+                }
+                else
+                {
+                    //Artikel nicht hinzufügen
+                }
+            }
+            else
+            {
+                //Artikel hinzufügen
+            }
+        }
+
+        private void btKundenSpeichern_Click(object sender, EventArgs e)
+        {
+            if(txtKundenID.Text!="")
+            {
+                //Kunde speichern
+            }
+            else
+            {
+                //Kunde neu anlegen
+            }
+        }
+
+        private void btKundenLöschen_Click(object sender, EventArgs e)
+        {
+            if(txtKundenID.Text!="")
+            {
+                //Kunden inaktiv setzen
+
+            }
+            else
+            {
+                MessageBox.Show("Kein Kunde ausgewählt!", "Fehler");
+            }
+        }
+
+        private void listViewKunden_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            lvItem = listViewKunden.SelectedItems[0];
+
+            txtKundenID.Text = lvItem.SubItems[0].Text.ToString();
+            //...
+        }
+
+        private void bestellungÜbernehmenToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (listViewAnfragen.SelectedItems[0].SubItems[2].Text.Equals("Bestellung"))
+            {
+                //Bestellung direkt übernehmen
+            }
+            else
+                MessageBox.Show("Kontaktanfragen können nicht übernommen werden.");
         }
     }
 }
