@@ -70,6 +70,7 @@ namespace FutureFarm
             panelsDeaktivieren();
             panelRechnungen.Visible = true;
             panelRechnungen.Dock = DockStyle.Fill;
+            panelRechnungen.BringToFront();
 
             RechnungenEinlesen();
             RechnungArtikelEinlesen();
@@ -167,8 +168,11 @@ namespace FutureFarm
             panelAuswahl.Height = btArtikel.Height;
             panelAuswahl.Top = btArtikel.Top;
             panelsDeaktivieren();
+
             panelArtikel.Visible = true;
             panelArtikel.Dock = DockStyle.Fill;
+            panelArtikel.BringToFront();
+
             listViewArtikel.Height = Convert.ToInt16(panelArtikel.Height * 0.45);
             panelArtikelInfo.Location = new Point(Convert.ToInt16(panelArtikel.Width * 0.05), Convert.ToInt16(panelArtikel.Height * 0.05));
             lbArtikelFilter.Location = new Point(10, (panelArtikel.Height-listViewArtikel.Height-40));
@@ -255,6 +259,10 @@ namespace FutureFarm
             panelAuswahl.Height = btLieferanten.Height;
             panelAuswahl.Top = btLieferanten.Top;
             panelsDeaktivieren();
+
+            //panelLieferanten.Visible = true;
+            //panelLieferanten.Dock = DockStyle.Fill;
+            //panelLieferanten.BringToFront();
         }
 
         private void btKunden_Click(object sender, EventArgs e)
@@ -265,6 +273,7 @@ namespace FutureFarm
 
             panelKunden.Visible = true;
             panelKunden.Dock = DockStyle.Fill;
+            panelKunden.BringToFront();
 
             KundenEinlesen();
         }
@@ -492,6 +501,7 @@ namespace FutureFarm
             //APIStart();
             GoFullscreen();
             MenuErstellen();
+            panelsDeaktivieren();
 
             panelAuswahl.Top = btHome.Top;
             panelAuswahl.Height = btHome.Height;
@@ -692,9 +702,12 @@ namespace FutureFarm
 
         private void btBenutzer_Click(object sender, EventArgs e)
         {
-            panelBenutzer.Dock = DockStyle.Fill;
             panelsDeaktivieren();
+
             panelBenutzer.Visible = true;
+            panelBenutzer.Dock = DockStyle.Fill;
+            panelBenutzer.BringToFront();
+
 
             panelBenutzerLoginEinlesen();
             pbBildName = "eye-closed.png";
@@ -756,6 +769,7 @@ namespace FutureFarm
 
             panelAnfragen.Visible = true;
             panelAnfragen.BringToFront();
+            panelAnfragen.Dock = DockStyle.Fill;
 
             AnfragenEinlesen();
         }
@@ -798,6 +812,7 @@ namespace FutureFarm
 
             panelBestellungen.Visible = true;
             panelBestellungen.Dock = DockStyle.Fill;
+            panelBestellungen.BringToFront();
 
             BestellungenEinlesen();
             BestellungenArtikelEinlesen();
@@ -866,8 +881,11 @@ namespace FutureFarm
             panelAuswahl.Height = btNews.Height;
             panelAuswahl.Top = btNews.Top;
             panelsDeaktivieren();
+
             panelNews.Visible = true;
             panelNews.Dock = DockStyle.Fill;
+            panelNews.BringToFront();
+
             listViewNews.Width = Convert.ToInt16(panelNews.Width * 0.5);
 
             NewsEinlesen();
@@ -907,8 +925,10 @@ namespace FutureFarm
         private void btTermine_Click(object sender, EventArgs e)
         {
             panelsDeaktivieren();
+
             panelTermine.Visible = true;
             panelTermine.BringToFront();
+            panelTermine.Dock = DockStyle.Fill;
 
             dtpTermineZeitVon.CustomFormat = "HH:mm";
             dtpTermineZeitVon.Format = DateTimePickerFormat.Custom;
@@ -1153,11 +1173,16 @@ namespace FutureFarm
 
         private void btFirmendaten_Click(object sender, EventArgs e)
         {
-            panelFirmendaten.Dock = DockStyle.Fill;
+            panelsDeaktivieren();
+
             panelFirmendaten.Visible = true;
+            panelFirmendaten.Dock = DockStyle.Fill;
+            panelFirmendaten.BringToFront();
+
             FirmendatenEinlesen();
 
             CheckEingeloggt();
+
             panelUnterMenu.Visible = false;
 
         }
@@ -1853,6 +1878,7 @@ namespace FutureFarm
 
             panelRechnungNeu.Visible = true;
             panelRechnungNeu.Dock = DockStyle.Fill;
+            panelRechnungNeu.BringToFront();
 
             ComboRechnungNeuKundenEinlesen();
             

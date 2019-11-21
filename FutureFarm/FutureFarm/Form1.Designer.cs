@@ -252,35 +252,56 @@
             this.columnHeader54 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader56 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.panelBestellungen = new System.Windows.Forms.Panel();
-            this.listViewBestellungen = new System.Windows.Forms.ListView();
-            this.columnHeader53 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader55 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader57 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader58 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.label55 = new System.Windows.Forms.Label();
-            this.txtBestellungID = new System.Windows.Forms.TextBox();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.label56 = new System.Windows.Forms.Label();
-            this.label57 = new System.Windows.Forms.Label();
-            this.dtpBestellungenLieferdatum = new System.Windows.Forms.DateTimePicker();
-            this.cbBestellungenKunde = new System.Windows.Forms.ComboBox();
-            this.label58 = new System.Windows.Forms.Label();
-            this.listViewBestellungArtikelAlle = new System.Windows.Forms.ListView();
-            this.columnHeader59 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader60 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader61 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader62 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader65 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader66 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader63 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.btBestellungSpeichern = new System.Windows.Forms.Button();
             this.listViewBestellungenArtikelGewählt = new System.Windows.Forms.ListView();
             this.columnHeader73 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader74 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader75 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader76 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader64 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.btBestellungSpeichern = new System.Windows.Forms.Button();
+            this.listViewBestellungArtikelAlle = new System.Windows.Forms.ListView();
+            this.columnHeader59 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader61 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader62 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader65 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader66 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader60 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader63 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.label58 = new System.Windows.Forms.Label();
+            this.cbBestellungenKunde = new System.Windows.Forms.ComboBox();
+            this.dtpBestellungenLieferdatum = new System.Windows.Forms.DateTimePicker();
+            this.label57 = new System.Windows.Forms.Label();
+            this.label56 = new System.Windows.Forms.Label();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.txtBestellungID = new System.Windows.Forms.TextBox();
+            this.label55 = new System.Windows.Forms.Label();
+            this.listViewBestellungen = new System.Windows.Forms.ListView();
+            this.columnHeader53 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader55 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader57 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader58 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.panelKunden = new System.Windows.Forms.Panel();
+            this.btKundenLöschen = new System.Windows.Forms.Button();
+            this.btKundenSpeichern = new System.Windows.Forms.Button();
+            this.cbKundenOrt = new System.Windows.Forms.ComboBox();
+            this.label67 = new System.Windows.Forms.Label();
+            this.txtKundenPLZ = new System.Windows.Forms.TextBox();
+            this.label66 = new System.Windows.Forms.Label();
+            this.txtKundenStrasse = new System.Windows.Forms.TextBox();
+            this.label65 = new System.Windows.Forms.Label();
+            this.txtKudenEmail = new System.Windows.Forms.TextBox();
+            this.label64 = new System.Windows.Forms.Label();
+            this.txtKundenTelefonnummer = new System.Windows.Forms.TextBox();
+            this.label63 = new System.Windows.Forms.Label();
+            this.txtKundenFirma = new System.Windows.Forms.TextBox();
+            this.label62 = new System.Windows.Forms.Label();
+            this.txtKundenNachname = new System.Windows.Forms.TextBox();
+            this.label61 = new System.Windows.Forms.Label();
+            this.cbKundenAnrede = new System.Windows.Forms.ComboBox();
+            this.txtKundenVorname = new System.Windows.Forms.TextBox();
+            this.label60 = new System.Windows.Forms.Label();
+            this.txtKundenID = new System.Windows.Forms.TextBox();
+            this.label59 = new System.Windows.Forms.Label();
             this.listViewKunden = new System.Windows.Forms.ListView();
             this.columnHeader67 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader68 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -292,34 +313,13 @@
             this.columnHeader78 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader79 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader80 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.label59 = new System.Windows.Forms.Label();
-            this.txtKundenID = new System.Windows.Forms.TextBox();
-            this.txtKundenVorname = new System.Windows.Forms.TextBox();
-            this.label60 = new System.Windows.Forms.Label();
-            this.cbKundenAnrede = new System.Windows.Forms.ComboBox();
-            this.label61 = new System.Windows.Forms.Label();
-            this.label62 = new System.Windows.Forms.Label();
-            this.txtKundenNachname = new System.Windows.Forms.TextBox();
-            this.label63 = new System.Windows.Forms.Label();
-            this.txtKundenFirma = new System.Windows.Forms.TextBox();
-            this.label64 = new System.Windows.Forms.Label();
-            this.txtKundenTelefonnummer = new System.Windows.Forms.TextBox();
-            this.label65 = new System.Windows.Forms.Label();
-            this.txtKudenEmail = new System.Windows.Forms.TextBox();
-            this.label66 = new System.Windows.Forms.Label();
-            this.txtKundenStrasse = new System.Windows.Forms.TextBox();
-            this.label67 = new System.Windows.Forms.Label();
-            this.txtKundenPLZ = new System.Windows.Forms.TextBox();
-            this.cbKundenOrt = new System.Windows.Forms.ComboBox();
-            this.btKundenSpeichern = new System.Windows.Forms.Button();
-            this.btKundenLöschen = new System.Windows.Forms.Button();
             this.panelAnfragen = new System.Windows.Forms.Panel();
+            this.label68 = new System.Windows.Forms.Label();
             this.listViewAnfragen = new System.Windows.Forms.ListView();
             this.columnHeader45 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader48 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader84 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader85 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.label68 = new System.Windows.Forms.Label();
             this.cbsAnfragen = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.bestellungÜbernehmenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panelLinks.SuspendLayout();
@@ -925,9 +925,9 @@
             this.panelFirmendaten.Controls.Add(this.label5);
             this.panelFirmendaten.Controls.Add(this.txtFirmendatenName);
             this.panelFirmendaten.Controls.Add(this.label4);
-            this.panelFirmendaten.Location = new System.Drawing.Point(714, 25);
+            this.panelFirmendaten.Location = new System.Drawing.Point(0, 0);
             this.panelFirmendaten.Name = "panelFirmendaten";
-            this.panelFirmendaten.Size = new System.Drawing.Size(50, 37);
+            this.panelFirmendaten.Size = new System.Drawing.Size(0, 42);
             this.panelFirmendaten.TabIndex = 22;
             this.panelFirmendaten.Visible = false;
             this.panelFirmendaten.MouseEnter += new System.EventHandler(this.panelFirmendaten_MouseEnter);
@@ -1551,7 +1551,6 @@
             // panelNews
             // 
             this.panelNews.Controls.Add(this.btNewsReset);
-            this.panelNews.Controls.Add(this.panelFirmendaten);
             this.panelNews.Controls.Add(this.btNewsNeu);
             this.panelNews.Controls.Add(this.txtNewsID);
             this.panelNews.Controls.Add(this.btNewsLöschen);
@@ -1757,6 +1756,7 @@
             this.panelRechnungen.Name = "panelRechnungen";
             this.panelRechnungen.Size = new System.Drawing.Size(57, 57);
             this.panelRechnungen.TabIndex = 52;
+            this.panelRechnungen.Visible = false;
             // 
             // btRechnungSpeichern
             // 
@@ -2153,6 +2153,7 @@
             this.panelRechnungNeu.Name = "panelRechnungNeu";
             this.panelRechnungNeu.Size = new System.Drawing.Size(60, 46);
             this.panelRechnungNeu.TabIndex = 54;
+            this.panelRechnungNeu.Visible = false;
             this.panelRechnungNeu.MouseEnter += new System.EventHandler(this.panelRechnungNeu_MouseEnter);
             // 
             // btRechnungNeuSpeichern
@@ -2408,6 +2409,7 @@
             this.panelTermine.Name = "panelTermine";
             this.panelTermine.Size = new System.Drawing.Size(54, 45);
             this.panelTermine.TabIndex = 55;
+            this.panelTermine.Visible = false;
             this.panelTermine.MouseEnter += new System.EventHandler(this.panelTermine_MouseEnter);
             // 
             // btTerminLöschen
@@ -2642,187 +2644,17 @@
             this.panelBestellungen.Name = "panelBestellungen";
             this.panelBestellungen.Size = new System.Drawing.Size(59, 48);
             this.panelBestellungen.TabIndex = 56;
+            this.panelBestellungen.Visible = false;
             // 
-            // listViewBestellungen
+            // btBestellungSpeichern
             // 
-            this.listViewBestellungen.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.columnHeader53,
-            this.columnHeader55,
-            this.columnHeader57,
-            this.columnHeader58});
-            this.listViewBestellungen.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.listViewBestellungen.Location = new System.Drawing.Point(694, 66);
-            this.listViewBestellungen.Name = "listViewBestellungen";
-            this.listViewBestellungen.Size = new System.Drawing.Size(395, 162);
-            this.listViewBestellungen.TabIndex = 0;
-            this.listViewBestellungen.UseCompatibleStateImageBehavior = false;
-            this.listViewBestellungen.View = System.Windows.Forms.View.Details;
-            // 
-            // columnHeader53
-            // 
-            this.columnHeader53.Text = "BestellungID";
-            this.columnHeader53.Width = 110;
-            // 
-            // columnHeader55
-            // 
-            this.columnHeader55.Text = "Status";
-            this.columnHeader55.Width = 80;
-            // 
-            // columnHeader57
-            // 
-            this.columnHeader57.Text = "Lieferdatum";
-            this.columnHeader57.Width = 110;
-            // 
-            // columnHeader58
-            // 
-            this.columnHeader58.Text = "KundenID";
-            this.columnHeader58.Width = 90;
-            // 
-            // label55
-            // 
-            this.label55.AutoSize = true;
-            this.label55.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label55.Location = new System.Drawing.Point(95, 78);
-            this.label55.Name = "label55";
-            this.label55.Size = new System.Drawing.Size(106, 21);
-            this.label55.TabIndex = 1;
-            this.label55.Text = "BestellungID";
-            // 
-            // txtBestellungID
-            // 
-            this.txtBestellungID.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtBestellungID.Location = new System.Drawing.Point(207, 75);
-            this.txtBestellungID.Name = "txtBestellungID";
-            this.txtBestellungID.ReadOnly = true;
-            this.txtBestellungID.Size = new System.Drawing.Size(100, 27);
-            this.txtBestellungID.TabIndex = 2;
-            // 
-            // comboBox1
-            // 
-            this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox1.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Items.AddRange(new object[] {
-            "Neu",
-            "Bearbeitet",
-            "Abgeschlossen"});
-            this.comboBox1.Location = new System.Drawing.Point(207, 114);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(164, 29);
-            this.comboBox1.TabIndex = 3;
-            // 
-            // label56
-            // 
-            this.label56.AutoSize = true;
-            this.label56.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label56.Location = new System.Drawing.Point(95, 117);
-            this.label56.Name = "label56";
-            this.label56.Size = new System.Drawing.Size(59, 21);
-            this.label56.TabIndex = 4;
-            this.label56.Text = "Status";
-            // 
-            // label57
-            // 
-            this.label57.AutoSize = true;
-            this.label57.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label57.Location = new System.Drawing.Point(95, 161);
-            this.label57.Name = "label57";
-            this.label57.Size = new System.Drawing.Size(104, 21);
-            this.label57.TabIndex = 5;
-            this.label57.Text = "Lieferdatum";
-            // 
-            // dtpBestellungenLieferdatum
-            // 
-            this.dtpBestellungenLieferdatum.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dtpBestellungenLieferdatum.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpBestellungenLieferdatum.Location = new System.Drawing.Point(205, 155);
-            this.dtpBestellungenLieferdatum.Name = "dtpBestellungenLieferdatum";
-            this.dtpBestellungenLieferdatum.Size = new System.Drawing.Size(166, 27);
-            this.dtpBestellungenLieferdatum.TabIndex = 6;
-            // 
-            // cbBestellungenKunde
-            // 
-            this.cbBestellungenKunde.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbBestellungenKunde.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cbBestellungenKunde.FormattingEnabled = true;
-            this.cbBestellungenKunde.Items.AddRange(new object[] {
-            "Neu",
-            "Bearbeitet",
-            "Abgeschlossen"});
-            this.cbBestellungenKunde.Location = new System.Drawing.Point(207, 199);
-            this.cbBestellungenKunde.Name = "cbBestellungenKunde";
-            this.cbBestellungenKunde.Size = new System.Drawing.Size(315, 29);
-            this.cbBestellungenKunde.TabIndex = 7;
-            // 
-            // label58
-            // 
-            this.label58.AutoSize = true;
-            this.label58.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label58.Location = new System.Drawing.Point(95, 200);
-            this.label58.Name = "label58";
-            this.label58.Size = new System.Drawing.Size(60, 21);
-            this.label58.TabIndex = 8;
-            this.label58.Text = "Kunde";
-            // 
-            // listViewBestellungArtikelAlle
-            // 
-            this.listViewBestellungArtikelAlle.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.columnHeader59,
-            this.columnHeader61,
-            this.columnHeader62,
-            this.columnHeader65,
-            this.columnHeader66,
-            this.columnHeader60,
-            this.columnHeader63});
-            this.listViewBestellungArtikelAlle.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.listViewBestellungArtikelAlle.FullRowSelect = true;
-            this.listViewBestellungArtikelAlle.GridLines = true;
-            this.listViewBestellungArtikelAlle.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
-            this.listViewBestellungArtikelAlle.Location = new System.Drawing.Point(27, 272);
-            this.listViewBestellungArtikelAlle.MultiSelect = false;
-            this.listViewBestellungArtikelAlle.Name = "listViewBestellungArtikelAlle";
-            this.listViewBestellungArtikelAlle.Size = new System.Drawing.Size(1063, 301);
-            this.listViewBestellungArtikelAlle.TabIndex = 31;
-            this.listViewBestellungArtikelAlle.UseCompatibleStateImageBehavior = false;
-            this.listViewBestellungArtikelAlle.View = System.Windows.Forms.View.Details;
-            this.listViewBestellungArtikelAlle.SelectedIndexChanged += new System.EventHandler(this.listViewBestellungArtikelAlle_SelectedIndexChanged);
-            // 
-            // columnHeader59
-            // 
-            this.columnHeader59.Text = "Artikel ID";
-            this.columnHeader59.Width = 85;
-            // 
-            // columnHeader60
-            // 
-            this.columnHeader60.Text = "externe ID";
-            this.columnHeader60.Width = 100;
-            // 
-            // columnHeader61
-            // 
-            this.columnHeader61.Text = "Bezeichnung";
-            this.columnHeader61.Width = 450;
-            // 
-            // columnHeader62
-            // 
-            this.columnHeader62.Text = "Nettopreis";
-            this.columnHeader62.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.columnHeader62.Width = 120;
-            // 
-            // columnHeader65
-            // 
-            this.columnHeader65.Text = "Lagerstand";
-            this.columnHeader65.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.columnHeader65.Width = 120;
-            // 
-            // columnHeader66
-            // 
-            this.columnHeader66.Text = "Reserviert";
-            this.columnHeader66.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.columnHeader66.Width = 120;
-            // 
-            // columnHeader63
-            // 
-            this.columnHeader63.Text = "Aktiv";
+            this.btBestellungSpeichern.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btBestellungSpeichern.Location = new System.Drawing.Point(891, 910);
+            this.btBestellungSpeichern.Name = "btBestellungSpeichern";
+            this.btBestellungSpeichern.Size = new System.Drawing.Size(199, 61);
+            this.btBestellungSpeichern.TabIndex = 33;
+            this.btBestellungSpeichern.Text = "Speichern";
+            this.btBestellungSpeichern.UseVisualStyleBackColor = true;
             // 
             // listViewBestellungenArtikelGewählt
             // 
@@ -2868,15 +2700,186 @@
             // 
             this.columnHeader64.Text = "UST";
             // 
-            // btBestellungSpeichern
+            // listViewBestellungArtikelAlle
             // 
-            this.btBestellungSpeichern.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btBestellungSpeichern.Location = new System.Drawing.Point(891, 910);
-            this.btBestellungSpeichern.Name = "btBestellungSpeichern";
-            this.btBestellungSpeichern.Size = new System.Drawing.Size(199, 61);
-            this.btBestellungSpeichern.TabIndex = 33;
-            this.btBestellungSpeichern.Text = "Speichern";
-            this.btBestellungSpeichern.UseVisualStyleBackColor = true;
+            this.listViewBestellungArtikelAlle.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader59,
+            this.columnHeader61,
+            this.columnHeader62,
+            this.columnHeader65,
+            this.columnHeader66,
+            this.columnHeader60,
+            this.columnHeader63});
+            this.listViewBestellungArtikelAlle.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.listViewBestellungArtikelAlle.FullRowSelect = true;
+            this.listViewBestellungArtikelAlle.GridLines = true;
+            this.listViewBestellungArtikelAlle.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
+            this.listViewBestellungArtikelAlle.Location = new System.Drawing.Point(27, 272);
+            this.listViewBestellungArtikelAlle.MultiSelect = false;
+            this.listViewBestellungArtikelAlle.Name = "listViewBestellungArtikelAlle";
+            this.listViewBestellungArtikelAlle.Size = new System.Drawing.Size(1063, 301);
+            this.listViewBestellungArtikelAlle.TabIndex = 31;
+            this.listViewBestellungArtikelAlle.UseCompatibleStateImageBehavior = false;
+            this.listViewBestellungArtikelAlle.View = System.Windows.Forms.View.Details;
+            this.listViewBestellungArtikelAlle.SelectedIndexChanged += new System.EventHandler(this.listViewBestellungArtikelAlle_SelectedIndexChanged);
+            // 
+            // columnHeader59
+            // 
+            this.columnHeader59.Text = "Artikel ID";
+            this.columnHeader59.Width = 85;
+            // 
+            // columnHeader61
+            // 
+            this.columnHeader61.Text = "Bezeichnung";
+            this.columnHeader61.Width = 450;
+            // 
+            // columnHeader62
+            // 
+            this.columnHeader62.Text = "Nettopreis";
+            this.columnHeader62.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.columnHeader62.Width = 120;
+            // 
+            // columnHeader65
+            // 
+            this.columnHeader65.Text = "Lagerstand";
+            this.columnHeader65.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.columnHeader65.Width = 120;
+            // 
+            // columnHeader66
+            // 
+            this.columnHeader66.Text = "Reserviert";
+            this.columnHeader66.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.columnHeader66.Width = 120;
+            // 
+            // columnHeader60
+            // 
+            this.columnHeader60.Text = "externe ID";
+            this.columnHeader60.Width = 100;
+            // 
+            // columnHeader63
+            // 
+            this.columnHeader63.Text = "Aktiv";
+            // 
+            // label58
+            // 
+            this.label58.AutoSize = true;
+            this.label58.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label58.Location = new System.Drawing.Point(95, 200);
+            this.label58.Name = "label58";
+            this.label58.Size = new System.Drawing.Size(60, 21);
+            this.label58.TabIndex = 8;
+            this.label58.Text = "Kunde";
+            // 
+            // cbBestellungenKunde
+            // 
+            this.cbBestellungenKunde.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbBestellungenKunde.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbBestellungenKunde.FormattingEnabled = true;
+            this.cbBestellungenKunde.Items.AddRange(new object[] {
+            "Neu",
+            "Bearbeitet",
+            "Abgeschlossen"});
+            this.cbBestellungenKunde.Location = new System.Drawing.Point(207, 199);
+            this.cbBestellungenKunde.Name = "cbBestellungenKunde";
+            this.cbBestellungenKunde.Size = new System.Drawing.Size(315, 29);
+            this.cbBestellungenKunde.TabIndex = 7;
+            // 
+            // dtpBestellungenLieferdatum
+            // 
+            this.dtpBestellungenLieferdatum.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dtpBestellungenLieferdatum.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtpBestellungenLieferdatum.Location = new System.Drawing.Point(205, 155);
+            this.dtpBestellungenLieferdatum.Name = "dtpBestellungenLieferdatum";
+            this.dtpBestellungenLieferdatum.Size = new System.Drawing.Size(166, 27);
+            this.dtpBestellungenLieferdatum.TabIndex = 6;
+            // 
+            // label57
+            // 
+            this.label57.AutoSize = true;
+            this.label57.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label57.Location = new System.Drawing.Point(95, 161);
+            this.label57.Name = "label57";
+            this.label57.Size = new System.Drawing.Size(104, 21);
+            this.label57.TabIndex = 5;
+            this.label57.Text = "Lieferdatum";
+            // 
+            // label56
+            // 
+            this.label56.AutoSize = true;
+            this.label56.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label56.Location = new System.Drawing.Point(95, 117);
+            this.label56.Name = "label56";
+            this.label56.Size = new System.Drawing.Size(59, 21);
+            this.label56.TabIndex = 4;
+            this.label56.Text = "Status";
+            // 
+            // comboBox1
+            // 
+            this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox1.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Items.AddRange(new object[] {
+            "Neu",
+            "Bearbeitet",
+            "Abgeschlossen"});
+            this.comboBox1.Location = new System.Drawing.Point(207, 114);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(164, 29);
+            this.comboBox1.TabIndex = 3;
+            // 
+            // txtBestellungID
+            // 
+            this.txtBestellungID.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtBestellungID.Location = new System.Drawing.Point(207, 75);
+            this.txtBestellungID.Name = "txtBestellungID";
+            this.txtBestellungID.ReadOnly = true;
+            this.txtBestellungID.Size = new System.Drawing.Size(100, 27);
+            this.txtBestellungID.TabIndex = 2;
+            // 
+            // label55
+            // 
+            this.label55.AutoSize = true;
+            this.label55.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label55.Location = new System.Drawing.Point(95, 78);
+            this.label55.Name = "label55";
+            this.label55.Size = new System.Drawing.Size(106, 21);
+            this.label55.TabIndex = 1;
+            this.label55.Text = "BestellungID";
+            // 
+            // listViewBestellungen
+            // 
+            this.listViewBestellungen.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader53,
+            this.columnHeader55,
+            this.columnHeader57,
+            this.columnHeader58});
+            this.listViewBestellungen.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.listViewBestellungen.Location = new System.Drawing.Point(694, 66);
+            this.listViewBestellungen.Name = "listViewBestellungen";
+            this.listViewBestellungen.Size = new System.Drawing.Size(395, 162);
+            this.listViewBestellungen.TabIndex = 0;
+            this.listViewBestellungen.UseCompatibleStateImageBehavior = false;
+            this.listViewBestellungen.View = System.Windows.Forms.View.Details;
+            // 
+            // columnHeader53
+            // 
+            this.columnHeader53.Text = "BestellungID";
+            this.columnHeader53.Width = 110;
+            // 
+            // columnHeader55
+            // 
+            this.columnHeader55.Text = "Status";
+            this.columnHeader55.Width = 80;
+            // 
+            // columnHeader57
+            // 
+            this.columnHeader57.Text = "Lieferdatum";
+            this.columnHeader57.Width = 110;
+            // 
+            // columnHeader58
+            // 
+            this.columnHeader58.Text = "KundenID";
+            this.columnHeader58.Width = 90;
             // 
             // panelKunden
             // 
@@ -2906,6 +2909,212 @@
             this.panelKunden.Name = "panelKunden";
             this.panelKunden.Size = new System.Drawing.Size(38, 39);
             this.panelKunden.TabIndex = 57;
+            this.panelKunden.Visible = false;
+            // 
+            // btKundenLöschen
+            // 
+            this.btKundenLöschen.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btKundenLöschen.Location = new System.Drawing.Point(407, 460);
+            this.btKundenLöschen.Name = "btKundenLöschen";
+            this.btKundenLöschen.Size = new System.Drawing.Size(136, 53);
+            this.btKundenLöschen.TabIndex = 21;
+            this.btKundenLöschen.Text = "Löschen";
+            this.btKundenLöschen.UseVisualStyleBackColor = true;
+            this.btKundenLöschen.Click += new System.EventHandler(this.btKundenLöschen_Click);
+            // 
+            // btKundenSpeichern
+            // 
+            this.btKundenSpeichern.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btKundenSpeichern.Location = new System.Drawing.Point(407, 401);
+            this.btKundenSpeichern.Name = "btKundenSpeichern";
+            this.btKundenSpeichern.Size = new System.Drawing.Size(136, 53);
+            this.btKundenSpeichern.TabIndex = 20;
+            this.btKundenSpeichern.Text = "Speichern";
+            this.btKundenSpeichern.UseVisualStyleBackColor = true;
+            this.btKundenSpeichern.Click += new System.EventHandler(this.btKundenSpeichern_Click);
+            // 
+            // cbKundenOrt
+            // 
+            this.cbKundenOrt.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbKundenOrt.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbKundenOrt.FormattingEnabled = true;
+            this.cbKundenOrt.Items.AddRange(new object[] {
+            "Frau",
+            "Herr",
+            "Firma"});
+            this.cbKundenOrt.Location = new System.Drawing.Point(328, 330);
+            this.cbKundenOrt.Name = "cbKundenOrt";
+            this.cbKundenOrt.Size = new System.Drawing.Size(215, 29);
+            this.cbKundenOrt.TabIndex = 19;
+            // 
+            // label67
+            // 
+            this.label67.AutoSize = true;
+            this.label67.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label67.Location = new System.Drawing.Point(95, 335);
+            this.label67.Name = "label67";
+            this.label67.Size = new System.Drawing.Size(34, 21);
+            this.label67.TabIndex = 18;
+            this.label67.Text = "PLZ";
+            // 
+            // txtKundenPLZ
+            // 
+            this.txtKundenPLZ.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtKundenPLZ.Location = new System.Drawing.Point(245, 331);
+            this.txtKundenPLZ.Name = "txtKundenPLZ";
+            this.txtKundenPLZ.Size = new System.Drawing.Size(77, 27);
+            this.txtKundenPLZ.TabIndex = 17;
+            // 
+            // label66
+            // 
+            this.label66.AutoSize = true;
+            this.label66.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label66.Location = new System.Drawing.Point(95, 302);
+            this.label66.Name = "label66";
+            this.label66.Size = new System.Drawing.Size(89, 21);
+            this.label66.TabIndex = 16;
+            this.label66.Text = "Straße, Nr.";
+            // 
+            // txtKundenStrasse
+            // 
+            this.txtKundenStrasse.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtKundenStrasse.Location = new System.Drawing.Point(245, 298);
+            this.txtKundenStrasse.Name = "txtKundenStrasse";
+            this.txtKundenStrasse.Size = new System.Drawing.Size(298, 27);
+            this.txtKundenStrasse.TabIndex = 15;
+            // 
+            // label65
+            // 
+            this.label65.AutoSize = true;
+            this.label65.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label65.Location = new System.Drawing.Point(95, 269);
+            this.label65.Name = "label65";
+            this.label65.Size = new System.Drawing.Size(56, 21);
+            this.label65.TabIndex = 14;
+            this.label65.Text = "E-Mail";
+            // 
+            // txtKudenEmail
+            // 
+            this.txtKudenEmail.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtKudenEmail.Location = new System.Drawing.Point(245, 265);
+            this.txtKudenEmail.Name = "txtKudenEmail";
+            this.txtKudenEmail.Size = new System.Drawing.Size(298, 27);
+            this.txtKudenEmail.TabIndex = 13;
+            // 
+            // label64
+            // 
+            this.label64.AutoSize = true;
+            this.label64.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label64.Location = new System.Drawing.Point(95, 236);
+            this.label64.Name = "label64";
+            this.label64.Size = new System.Drawing.Size(131, 21);
+            this.label64.TabIndex = 12;
+            this.label64.Text = "Telefonnummer";
+            // 
+            // txtKundenTelefonnummer
+            // 
+            this.txtKundenTelefonnummer.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtKundenTelefonnummer.Location = new System.Drawing.Point(245, 232);
+            this.txtKundenTelefonnummer.Name = "txtKundenTelefonnummer";
+            this.txtKundenTelefonnummer.Size = new System.Drawing.Size(298, 27);
+            this.txtKundenTelefonnummer.TabIndex = 11;
+            // 
+            // label63
+            // 
+            this.label63.AutoSize = true;
+            this.label63.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label63.Location = new System.Drawing.Point(95, 203);
+            this.label63.Name = "label63";
+            this.label63.Size = new System.Drawing.Size(52, 21);
+            this.label63.TabIndex = 10;
+            this.label63.Text = "Firma";
+            // 
+            // txtKundenFirma
+            // 
+            this.txtKundenFirma.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtKundenFirma.Location = new System.Drawing.Point(245, 199);
+            this.txtKundenFirma.Name = "txtKundenFirma";
+            this.txtKundenFirma.Size = new System.Drawing.Size(298, 27);
+            this.txtKundenFirma.TabIndex = 9;
+            // 
+            // label62
+            // 
+            this.label62.AutoSize = true;
+            this.label62.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label62.Location = new System.Drawing.Point(95, 170);
+            this.label62.Name = "label62";
+            this.label62.Size = new System.Drawing.Size(99, 21);
+            this.label62.TabIndex = 8;
+            this.label62.Text = "Nachname";
+            // 
+            // txtKundenNachname
+            // 
+            this.txtKundenNachname.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtKundenNachname.Location = new System.Drawing.Point(245, 166);
+            this.txtKundenNachname.Name = "txtKundenNachname";
+            this.txtKundenNachname.Size = new System.Drawing.Size(298, 27);
+            this.txtKundenNachname.TabIndex = 7;
+            // 
+            // label61
+            // 
+            this.label61.AutoSize = true;
+            this.label61.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label61.Location = new System.Drawing.Point(95, 137);
+            this.label61.Name = "label61";
+            this.label61.Size = new System.Drawing.Size(82, 21);
+            this.label61.TabIndex = 6;
+            this.label61.Text = "Vorname";
+            // 
+            // cbKundenAnrede
+            // 
+            this.cbKundenAnrede.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbKundenAnrede.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbKundenAnrede.FormattingEnabled = true;
+            this.cbKundenAnrede.Items.AddRange(new object[] {
+            "Frau",
+            "Herr",
+            "Firma"});
+            this.cbKundenAnrede.Location = new System.Drawing.Point(245, 98);
+            this.cbKundenAnrede.Name = "cbKundenAnrede";
+            this.cbKundenAnrede.Size = new System.Drawing.Size(156, 29);
+            this.cbKundenAnrede.TabIndex = 5;
+            // 
+            // txtKundenVorname
+            // 
+            this.txtKundenVorname.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtKundenVorname.Location = new System.Drawing.Point(245, 133);
+            this.txtKundenVorname.Name = "txtKundenVorname";
+            this.txtKundenVorname.Size = new System.Drawing.Size(298, 27);
+            this.txtKundenVorname.TabIndex = 4;
+            // 
+            // label60
+            // 
+            this.label60.AutoSize = true;
+            this.label60.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label60.Location = new System.Drawing.Point(95, 104);
+            this.label60.Name = "label60";
+            this.label60.Size = new System.Drawing.Size(69, 21);
+            this.label60.TabIndex = 3;
+            this.label60.Text = "Anrede";
+            // 
+            // txtKundenID
+            // 
+            this.txtKundenID.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtKundenID.Location = new System.Drawing.Point(245, 65);
+            this.txtKundenID.Name = "txtKundenID";
+            this.txtKundenID.ReadOnly = true;
+            this.txtKundenID.Size = new System.Drawing.Size(100, 27);
+            this.txtKundenID.TabIndex = 2;
+            // 
+            // label59
+            // 
+            this.label59.AutoSize = true;
+            this.label59.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label59.Location = new System.Drawing.Point(95, 68);
+            this.label59.Name = "label59";
+            this.label59.Size = new System.Drawing.Size(87, 21);
+            this.label59.TabIndex = 1;
+            this.label59.Text = "KundenID";
             // 
             // listViewKunden
             // 
@@ -2980,211 +3189,6 @@
             // 
             this.columnHeader80.Text = "Aktiv";
             // 
-            // label59
-            // 
-            this.label59.AutoSize = true;
-            this.label59.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label59.Location = new System.Drawing.Point(95, 68);
-            this.label59.Name = "label59";
-            this.label59.Size = new System.Drawing.Size(87, 21);
-            this.label59.TabIndex = 1;
-            this.label59.Text = "KundenID";
-            // 
-            // txtKundenID
-            // 
-            this.txtKundenID.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtKundenID.Location = new System.Drawing.Point(245, 65);
-            this.txtKundenID.Name = "txtKundenID";
-            this.txtKundenID.ReadOnly = true;
-            this.txtKundenID.Size = new System.Drawing.Size(100, 27);
-            this.txtKundenID.TabIndex = 2;
-            // 
-            // txtKundenVorname
-            // 
-            this.txtKundenVorname.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtKundenVorname.Location = new System.Drawing.Point(245, 133);
-            this.txtKundenVorname.Name = "txtKundenVorname";
-            this.txtKundenVorname.Size = new System.Drawing.Size(298, 27);
-            this.txtKundenVorname.TabIndex = 4;
-            // 
-            // label60
-            // 
-            this.label60.AutoSize = true;
-            this.label60.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label60.Location = new System.Drawing.Point(95, 104);
-            this.label60.Name = "label60";
-            this.label60.Size = new System.Drawing.Size(69, 21);
-            this.label60.TabIndex = 3;
-            this.label60.Text = "Anrede";
-            // 
-            // cbKundenAnrede
-            // 
-            this.cbKundenAnrede.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbKundenAnrede.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cbKundenAnrede.FormattingEnabled = true;
-            this.cbKundenAnrede.Items.AddRange(new object[] {
-            "Frau",
-            "Herr",
-            "Firma"});
-            this.cbKundenAnrede.Location = new System.Drawing.Point(245, 98);
-            this.cbKundenAnrede.Name = "cbKundenAnrede";
-            this.cbKundenAnrede.Size = new System.Drawing.Size(156, 29);
-            this.cbKundenAnrede.TabIndex = 5;
-            // 
-            // label61
-            // 
-            this.label61.AutoSize = true;
-            this.label61.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label61.Location = new System.Drawing.Point(95, 137);
-            this.label61.Name = "label61";
-            this.label61.Size = new System.Drawing.Size(82, 21);
-            this.label61.TabIndex = 6;
-            this.label61.Text = "Vorname";
-            // 
-            // label62
-            // 
-            this.label62.AutoSize = true;
-            this.label62.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label62.Location = new System.Drawing.Point(95, 170);
-            this.label62.Name = "label62";
-            this.label62.Size = new System.Drawing.Size(99, 21);
-            this.label62.TabIndex = 8;
-            this.label62.Text = "Nachname";
-            // 
-            // txtKundenNachname
-            // 
-            this.txtKundenNachname.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtKundenNachname.Location = new System.Drawing.Point(245, 166);
-            this.txtKundenNachname.Name = "txtKundenNachname";
-            this.txtKundenNachname.Size = new System.Drawing.Size(298, 27);
-            this.txtKundenNachname.TabIndex = 7;
-            // 
-            // label63
-            // 
-            this.label63.AutoSize = true;
-            this.label63.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label63.Location = new System.Drawing.Point(95, 203);
-            this.label63.Name = "label63";
-            this.label63.Size = new System.Drawing.Size(52, 21);
-            this.label63.TabIndex = 10;
-            this.label63.Text = "Firma";
-            // 
-            // txtKundenFirma
-            // 
-            this.txtKundenFirma.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtKundenFirma.Location = new System.Drawing.Point(245, 199);
-            this.txtKundenFirma.Name = "txtKundenFirma";
-            this.txtKundenFirma.Size = new System.Drawing.Size(298, 27);
-            this.txtKundenFirma.TabIndex = 9;
-            // 
-            // label64
-            // 
-            this.label64.AutoSize = true;
-            this.label64.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label64.Location = new System.Drawing.Point(95, 236);
-            this.label64.Name = "label64";
-            this.label64.Size = new System.Drawing.Size(131, 21);
-            this.label64.TabIndex = 12;
-            this.label64.Text = "Telefonnummer";
-            // 
-            // txtKundenTelefonnummer
-            // 
-            this.txtKundenTelefonnummer.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtKundenTelefonnummer.Location = new System.Drawing.Point(245, 232);
-            this.txtKundenTelefonnummer.Name = "txtKundenTelefonnummer";
-            this.txtKundenTelefonnummer.Size = new System.Drawing.Size(298, 27);
-            this.txtKundenTelefonnummer.TabIndex = 11;
-            // 
-            // label65
-            // 
-            this.label65.AutoSize = true;
-            this.label65.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label65.Location = new System.Drawing.Point(95, 269);
-            this.label65.Name = "label65";
-            this.label65.Size = new System.Drawing.Size(56, 21);
-            this.label65.TabIndex = 14;
-            this.label65.Text = "E-Mail";
-            // 
-            // txtKudenEmail
-            // 
-            this.txtKudenEmail.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtKudenEmail.Location = new System.Drawing.Point(245, 265);
-            this.txtKudenEmail.Name = "txtKudenEmail";
-            this.txtKudenEmail.Size = new System.Drawing.Size(298, 27);
-            this.txtKudenEmail.TabIndex = 13;
-            // 
-            // label66
-            // 
-            this.label66.AutoSize = true;
-            this.label66.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label66.Location = new System.Drawing.Point(95, 302);
-            this.label66.Name = "label66";
-            this.label66.Size = new System.Drawing.Size(89, 21);
-            this.label66.TabIndex = 16;
-            this.label66.Text = "Straße, Nr.";
-            // 
-            // txtKundenStrasse
-            // 
-            this.txtKundenStrasse.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtKundenStrasse.Location = new System.Drawing.Point(245, 298);
-            this.txtKundenStrasse.Name = "txtKundenStrasse";
-            this.txtKundenStrasse.Size = new System.Drawing.Size(298, 27);
-            this.txtKundenStrasse.TabIndex = 15;
-            // 
-            // label67
-            // 
-            this.label67.AutoSize = true;
-            this.label67.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label67.Location = new System.Drawing.Point(95, 335);
-            this.label67.Name = "label67";
-            this.label67.Size = new System.Drawing.Size(34, 21);
-            this.label67.TabIndex = 18;
-            this.label67.Text = "PLZ";
-            // 
-            // txtKundenPLZ
-            // 
-            this.txtKundenPLZ.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtKundenPLZ.Location = new System.Drawing.Point(245, 331);
-            this.txtKundenPLZ.Name = "txtKundenPLZ";
-            this.txtKundenPLZ.Size = new System.Drawing.Size(77, 27);
-            this.txtKundenPLZ.TabIndex = 17;
-            // 
-            // cbKundenOrt
-            // 
-            this.cbKundenOrt.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbKundenOrt.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cbKundenOrt.FormattingEnabled = true;
-            this.cbKundenOrt.Items.AddRange(new object[] {
-            "Frau",
-            "Herr",
-            "Firma"});
-            this.cbKundenOrt.Location = new System.Drawing.Point(328, 330);
-            this.cbKundenOrt.Name = "cbKundenOrt";
-            this.cbKundenOrt.Size = new System.Drawing.Size(215, 29);
-            this.cbKundenOrt.TabIndex = 19;
-            // 
-            // btKundenSpeichern
-            // 
-            this.btKundenSpeichern.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btKundenSpeichern.Location = new System.Drawing.Point(407, 401);
-            this.btKundenSpeichern.Name = "btKundenSpeichern";
-            this.btKundenSpeichern.Size = new System.Drawing.Size(136, 53);
-            this.btKundenSpeichern.TabIndex = 20;
-            this.btKundenSpeichern.Text = "Speichern";
-            this.btKundenSpeichern.UseVisualStyleBackColor = true;
-            this.btKundenSpeichern.Click += new System.EventHandler(this.btKundenSpeichern_Click);
-            // 
-            // btKundenLöschen
-            // 
-            this.btKundenLöschen.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btKundenLöschen.Location = new System.Drawing.Point(407, 460);
-            this.btKundenLöschen.Name = "btKundenLöschen";
-            this.btKundenLöschen.Size = new System.Drawing.Size(136, 53);
-            this.btKundenLöschen.TabIndex = 21;
-            this.btKundenLöschen.Text = "Löschen";
-            this.btKundenLöschen.UseVisualStyleBackColor = true;
-            this.btKundenLöschen.Click += new System.EventHandler(this.btKundenLöschen_Click);
-            // 
             // panelAnfragen
             // 
             this.panelAnfragen.Controls.Add(this.label68);
@@ -3194,6 +3198,17 @@
             this.panelAnfragen.Name = "panelAnfragen";
             this.panelAnfragen.Size = new System.Drawing.Size(1556, 1015);
             this.panelAnfragen.TabIndex = 58;
+            this.panelAnfragen.Visible = false;
+            // 
+            // label68
+            // 
+            this.label68.AutoSize = true;
+            this.label68.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label68.Location = new System.Drawing.Point(15, 981);
+            this.label68.Name = "label68";
+            this.label68.Size = new System.Drawing.Size(613, 21);
+            this.label68.TabIndex = 1;
+            this.label68.Text = "Bestellungen können direkt übernommen werden! (Rechtsklick - Übernehmen)";
             // 
             // listViewAnfragen
             // 
@@ -3233,16 +3248,6 @@
             this.columnHeader85.Text = "Name";
             this.columnHeader85.Width = 250;
             // 
-            // label68
-            // 
-            this.label68.AutoSize = true;
-            this.label68.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label68.Location = new System.Drawing.Point(15, 981);
-            this.label68.Name = "label68";
-            this.label68.Size = new System.Drawing.Size(613, 21);
-            this.label68.TabIndex = 1;
-            this.label68.Text = "Bestellungen können direkt übernommen werden! (Rechtsklick - Übernehmen)";
-            // 
             // cbsAnfragen
             // 
             this.cbsAnfragen.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -3279,6 +3284,7 @@
             this.Controls.Add(this.listViewLoginDaten);
             this.Controls.Add(this.panelOben);
             this.Controls.Add(this.panelLinks);
+            this.Controls.Add(this.panelFirmendaten);
             this.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
