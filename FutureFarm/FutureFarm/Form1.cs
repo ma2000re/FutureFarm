@@ -15,6 +15,7 @@ using Common.Models;
 using RestSharp.Authenticators;
 using Word = Microsoft.Office.Interop.Word;
 using System.Reflection;
+using System.Security.Cryptography;
 
 
 namespace FutureFarm
@@ -46,6 +47,10 @@ namespace FutureFarm
         public bool reset=false;
         internal string angBenutzer;
         internal string rechnungNeuKunde;
+        RC4 rc4;
+        internal string hash = "FutureFarm";
+        internal string verPasswort;
+        internal string entPasswort;
         
 
         private void btHome_Click(object sender, EventArgs e)
@@ -96,16 +101,14 @@ namespace FutureFarm
             foreach (Rechnung r in response.Data)
             {
                 lvItem = new ListViewItem(r.RechnungID.ToString());
-                lvItem.SubItems.Add(r.Datum.ToString());
+                lvItem.SubItems.Add(r.Datum.ToString("dd.MM.yyyy"));
                 lvItem.SubItems.Add(r.Bezahlt.ToString());
-                lvItem.SubItems.Add(r.BezahltAm.ToString());
+                lvItem.SubItems.Add(r.BezahltAm.ToString("dd.MM.yyyy"));
                 lvItem.SubItems.Add(r.Kunde.KundenID.ToString());
                 lvItem.SubItems.Add(r.Bestellung.BestellungID.ToString());
                 
                 listViewRechnungen.Items.Add(lvItem);
             }
-
-
         }
 
         private void RechnungArtikelEinlesen()
@@ -741,6 +744,7 @@ namespace FutureFarm
             }
 
         }
+
 
         private void panelsDeaktivieren()
         {
@@ -1810,6 +1814,7 @@ namespace FutureFarm
             string eingabeBenutzername = fl.txtBenutzername.Text;
             string eingabePasswort = fl.txtPasswort.Text;
 
+
             panelBenutzerLoginEinlesen();
 
             //einzelne Benutzer in der Listview durchgehen
@@ -2213,10 +2218,18 @@ namespace FutureFarm
 
         private void listViewKunden_SelectedIndexChanged(object sender, EventArgs e)
         {
-            lvItem = listViewKunden.SelectedItems[0];
+            try
+            {
+                lvItem = listViewKunden.SelectedItems[0];
 
-            txtKundenID.Text = lvItem.SubItems[0].Text.ToString();
-            //...
+                txtKundenID.Text = lvItem.SubItems[0].Text.ToString();
+                //...
+
+            }
+            catch(Exception ex)
+            {
+
+            }
         }
 
         private void bestellungÜbernehmenToolStripMenuItem_Click(object sender, EventArgs e)
@@ -2227,6 +2240,89 @@ namespace FutureFarm
             }
             else
                 MessageBox.Show("Kontaktanfragen können nicht übernommen werden.");
+        }
+
+        private void listViewAnfragen_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if (listViewAnfragen.SelectedItems[0].SubItems[2].Text.Equals("Bestellung"))
+                {
+                    btAnfragenBestellungÜbernehmen.Visible = true;
+                    btAnfrageErledigt.Visible = false;
+                }
+                else
+                {
+                    btAnfrageErledigt.Visible = true;
+                    btAnfragenBestellungÜbernehmen.Visible = false;
+                }
+            }
+            catch(Exception ex)
+            {
+            }
+
+        }
+
+        private void listViewRechnungSuche_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                lvItem = listViewRechnungSuche.SelectedItems[0];
+
+                txtRechnungID.Text = lvItem.SubItems[0].Text;
+                txtRechnungenBestellungID.Text = lvItem.SubItems[3].Text;
+                txtRechnungKunde.Text = lvItem.SubItems[2].Text;
+                
+                for (int i=0; i<listViewRechnungen.Items.Count;i++)
+                {
+                    if(txtRechnungID.Text.Equals(listViewRechnungen.Items[i].SubItems[0].Text))
+                    {
+                        cbRechnungBezahlt.Checked = Convert.ToBoolean(listViewRechnungen.Items[i].SubItems[2].Text.ToLower());
+                        DateTime rechnungBezahltAm = Convert.ToDateTime(listViewRechnungen.Items[i].SubItems[3].Text);
+                        dtpRechnungBezahlt.Value = rechnungBezahltAm;
+                    }
+                }
+
+                //Artikel anzeigen
+                for(int i=0; i<listViewRechnungArtikel.Items.Count;i++)
+                {
+                    if(listViewRechnungArtikel.Items[i].SubItems[4].Text.Equals(txtRechnungID.Text))
+                    {
+                        string artikelID = listViewRechnungArtikel.Items[i].SubItems[5].Text;
+
+                        //Client für API
+                        var client = new RestClient("http://localhost:8888")
+                        {
+                            Authenticator = new HttpBasicAuthenticator("demo", "demo")
+                        };
+                        var request = new RestRequest("artikel/{id}", Method.GET);
+                        request.AddUrlSegment("id", artikelID);
+                        request.AddHeader("Content-Type", "application/json");
+                        var response = client.Execute<List<Artikel>>(request);
+
+                        foreach (Artikel a in response.Data)
+                        {
+                            //lvItem = new ListViewItem(a.ArtikelID.ToString());
+                            //lvItem.SubItems.Add(a.Bezeichnung.ToString());
+                            //lvItem.SubItems.Add(a.PreisNetto.ToString("0.00"));
+                            //lvItem.SubItems.Add(listViewRechnungArtikel.Items[i].SubItems[1].Text);
+
+                            //lvItem.SubItems.Add(a.Ust.ToString());
+
+                            //listViewRechnungGewähltArtikel.Items.Add(lvItem);
+
+                        //REIHENFOLGE ÜBERPRÜFEN
+                        }
+
+                    }
+                }
+
+
+            }
+            catch(Exception ex)
+            {
+
+            }
         }
     }
 }

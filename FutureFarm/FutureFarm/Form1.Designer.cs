@@ -158,6 +158,12 @@
             this.columnHeader20 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader21 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.panelRechnungen = new System.Windows.Forms.Panel();
+            this.listViewRechnungGewähltArtikel = new System.Windows.Forms.ListView();
+            this.columnHeader44 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader46 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader83 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader86 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader87 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.btRechnungSpeichern = new System.Windows.Forms.Button();
             this.txtSummeBrutto = new System.Windows.Forms.TextBox();
             this.label38 = new System.Windows.Forms.Label();
@@ -314,6 +320,22 @@
             this.columnHeader79 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader80 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.panelAnfragen = new System.Windows.Forms.Panel();
+            this.btAnfragenBestellungÜbernehmen = new System.Windows.Forms.Button();
+            this.btAnfrageErledigt = new System.Windows.Forms.Button();
+            this.label75 = new System.Windows.Forms.Label();
+            this.textBox6 = new System.Windows.Forms.TextBox();
+            this.textBox5 = new System.Windows.Forms.TextBox();
+            this.label74 = new System.Windows.Forms.Label();
+            this.textBox4 = new System.Windows.Forms.TextBox();
+            this.label73 = new System.Windows.Forms.Label();
+            this.label72 = new System.Windows.Forms.Label();
+            this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
+            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.label71 = new System.Windows.Forms.Label();
+            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.label70 = new System.Windows.Forms.Label();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.label69 = new System.Windows.Forms.Label();
             this.label68 = new System.Windows.Forms.Label();
             this.listViewAnfragen = new System.Windows.Forms.ListView();
             this.columnHeader45 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -322,6 +344,8 @@
             this.columnHeader85 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.cbsAnfragen = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.bestellungÜbernehmenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.txtVerPasswort = new System.Windows.Forms.TextBox();
+            this.txtEntPasswort = new System.Windows.Forms.TextBox();
             this.panelLinks.SuspendLayout();
             this.panelMenü.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbLogoHome)).BeginInit();
@@ -576,6 +600,8 @@
             // panelOben
             // 
             this.panelOben.BackColor = System.Drawing.Color.DodgerBlue;
+            this.panelOben.Controls.Add(this.txtEntPasswort);
+            this.panelOben.Controls.Add(this.txtVerPasswort);
             this.panelOben.Controls.Add(this.btLogin2);
             this.panelOben.Controls.Add(this.button1);
             this.panelOben.Controls.Add(this.btLogin);
@@ -1726,6 +1752,7 @@
             // 
             // panelRechnungen
             // 
+            this.panelRechnungen.Controls.Add(this.listViewRechnungGewähltArtikel);
             this.panelRechnungen.Controls.Add(this.btRechnungSpeichern);
             this.panelRechnungen.Controls.Add(this.txtSummeBrutto);
             this.panelRechnungen.Controls.Add(this.label38);
@@ -1752,11 +1779,53 @@
             this.panelRechnungen.Controls.Add(this.listViewRechnungArtikel);
             this.panelRechnungen.Controls.Add(this.listViewRechnungen);
             this.panelRechnungen.Controls.Add(this.label39);
-            this.panelRechnungen.Location = new System.Drawing.Point(1161, 240);
+            this.panelRechnungen.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panelRechnungen.Location = new System.Drawing.Point(205, 41);
             this.panelRechnungen.Name = "panelRechnungen";
-            this.panelRechnungen.Size = new System.Drawing.Size(57, 57);
+            this.panelRechnungen.Size = new System.Drawing.Size(1556, 1015);
             this.panelRechnungen.TabIndex = 52;
             this.panelRechnungen.Visible = false;
+            // 
+            // listViewRechnungGewähltArtikel
+            // 
+            this.listViewRechnungGewähltArtikel.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader44,
+            this.columnHeader46,
+            this.columnHeader83,
+            this.columnHeader86,
+            this.columnHeader87});
+            this.listViewRechnungGewähltArtikel.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.listViewRechnungGewähltArtikel.Location = new System.Drawing.Point(59, 396);
+            this.listViewRechnungGewähltArtikel.Name = "listViewRechnungGewähltArtikel";
+            this.listViewRechnungGewähltArtikel.Size = new System.Drawing.Size(770, 322);
+            this.listViewRechnungGewähltArtikel.TabIndex = 53;
+            this.listViewRechnungGewähltArtikel.UseCompatibleStateImageBehavior = false;
+            this.listViewRechnungGewähltArtikel.View = System.Windows.Forms.View.Details;
+            // 
+            // columnHeader44
+            // 
+            this.columnHeader44.Text = "ArtikelID";
+            this.columnHeader44.Width = 80;
+            // 
+            // columnHeader46
+            // 
+            this.columnHeader46.Text = "Bezeichnung";
+            this.columnHeader46.Width = 445;
+            // 
+            // columnHeader83
+            // 
+            this.columnHeader83.Text = "Menge";
+            this.columnHeader83.Width = 80;
+            // 
+            // columnHeader86
+            // 
+            this.columnHeader86.Text = "Netto";
+            this.columnHeader86.Width = 80;
+            // 
+            // columnHeader87
+            // 
+            this.columnHeader87.Text = "UST";
+            this.columnHeader87.Width = 80;
             // 
             // btRechnungSpeichern
             // 
@@ -1852,6 +1921,7 @@
             this.listViewRechnungSuche.TabIndex = 43;
             this.listViewRechnungSuche.UseCompatibleStateImageBehavior = false;
             this.listViewRechnungSuche.View = System.Windows.Forms.View.Details;
+            this.listViewRechnungSuche.SelectedIndexChanged += new System.EventHandler(this.listViewRechnungSuche_SelectedIndexChanged);
             // 
             // columnHeader35
             // 
@@ -1882,6 +1952,7 @@
             this.dtpRechnungBezahlt.Name = "dtpRechnungBezahlt";
             this.dtpRechnungBezahlt.Size = new System.Drawing.Size(136, 27);
             this.dtpRechnungBezahlt.TabIndex = 42;
+            this.dtpRechnungBezahlt.Value = new System.DateTime(2000, 1, 1, 9, 20, 0, 0);
             // 
             // cbRechnungBezahlt
             // 
@@ -3191,14 +3262,179 @@
             // 
             // panelAnfragen
             // 
+            this.panelAnfragen.Controls.Add(this.btAnfragenBestellungÜbernehmen);
+            this.panelAnfragen.Controls.Add(this.btAnfrageErledigt);
+            this.panelAnfragen.Controls.Add(this.label75);
+            this.panelAnfragen.Controls.Add(this.textBox6);
+            this.panelAnfragen.Controls.Add(this.textBox5);
+            this.panelAnfragen.Controls.Add(this.label74);
+            this.panelAnfragen.Controls.Add(this.textBox4);
+            this.panelAnfragen.Controls.Add(this.label73);
+            this.panelAnfragen.Controls.Add(this.label72);
+            this.panelAnfragen.Controls.Add(this.dateTimePicker2);
+            this.panelAnfragen.Controls.Add(this.textBox3);
+            this.panelAnfragen.Controls.Add(this.label71);
+            this.panelAnfragen.Controls.Add(this.textBox2);
+            this.panelAnfragen.Controls.Add(this.label70);
+            this.panelAnfragen.Controls.Add(this.textBox1);
+            this.panelAnfragen.Controls.Add(this.label69);
             this.panelAnfragen.Controls.Add(this.label68);
             this.panelAnfragen.Controls.Add(this.listViewAnfragen);
-            this.panelAnfragen.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelAnfragen.Location = new System.Drawing.Point(205, 41);
+            this.panelAnfragen.Location = new System.Drawing.Point(1160, 408);
             this.panelAnfragen.Name = "panelAnfragen";
-            this.panelAnfragen.Size = new System.Drawing.Size(1556, 1015);
+            this.panelAnfragen.Size = new System.Drawing.Size(61, 52);
             this.panelAnfragen.TabIndex = 58;
             this.panelAnfragen.Visible = false;
+            // 
+            // btAnfragenBestellungÜbernehmen
+            // 
+            this.btAnfragenBestellungÜbernehmen.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btAnfragenBestellungÜbernehmen.Location = new System.Drawing.Point(546, 445);
+            this.btAnfragenBestellungÜbernehmen.Name = "btAnfragenBestellungÜbernehmen";
+            this.btAnfragenBestellungÜbernehmen.Size = new System.Drawing.Size(199, 65);
+            this.btAnfragenBestellungÜbernehmen.TabIndex = 17;
+            this.btAnfragenBestellungÜbernehmen.Text = "Bestellung übernehmen";
+            this.btAnfragenBestellungÜbernehmen.UseVisualStyleBackColor = true;
+            this.btAnfragenBestellungÜbernehmen.Visible = false;
+            // 
+            // btAnfrageErledigt
+            // 
+            this.btAnfrageErledigt.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btAnfrageErledigt.Location = new System.Drawing.Point(546, 444);
+            this.btAnfrageErledigt.Name = "btAnfrageErledigt";
+            this.btAnfrageErledigt.Size = new System.Drawing.Size(199, 65);
+            this.btAnfrageErledigt.TabIndex = 16;
+            this.btAnfrageErledigt.Text = "Anfrage erledigt";
+            this.btAnfrageErledigt.UseVisualStyleBackColor = true;
+            this.btAnfrageErledigt.Visible = false;
+            // 
+            // label75
+            // 
+            this.label75.AutoSize = true;
+            this.label75.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label75.Location = new System.Drawing.Point(99, 243);
+            this.label75.Name = "label75";
+            this.label75.Size = new System.Drawing.Size(56, 21);
+            this.label75.TabIndex = 15;
+            this.label75.Text = "Inhalt";
+            // 
+            // textBox6
+            // 
+            this.textBox6.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox6.Location = new System.Drawing.Point(205, 240);
+            this.textBox6.Multiline = true;
+            this.textBox6.Name = "textBox6";
+            this.textBox6.Size = new System.Drawing.Size(540, 198);
+            this.textBox6.TabIndex = 14;
+            // 
+            // textBox5
+            // 
+            this.textBox5.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox5.Location = new System.Drawing.Point(204, 207);
+            this.textBox5.Name = "textBox5";
+            this.textBox5.Size = new System.Drawing.Size(290, 27);
+            this.textBox5.TabIndex = 13;
+            // 
+            // label74
+            // 
+            this.label74.AutoSize = true;
+            this.label74.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label74.Location = new System.Drawing.Point(99, 210);
+            this.label74.Name = "label74";
+            this.label74.Size = new System.Drawing.Size(56, 21);
+            this.label74.TabIndex = 12;
+            this.label74.Text = "E-Mail";
+            // 
+            // textBox4
+            // 
+            this.textBox4.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox4.Location = new System.Drawing.Point(204, 173);
+            this.textBox4.Name = "textBox4";
+            this.textBox4.Size = new System.Drawing.Size(290, 27);
+            this.textBox4.TabIndex = 11;
+            // 
+            // label73
+            // 
+            this.label73.AutoSize = true;
+            this.label73.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label73.Location = new System.Drawing.Point(99, 176);
+            this.label73.Name = "label73";
+            this.label73.Size = new System.Drawing.Size(85, 21);
+            this.label73.TabIndex = 10;
+            this.label73.Text = "Telefonnr.";
+            // 
+            // label72
+            // 
+            this.label72.AutoSize = true;
+            this.label72.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label72.Location = new System.Drawing.Point(309, 71);
+            this.label72.Name = "label72";
+            this.label72.Size = new System.Drawing.Size(38, 21);
+            this.label72.TabIndex = 9;
+            this.label72.Text = "Am";
+            // 
+            // dateTimePicker2
+            // 
+            this.dateTimePicker2.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dateTimePicker2.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dateTimePicker2.Location = new System.Drawing.Point(353, 68);
+            this.dateTimePicker2.Name = "dateTimePicker2";
+            this.dateTimePicker2.Size = new System.Drawing.Size(141, 27);
+            this.dateTimePicker2.TabIndex = 8;
+            // 
+            // textBox3
+            // 
+            this.textBox3.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox3.Location = new System.Drawing.Point(204, 136);
+            this.textBox3.Name = "textBox3";
+            this.textBox3.Size = new System.Drawing.Size(290, 27);
+            this.textBox3.TabIndex = 7;
+            // 
+            // label71
+            // 
+            this.label71.AutoSize = true;
+            this.label71.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label71.Location = new System.Drawing.Point(99, 139);
+            this.label71.Name = "label71";
+            this.label71.Size = new System.Drawing.Size(41, 21);
+            this.label71.TabIndex = 6;
+            this.label71.Text = "Von";
+            // 
+            // textBox2
+            // 
+            this.textBox2.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox2.Location = new System.Drawing.Point(205, 101);
+            this.textBox2.Name = "textBox2";
+            this.textBox2.Size = new System.Drawing.Size(179, 27);
+            this.textBox2.TabIndex = 5;
+            // 
+            // label70
+            // 
+            this.label70.AutoSize = true;
+            this.label70.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label70.Location = new System.Drawing.Point(99, 104);
+            this.label70.Name = "label70";
+            this.label70.Size = new System.Drawing.Size(35, 21);
+            this.label70.TabIndex = 4;
+            this.label70.Text = "Art";
+            // 
+            // textBox1
+            // 
+            this.textBox1.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox1.Location = new System.Drawing.Point(205, 68);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(100, 27);
+            this.textBox1.TabIndex = 3;
+            // 
+            // label69
+            // 
+            this.label69.AutoSize = true;
+            this.label69.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label69.Location = new System.Drawing.Point(100, 71);
+            this.label69.Name = "label69";
+            this.label69.Size = new System.Drawing.Size(94, 21);
+            this.label69.TabIndex = 2;
+            this.label69.Text = "FormularID";
             // 
             // label68
             // 
@@ -3221,12 +3457,13 @@
             this.listViewAnfragen.Dock = System.Windows.Forms.DockStyle.Right;
             this.listViewAnfragen.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.listViewAnfragen.FullRowSelect = true;
-            this.listViewAnfragen.Location = new System.Drawing.Point(981, 0);
+            this.listViewAnfragen.Location = new System.Drawing.Point(-514, 0);
             this.listViewAnfragen.Name = "listViewAnfragen";
-            this.listViewAnfragen.Size = new System.Drawing.Size(575, 1015);
+            this.listViewAnfragen.Size = new System.Drawing.Size(575, 52);
             this.listViewAnfragen.TabIndex = 0;
             this.listViewAnfragen.UseCompatibleStateImageBehavior = false;
             this.listViewAnfragen.View = System.Windows.Forms.View.Details;
+            this.listViewAnfragen.SelectedIndexChanged += new System.EventHandler(this.listViewAnfragen_SelectedIndexChanged);
             // 
             // columnHeader45
             // 
@@ -3261,6 +3498,20 @@
             this.bestellungÜbernehmenToolStripMenuItem.Size = new System.Drawing.Size(200, 22);
             this.bestellungÜbernehmenToolStripMenuItem.Text = "Bestellung übernehmen";
             this.bestellungÜbernehmenToolStripMenuItem.Click += new System.EventHandler(this.bestellungÜbernehmenToolStripMenuItem_Click);
+            // 
+            // txtVerPasswort
+            // 
+            this.txtVerPasswort.Location = new System.Drawing.Point(970, 12);
+            this.txtVerPasswort.Name = "txtVerPasswort";
+            this.txtVerPasswort.Size = new System.Drawing.Size(100, 21);
+            this.txtVerPasswort.TabIndex = 4;
+            // 
+            // txtEntPasswort
+            // 
+            this.txtEntPasswort.Location = new System.Drawing.Point(883, 17);
+            this.txtEntPasswort.Name = "txtEntPasswort";
+            this.txtEntPasswort.Size = new System.Drawing.Size(41, 21);
+            this.txtEntPasswort.TabIndex = 5;
             // 
             // Form1
             // 
@@ -3298,6 +3549,7 @@
             this.panelMenü.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pbLogoHome)).EndInit();
             this.panelOben.ResumeLayout(false);
+            this.panelOben.PerformLayout();
             this.panelBenutzer.ResumeLayout(false);
             this.panelBenutzer.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbPasswort)).EndInit();
@@ -3620,6 +3872,30 @@
         private System.Windows.Forms.Label label68;
         private System.Windows.Forms.ContextMenuStrip cbsAnfragen;
         private System.Windows.Forms.ToolStripMenuItem bestellungÜbernehmenToolStripMenuItem;
+        private System.Windows.Forms.Button btAnfragenBestellungÜbernehmen;
+        private System.Windows.Forms.Button btAnfrageErledigt;
+        private System.Windows.Forms.Label label75;
+        private System.Windows.Forms.TextBox textBox6;
+        private System.Windows.Forms.TextBox textBox5;
+        private System.Windows.Forms.Label label74;
+        private System.Windows.Forms.TextBox textBox4;
+        private System.Windows.Forms.Label label73;
+        private System.Windows.Forms.Label label72;
+        private System.Windows.Forms.DateTimePicker dateTimePicker2;
+        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.Label label71;
+        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.Label label70;
+        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.Label label69;
+        private System.Windows.Forms.ListView listViewRechnungGewähltArtikel;
+        private System.Windows.Forms.ColumnHeader columnHeader44;
+        private System.Windows.Forms.ColumnHeader columnHeader46;
+        private System.Windows.Forms.ColumnHeader columnHeader83;
+        private System.Windows.Forms.ColumnHeader columnHeader86;
+        private System.Windows.Forms.ColumnHeader columnHeader87;
+        private System.Windows.Forms.TextBox txtEntPasswort;
+        private System.Windows.Forms.TextBox txtVerPasswort;
     }
 }
 
