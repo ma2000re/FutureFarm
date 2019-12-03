@@ -17,16 +17,7 @@ namespace FutureFarm
         public FrmLogin()
         {
             InitializeComponent();
-            db = new Datenbank();
         }
-
-        Datenbank db;
-        String sql;
-        StreamReader sr;
-        StreamWriter sw;
-        ListViewItem lvItem;
-        OleDbDataReader dr;
-
 
         private void btHome_Click(object sender, EventArgs e)
         {
@@ -50,7 +41,10 @@ namespace FutureFarm
         private void btBestätigen_Click(object sender, EventArgs e)
         {
             Form1 f1 = new Form1();
+            f1.benutzerEingabe = txtBenutzername.Text;
+            f1.passwortEingabe = txtPasswort.Text;
             f1.EinloggenNeu();
+
             this.Close();
         }
 

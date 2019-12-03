@@ -46,7 +46,10 @@
             this.btKunden = new System.Windows.Forms.Button();
             this.pbLogoHome = new System.Windows.Forms.PictureBox();
             this.panelOben = new System.Windows.Forms.Panel();
+            this.lbBenutzername = new System.Windows.Forms.Label();
+            this.txtEntPasswort = new System.Windows.Forms.TextBox();
             this.btLogin2 = new System.Windows.Forms.Button();
+            this.txtVerPasswort = new System.Windows.Forms.TextBox();
             this.button1 = new System.Windows.Forms.Button();
             this.btLogin = new System.Windows.Forms.Button();
             this.btBeenden = new System.Windows.Forms.Button();
@@ -165,11 +168,11 @@
             this.columnHeader86 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader87 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.btRechnungSpeichern = new System.Windows.Forms.Button();
-            this.txtSummeBrutto = new System.Windows.Forms.TextBox();
+            this.txtRechnungSummeBrutto = new System.Windows.Forms.TextBox();
             this.label38 = new System.Windows.Forms.Label();
-            this.txtSummeUST = new System.Windows.Forms.TextBox();
+            this.txtRechnungSummeUST = new System.Windows.Forms.TextBox();
             this.label37 = new System.Windows.Forms.Label();
-            this.txtSummeNetto = new System.Windows.Forms.TextBox();
+            this.txtRechnungSummeNetto = new System.Windows.Forms.TextBox();
             this.label36 = new System.Windows.Forms.Label();
             this.dtpRechnungDatum = new System.Windows.Forms.DateTimePicker();
             this.listViewRechnungSuche = new System.Windows.Forms.ListView();
@@ -278,7 +281,7 @@
             this.dtpBestellungenLieferdatum = new System.Windows.Forms.DateTimePicker();
             this.label57 = new System.Windows.Forms.Label();
             this.label56 = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.cbBestellungStatus = new System.Windows.Forms.ComboBox();
             this.txtBestellungID = new System.Windows.Forms.TextBox();
             this.label55 = new System.Windows.Forms.Label();
             this.listViewBestellungen = new System.Windows.Forms.ListView();
@@ -344,8 +347,8 @@
             this.columnHeader85 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.cbsAnfragen = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.bestellungÜbernehmenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.txtVerPasswort = new System.Windows.Forms.TextBox();
-            this.txtEntPasswort = new System.Windows.Forms.TextBox();
+            this.btMenüMinMax = new System.Windows.Forms.Button();
+            this.columnHeader47 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.panelLinks.SuspendLayout();
             this.panelMenü.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbLogoHome)).BeginInit();
@@ -600,9 +603,10 @@
             // panelOben
             // 
             this.panelOben.BackColor = System.Drawing.Color.DodgerBlue;
+            this.panelOben.Controls.Add(this.lbBenutzername);
             this.panelOben.Controls.Add(this.txtEntPasswort);
-            this.panelOben.Controls.Add(this.txtVerPasswort);
             this.panelOben.Controls.Add(this.btLogin2);
+            this.panelOben.Controls.Add(this.txtVerPasswort);
             this.panelOben.Controls.Add(this.button1);
             this.panelOben.Controls.Add(this.btLogin);
             this.panelOben.Controls.Add(this.btBeenden);
@@ -613,6 +617,22 @@
             this.panelOben.Size = new System.Drawing.Size(1556, 41);
             this.panelOben.TabIndex = 1;
             // 
+            // lbBenutzername
+            // 
+            this.lbBenutzername.AutoSize = true;
+            this.lbBenutzername.Location = new System.Drawing.Point(736, 18);
+            this.lbBenutzername.Name = "lbBenutzername";
+            this.lbBenutzername.Size = new System.Drawing.Size(47, 16);
+            this.lbBenutzername.TabIndex = 6;
+            this.lbBenutzername.Text = "label76";
+            // 
+            // txtEntPasswort
+            // 
+            this.txtEntPasswort.Location = new System.Drawing.Point(883, 17);
+            this.txtEntPasswort.Name = "txtEntPasswort";
+            this.txtEntPasswort.Size = new System.Drawing.Size(41, 21);
+            this.txtEntPasswort.TabIndex = 5;
+            // 
             // btLogin2
             // 
             this.btLogin2.FlatAppearance.BorderSize = 0;
@@ -620,7 +640,7 @@
             this.btLogin2.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btLogin2.Image = global::FutureFarm.Properties.Resources.logout;
             this.btLogin2.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btLogin2.Location = new System.Drawing.Point(593, 4);
+            this.btLogin2.Location = new System.Drawing.Point(383, 6);
             this.btLogin2.Name = "btLogin2";
             this.btLogin2.Size = new System.Drawing.Size(371, 29);
             this.btLogin2.TabIndex = 3;
@@ -628,6 +648,13 @@
             this.btLogin2.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btLogin2.UseVisualStyleBackColor = true;
             this.btLogin2.Click += new System.EventHandler(this.btLogin2_Click);
+            // 
+            // txtVerPasswort
+            // 
+            this.txtVerPasswort.Location = new System.Drawing.Point(970, 12);
+            this.txtVerPasswort.Name = "txtVerPasswort";
+            this.txtVerPasswort.Size = new System.Drawing.Size(100, 21);
+            this.txtVerPasswort.TabIndex = 4;
             // 
             // button1
             // 
@@ -1754,11 +1781,11 @@
             // 
             this.panelRechnungen.Controls.Add(this.listViewRechnungGewähltArtikel);
             this.panelRechnungen.Controls.Add(this.btRechnungSpeichern);
-            this.panelRechnungen.Controls.Add(this.txtSummeBrutto);
+            this.panelRechnungen.Controls.Add(this.txtRechnungSummeBrutto);
             this.panelRechnungen.Controls.Add(this.label38);
-            this.panelRechnungen.Controls.Add(this.txtSummeUST);
+            this.panelRechnungen.Controls.Add(this.txtRechnungSummeUST);
             this.panelRechnungen.Controls.Add(this.label37);
-            this.panelRechnungen.Controls.Add(this.txtSummeNetto);
+            this.panelRechnungen.Controls.Add(this.txtRechnungSummeNetto);
             this.panelRechnungen.Controls.Add(this.label36);
             this.panelRechnungen.Controls.Add(this.dtpRechnungDatum);
             this.panelRechnungen.Controls.Add(this.listViewRechnungSuche);
@@ -1779,10 +1806,9 @@
             this.panelRechnungen.Controls.Add(this.listViewRechnungArtikel);
             this.panelRechnungen.Controls.Add(this.listViewRechnungen);
             this.panelRechnungen.Controls.Add(this.label39);
-            this.panelRechnungen.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelRechnungen.Location = new System.Drawing.Point(205, 41);
+            this.panelRechnungen.Location = new System.Drawing.Point(1165, 479);
             this.panelRechnungen.Name = "panelRechnungen";
-            this.panelRechnungen.Size = new System.Drawing.Size(1556, 1015);
+            this.panelRechnungen.Size = new System.Drawing.Size(88, 88);
             this.panelRechnungen.TabIndex = 52;
             this.panelRechnungen.Visible = false;
             // 
@@ -1810,7 +1836,7 @@
             // columnHeader46
             // 
             this.columnHeader46.Text = "Bezeichnung";
-            this.columnHeader46.Width = 445;
+            this.columnHeader46.Width = 408;
             // 
             // columnHeader83
             // 
@@ -1819,8 +1845,8 @@
             // 
             // columnHeader86
             // 
-            this.columnHeader86.Text = "Netto";
-            this.columnHeader86.Width = 80;
+            this.columnHeader86.Text = "Netto (einzel)";
+            this.columnHeader86.Width = 118;
             // 
             // columnHeader87
             // 
@@ -1837,14 +1863,15 @@
             this.btRechnungSpeichern.Text = "Speichern";
             this.btRechnungSpeichern.UseVisualStyleBackColor = true;
             // 
-            // txtSummeBrutto
+            // txtRechnungSummeBrutto
             // 
-            this.txtSummeBrutto.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtSummeBrutto.Location = new System.Drawing.Point(694, 800);
-            this.txtSummeBrutto.Name = "txtSummeBrutto";
-            this.txtSummeBrutto.ReadOnly = true;
-            this.txtSummeBrutto.Size = new System.Drawing.Size(135, 27);
-            this.txtSummeBrutto.TabIndex = 50;
+            this.txtRechnungSummeBrutto.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtRechnungSummeBrutto.Location = new System.Drawing.Point(694, 800);
+            this.txtRechnungSummeBrutto.Name = "txtRechnungSummeBrutto";
+            this.txtRechnungSummeBrutto.ReadOnly = true;
+            this.txtRechnungSummeBrutto.Size = new System.Drawing.Size(135, 27);
+            this.txtRechnungSummeBrutto.TabIndex = 50;
+            this.txtRechnungSummeBrutto.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // label38
             // 
@@ -1856,14 +1883,15 @@
             this.label38.TabIndex = 49;
             this.label38.Text = "Brutto";
             // 
-            // txtSummeUST
+            // txtRechnungSummeUST
             // 
-            this.txtSummeUST.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtSummeUST.Location = new System.Drawing.Point(694, 761);
-            this.txtSummeUST.Name = "txtSummeUST";
-            this.txtSummeUST.ReadOnly = true;
-            this.txtSummeUST.Size = new System.Drawing.Size(135, 27);
-            this.txtSummeUST.TabIndex = 48;
+            this.txtRechnungSummeUST.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtRechnungSummeUST.Location = new System.Drawing.Point(694, 761);
+            this.txtRechnungSummeUST.Name = "txtRechnungSummeUST";
+            this.txtRechnungSummeUST.ReadOnly = true;
+            this.txtRechnungSummeUST.Size = new System.Drawing.Size(135, 27);
+            this.txtRechnungSummeUST.TabIndex = 48;
+            this.txtRechnungSummeUST.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // label37
             // 
@@ -1875,14 +1903,15 @@
             this.label37.TabIndex = 47;
             this.label37.Text = "UST";
             // 
-            // txtSummeNetto
+            // txtRechnungSummeNetto
             // 
-            this.txtSummeNetto.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtSummeNetto.Location = new System.Drawing.Point(694, 728);
-            this.txtSummeNetto.Name = "txtSummeNetto";
-            this.txtSummeNetto.ReadOnly = true;
-            this.txtSummeNetto.Size = new System.Drawing.Size(135, 27);
-            this.txtSummeNetto.TabIndex = 46;
+            this.txtRechnungSummeNetto.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtRechnungSummeNetto.Location = new System.Drawing.Point(694, 728);
+            this.txtRechnungSummeNetto.Name = "txtRechnungSummeNetto";
+            this.txtRechnungSummeNetto.ReadOnly = true;
+            this.txtRechnungSummeNetto.Size = new System.Drawing.Size(135, 27);
+            this.txtRechnungSummeNetto.TabIndex = 46;
+            this.txtRechnungSummeNetto.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // label36
             // 
@@ -2707,13 +2736,14 @@
             this.panelBestellungen.Controls.Add(this.dtpBestellungenLieferdatum);
             this.panelBestellungen.Controls.Add(this.label57);
             this.panelBestellungen.Controls.Add(this.label56);
-            this.panelBestellungen.Controls.Add(this.comboBox1);
+            this.panelBestellungen.Controls.Add(this.cbBestellungStatus);
             this.panelBestellungen.Controls.Add(this.txtBestellungID);
             this.panelBestellungen.Controls.Add(this.label55);
             this.panelBestellungen.Controls.Add(this.listViewBestellungen);
-            this.panelBestellungen.Location = new System.Drawing.Point(1159, 186);
+            this.panelBestellungen.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panelBestellungen.Location = new System.Drawing.Point(205, 41);
             this.panelBestellungen.Name = "panelBestellungen";
-            this.panelBestellungen.Size = new System.Drawing.Size(59, 48);
+            this.panelBestellungen.Size = new System.Drawing.Size(1556, 1015);
             this.panelBestellungen.TabIndex = 56;
             this.panelBestellungen.Visible = false;
             // 
@@ -2726,6 +2756,7 @@
             this.btBestellungSpeichern.TabIndex = 33;
             this.btBestellungSpeichern.Text = "Speichern";
             this.btBestellungSpeichern.UseVisualStyleBackColor = true;
+            this.btBestellungSpeichern.Click += new System.EventHandler(this.btBestellungSpeichern_Click);
             // 
             // listViewBestellungenArtikelGewählt
             // 
@@ -2734,7 +2765,8 @@
             this.columnHeader74,
             this.columnHeader75,
             this.columnHeader76,
-            this.columnHeader64});
+            this.columnHeader64,
+            this.columnHeader47});
             this.listViewBestellungenArtikelGewählt.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.listViewBestellungenArtikelGewählt.FullRowSelect = true;
             this.listViewBestellungenArtikelGewählt.GridLines = true;
@@ -2742,10 +2774,12 @@
             this.listViewBestellungenArtikelGewählt.Location = new System.Drawing.Point(27, 589);
             this.listViewBestellungenArtikelGewählt.MultiSelect = false;
             this.listViewBestellungenArtikelGewählt.Name = "listViewBestellungenArtikelGewählt";
-            this.listViewBestellungenArtikelGewählt.Size = new System.Drawing.Size(1063, 301);
+            this.listViewBestellungenArtikelGewählt.Size = new System.Drawing.Size(1079, 301);
             this.listViewBestellungenArtikelGewählt.TabIndex = 32;
             this.listViewBestellungenArtikelGewählt.UseCompatibleStateImageBehavior = false;
             this.listViewBestellungenArtikelGewählt.View = System.Windows.Forms.View.Details;
+            this.listViewBestellungenArtikelGewählt.SelectedIndexChanged += new System.EventHandler(this.listViewBestellungenArtikelGewählt_SelectedIndexChanged);
+            this.listViewBestellungenArtikelGewählt.DoubleClick += new System.EventHandler(this.listViewBestellungenArtikelGewählt_DoubleClick);
             // 
             // columnHeader73
             // 
@@ -2788,11 +2822,12 @@
             this.listViewBestellungArtikelAlle.Location = new System.Drawing.Point(27, 272);
             this.listViewBestellungArtikelAlle.MultiSelect = false;
             this.listViewBestellungArtikelAlle.Name = "listViewBestellungArtikelAlle";
-            this.listViewBestellungArtikelAlle.Size = new System.Drawing.Size(1063, 301);
+            this.listViewBestellungArtikelAlle.Size = new System.Drawing.Size(1079, 301);
             this.listViewBestellungArtikelAlle.TabIndex = 31;
             this.listViewBestellungArtikelAlle.UseCompatibleStateImageBehavior = false;
             this.listViewBestellungArtikelAlle.View = System.Windows.Forms.View.Details;
             this.listViewBestellungArtikelAlle.SelectedIndexChanged += new System.EventHandler(this.listViewBestellungArtikelAlle_SelectedIndexChanged);
+            this.listViewBestellungArtikelAlle.DoubleClick += new System.EventHandler(this.listViewBestellungArtikelAlle_DoubleClick);
             // 
             // columnHeader59
             // 
@@ -2884,19 +2919,19 @@
             this.label56.TabIndex = 4;
             this.label56.Text = "Status";
             // 
-            // comboBox1
+            // cbBestellungStatus
             // 
-            this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox1.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Items.AddRange(new object[] {
+            this.cbBestellungStatus.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbBestellungStatus.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbBestellungStatus.FormattingEnabled = true;
+            this.cbBestellungStatus.Items.AddRange(new object[] {
             "Neu",
             "Bearbeitet",
             "Abgeschlossen"});
-            this.comboBox1.Location = new System.Drawing.Point(207, 114);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(164, 29);
-            this.comboBox1.TabIndex = 3;
+            this.cbBestellungStatus.Location = new System.Drawing.Point(207, 114);
+            this.cbBestellungStatus.Name = "cbBestellungStatus";
+            this.cbBestellungStatus.Size = new System.Drawing.Size(164, 29);
+            this.cbBestellungStatus.TabIndex = 3;
             // 
             // txtBestellungID
             // 
@@ -2925,12 +2960,14 @@
             this.columnHeader57,
             this.columnHeader58});
             this.listViewBestellungen.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.listViewBestellungen.FullRowSelect = true;
             this.listViewBestellungen.Location = new System.Drawing.Point(694, 66);
             this.listViewBestellungen.Name = "listViewBestellungen";
             this.listViewBestellungen.Size = new System.Drawing.Size(395, 162);
             this.listViewBestellungen.TabIndex = 0;
             this.listViewBestellungen.UseCompatibleStateImageBehavior = false;
             this.listViewBestellungen.View = System.Windows.Forms.View.Details;
+            this.listViewBestellungen.SelectedIndexChanged += new System.EventHandler(this.listViewBestellungen_SelectedIndexChanged);
             // 
             // columnHeader53
             // 
@@ -3499,25 +3536,27 @@
             this.bestellungÜbernehmenToolStripMenuItem.Text = "Bestellung übernehmen";
             this.bestellungÜbernehmenToolStripMenuItem.Click += new System.EventHandler(this.bestellungÜbernehmenToolStripMenuItem_Click);
             // 
-            // txtVerPasswort
+            // btMenüMinMax
             // 
-            this.txtVerPasswort.Location = new System.Drawing.Point(970, 12);
-            this.txtVerPasswort.Name = "txtVerPasswort";
-            this.txtVerPasswort.Size = new System.Drawing.Size(100, 21);
-            this.txtVerPasswort.TabIndex = 4;
+            this.btMenüMinMax.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btMenüMinMax.Location = new System.Drawing.Point(205, 465);
+            this.btMenüMinMax.Name = "btMenüMinMax";
+            this.btMenüMinMax.Size = new System.Drawing.Size(23, 104);
+            this.btMenüMinMax.TabIndex = 59;
+            this.btMenüMinMax.Text = "<";
+            this.btMenüMinMax.UseVisualStyleBackColor = true;
+            this.btMenüMinMax.Click += new System.EventHandler(this.btMenüMinMax_Click);
             // 
-            // txtEntPasswort
+            // columnHeader47
             // 
-            this.txtEntPasswort.Location = new System.Drawing.Point(883, 17);
-            this.txtEntPasswort.Name = "txtEntPasswort";
-            this.txtEntPasswort.Size = new System.Drawing.Size(41, 21);
-            this.txtEntPasswort.TabIndex = 5;
+            this.columnHeader47.Text = "BestellungArtikelID";
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1761, 1061);
+            this.Controls.Add(this.btMenüMinMax);
             this.Controls.Add(this.panelAnfragen);
             this.Controls.Add(this.panelKunden);
             this.Controls.Add(this.panelBestellungen);
@@ -3742,11 +3781,11 @@
         private System.Windows.Forms.ColumnHeader columnHeader37;
         private System.Windows.Forms.ColumnHeader columnHeader38;
         private System.Windows.Forms.DateTimePicker dtpRechnungDatum;
-        private System.Windows.Forms.TextBox txtSummeBrutto;
+        private System.Windows.Forms.TextBox txtRechnungSummeBrutto;
         private System.Windows.Forms.Label label38;
-        private System.Windows.Forms.TextBox txtSummeUST;
+        private System.Windows.Forms.TextBox txtRechnungSummeUST;
         private System.Windows.Forms.Label label37;
-        private System.Windows.Forms.TextBox txtSummeNetto;
+        private System.Windows.Forms.TextBox txtRechnungSummeNetto;
         private System.Windows.Forms.Label label36;
         private System.Windows.Forms.Button btRechnungSpeichern;
         private System.Windows.Forms.Label label39;
@@ -3821,7 +3860,7 @@
         private System.Windows.Forms.DateTimePicker dtpBestellungenLieferdatum;
         private System.Windows.Forms.Label label57;
         private System.Windows.Forms.Label label56;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox cbBestellungStatus;
         private System.Windows.Forms.ColumnHeader columnHeader63;
         private System.Windows.Forms.Button btBestellungSpeichern;
         private System.Windows.Forms.ListView listViewBestellungenArtikelGewählt;
@@ -3896,6 +3935,9 @@
         private System.Windows.Forms.ColumnHeader columnHeader87;
         private System.Windows.Forms.TextBox txtEntPasswort;
         private System.Windows.Forms.TextBox txtVerPasswort;
+        private System.Windows.Forms.Label lbBenutzername;
+        private System.Windows.Forms.Button btMenüMinMax;
+        private System.Windows.Forms.ColumnHeader columnHeader47;
     }
 }
 

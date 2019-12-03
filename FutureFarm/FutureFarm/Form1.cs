@@ -30,28 +30,42 @@ namespace FutureFarm
             panelAuswahl.Height = btHome.Height;
             panelAuswahl.Top = btHome.Top;
 
-            db = new Datenbank();
+
+            client = new RestClient("http://localhost:8888")
+            {
+                Authenticator = new HttpBasicAuthenticator("demo", "demo")
+            };
+
+
         }
 
-        internal Boolean LogIn;
-        internal String benutzerEingabe;
-        internal String passwortEingabe;
-        Datenbank db;
+        RestClient client;
         ListViewItem lvItem;
-        internal int anzahlBenutzer;
-        internal double weite = Screen.PrimaryScreen.WorkingArea.Width;
-        internal double höhe = Screen.PrimaryScreen.WorkingArea.Height;
-        string pbBildName;
-        bool alle;
         Artikel aktArtikel;
-        public bool reset=false;
+        RC4 rc4;
+
+
+        internal bool LogIn;
+        internal bool mengeOK;
+        internal bool alle;
+        internal bool reset = false;
+
+        internal string benutzerEingabe;
+        internal string passwortEingabe;
+        internal string pbBildName;
         internal string angBenutzer;
         internal string rechnungNeuKunde;
-        RC4 rc4;
         internal string hash = "FutureFarm";
         internal string verPasswort;
         internal string entPasswort;
-        
+
+        internal int anzahlBenutzer;
+        internal int menge;
+
+        internal double weite = Screen.PrimaryScreen.WorkingArea.Width;
+        internal double höhe = Screen.PrimaryScreen.WorkingArea.Height;
+
+
 
         private void btHome_Click(object sender, EventArgs e)
         {
@@ -89,11 +103,7 @@ namespace FutureFarm
         private void RechnungenEinlesen()
         {
             listViewRechnungen.Items.Clear();
-            //Client für API
-            var client = new RestClient("http://localhost:8888")
-            {
-                Authenticator = new HttpBasicAuthenticator("demo", "demo")
-            };
+
             var request = new RestRequest("rechnungen", Method.GET);
             request.AddHeader("Content-Type", "application/json");
             var response = client.Execute<List<Rechnung>>(request);
@@ -115,10 +125,6 @@ namespace FutureFarm
         {
             listViewRechnungArtikel.Items.Clear();
 
-            var client = new RestClient("http://localhost:8888")
-            {
-                Authenticator = new HttpBasicAuthenticator("demo", "demo")
-            };
             var request = new RestRequest("rechnungartikel", Method.GET);
             request.AddHeader("Content-Type", "application/json");
             var response = client.Execute<List<RechnungArtikel>>(request);
@@ -139,11 +145,7 @@ namespace FutureFarm
         private void RechnungSucheEinlesen()
         {
             listViewRechnungSuche.Items.Clear();
-            //Client für API
-            var client = new RestClient("http://localhost:8888")
-            {
-                Authenticator = new HttpBasicAuthenticator("demo", "demo")
-            };
+
             var request = new RestRequest("rechnungen", Method.GET);
             request.AddHeader("Content-Type", "application/json");
             var response = client.Execute<List<Rechnung>>(request);
@@ -193,11 +195,7 @@ namespace FutureFarm
         private void ArtikelEinlesen()
         {
             listViewArtikel.Items.Clear();
-            //Client für API
-            var client = new RestClient("http://localhost:8888")
-            {
-                Authenticator = new HttpBasicAuthenticator("demo", "demo")
-            };
+
             var request = new RestRequest("artikel", Method.GET);
             request.AddHeader("Content-Type", "application/json");
             var response = client.Execute<List<Artikel>>(request);
@@ -226,15 +224,22 @@ namespace FutureFarm
                 else
                 {
                     listViewArtikel.Items.Add(lvItem);
-                }
+                }                    
             }
 
             for(int i=0; i<listViewArtikel.Items.Count;i++)
             {
-                if (listViewArtikel.Items[i].SubItems[8].Text.Equals("True"))
-                    listViewArtikel.Items[i].BackColor = Color.White;
-                else
+                //Lagerstand darstellen
+                if (Convert.ToInt32(listViewArtikel.Items[i].SubItems[6].Text) < 5)
+                    listViewArtikel.Items[i].BackColor = Color.Yellow;
+                if (Convert.ToInt32(listViewArtikel.Items[i].SubItems[6].Text) < 3)
+                    listViewArtikel.Items[i].BackColor = Color.Red;
+
+                //Status prüfen (wenn false - kein Lagerstand notwendig - somit überschreibbar)
+                if (listViewArtikel.Items[i].SubItems[8].Text.Equals("False"))
                     listViewArtikel.Items[i].BackColor = Color.LightGray;
+
+
             }
 
         }
@@ -242,10 +247,7 @@ namespace FutureFarm
         private void LieferantenEinlesen()
         {
             cbArtikelLieferanten.Items.Clear();
-            var client = new RestClient("http://localhost:8888")
-            {
-                Authenticator = new HttpBasicAuthenticator("demo", "demo")
-            };
+
             var request = new RestRequest("lieferanten", Method.GET);
             request.AddHeader("Content-Type", "application/json");
             var response = client.Execute<List<Lieferanten>>(request);
@@ -285,10 +287,7 @@ namespace FutureFarm
         {
             listViewKunden.Items.Clear();
             //API Client
-            var client = new RestClient("http://localhost:8888")
-            {
-                Authenticator = new HttpBasicAuthenticator("demo", "demo")
-            };
+
             var request = new RestRequest("kunden", Method.GET);
             request.AddHeader("Content-Type", "application/json");
             var response = client.Execute<List<Kunden>>(request);
@@ -347,52 +346,52 @@ namespace FutureFarm
 
         }
 
-        public void Einloggen()
-        {
-            //Benutzer die eingelesen sind löschen
-            listViewLoginDaten.Items.Clear();
+        //public void Einloggen()
+        //{
+        //    //Benutzer die eingelesen sind löschen
+        //    listViewLoginDaten.Items.Clear();
 
-            //Benutzer neu aus DB holen
-            BenutzerEinlesen();
+        //    //Benutzer neu aus DB holen
+        //    BenutzerEinlesen();
 
-            FrmLogin fLogin = new FrmLogin();
+        //    FrmLogin fLogin = new FrmLogin();
 
-            //Daten aus TextBox aus FormLogin holen
-            benutzerEingabe = fLogin.txtBenutzername.Text;
-            passwortEingabe = fLogin.txtPasswort.Text;
+        //    //Daten aus TextBox aus FormLogin holen
+        //    benutzerEingabe = fLogin.txtBenutzername.Text;
+        //    passwortEingabe = fLogin.txtPasswort.Text;
 
-            //MessageBox.Show(anzahlBenutzer.ToString());
-            for (int i = 0; i < anzahlBenutzer; i++)
-            {
-                if (listViewLoginDaten.Items[i].SubItems[1].Text.Equals(benutzerEingabe))
-                {
-                    if (listViewLoginDaten.Items[i].SubItems[2].Text.Equals(passwortEingabe))
-                    {
-                        LogIn = true;
-                        btLogin.Text = benutzerEingabe;
-                        angBenutzer = benutzerEingabe;
+        //    //MessageBox.Show(anzahlBenutzer.ToString());
+        //    for (int i = 0; i < listViewLoginDaten.Items.Count; i++)
+        //    {
+        //        if (listViewLoginDaten.Items[i].SubItems[1].Text.Equals(benutzerEingabe))
+        //        {
+        //            if (listViewLoginDaten.Items[i].SubItems[2].Text.Equals(passwortEingabe))
+        //            {
+        //                LogIn = true;
+        //                btLogin.Text = benutzerEingabe;
+        //                angBenutzer = benutzerEingabe;
 
-                        btLogin.Image = Image.FromFile("D:\\OneDrive - BHAK und BHAS Mistelbach 316448\\Schule\\AP_SWE\\GitHub\\FutureFarmProgramm\\FutureFarm\\FutureFarm\\Properties\\login.png");
+        //                btLogin.Image = Image.FromFile("D:\\OneDrive - BHAK und BHAS Mistelbach 316448\\Schule\\AP_SWE\\GitHub\\FutureFarmProgramm\\FutureFarm\\FutureFarm\\Properties\\login.png");
 
-                        LetzteAnmeldungAktualisieren();
-                        MessageBox.Show("Login abgeschlossen, break eingeleitet!\n"+btLogin.Text+"§§"+LogIn.ToString());
+        //                LetzteAnmeldungAktualisieren();
+        //                MessageBox.Show("Login abgeschlossen, break eingeleitet!\n"+btLogin.Text+"§§"+LogIn.ToString());
                         
-                    }
-                    else
-                    {
-                        MessageBox.Show("Passwort falsch!");
-                        LogIn = false;
-                    }
-                    CheckEingeloggt();
-                }
-                break;
-            }
+        //            }
+        //            else
+        //            {
+        //                MessageBox.Show("Passwort falsch!");
+        //                LogIn = false;
+        //            }
+        //            CheckEingeloggt();
+        //        }
+        //        break;
+        //    }
 
-            if (LogIn == false)
-            {
-                MessageBox.Show("Login fehlgeschlagen!");
-            }
-        }
+        //    if (LogIn == false)
+        //    {
+        //        MessageBox.Show("Login fehlgeschlagen!");
+        //    }
+        //}
 
         internal void CheckEingeloggt()
         {
@@ -431,10 +430,6 @@ namespace FutureFarm
             panelBenutzerLoginEinlesen();
 
             //API Client
-            var client = new RestClient("http://localhost:8888")
-            {
-                Authenticator = new HttpBasicAuthenticator("demo", "demo")
-            };
 
             int aktuelleID = 0;
             string aktuellesPW="";
@@ -477,11 +472,7 @@ namespace FutureFarm
         private void BenutzerEinlesen()
         {
             listViewPanelBenutzerLogin.Items.Clear();
-            //API Client
-            var client = new RestClient("http://localhost:8888")
-            {
-                Authenticator = new HttpBasicAuthenticator("demo", "demo")
-            };
+
             var request = new RestRequest("logins", Method.GET);
             request.AddHeader("Content-Type", "application/json");
             var response = client.Execute<List<Login>>(request);
@@ -501,7 +492,7 @@ namespace FutureFarm
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            //APIStart();
+
             GoFullscreen();
             MenuErstellen();
             panelsDeaktivieren();
@@ -537,7 +528,7 @@ namespace FutureFarm
 
 
             //Unterauswahl anzeigen
-            btRechnungNeu.Location = new Point(Convert.ToInt16(weite * 0.1), (pbLogoHome.Height + (btHome.Height * 1)));
+            btRechnungNeu.Location = new Point(Convert.ToInt16(panelLinks.Width), (pbLogoHome.Height + (btHome.Height * 1)));
             btRechnungNeu.Visible = true;
             btRechnungNeu.Height = btRechnungen.Height;
             btRechnungNeu.BringToFront();
@@ -601,8 +592,8 @@ namespace FutureFarm
             panelAuswahl.Top = btEinstellungen.Top;
 
             //Unterauswahl anzeigen
-            btFirmendaten.Location = new Point(Convert.ToInt16(weite * 0.1), (pbLogoHome.Height + (btHome.Height * 9)));
-            btBenutzer.Location = new Point(Convert.ToInt16(weite * 0.1), Convert.ToInt16((pbLogoHome.Height + (btHome.Height * 9.5))));
+            btFirmendaten.Location = new Point(Convert.ToInt16(panelLinks.Width), (pbLogoHome.Height + (btHome.Height * 9)));
+            btBenutzer.Location = new Point(Convert.ToInt16(panelLinks.Width), Convert.ToInt16((pbLogoHome.Height + (btHome.Height * 9.5))));
             btFirmendaten.Visible = true;
             btBenutzer.Visible = true;
             btFirmendaten.BringToFront();
@@ -694,6 +685,10 @@ namespace FutureFarm
             btFirmendaten.Height = btHöhe / 2;
             btBenutzer.Height = btHöhe / 2;
 
+
+            //MinMax
+            btMenüMinMax.Location = new Point(Convert.ToInt32(panelLinks.Width), Convert.ToInt32(panelMenü.Height / 2));
+
         }
 
         private void Form1_MouseEnter(object sender, EventArgs e)
@@ -725,10 +720,7 @@ namespace FutureFarm
         {
             listViewPanelBenutzerLogin.Items.Clear();
             //API Client
-            var client = new RestClient("http://localhost:8888")
-            {
-                Authenticator = new HttpBasicAuthenticator("demo", "demo")
-            };
+
             var request = new RestRequest("logins", Method.GET);
             request.AddHeader("Content-Type", "application/json");
             var response = client.Execute<List<Login>>(request);
@@ -782,10 +774,7 @@ namespace FutureFarm
         {
             listViewAnfragen.Items.Clear();
             //Client für API
-            var client = new RestClient("http://localhost:8888")
-            {
-                Authenticator = new HttpBasicAuthenticator("demo", "demo")
-            };
+
             var request = new RestRequest("formulare", Method.GET);
             request.AddHeader("Content-Type", "application/json");
             var response = client.Execute<List<Formular>>(request);
@@ -812,6 +801,13 @@ namespace FutureFarm
 
         private void btBestellungen_Click(object sender, EventArgs e)
         {
+            //Daten löschen
+            txtBestellungID.Clear();
+            listViewBestellungenArtikelGewählt.Items.Clear();
+            cbBestellungStatus.SelectedIndex = 0;
+            dtpBestellungenLieferdatum.Value = DateTime.Now;
+            cbBestellungenKunde.SelectedIndex = 0;
+
             panelsDeaktivieren();
 
             panelBestellungen.Visible = true;
@@ -820,16 +816,29 @@ namespace FutureFarm
 
             BestellungenEinlesen();
             BestellungenArtikelEinlesen();
+            ComboKundenEinlesen();
+        }
+
+        private void ComboKundenEinlesen()
+        {
+            cbBestellungenKunde.Items.Clear();
+            //Client für API
+
+            var request = new RestRequest("kunden", Method.GET);
+            request.AddHeader("Content-Type", "application/json");
+            var response = client.Execute<List<Kunden>>(request);
+
+            foreach (Kunden k in response.Data)
+            {
+                cbBestellungenKunde.Items.Add(k.KundenID.ToString() + " | " + k.Nachname.ToString() + " " + k.Vorname.ToString());
+            }
         }
 
         private void BestellungenArtikelEinlesen()
         {
             listViewBestellungArtikelAlle.Items.Clear();
             //Client für API
-            var client = new RestClient("http://localhost:8888")
-            {
-                Authenticator = new HttpBasicAuthenticator("demo", "demo")
-            };
+
             var request = new RestRequest("artikel", Method.GET);
             request.AddHeader("Content-Type", "application/json");
             var response = client.Execute<List<Artikel>>(request);
@@ -861,10 +870,7 @@ namespace FutureFarm
         {
             listViewBestellungen.Items.Clear();
             //API Client
-            var client = new RestClient("http://localhost:8888")
-            {
-                Authenticator = new HttpBasicAuthenticator("demo", "demo")
-            };
+
             var request = new RestRequest("bestellungen", Method.GET);
             request.AddHeader("Content-Type", "application/json");
             var response = client.Execute<List<Bestellung>>(request);
@@ -904,10 +910,7 @@ namespace FutureFarm
         {
             listViewNews.Items.Clear();
             //API Client
-            var client = new RestClient("http://localhost:8888")
-            {
-                Authenticator = new HttpBasicAuthenticator("demo", "demo")
-            };
+
             var request = new RestRequest("news", Method.GET);
             request.AddHeader("Content-Type", "application/json");
             var response = client.Execute<List<News>>(request);
@@ -948,10 +951,7 @@ namespace FutureFarm
         {
             listViewTermine.Items.Clear();
             //API Client
-            var client = new RestClient("http://localhost:8888")
-            {
-                Authenticator = new HttpBasicAuthenticator("demo", "demo")
-            };
+
             var request = new RestRequest("termine", Method.GET);
             request.AddHeader("Content-Type", "application/json");
             var response = client.Execute<List<Termine>>(request);
@@ -1026,10 +1026,7 @@ namespace FutureFarm
                 //Benutzer hinzufügen
                 try
                 {
-                    var client = new RestClient("http://localhost:8888")
-                    {
-                        Authenticator = new HttpBasicAuthenticator("demo", "demo")
-                    };
+
 
 
                     //Benutzer erzeugen
@@ -1080,10 +1077,6 @@ namespace FutureFarm
                 try
                 {
                     //DELETE Methode
-                    var client = new RestClient("http://localhost:8888")
-                    {
-                        Authenticator = new HttpBasicAuthenticator("demo", "demo")
-                    };
 
                     if (listViewPanelBenutzerLogin.SelectedItems.Count == 0)
                     {
@@ -1133,10 +1126,6 @@ namespace FutureFarm
             {
                 try
                 {
-                    var client = new RestClient("http://localhost:8888")
-                    {
-                        Authenticator = new HttpBasicAuthenticator("demo", "demo")
-                    };
 
                     if (listViewPanelBenutzerLogin.SelectedItems.Count == 0)
                     {
@@ -1195,10 +1184,7 @@ namespace FutureFarm
         {
             listViewPanelBenutzerLogin.Items.Clear();
             //API Client
-            var client = new RestClient("http://localhost:8888")
-            {
-                Authenticator = new HttpBasicAuthenticator("demo", "demo")
-            };
+
             var request = new RestRequest("firmendaten", Method.GET);
             request.AddHeader("Content-Type", "application/json");
             var response = client.Execute<List<Firmendaten>>(request);
@@ -1258,10 +1244,6 @@ namespace FutureFarm
             {
                 try
                 {
-                    var client = new RestClient("http://localhost:8888")
-                    {
-                        Authenticator = new HttpBasicAuthenticator("demo", "demo")
-                    };
 
                     Firmendaten fi = new Firmendaten();
                     fi.FirmendatenID = 11;
@@ -1329,10 +1311,6 @@ namespace FutureFarm
                 txtArtikelReserviert.Text = lvItem.SubItems[7].Text;
                 checkboxArtikelAktiv.Checked = Convert.ToBoolean(lvItem.SubItems[8].Text);
 
-                var client = new RestClient("http://localhost:8888")
-                {
-                    Authenticator = new HttpBasicAuthenticator("demo", "demo")
-                };
 
                 //Lieferant auswählen per ID
                 var request = new RestRequest("lieferanten/{id}", Method.GET);
@@ -1374,10 +1352,6 @@ namespace FutureFarm
         {
             try
             {
-                var client = new RestClient("http://localhost:8888")
-                {
-                    Authenticator = new HttpBasicAuthenticator("demo", "demo")
-                };
 
                 //Benutzer holen
                 int aktuelleID = 0;
@@ -1444,10 +1418,6 @@ namespace FutureFarm
         {
             try
             {
-                var client = new RestClient("http://localhost:8888")
-                {
-                    Authenticator = new HttpBasicAuthenticator("demo", "demo")
-                };
 
                 //Benutzer holen
                 int aktuelleID = 0;
@@ -1508,11 +1478,6 @@ namespace FutureFarm
         {
             try
             {
-                var client = new RestClient("http://localhost:8888")
-                {
-                    Authenticator = new HttpBasicAuthenticator("demo", "demo")
-                };
-
 
                 //Lieferant holen
                 var request1 = new RestRequest("lieferanten/{id}", Method.GET);
@@ -1564,11 +1529,6 @@ namespace FutureFarm
         {
             try
             {
-                var client = new RestClient("http://localhost:8888")
-                {
-                    Authenticator = new HttpBasicAuthenticator("demo", "demo")
-                };
-
 
                 //Lieferant holen
                 //string gewLieferant = cbArtikelLieferanten.SelectedItem.ToString();
@@ -1621,7 +1581,7 @@ namespace FutureFarm
                 }
                 else
                 {
-                    MessageBox.Show("Erfolgreich Artikel geändert!");
+                    //MessageBox.Show("Erfolgreich Artikel geändert!");
                     ArtikelEinlesen();
                 }
 
@@ -1707,10 +1667,6 @@ namespace FutureFarm
 
         private void cbArtikelLieferanten_SelectedIndexChanged(object sender, EventArgs e)
         {
-            var client = new RestClient("http://localhost:8888")
-            {
-                Authenticator = new HttpBasicAuthenticator("demo", "demo")
-            };
 
 
             //Lieferant holen
@@ -1756,10 +1712,6 @@ namespace FutureFarm
             try
             {
                 //DELETE Methode
-                var client = new RestClient("http://localhost:8888")
-                {
-                    Authenticator = new HttpBasicAuthenticator("demo", "demo")
-                };
 
                 lvItem = listViewNews.SelectedItems[0];
 
@@ -1810,29 +1762,41 @@ namespace FutureFarm
         public void EinloggenNeu()
         {
             //Benutzereingaben aus FrmLogin
-            FrmLogin fl = new FrmLogin();
-            string eingabeBenutzername = fl.txtBenutzername.Text;
-            string eingabePasswort = fl.txtPasswort.Text;
+            //FrmLogin fl = new FrmLogin();
+            //string eingabeBenutzername = fl.txtBenutzername.Text;
+            //string eingabePasswort = fl.txtPasswort.Text;
 
+
+            //MessageBox.Show(eingabeBenutzername + " " + eingabePasswort);
 
             panelBenutzerLoginEinlesen();
 
             //einzelne Benutzer in der Listview durchgehen
-            for(int i=0; i<listViewPanelBenutzerLogin.Items.Count;i++)
+            for(int i=0; i < listViewPanelBenutzerLogin.Items.Count;i++)
             {
                 //Item prüfen
                 lvItem = listViewPanelBenutzerLogin.Items[i];
-                if (eingabeBenutzername.Equals(lvItem.SubItems[1].Text) && eingabePasswort.Equals(lvItem.SubItems[2].Text))
+                if (benutzerEingabe.Equals(lvItem.SubItems[1].Text)) //Wenn Benutzer existiert --> Passwort prüfen
                 {
-                    LogIn = true;
-                    btLogin2.Text = eingabeBenutzername;
-                    btLogin2.Image = Image.FromFile("D:\\OneDrive - BHAK und BHAS Mistelbach 316448\\Schule\\AP_SWE\\GitHub\\FutureFarmProgramm\\FutureFarm\\FutureFarm\\Properties\\login.png");
-
-                    MessageBox.Show("Anmeldung erfolgreich!");
-                    break;
+                    if (passwortEingabe.Equals(lvItem.SubItems[2].Text)) //Wenn Passwort stimmmt --> einloggen
+                    {
+                        LogIn = true;
+                        btLogin2.Text = benutzerEingabe;
+                        btLogin2.Image = Image.FromFile("D:\\OneDrive - BHAK und BHAS Mistelbach 316448\\Schule\\AP_SWE\\GitHub\\FutureFarmProgramm\\FutureFarm\\FutureFarm\\Properties\\login.png");
+                        lbBenutzername.Text = benutzerEingabe;
+                        MessageBox.Show("Anmeldung erfolgreich!");
+                        break;
+                    }
+                    else
+                    {
+                        MessageBox.Show("Passwort falsch"); //Wenn Benutzer existiert, aber Passwort falsch
+                        break;
+                    }
                 }
                 else
-                    MessageBox.Show("Anmelden fehlgeschlagen!");
+                {
+                    
+                }
 
                 CheckEingeloggt();
             }
@@ -1893,10 +1857,7 @@ namespace FutureFarm
         {
             cbKundeRechnungNeu.Items.Clear();
             //Client für API
-            var client = new RestClient("http://localhost:8888")
-            {
-                Authenticator = new HttpBasicAuthenticator("demo", "demo")
-            };
+
             var request = new RestRequest("kunden", Method.GET);
             request.AddHeader("Content-Type", "application/json");
             var response = client.Execute<List<Kunden>>(request);
@@ -1912,10 +1873,7 @@ namespace FutureFarm
         {
             cbBestellungRechnungNeu.Items.Clear();
             //Client für API
-            var client = new RestClient("http://localhost:8888")
-            {
-                Authenticator = new HttpBasicAuthenticator("demo", "demo")
-            };
+
             var request = new RestRequest("bestellungen", Method.GET);
             request.AddHeader("Content-Type", "application/json");
             var response = client.Execute<List<Bestellung>>(request);
@@ -1962,10 +1920,7 @@ namespace FutureFarm
                 int anzahlArtikel = 0;
 
                 //Client für API
-                var client = new RestClient("http://localhost:8888")
-                {
-                    Authenticator = new HttpBasicAuthenticator("demo", "demo")
-                };
+
                 var request = new RestRequest("bestellungartikel", Method.GET);
                 request.AddHeader("Content-Type", "application/json");
                 var response = client.Execute<List<BestellungArtikel>>(request);
@@ -2132,11 +2087,6 @@ namespace FutureFarm
         {
             try
             {
-                var client = new RestClient("http://localhost:8888")
-                {
-                    Authenticator = new HttpBasicAuthenticator("demo", "demo")
-                };
-                
 
                 //Artikel erzeugen
                 Termine termin = new Termine();
@@ -2170,25 +2120,6 @@ namespace FutureFarm
 
         private void listViewBestellungArtikelAlle_SelectedIndexChanged(object sender, EventArgs e)
         {
-            FrmWarnung fw = new FrmWarnung();
-            if (listViewBestellungArtikelAlle.SelectedItems[0].SubItems[6].Text.Equals("False"))
-            {
-                fw.lbText.Text = "Gewählter Artikel ist inaktiv,\ntrotzdem hinzufügen?";
-                fw.ShowDialog();
-                if(fw.weiter==true)
-                {
-                    //Artikel hinzufügen
-                    //Menge
-                }
-                else
-                {
-                    //Artikel nicht hinzufügen
-                }
-            }
-            else
-            {
-                //Artikel hinzufügen
-            }
         }
 
         private void btKundenSpeichern_Click(object sender, EventArgs e)
@@ -2228,7 +2159,7 @@ namespace FutureFarm
             }
             catch(Exception ex)
             {
-
+                MessageBox.Show(ex.Message);
             }
         }
 
@@ -2259,6 +2190,7 @@ namespace FutureFarm
             }
             catch(Exception ex)
             {
+                MessageBox.Show(ex.Message);
             }
 
         }
@@ -2291,10 +2223,7 @@ namespace FutureFarm
                         string artikelID = listViewRechnungArtikel.Items[i].SubItems[5].Text;
 
                         //Client für API
-                        var client = new RestClient("http://localhost:8888")
-                        {
-                            Authenticator = new HttpBasicAuthenticator("demo", "demo")
-                        };
+
                         var request = new RestRequest("artikel/{id}", Method.GET);
                         request.AddUrlSegment("id", artikelID);
                         request.AddHeader("Content-Type", "application/json");
@@ -2302,21 +2231,468 @@ namespace FutureFarm
 
                         foreach (Artikel a in response.Data)
                         {
-                            //lvItem = new ListViewItem(a.ArtikelID.ToString());
-                            //lvItem.SubItems.Add(a.Bezeichnung.ToString());
-                            //lvItem.SubItems.Add(a.PreisNetto.ToString("0.00"));
-                            //lvItem.SubItems.Add(listViewRechnungArtikel.Items[i].SubItems[1].Text);
+                            lvItem = new ListViewItem(a.ArtikelID.ToString());
+                            lvItem.SubItems.Add(a.Bezeichnung.ToString());
+                            
+                            lvItem.SubItems.Add(listViewRechnungArtikel.Items[i].SubItems[1].Text);
+                            lvItem.SubItems.Add(a.PreisNetto.ToString());
+                            lvItem.SubItems.Add(a.Ust.ToString());
 
-                            //lvItem.SubItems.Add(a.Ust.ToString());
-
-                            //listViewRechnungGewähltArtikel.Items.Add(lvItem);
-
-                        //REIHENFOLGE ÜBERPRÜFEN
+                            listViewRechnungGewähltArtikel.Items.Add(lvItem);
                         }
-
                     }
                 }
 
+                //Summen berechnen
+                double summeNetto = 0;
+                double summeUst=0;
+                for (int i = 0; i < listViewRechnungGewähltArtikel.Items.Count; i++)
+                {
+                    summeNetto += Convert.ToDouble(listViewRechnungGewähltArtikel.Items[i].SubItems[2].Text);
+                    summeUst += Convert.ToDouble(listViewRechnungGewähltArtikel.Items[i].SubItems[2].Text) * (Convert.ToDouble(listViewRechnungGewähltArtikel.Items[i].SubItems[4].Text) / 100);
+                }
+
+                txtRechnungSummeNetto.Text = summeNetto.ToString("C2");
+                txtRechnungSummeUST.Text = summeUst.ToString("C2");
+                txtRechnungSummeBrutto.Text = (summeNetto + summeUst).ToString("C2");
+
+
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void btMenüMinMax_Click(object sender, EventArgs e)
+        {
+            if(btMenüMinMax.Text.Equals("<"))
+            {
+                btMenüMinMax.Text = ">";
+                panelLinks.Width = 50;
+                btMenüMinMax.Location = new Point(Convert.ToInt32(panelLinks.Width), Convert.ToInt32(panelMenü.Height) / 2);
+            }
+            else if(btMenüMinMax.Text.Equals(">"))
+            {
+                btMenüMinMax.Text = "<";
+                panelLinks.Width = Convert.ToInt16(weite * 0.10);
+                btMenüMinMax.Location = new Point(Convert.ToInt32(panelLinks.Width), Convert.ToInt32(panelMenü.Height) / 2);
+            }
+        }
+
+        private void listViewBestellungen_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                listViewBestellungenArtikelGewählt.Items.Clear();
+                lvItem = listViewBestellungen.SelectedItems[0];
+
+                //ID
+                txtBestellungID.Text = lvItem.SubItems[0].Text;
+
+                //Status
+                if (lvItem.SubItems[1].Text.Equals("Neu"))
+                {
+                    cbBestellungStatus.SelectedItem = cbBestellungStatus.Items[0];
+                }
+                else if (lvItem.SubItems[1].Text.Equals("Bearbeitet"))
+                {
+                    cbBestellungStatus.SelectedItem = cbBestellungStatus.Items[1];
+                }
+                else
+                {
+                    cbBestellungStatus.SelectedItem = cbBestellungStatus.Items[2];
+                }
+
+                //Datum
+                dtpBestellungenLieferdatum.Value = Convert.ToDateTime(lvItem.SubItems[2].Text);
+
+                //Kunde einlesen
+                cbBestellungenKunde.Items.Clear();
+                var request = new RestRequest("kunden", Method.GET);
+                request.AddHeader("Content-Type", "application/json");
+                var response = client.Execute<List<Kunden>>(request);
+
+                foreach (Kunden k in response.Data)
+                {
+                    cbBestellungenKunde.Items.Add(k.KundenID.ToString() + " | " + k.Nachname.ToString() + " " + k.Vorname.ToString());
+                }
+
+                //Kunden wählen
+                string kundenID = lvItem.SubItems[3].Text;
+
+                for (int i = 0; i < cbBestellungenKunde.Items.Count; i++)
+                {
+                    string aktItem = cbBestellungenKunde.Items[i].ToString();
+
+                    if (kundenID.Equals(aktItem.Substring(0, aktItem.IndexOf("|") - 1)))
+                    {
+                        cbBestellungenKunde.SelectedItem = cbBestellungenKunde.Items[i];
+                    }
+                }
+
+                //Artikel einlesen laut BestellungID
+                string aktBestellungID = txtBestellungID.Text;
+
+                ArtikelEinlesen();
+                BestellungenArtikelEinlesen();
+
+                BestellungArtikelNachIDEinlesen();
+
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void BestellungArtikelNachIDEinlesen()
+        {
+            listViewRechnungGewähltArtikel.Items.Clear();
+
+            var request1 = new RestRequest("bestellungartikel", Method.GET);
+            request1.AddHeader("Content-Type", "application/json");
+            var response1 = client.Execute<List<BestellungArtikel>>(request1);
+
+
+
+            foreach (BestellungArtikel ba in response1.Data)
+            {
+                if (ba.Bestellung.BestellungID.ToString().Equals(txtBestellungID.Text))
+                {
+                    lvItem = new ListViewItem(ba.Artikel.ArtikelID.ToString());
+                    lvItem.SubItems.Add(ba.Artikel.Bezeichnung.ToString());
+                    lvItem.SubItems.Add(ba.Menge.ToString());
+                    lvItem.SubItems.Add(ba.Nettopreis.ToString());
+                    lvItem.SubItems.Add(ba.Ust.ToString());
+                    lvItem.SubItems.Add(ba.BestellungArtikelID.ToString());
+
+                    listViewBestellungenArtikelGewählt.Items.Add(lvItem);
+                }
+            }
+        }
+
+        private void listViewBestellungArtikelAlle_DoubleClick(object sender, EventArgs e)
+        {
+            FrmWarnung fw = new FrmWarnung();
+
+            //Leere ID --> Status neu
+            if (txtBestellungID.Text.Equals(""))
+            {
+                fw.lbText.Text = "Keine Bestellung ausgewählt!\nWollen Sie eine neue Bestellung anlegen?";
+                fw.ShowDialog();
+                if (fw.weiter == true)
+                {
+                    if (cbBestellungStatus.Text.Equals("") || cbBestellungenKunde.Text.Equals(""))
+                    {
+                        fw.lbText.Text = "Bitte geben Sie alle Daten ein";
+                        fw.ShowDialog();
+
+                    }
+                    else
+                    {
+                        //Neue Bestellung anlegen
+                        Bestellung b = new Bestellung();
+                        b.Status = cbBestellungStatus.Text;
+                        b.Lieferdatum = dtpBestellungenLieferdatum.Value;
+                        //Kunden holen
+                        string kundenID = cbBestellungenKunde.Text.Substring(0, cbBestellungenKunde.Text.IndexOf('|') - 1);
+                        var request1 = new RestRequest("kunden/{id}", Method.GET);
+                        request1.AddUrlSegment("id", kundenID);
+                        request1.AddHeader("Content-Type", "application/json");
+                        var response1 = client.Execute<Kunden>(request1);
+                        Kunden k = response1.Data;
+                        b.Kunde = k;
+
+                        //Bestellung hinzufügen
+                        var request2 = new RestRequest("bestellungen", Method.POST);
+                        request2.AddHeader("Content-Type", "application/json");
+                        request2.AddJsonBody(b);
+                        var response2 = client.Execute(request2);
+
+                        BestellungenEinlesen();
+                        lvItem = listViewBestellungen.Items[listViewBestellungen.Items.Count - 1];
+                        txtBestellungID.Text = lvItem.Text;
+                    }
+                }
+                else
+                {
+
+                }
+
+            }
+
+
+            if (listViewBestellungArtikelAlle.SelectedItems[0].SubItems[6].Text.Equals("False"))
+            {
+                fw.lbText.Text = "Gewählter Artikel ist inaktiv,\ntrotzdem hinzufügen?";
+                fw.ShowDialog();
+                if (fw.weiter == true)
+                {
+                    BestellungArtikelHinzufügen();
+
+
+                }
+                else
+                {
+                    //Artikel nicht hinzufügen
+                }
+            }
+            else
+            {
+                BestellungArtikelHinzufügen();
+
+            }
+        }
+
+        private void BestellungArtikelHinzufügen()
+        {
+            //Menge
+            MengenPrüfung();
+
+            //Artikel hinzufügen
+            if (mengeOK == true)
+            {
+                BestellungArtikel bestellungArtikel = new BestellungArtikel();
+                bestellungArtikel.Menge = menge;
+                bestellungArtikel.Nettopreis = Convert.ToDouble(listViewBestellungArtikelAlle.SelectedItems[0].SubItems[2].Text);
+
+
+
+                    var request1 = new RestRequest("bestellungen/{id}", Method.GET);
+                    request1.AddUrlSegment("id", txtBestellungID.Text);
+                    request1.AddHeader("Content-Type", "application/json");
+                    var response1 = client.Execute<Bestellung>(request1);
+                Bestellung b = response1.Data;
+
+                bestellungArtikel.Bestellung = b;
+
+                    var request2 = new RestRequest("artikel/{id}", Method.GET);
+                    request2.AddUrlSegment("id", listViewBestellungArtikelAlle.SelectedItems[0].Text);
+                    request2.AddHeader("Content-Type", "application/json");
+                    var response2 = client.Execute<Artikel>(request2);
+                    Artikel a = response2.Data;
+                bestellungArtikel.Artikel = a;
+                bestellungArtikel.Ust = a.Ust;
+                
+
+
+                //BestellungArtikel hinzufügen
+                var request3 = new RestRequest("bestellungartikel", Method.POST);
+                request3.AddHeader("Content-Type", "application/json");
+                request3.AddJsonBody(bestellungArtikel);
+                var response3 = client.Execute(request3);
+
+                //Alle passenden BestellungenArtikel einlesen
+                listViewBestellungenArtikelGewählt.Items.Clear();
+                BestellungArtikelNachIDEinlesen();
+
+                //Menge reservieren
+                Artikel artikel = new Artikel();
+                artikel.ArtikelID = a.ArtikelID;
+                artikel.ExterneID = a.ExterneID;
+                artikel.Bezeichnung = a.Bezeichnung;
+                artikel.PreisNetto = a.PreisNetto;
+                artikel.Ust = a.Ust;
+                artikel.Lagerstand = a.Lagerstand;
+                artikel.Reserviert = (a.Reserviert + menge);
+                artikel.Bild = a.Bild;
+                artikel.Aktiv = a.Aktiv;
+                artikel.Lieferant = a.Lieferant;
+
+                var request = new RestRequest("artikel", Method.PUT);
+                request.AddHeader("Content-Type", "application/json");
+                request.AddJsonBody(artikel);
+                var response = client.Execute(request);
+                if (response.StatusCode == System.Net.HttpStatusCode.BadRequest)
+                {
+                    MessageBox.Show("An Error occured", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                else
+                {
+                    BestellungenArtikelEinlesen();
+                }
+
+
+
+
+            }
+            else
+            {
+                MengenPrüfung();
+            }
+        }
+
+        private void MengenPrüfung()
+        {
+            FrmMenge fm = new FrmMenge();
+            FrmWarnung fw = new FrmWarnung();
+
+
+            fm.ShowDialog();
+            try
+            {
+                menge = Convert.ToInt32(fm.txtMenge.Text);
+
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
+            //Menge mit Lagerstand vergleichen
+            int lagerstand = Convert.ToInt32(listViewBestellungArtikelAlle.SelectedItems[0].SubItems[3].Text);
+            int reserviert = Convert.ToInt32(listViewBestellungArtikelAlle.SelectedItems[0].SubItems[4].Text);
+
+            if ((lagerstand-reserviert) < menge)
+            {
+                fw.lbText.Text = "Menge höher als der Lagerbestand!\nBitte geringere Menge eingeben";
+                fw.ShowDialog();
+                if (fw.weiter == true)
+                    MengenPrüfung();
+                else
+                {
+                    
+                }
+            }
+            else if(menge<=0)
+            {
+                return;
+            }
+            else if((lagerstand-reserviert)>=menge)
+            {
+                mengeOK = true;
+            }
+            else
+            {
+                mengeOK = false;
+            }
+
+        }
+
+        private void listViewBestellungenArtikelGewählt_DoubleClick(object sender, EventArgs e)
+        {
+            lvItem = listViewBestellungenArtikelGewählt.SelectedItems[0];
+            MessageBox.Show(lvItem.SubItems[1].Text);
+
+            menge = Convert.ToInt32(lvItem.SubItems[2].Text);
+
+            //Artikel nach ID holen
+            var request2 = new RestRequest("artikel/{id}", Method.GET);
+            request2.AddUrlSegment("id", lvItem.Text);
+            request2.AddHeader("Content-Type", "application/json");
+            var response2 = client.Execute<Artikel>(request2);
+            Artikel a = response2.Data;
+
+            //Artikel ändern - Menge
+
+            Artikel artikel = new Artikel();
+            artikel.ArtikelID = a.ArtikelID;
+            artikel.ExterneID = a.ExterneID;
+            artikel.Bezeichnung = a.Bezeichnung;
+            artikel.PreisNetto = a.PreisNetto;
+            artikel.Ust = a.Ust;
+            artikel.Lagerstand = a.Lagerstand;
+            artikel.Reserviert = (a.Reserviert -Convert.ToInt32(lvItem.SubItems[2].Text));
+            artikel.Bild = a.Bild;
+            artikel.Aktiv = a.Aktiv;
+            artikel.Lieferant = a.Lieferant;
+
+            var request = new RestRequest("artikel", Method.PUT);
+            request.AddHeader("Content-Type", "application/json");
+            request.AddJsonBody(artikel);
+            var response = client.Execute(request);
+            if (response.StatusCode == System.Net.HttpStatusCode.BadRequest)
+            {
+                MessageBox.Show("An Error occured", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else
+            {
+                listViewBestellungenArtikelGewählt.Items.Remove(listViewBestellungenArtikelGewählt.SelectedItems[0]);
+                BestellungenArtikelEinlesen();
+            }
+
+            //BestellungArtikel löschen --> iniaktiv
+            BestellungArtikel bestellungArtikel = new BestellungArtikel();
+            bestellungArtikel.BestellungArtikelID = Convert.ToInt32(lvItem.SubItems[5].Text);
+            var request1 = new RestRequest("bestellungartikel/{id}", Method.DELETE);
+            request1.AddUrlSegment("id", bestellungArtikel.BestellungArtikelID.ToString());
+            request1.AddHeader("Content-Type", "application/json");
+            request1.AddJsonBody(bestellungArtikel);
+            var response1 = client.Execute(request1);
+            if (response1.StatusCode == System.Net.HttpStatusCode.BadRequest)
+            {
+                MessageBox.Show("An Error occured", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else
+            {
+                MessageBox.Show("Erfolgreich gelöscht");
+            }
+
+            //HIER
+            //Falscher Artike gewählt
+
+
+
+
+        }
+
+        private void btBestellungSpeichern_Click(object sender, EventArgs e)
+        {
+            if (txtBestellungID.Text.Equals(""))
+            {
+                if(cbBestellungStatus.Text.Equals("") || cbBestellungenKunde.Text.Equals(""))
+                {
+                    FrmWarnung fm = new FrmWarnung();
+                    fm.lbText.Text = "Bitte Eingabe prüfen!\n\nDaten nicht korrekt";
+                    fm.ShowDialog();
+                }
+                else
+                {
+                    //Kunden holen
+                    var request1 = new RestRequest("kunden/{id}", Method.GET);
+                    string kundenID = cbBestellungenKunde.Text.Substring(0, cbBestellungenKunde.Text.IndexOf('|') - 1);
+                    request1.AddUrlSegment("id", kundenID);
+                    request1.AddHeader("Content-Type", "application/json");
+                    var response1 = client.Execute<Kunden>(request1);
+                    Kunden k = response1.Data;
+                    MessageBox.Show(k.Nachname);
+
+
+                    //Neue Bestellung anlegen
+                    Bestellung bestellung = new Bestellung();
+                    bestellung.Status = cbBestellungStatus.Text;
+                    bestellung.Lieferdatum = Convert.ToDateTime(dtpBestellungenLieferdatum.Value.ToShortDateString());
+                    bestellung.Kunde = k;
+
+                    //Benutezr hinzufügen
+                    var request2 = new RestRequest("bestellungen", Method.POST);
+                    request2.AddHeader("Content-Type", "application/json");
+                    request2.AddJsonBody(bestellung);
+                    var response2 = client.Execute(request2);
+
+
+                    BestellungenEinlesen();
+
+                }
+            }
+            else
+            {
+                //Prüfen ob BestellungArtikel ID schon da ist
+                for(int i=0; i<listViewBestellungenArtikelGewählt.Items.Count;i++)
+                {
+                    //if(listViewBestellungenArtikelGewählt.Items[i].Text.Equals())
+                }
+            }
+       
+        }
+
+        private void listViewBestellungenArtikelGewählt_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                lvItem = listViewBestellungenArtikelGewählt.SelectedItems[0];
+                //MessageBox.Show(lvItem.SubItems[0].Text);
 
             }
             catch(Exception ex)
