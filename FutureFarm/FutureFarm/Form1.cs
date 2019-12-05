@@ -479,7 +479,7 @@ namespace FutureFarm
 
             foreach (Login l in response.Data)
             {
-                MessageBox.Show(l.Benutzername.ToString());
+                //MessageBox.Show(l.Benutzername.ToString());
                 lvItem = new ListViewItem(l.BenutzernameID.ToString());
                 lvItem.SubItems.Add(l.Benutzername.ToString());
                 lvItem.SubItems.Add(l.Passwort.ToString());
@@ -977,20 +977,24 @@ namespace FutureFarm
 
 
         private void listViewPanelBenutzerLogin_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (listViewPanelBenutzerLogin.SelectedItems.Count == 0)
             {
-                if (listViewPanelBenutzerLogin.SelectedItems.Count == 0)
-                {
-                    MessageBox.Show("Wählen Sie bitte einen Benutzer aus!");
-                    return;
-                }
-                lvItem = listViewPanelBenutzerLogin.SelectedItems[0];
-
-                txtBenutzerBenutzerID.Text = lvItem.SubItems[0].Text;
-                txtBenutzerBenutzername.Text = lvItem.SubItems[1].Text;
-                txtBenutzerPasswort.Text = lvItem.SubItems[2].Text;
-                // inlesenKunden();
-
+                MessageBox.Show("Wählen Sie bitte einen Benutzer aus!");
+                return;
             }
+            lvItem = listViewPanelBenutzerLogin.SelectedItems[0];
+
+            txtBenutzerBenutzerID.Text = lvItem.SubItems[0].Text;
+
+            verPasswort = lvItem.SubItems[2].Text;
+            PasswortEntschlüsseln();
+            txtBenutzerPasswort.Text = entPasswort;
+
+            txtBenutzerBenutzername.Text = lvItem.SubItems[1].Text;
+            // inlesenKunden();
+
+        }
 
             private void pictureBox2_Click(object sender, EventArgs e)
             {
@@ -1137,7 +1141,14 @@ namespace FutureFarm
                     Login login = new Login();
                     login.BenutzernameID = Convert.ToInt32(lvItem.SubItems[0].Text);
                     login.Benutzername = txtBenutzerBenutzername.Text;
-                    login.Passwort = txtBenutzerPasswort.Text;
+
+                    //Passwort verschlüsseln
+                    PasswortVerschlüsseln();
+
+
+                    login.Passwort = verPasswort;
+
+
                     login.LetzteAnmeldung = Convert.ToDateTime(lvItem.SubItems[3].Text);
 
                     var request = new RestRequest("logins", Method.PUT);
@@ -1160,6 +1171,22 @@ namespace FutureFarm
                     MessageBox.Show("Fehler bei der Änderung: " + ex.Message);
                 }
 
+
+            }
+        }
+
+        private void PasswortVerschlüsseln()
+        {
+            byte[] data = UTF8Encoding.UTF8.GetBytes(txtBenutzerPasswort.Text);
+            using (MD5CryptoServiceProvider md5 = new MD5CryptoServiceProvider())
+            {
+                byte[] keys = md5.ComputeHash(UTF8Encoding.UTF8.GetBytes(hash));
+                using (TripleDESCryptoServiceProvider tripDes = new TripleDESCryptoServiceProvider() { Key = keys, Mode = CipherMode.ECB, Padding = PaddingMode.PKCS7 })
+                {
+                    ICryptoTransform transform = tripDes.CreateEncryptor();
+                    byte[] results = transform.TransformFinalBlock(data, 0, data.Length);
+                    verPasswort = Convert.ToBase64String(results, 0, results.Length);
+                }
 
             }
         }
@@ -1778,7 +1805,10 @@ namespace FutureFarm
                 lvItem = listViewPanelBenutzerLogin.Items[i];
                 if (benutzerEingabe.Equals(lvItem.SubItems[1].Text)) //Wenn Benutzer existiert --> Passwort prüfen
                 {
-                    if (passwortEingabe.Equals(lvItem.SubItems[2].Text)) //Wenn Passwort stimmmt --> einloggen
+                    verPasswort = lvItem.SubItems[2].Text;
+                    PasswortEntschlüsseln();
+
+                    if (passwortEingabe.Equals(entPasswort)) //Wenn Passwort stimmmt --> einloggen
                     {
                         LogIn = true;
                         btLogin2.Text = benutzerEingabe;
@@ -2370,6 +2400,7 @@ namespace FutureFarm
                     lvItem.SubItems.Add(ba.Ust.ToString());
                     lvItem.SubItems.Add(ba.BestellungArtikelID.ToString());
 
+                    if(ba.Aktiv==true)
                     listViewBestellungenArtikelGewählt.Items.Add(lvItem);
                 }
             }
@@ -2575,20 +2606,20 @@ namespace FutureFarm
 
         private void listViewBestellungenArtikelGewählt_DoubleClick(object sender, EventArgs e)
         {
-            lvItem = listViewBestellungenArtikelGewählt.SelectedItems[0];
-            MessageBox.Show(lvItem.SubItems[1].Text);
+            ListViewItem gewlvItem = listViewBestellungenArtikelGewählt.SelectedItems[0];
 
-            menge = Convert.ToInt32(lvItem.SubItems[2].Text);
+
+            menge = Convert.ToInt32(gewlvItem.SubItems[2].Text);
 
             //Artikel nach ID holen
             var request2 = new RestRequest("artikel/{id}", Method.GET);
-            request2.AddUrlSegment("id", lvItem.Text);
+            request2.AddUrlSegment("id", gewlvItem.Text);
             request2.AddHeader("Content-Type", "application/json");
             var response2 = client.Execute<Artikel>(request2);
             Artikel a = response2.Data;
+            //MessageBox.Show(a.Bezeichnung);
 
             //Artikel ändern - Menge
-
             Artikel artikel = new Artikel();
             artikel.ArtikelID = a.ArtikelID;
             artikel.ExterneID = a.ExterneID;
@@ -2596,7 +2627,7 @@ namespace FutureFarm
             artikel.PreisNetto = a.PreisNetto;
             artikel.Ust = a.Ust;
             artikel.Lagerstand = a.Lagerstand;
-            artikel.Reserviert = (a.Reserviert -Convert.ToInt32(lvItem.SubItems[2].Text));
+            artikel.Reserviert = (a.Reserviert - Convert.ToInt32(gewlvItem.SubItems[2].Text));
             artikel.Bild = a.Bild;
             artikel.Aktiv = a.Aktiv;
             artikel.Lieferant = a.Lieferant;
@@ -2611,24 +2642,50 @@ namespace FutureFarm
             }
             else
             {
-                listViewBestellungenArtikelGewählt.Items.Remove(listViewBestellungenArtikelGewählt.SelectedItems[0]);
                 BestellungenArtikelEinlesen();
             }
 
-            //BestellungArtikel löschen --> iniaktiv
+            //Bestellung holen
+            var request3 = new RestRequest("bestellung/{id}", Method.GET);
+            string bestellungID = txtBestellungID.Text;
+            request3.AddUrlSegment("id", bestellungID);
+            request3.AddHeader("Content-Type", "application/json");
+            var response3 = client.Execute<Bestellung>(request3);
+            Bestellung b = response3.Data;
+
+
+            //Artikel holen
+            var request4 = new RestRequest("artikel/{id}", Method.GET);
+            string artikelID = gewlvItem.SubItems[0].Text;
+            request4.AddUrlSegment("id", artikelID);
+            request4.AddHeader("Content-Type", "application/json");
+            var response4 = client.Execute<Artikel>(request4);
+            Artikel a1 = response4.Data;
+
+
+            //BestellungArtikel inaktiv
             BestellungArtikel bestellungArtikel = new BestellungArtikel();
-            bestellungArtikel.BestellungArtikelID = Convert.ToInt32(lvItem.SubItems[5].Text);
-            var request1 = new RestRequest("bestellungartikel/{id}", Method.DELETE);
-            request1.AddUrlSegment("id", bestellungArtikel.BestellungArtikelID.ToString());
+            MessageBox.Show(gewlvItem.SubItems[5].Text);
+            bestellungArtikel.BestellungArtikelID = Convert.ToInt32(gewlvItem.SubItems[5].Text);
+
+            bestellungArtikel.Menge = Convert.ToInt32(gewlvItem.SubItems[2].Text);
+            bestellungArtikel.Nettopreis = Convert.ToDouble(gewlvItem.SubItems[3].Text);
+            bestellungArtikel.Ust= Convert.ToDouble(gewlvItem.SubItems[4].Text);
+            bestellungArtikel.Aktiv = false;
+            bestellungArtikel.Bestellung = b;
+            bestellungArtikel.Artikel=a1;
+
+            var request1 = new RestRequest("bestellungartikel", Method.PUT);
             request1.AddHeader("Content-Type", "application/json");
             request1.AddJsonBody(bestellungArtikel);
             var response1 = client.Execute(request1);
             if (response1.StatusCode == System.Net.HttpStatusCode.BadRequest)
             {
-                MessageBox.Show("An Error occured", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("HIerAn Error occured", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             else
             {
+                listViewBestellungenArtikelGewählt.Items.Remove(listViewBestellungenArtikelGewählt.SelectedItems[0]);
                 MessageBox.Show("Erfolgreich gelöscht");
             }
 
@@ -2700,6 +2757,22 @@ namespace FutureFarm
             }
             catch(Exception ex)
             {
+
+            }
+        }
+
+        private void PasswortEntschlüsseln()
+        {
+            byte[] data = Convert.FromBase64String(verPasswort.ToString());
+            using (MD5CryptoServiceProvider md5 = new MD5CryptoServiceProvider())
+            {
+                byte[] keys = md5.ComputeHash(UTF8Encoding.UTF8.GetBytes(hash));
+                using (TripleDESCryptoServiceProvider tripDes = new TripleDESCryptoServiceProvider() { Key = keys, Mode = CipherMode.ECB, Padding = PaddingMode.PKCS7 })
+                {
+                    ICryptoTransform transform = tripDes.CreateDecryptor();
+                    byte[] results = transform.TransformFinalBlock(data, 0, data.Length);
+                    entPasswort = UTF8Encoding.UTF8.GetString(results);
+                }
 
             }
         }
