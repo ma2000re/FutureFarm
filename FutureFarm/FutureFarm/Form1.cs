@@ -479,7 +479,7 @@ namespace FutureFarm
 
             foreach (Login l in response.Data)
             {
-                //MessageBox.Show(l.Benutzername.ToString());
+                MessageBox.Show(l.Benutzername.ToString());
                 lvItem = new ListViewItem(l.BenutzernameID.ToString());
                 lvItem.SubItems.Add(l.Benutzername.ToString());
                 lvItem.SubItems.Add(l.Passwort.ToString());
@@ -1795,7 +1795,10 @@ namespace FutureFarm
                 }
                 else
                 {
-                    
+                    if(i==Convert.ToInt32(listViewPanelBenutzerLogin.Items.Count)-1)
+                    {
+                        MessageBox.Show("Benutzer wurde nicht gefunden!");
+                    }
                 }
 
                 CheckEingeloggt();
