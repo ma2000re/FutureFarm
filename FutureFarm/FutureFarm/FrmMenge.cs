@@ -102,6 +102,7 @@ namespace FutureFarm
         {
             zahl = "";
             txtMenge.Text = zahl;
+            txtMenge.Focus();
         }
     }
 }

@@ -2421,9 +2421,16 @@ namespace FutureFarm
                     {
                         fw.lbText.Text = "Bitte geben Sie alle Daten ein";
                         fw.ShowDialog();
-
+                        return;
                     }
                     else
+                    {
+                        return;
+                    }
+                }
+                else
+                {
+                    if (txtBestellungID.Text != "")
                     {
                         //Neue Bestellung anlegen
                         Bestellung b = new Bestellung();
@@ -2447,11 +2454,10 @@ namespace FutureFarm
                         BestellungenEinlesen();
                         lvItem = listViewBestellungen.Items[listViewBestellungen.Items.Count - 1];
                         txtBestellungID.Text = lvItem.Text;
-                    }
-                }
-                else
-                {
 
+                    }
+                    else
+                        return;
                 }
 
             }
@@ -2487,69 +2493,67 @@ namespace FutureFarm
             //Artikel hinzufügen
             if (mengeOK == true)
             {
+                var request2 = new RestRequest("artikel/{id}", Method.GET);
+                request2.AddUrlSegment("id", listViewBestellungArtikelAlle.SelectedItems[0].Text);
+                request2.AddHeader("Content-Type", "application/json");
+                var response2 = client.Execute<Artikel>(request2);
+                Artikel a = response2.Data;
+
+                var request1 = new RestRequest("bestellungen/{id}", Method.GET);
+                request1.AddUrlSegment("id", txtBestellungID.Text);
+                request1.AddHeader("Content-Type", "application/json");
+                var response1 = client.Execute<Bestellung>(request1);
+                Bestellung b = response1.Data;
+
                 BestellungArtikel bestellungArtikel = new BestellungArtikel();
                 bestellungArtikel.Menge = menge;
                 bestellungArtikel.Nettopreis = Convert.ToDouble(listViewBestellungArtikelAlle.SelectedItems[0].SubItems[2].Text);
-
-
-
-                    var request1 = new RestRequest("bestellungen/{id}", Method.GET);
-                    request1.AddUrlSegment("id", txtBestellungID.Text);
-                    request1.AddHeader("Content-Type", "application/json");
-                    var response1 = client.Execute<Bestellung>(request1);
-                Bestellung b = response1.Data;
-
                 bestellungArtikel.Bestellung = b;
-
-                    var request2 = new RestRequest("artikel/{id}", Method.GET);
-                    request2.AddUrlSegment("id", listViewBestellungArtikelAlle.SelectedItems[0].Text);
-                    request2.AddHeader("Content-Type", "application/json");
-                    var response2 = client.Execute<Artikel>(request2);
-                    Artikel a = response2.Data;
                 bestellungArtikel.Artikel = a;
                 bestellungArtikel.Ust = a.Ust;
-                
-
+                bestellungArtikel.Aktiv = true;
 
                 //BestellungArtikel hinzufügen
                 var request3 = new RestRequest("bestellungartikel", Method.POST);
                 request3.AddHeader("Content-Type", "application/json");
                 request3.AddJsonBody(bestellungArtikel);
                 var response3 = client.Execute(request3);
-
-                //Alle passenden BestellungenArtikel einlesen
-                listViewBestellungenArtikelGewählt.Items.Clear();
-                BestellungArtikelNachIDEinlesen();
-
-                //Menge reservieren
-                Artikel artikel = new Artikel();
-                artikel.ArtikelID = a.ArtikelID;
-                artikel.ExterneID = a.ExterneID;
-                artikel.Bezeichnung = a.Bezeichnung;
-                artikel.PreisNetto = a.PreisNetto;
-                artikel.Ust = a.Ust;
-                artikel.Lagerstand = a.Lagerstand;
-                artikel.Reserviert = (a.Reserviert + menge);
-                artikel.Bild = a.Bild;
-                artikel.Aktiv = a.Aktiv;
-                artikel.Lieferant = a.Lieferant;
-
-                var request = new RestRequest("artikel", Method.PUT);
-                request.AddHeader("Content-Type", "application/json");
-                request.AddJsonBody(artikel);
-                var response = client.Execute(request);
-                if (response.StatusCode == System.Net.HttpStatusCode.BadRequest)
+                if (response3.StatusCode == System.Net.HttpStatusCode.BadRequest)
                 {
                     MessageBox.Show("An Error occured", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
                 else
                 {
-                    BestellungenArtikelEinlesen();
+                    //Alle passenden BestellungenArtikel einlesen
+                    listViewBestellungenArtikelGewählt.Items.Clear();
+                    BestellungArtikelNachIDEinlesen();
+
+                    //Menge reservieren
+                    Artikel artikel = new Artikel();
+                    artikel.ArtikelID = a.ArtikelID;
+                    artikel.ExterneID = a.ExterneID;
+                    artikel.Bezeichnung = a.Bezeichnung;
+                    artikel.PreisNetto = a.PreisNetto;
+                    artikel.Ust = a.Ust;
+                    artikel.Lagerstand = a.Lagerstand;
+                    artikel.Reserviert = (a.Reserviert + menge);
+                    artikel.Bild = a.Bild;
+                    artikel.Aktiv = a.Aktiv;
+                    artikel.Lieferant = a.Lieferant;
+
+                    var request = new RestRequest("artikel", Method.PUT);
+                    request.AddHeader("Content-Type", "application/json");
+                    request.AddJsonBody(artikel);
+                    var response = client.Execute(request);
+                    if (response.StatusCode == System.Net.HttpStatusCode.BadRequest)
+                    {
+                        MessageBox.Show("An Error occured", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                    else
+                    {
+                        BestellungenArtikelEinlesen();
+                    }
                 }
-
-
-
-
             }
             else
             {
@@ -2646,12 +2650,12 @@ namespace FutureFarm
             }
 
             //Bestellung holen
-            var request3 = new RestRequest("bestellung/{id}", Method.GET);
-            string bestellungID = txtBestellungID.Text;
-            request3.AddUrlSegment("id", bestellungID);
+            var request3 = new RestRequest("bestellungen/{id}", Method.GET);
+            request3.AddUrlSegment("id", txtBestellungID.Text);
             request3.AddHeader("Content-Type", "application/json");
             var response3 = client.Execute<Bestellung>(request3);
             Bestellung b = response3.Data;
+            //MessageBox.Show(b.BestellungID.ToString() + " " + b.Kunde.Nachname);
 
 
             //Artikel holen
@@ -2661,7 +2665,7 @@ namespace FutureFarm
             request4.AddHeader("Content-Type", "application/json");
             var response4 = client.Execute<Artikel>(request4);
             Artikel a1 = response4.Data;
-
+            //MessageBox.Show("Artikel holen: "+a1.ArtikelID.ToString() + " " + a1.Bezeichnung);
 
             //BestellungArtikel inaktiv
             BestellungArtikel bestellungArtikel = new BestellungArtikel();
@@ -2675,18 +2679,20 @@ namespace FutureFarm
             bestellungArtikel.Bestellung = b;
             bestellungArtikel.Artikel=a1;
 
+            //MessageBox.Show(b.BestellungID.ToString() + " " + a1.Bezeichnung);
+
             var request1 = new RestRequest("bestellungartikel", Method.PUT);
             request1.AddHeader("Content-Type", "application/json");
             request1.AddJsonBody(bestellungArtikel);
             var response1 = client.Execute(request1);
             if (response1.StatusCode == System.Net.HttpStatusCode.BadRequest)
             {
-                MessageBox.Show("HIerAn Error occured", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("An Error occured", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             else
             {
                 listViewBestellungenArtikelGewählt.Items.Remove(listViewBestellungenArtikelGewählt.SelectedItems[0]);
-                MessageBox.Show("Erfolgreich gelöscht");
+                MessageBox.Show("Erfolgreich entfernt!");
             }
 
             //HIER
