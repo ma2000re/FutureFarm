@@ -104,5 +104,17 @@ namespace FutureFarm
             txtMenge.Text = zahl;
             txtMenge.Focus();
         }
+
+        private void txtMenge_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)Keys.Enter)
+            {
+                this.Close();
+            }
+            else if (e.KeyChar == '1')
+            {
+                //Button "klicken"
+            }
+        }
     }
 }

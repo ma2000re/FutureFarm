@@ -182,7 +182,6 @@ namespace FutureFarm
             panelArtikelInfo.Location = new Point(Convert.ToInt16(panelArtikel.Width * 0.05), Convert.ToInt16(panelArtikel.Height * 0.05));
             lbArtikelFilter.Location = new Point(10, (panelArtikel.Height-listViewArtikel.Height-40));
             cbArtikelFilter.Location = new Point((10 + lbArtikelFilter.Width), (panelArtikel.Height - listViewArtikel.Height - 43));
-            btArtikelSpeichern.Enabled = false;
 
             ArtikelEinlesen();
             LieferantenEinlesen();
@@ -1315,7 +1314,6 @@ namespace FutureFarm
 
         private void listViewArtikel_SelectedIndexChanged(object sender, EventArgs e)
             {
-                btArtikelSpeichern.Enabled = true;
                 if (listViewArtikel.SelectedItems.Count == 0)
                 {
                     MessageBox.Show("Wählen Sie bitte einen Artikel aus!");
@@ -1503,52 +1501,15 @@ namespace FutureFarm
 
             private void btArtikelNeu_Click(object sender, EventArgs e)
         {
-            try
-            {
+            //try
+            //{
 
-                //Lieferant holen
-                var request1 = new RestRequest("lieferanten/{id}", Method.GET);
-                string gewLieferant = cbArtikelLieferanten.SelectedItem.ToString();
-                
-                request1.AddUrlSegment("id", gewLieferant);
-                request1.AddHeader("Content-Type", "application/json");
-                var response1 = client.Execute<Lieferanten>(request1);
-                //MessageBox.Show(response1.Data.Firma.ToString());
-                Lieferanten l = response1.Data;
-
-                //Artikel erzeugen
-                Artikel artikel = new Artikel();
-                artikel.Lieferant = l;
-                artikel.ExterneID = Convert.ToInt16(txtArtikelExterneID.Text);
-                artikel.Bezeichnung = txtArtikelBezeichnung.Text;
-                artikel.Aktiv = true;
-                artikel.Lagerstand=Convert.ToInt16(txtArtikelLagerstand.Text);
-                artikel.Reserviert = Convert.ToInt16(txtArtikelReserviert.Text);
-                artikel.PreisNetto = Convert.ToDouble(txtArtikelNettopreis.Text);
-                artikel.Ust = Convert.ToDouble(txtArtikelUST.Text);
-                artikel.Aktiv = Convert.ToBoolean(checkboxArtikelAktiv.Text);
-
-
-                //Artikel hinzufügen
-                var request2 = new RestRequest("artikel", Method.POST);
-                request2.AddHeader("Content-Type", "application/json");
-                request2.AddJsonBody(artikel);
-                var response2 = client.Execute(request2);
-                if(response2.StatusCode==System.Net.HttpStatusCode.BadRequest)
-                {
-                    MessageBox.Show("An Error occured", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-                else
-                {
-                    MessageBox.Show("Erfolgreich Artikel hinzugefügt!");
-                    ArtikelEinlesen();
-                }
                
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Fehler bei der Neuanlage: " + ex.Message);
-            }
+            //}
+            //catch (Exception ex)
+            //{
+            //    MessageBox.Show("Fehler bei der Neuanlage: " + ex.Message);
+            //}
 
         }
 
@@ -1556,60 +1517,104 @@ namespace FutureFarm
         {
             try
             {
-
-                //Lieferant holen
-                //string gewLieferant = cbArtikelLieferanten.SelectedItem.ToString();
-                //int lid = Convert.ToInt16(gewLieferant.Substring(0, 2).Trim());
-
-                Lieferanten lieferant = new Lieferanten();
-                var request1 = new RestRequest("lieferanten", Method.GET);
-                request1.AddHeader("Content-Type", "application/json");
-                var response1 = client.Execute<List<Lieferanten>>(request1);
-                foreach(Lieferanten l in response1.Data)
+                if(txtArtikelArtikelID.Text!="")
                 {
-                    //MessageBox.Show("Firma: "+l.Firma.ToString());
-                    if(l.LieferantenID==Convert.ToInt32(lvItem.SubItems[5].Text))
+                    MessageBox.Show("Artikel nicht neu");
+                    //ID da - Speichern
+
+                    //Lieferant holen
+                    Lieferanten lieferant = new Lieferanten();
+                    var request1 = new RestRequest("lieferanten", Method.GET);
+                    request1.AddHeader("Content-Type", "application/json");
+                    var response1 = client.Execute<List<Lieferanten>>(request1);
+                    foreach (Lieferanten l in response1.Data)
                     {
-                        lieferant.LieferantenID = l.LieferantenID;
-                        lieferant.Vorname = l.Vorname;
-                        lieferant.Nachname = l.Nachname;
-                        lieferant.PLZ = l.PLZ;
-                        lieferant.Strasse = l.Strasse;
-                        lieferant.Telefonnummer = l.Telefonnummer;
-                        lieferant.UID = l.UID;
-                        lieferant.Firma = l.Firma;
-                        lieferant.Email = l.Email;
-                        lieferant.Aktiv = l.Aktiv;
+                        //MessageBox.Show("Firma: "+l.Firma.ToString());
+                        if (l.LieferantenID == Convert.ToInt32(lvItem.SubItems[5].Text))
+                        {
+                            lieferant.LieferantenID = l.LieferantenID;
+                            lieferant.Vorname = l.Vorname;
+                            lieferant.Nachname = l.Nachname;
+                            lieferant.PLZ = l.PLZ;
+                            lieferant.Strasse = l.Strasse;
+                            lieferant.Telefonnummer = l.Telefonnummer;
+                            lieferant.UID = l.UID;
+                            lieferant.Firma = l.Firma;
+                            lieferant.Email = l.Email;
+                            lieferant.Aktiv = l.Aktiv;
+                        }
                     }
-                }
 
-                //Artikel schreiben
-                Artikel aktArtikel = new Artikel();
-                aktArtikel.Lieferant = lieferant;
-                aktArtikel.ExterneID = Convert.ToInt16(txtArtikelExterneID.Text);
-                aktArtikel.Bezeichnung = txtArtikelBezeichnung.Text;
-                aktArtikel.Lagerstand = Convert.ToInt16(txtArtikelLagerstand.Text);
-                aktArtikel.Reserviert = Convert.ToInt16(txtArtikelReserviert.Text);
-                aktArtikel.PreisNetto = Convert.ToDouble(txtArtikelNettopreis.Text);
-                aktArtikel.Ust = Convert.ToDouble(txtArtikelUST.Text);
-                aktArtikel.Aktiv = Convert.ToBoolean(checkboxArtikelAktiv.Checked);
-                aktArtikel.ArtikelID = Convert.ToInt32(txtArtikelArtikelID.Text);
-                aktArtikel.Bild = "";
+                    //Artikel schreiben
+                    Artikel aktArtikel = new Artikel();
+                    aktArtikel.Lieferant = lieferant;
+                    aktArtikel.ExterneID = Convert.ToInt16(txtArtikelExterneID.Text);
+                    aktArtikel.Bezeichnung = txtArtikelBezeichnung.Text;
+                    aktArtikel.Lagerstand = Convert.ToInt16(txtArtikelLagerstand.Text);
+                    aktArtikel.Reserviert = Convert.ToInt16(txtArtikelReserviert.Text);
+                    aktArtikel.PreisNetto = Convert.ToDouble(txtArtikelNettopreis.Text);
+                    aktArtikel.Ust = Convert.ToDouble(txtArtikelUST.Text);
+                    aktArtikel.Aktiv = Convert.ToBoolean(checkboxArtikelAktiv.Checked);
+                    aktArtikel.ArtikelID = Convert.ToInt32(txtArtikelArtikelID.Text);
+                    aktArtikel.Bild = "";
 
 
-                //Artikel updaten
-                var request2 = new RestRequest("artikel", Method.PUT);
-                request2.AddHeader("Content-Type", "application/json");
-                request2.AddJsonBody(aktArtikel);
-                var response2 = client.Execute(request2);
-                if (response2.StatusCode == System.Net.HttpStatusCode.BadRequest)
-                {
-                    MessageBox.Show("An Error occured", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    //Artikel updaten
+                    var request2 = new RestRequest("artikel", Method.PUT);
+                    request2.AddHeader("Content-Type", "application/json");
+                    request2.AddJsonBody(aktArtikel);
+                    var response2 = client.Execute(request2);
+                    if (response2.StatusCode == System.Net.HttpStatusCode.BadRequest)
+                    {
+                        MessageBox.Show("An Error occured", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                    else
+                    {
+                        //MessageBox.Show("Erfolgreich Artikel geändert!");
+                        ArtikelEinlesen();
+                    }
                 }
                 else
                 {
-                    //MessageBox.Show("Erfolgreich Artikel geändert!");
-                    ArtikelEinlesen();
+                    MessageBox.Show("Artikel neu");
+                    //Keine ID - NEU
+                    //Lieferant holen
+                    var request1 = new RestRequest("lieferanten/{id}", Method.GET);
+                    string gewLieferant = cbArtikelLieferanten.SelectedItem.ToString();
+
+                    request1.AddUrlSegment("id", gewLieferant);
+                    request1.AddHeader("Content-Type", "application/json");
+                    var response1 = client.Execute<Lieferanten>(request1);
+                    //MessageBox.Show(response1.Data.Firma.ToString());
+                    Lieferanten l = response1.Data;
+
+                    //Artikel erzeugen
+                    Artikel artikel = new Artikel();
+                    artikel.Lieferant = l;
+                    artikel.ExterneID = Convert.ToInt16(txtArtikelExterneID.Text);
+                    artikel.Bezeichnung = txtArtikelBezeichnung.Text;
+                    artikel.Aktiv = true;
+                    artikel.Lagerstand = Convert.ToInt16(txtArtikelLagerstand.Text);
+                    artikel.Reserviert = Convert.ToInt16(txtArtikelReserviert.Text);
+                    artikel.PreisNetto = Convert.ToDouble(txtArtikelNettopreis.Text);
+                    artikel.Ust = Convert.ToDouble(txtArtikelUST.Text);
+                    artikel.Aktiv = Convert.ToBoolean(checkboxArtikelAktiv.Text);
+
+
+                    //Artikel hinzufügen
+                    var request2 = new RestRequest("artikel", Method.POST);
+                    request2.AddHeader("Content-Type", "application/json");
+                    request2.AddJsonBody(artikel);
+                    var response2 = client.Execute(request2);
+                    if (response2.StatusCode == System.Net.HttpStatusCode.BadRequest)
+                    {
+                        MessageBox.Show("An Error occured", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Erfolgreich Artikel hinzugefügt!");
+                        ArtikelEinlesen();
+                    }
                 }
 
             }
@@ -1662,11 +1667,6 @@ namespace FutureFarm
         {
             MessageBox.Show("Löschen: Aktiv ist inaktiv");
 
-            //var client = new RestClient("http://localhost:8888")
-            //{
-            //    Authenticator = new HttpBasicAuthenticator("demo", "demo")
-            //};
-
             //if (listViewArtikel.SelectedItems.Count==0)
             //{
             //    MessageBox.Show("Wählen Sie einen Artikel aus!");
@@ -1694,19 +1694,16 @@ namespace FutureFarm
 
         private void cbArtikelLieferanten_SelectedIndexChanged(object sender, EventArgs e)
         {
-
-
             //Lieferant holen
-            Lieferanten lieferant = new Lieferanten();
+            string lieferantenID = cbArtikelLieferanten.Text;
+
             var request1 = new RestRequest("lieferanten", Method.GET);
             request1.AddHeader("Content-Type", "application/json");
             var response1 = client.Execute<List<Lieferanten>>(request1);
             foreach (Lieferanten l in response1.Data)
             {
-                if (l.LieferantenID == Convert.ToInt32(lvItem.SubItems[5].Text))
-                {
-                    txtArtikelLieferantFirma.Text = l.Firma;                    
-                }
+                if(l.LieferantenID.Equals(lieferantenID))
+                txtArtikelLieferantFirma.Text = l.Firma.ToString();
             }
 
         }
@@ -1888,7 +1885,7 @@ namespace FutureFarm
 
         private void ComboRechnungNeuKundenEinlesen()
         {
-            cbKundeRechnungNeu.Items.Clear();
+            cbRechnungenKundeNeu.Items.Clear();
             //Client für API
 
             var request = new RestRequest("kunden", Method.GET);
@@ -1897,39 +1894,41 @@ namespace FutureFarm
 
             foreach (Kunden k in response.Data)
             {
-                cbKundeRechnungNeu.Items.Add(k.KundenID+" "+k.Nachname+" "+k.Vorname+", "+k.Postleitzahl.PLZ);
+                cbRechnungenKundeNeu.Items.Add(k.KundenID+" "+k.Nachname+" "+k.Vorname+", "+k.Postleitzahl.PLZ);
             }
 
         }
 
         private void ComboRechnungNeuBestellungenEinlesen()
         {
-            cbBestellungRechnungNeu.Items.Clear();
+            cbRechnungBestellungNeu.Items.Clear();
             //Client für API
 
             var request = new RestRequest("bestellungen", Method.GET);
             request.AddHeader("Content-Type", "application/json");
             var response = client.Execute<List<Bestellung>>(request);
 
-            cbBestellungRechnungNeu.Items.Add("Bestellung erstellen...");
+            //cbBestellungRechnungNeu.Items.Add("Bestellung erstellen...");
             foreach (Bestellung b in response.Data)
             {
+                
                 if (b.Kunde.KundenID.ToString().Equals(rechnungNeuKunde))
-                cbBestellungRechnungNeu.Items.Add(b.BestellungID+" | Status: "+b.Status);
+                cbRechnungBestellungNeu.Items.Add(b.BestellungID+" | Status: "+b.Status);
             }
 
         }
 
         private void cbKundeRechnungNeu_SelectedIndexChanged(object sender, EventArgs e)
         {
-            rechnungNeuKunde = "77";
+            string cbKundenText = cbRechnungenKundeNeu.Items[0].ToString();
+            rechnungNeuKunde = cbKundenText.Substring(0, cbKundenText.IndexOf(' '));
             ComboRechnungNeuBestellungenEinlesen();
 
         }
 
         private void cbBestellungRechnungNeu_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if(cbBestellungRechnungNeu.Text.Equals("Bestellung erstellen..."))
+            if(cbRechnungBestellungNeu.Text.Equals("Bestellung erstellen..."))
             {
                 //panelBestellung.Visible = true;
                 //panelBestellung.BringToFront();
@@ -1947,7 +1946,7 @@ namespace FutureFarm
             }
             else
             {
-                string BestellungID = cbBestellungRechnungNeu.Text.Substring(0, cbBestellungRechnungNeu.Text.IndexOf(" "));
+                string BestellungID = cbRechnungBestellungNeu.Text.Substring(0, cbRechnungBestellungNeu.Text.IndexOf(" "));
                 double ustSumme = 0;
                 double nettoSumme = 0;
                 int anzahlArtikel = 0;
@@ -1960,7 +1959,7 @@ namespace FutureFarm
 
                 foreach (BestellungArtikel b in response.Data)
                 {
-                    if (b.Bestellung.BestellungID.ToString().Equals(BestellungID))
+                    if (b.Bestellung.BestellungID.ToString().Equals(BestellungID)&&b.Aktiv==true)
                     {
                         lvItem = new ListViewItem(b.Artikel.ArtikelID.ToString());
                         lvItem.SubItems.Add(b.Artikel.Bezeichnung);

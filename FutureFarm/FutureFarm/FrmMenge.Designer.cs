@@ -74,7 +74,7 @@
             this.btMengeEins.Location = new System.Drawing.Point(12, 111);
             this.btMengeEins.Name = "btMengeEins";
             this.btMengeEins.Size = new System.Drawing.Size(80, 80);
-            this.btMengeEins.TabIndex = 24;
+            this.btMengeEins.TabIndex = 1;
             this.btMengeEins.Text = "1";
             this.btMengeEins.UseVisualStyleBackColor = true;
             this.btMengeEins.Click += new System.EventHandler(this.btMengeEins_Click);
@@ -85,7 +85,7 @@
             this.btMengeDrei.Location = new System.Drawing.Point(184, 111);
             this.btMengeDrei.Name = "btMengeDrei";
             this.btMengeDrei.Size = new System.Drawing.Size(80, 80);
-            this.btMengeDrei.TabIndex = 25;
+            this.btMengeDrei.TabIndex = 3;
             this.btMengeDrei.Text = "3";
             this.btMengeDrei.UseVisualStyleBackColor = true;
             this.btMengeDrei.Click += new System.EventHandler(this.btMengeDrei_Click);
@@ -96,7 +96,7 @@
             this.btMengeZwei.Location = new System.Drawing.Point(98, 111);
             this.btMengeZwei.Name = "btMengeZwei";
             this.btMengeZwei.Size = new System.Drawing.Size(80, 80);
-            this.btMengeZwei.TabIndex = 26;
+            this.btMengeZwei.TabIndex = 2;
             this.btMengeZwei.Text = "2";
             this.btMengeZwei.UseVisualStyleBackColor = true;
             this.btMengeZwei.Click += new System.EventHandler(this.btMengeZwei_Click);
@@ -107,7 +107,7 @@
             this.btMengeFünf.Location = new System.Drawing.Point(98, 193);
             this.btMengeFünf.Name = "btMengeFünf";
             this.btMengeFünf.Size = new System.Drawing.Size(80, 80);
-            this.btMengeFünf.TabIndex = 27;
+            this.btMengeFünf.TabIndex = 5;
             this.btMengeFünf.Text = "5";
             this.btMengeFünf.UseVisualStyleBackColor = true;
             this.btMengeFünf.Click += new System.EventHandler(this.btMengeFünf_Click);
@@ -118,7 +118,7 @@
             this.btMengeVier.Location = new System.Drawing.Point(12, 193);
             this.btMengeVier.Name = "btMengeVier";
             this.btMengeVier.Size = new System.Drawing.Size(80, 80);
-            this.btMengeVier.TabIndex = 28;
+            this.btMengeVier.TabIndex = 4;
             this.btMengeVier.Text = "4";
             this.btMengeVier.UseVisualStyleBackColor = true;
             this.btMengeVier.Click += new System.EventHandler(this.btMengeVier_Click);
@@ -129,7 +129,7 @@
             this.btMengeSechs.Location = new System.Drawing.Point(184, 193);
             this.btMengeSechs.Name = "btMengeSechs";
             this.btMengeSechs.Size = new System.Drawing.Size(80, 80);
-            this.btMengeSechs.TabIndex = 29;
+            this.btMengeSechs.TabIndex = 6;
             this.btMengeSechs.Text = "6";
             this.btMengeSechs.UseVisualStyleBackColor = true;
             this.btMengeSechs.Click += new System.EventHandler(this.btMengeSechs_Click);
@@ -140,7 +140,7 @@
             this.btMengeAcht.Location = new System.Drawing.Point(98, 279);
             this.btMengeAcht.Name = "btMengeAcht";
             this.btMengeAcht.Size = new System.Drawing.Size(80, 80);
-            this.btMengeAcht.TabIndex = 30;
+            this.btMengeAcht.TabIndex = 8;
             this.btMengeAcht.Text = "8";
             this.btMengeAcht.UseVisualStyleBackColor = true;
             this.btMengeAcht.Click += new System.EventHandler(this.btMengeAcht_Click);
@@ -151,7 +151,7 @@
             this.btMengeSieben.Location = new System.Drawing.Point(12, 279);
             this.btMengeSieben.Name = "btMengeSieben";
             this.btMengeSieben.Size = new System.Drawing.Size(80, 80);
-            this.btMengeSieben.TabIndex = 31;
+            this.btMengeSieben.TabIndex = 7;
             this.btMengeSieben.Text = "7";
             this.btMengeSieben.UseVisualStyleBackColor = true;
             this.btMengeSieben.Click += new System.EventHandler(this.btMengeSieben_Click);
@@ -162,7 +162,7 @@
             this.btMengeNeun.Location = new System.Drawing.Point(184, 279);
             this.btMengeNeun.Name = "btMengeNeun";
             this.btMengeNeun.Size = new System.Drawing.Size(80, 80);
-            this.btMengeNeun.TabIndex = 32;
+            this.btMengeNeun.TabIndex = 9;
             this.btMengeNeun.Text = "9";
             this.btMengeNeun.UseVisualStyleBackColor = true;
             this.btMengeNeun.Click += new System.EventHandler(this.btMengeNeun_Click);
@@ -173,7 +173,7 @@
             this.btMengeNull.Location = new System.Drawing.Point(98, 365);
             this.btMengeNull.Name = "btMengeNull";
             this.btMengeNull.Size = new System.Drawing.Size(80, 80);
-            this.btMengeNull.TabIndex = 33;
+            this.btMengeNull.TabIndex = 10;
             this.btMengeNull.Text = "0";
             this.btMengeNull.UseVisualStyleBackColor = true;
             this.btMengeNull.Click += new System.EventHandler(this.btMengeNull_Click);
@@ -184,7 +184,7 @@
             this.btMengeEnter.Location = new System.Drawing.Point(184, 365);
             this.btMengeEnter.Name = "btMengeEnter";
             this.btMengeEnter.Size = new System.Drawing.Size(80, 80);
-            this.btMengeEnter.TabIndex = 34;
+            this.btMengeEnter.TabIndex = 11;
             this.btMengeEnter.Text = "⏎";
             this.btMengeEnter.UseVisualStyleBackColor = true;
             this.btMengeEnter.Click += new System.EventHandler(this.btMengeEnter_Click);
@@ -195,7 +195,7 @@
             this.btMengeClear.Location = new System.Drawing.Point(12, 365);
             this.btMengeClear.Name = "btMengeClear";
             this.btMengeClear.Size = new System.Drawing.Size(80, 80);
-            this.btMengeClear.TabIndex = 35;
+            this.btMengeClear.TabIndex = 12;
             this.btMengeClear.Text = "C";
             this.btMengeClear.UseVisualStyleBackColor = true;
             this.btMengeClear.Click += new System.EventHandler(this.btMengeClear_Click);
@@ -206,8 +206,9 @@
             this.txtMenge.Location = new System.Drawing.Point(12, 67);
             this.txtMenge.Name = "txtMenge";
             this.txtMenge.Size = new System.Drawing.Size(252, 38);
-            this.txtMenge.TabIndex = 36;
+            this.txtMenge.TabIndex = 0;
             this.txtMenge.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtMenge.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtMenge_KeyPress);
             // 
             // FrmMenge
             // 

@@ -229,10 +229,10 @@
             this.columnHeader42 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader43 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.label42 = new System.Windows.Forms.Label();
-            this.cbBestellungRechnungNeu = new System.Windows.Forms.ComboBox();
+            this.cbRechnungBestellungNeu = new System.Windows.Forms.ComboBox();
             this.label41 = new System.Windows.Forms.Label();
             this.label40 = new System.Windows.Forms.Label();
-            this.cbKundeRechnungNeu = new System.Windows.Forms.ComboBox();
+            this.cbRechnungenKundeNeu = new System.Windows.Forms.ComboBox();
             this.dtpRechnungNeu = new System.Windows.Forms.DateTimePicker();
             this.label43 = new System.Windows.Forms.Label();
             this.panelTermine = new System.Windows.Forms.Panel();
@@ -1211,9 +1211,10 @@
             this.panelArtikel.Controls.Add(this.cbArtikelFilter);
             this.panelArtikel.Controls.Add(this.listViewArtikel);
             this.panelArtikel.Cursor = System.Windows.Forms.Cursors.Default;
-            this.panelArtikel.Location = new System.Drawing.Point(1015, 61);
+            this.panelArtikel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panelArtikel.Location = new System.Drawing.Point(205, 41);
             this.panelArtikel.Name = "panelArtikel";
-            this.panelArtikel.Size = new System.Drawing.Size(67, 62);
+            this.panelArtikel.Size = new System.Drawing.Size(1556, 1015);
             this.panelArtikel.TabIndex = 23;
             this.panelArtikel.Visible = false;
             // 
@@ -1537,10 +1538,10 @@
             this.listViewArtikel.FullRowSelect = true;
             this.listViewArtikel.GridLines = true;
             this.listViewArtikel.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
-            this.listViewArtikel.Location = new System.Drawing.Point(0, -448);
+            this.listViewArtikel.Location = new System.Drawing.Point(0, 505);
             this.listViewArtikel.MultiSelect = false;
             this.listViewArtikel.Name = "listViewArtikel";
-            this.listViewArtikel.Size = new System.Drawing.Size(67, 510);
+            this.listViewArtikel.Size = new System.Drawing.Size(1556, 510);
             this.listViewArtikel.TabIndex = 30;
             this.listViewArtikel.UseCompatibleStateImageBehavior = false;
             this.listViewArtikel.View = System.Windows.Forms.View.Details;
@@ -2243,10 +2244,10 @@
             this.panelRechnungNeu.Controls.Add(this.label47);
             this.panelRechnungNeu.Controls.Add(this.listViewRechnungNeuArtikel);
             this.panelRechnungNeu.Controls.Add(this.label42);
-            this.panelRechnungNeu.Controls.Add(this.cbBestellungRechnungNeu);
+            this.panelRechnungNeu.Controls.Add(this.cbRechnungBestellungNeu);
             this.panelRechnungNeu.Controls.Add(this.label41);
             this.panelRechnungNeu.Controls.Add(this.label40);
-            this.panelRechnungNeu.Controls.Add(this.cbKundeRechnungNeu);
+            this.panelRechnungNeu.Controls.Add(this.cbRechnungenKundeNeu);
             this.panelRechnungNeu.Controls.Add(this.dtpRechnungNeu);
             this.panelRechnungNeu.Controls.Add(this.label43);
             this.panelRechnungNeu.Location = new System.Drawing.Point(1161, 305);
@@ -2424,16 +2425,16 @@
             this.label42.TabIndex = 59;
             this.label42.Text = "Bestellung wählen:";
             // 
-            // cbBestellungRechnungNeu
+            // cbRechnungBestellungNeu
             // 
-            this.cbBestellungRechnungNeu.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbBestellungRechnungNeu.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cbBestellungRechnungNeu.FormattingEnabled = true;
-            this.cbBestellungRechnungNeu.Location = new System.Drawing.Point(48, 280);
-            this.cbBestellungRechnungNeu.Name = "cbBestellungRechnungNeu";
-            this.cbBestellungRechnungNeu.Size = new System.Drawing.Size(343, 29);
-            this.cbBestellungRechnungNeu.TabIndex = 58;
-            this.cbBestellungRechnungNeu.SelectedIndexChanged += new System.EventHandler(this.cbBestellungRechnungNeu_SelectedIndexChanged);
+            this.cbRechnungBestellungNeu.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbRechnungBestellungNeu.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbRechnungBestellungNeu.FormattingEnabled = true;
+            this.cbRechnungBestellungNeu.Location = new System.Drawing.Point(48, 280);
+            this.cbRechnungBestellungNeu.Name = "cbRechnungBestellungNeu";
+            this.cbRechnungBestellungNeu.Size = new System.Drawing.Size(343, 29);
+            this.cbRechnungBestellungNeu.TabIndex = 58;
+            this.cbRechnungBestellungNeu.SelectedIndexChanged += new System.EventHandler(this.cbBestellungRechnungNeu_SelectedIndexChanged);
             // 
             // label41
             // 
@@ -2455,16 +2456,16 @@
             this.label40.TabIndex = 56;
             this.label40.Text = "Kunde wählen:";
             // 
-            // cbKundeRechnungNeu
+            // cbRechnungenKundeNeu
             // 
-            this.cbKundeRechnungNeu.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbKundeRechnungNeu.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cbKundeRechnungNeu.FormattingEnabled = true;
-            this.cbKundeRechnungNeu.Location = new System.Drawing.Point(48, 200);
-            this.cbKundeRechnungNeu.Name = "cbKundeRechnungNeu";
-            this.cbKundeRechnungNeu.Size = new System.Drawing.Size(343, 29);
-            this.cbKundeRechnungNeu.TabIndex = 55;
-            this.cbKundeRechnungNeu.SelectedIndexChanged += new System.EventHandler(this.cbKundeRechnungNeu_SelectedIndexChanged);
+            this.cbRechnungenKundeNeu.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbRechnungenKundeNeu.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbRechnungenKundeNeu.FormattingEnabled = true;
+            this.cbRechnungenKundeNeu.Location = new System.Drawing.Point(48, 200);
+            this.cbRechnungenKundeNeu.Name = "cbRechnungenKundeNeu";
+            this.cbRechnungenKundeNeu.Size = new System.Drawing.Size(343, 29);
+            this.cbRechnungenKundeNeu.TabIndex = 55;
+            this.cbRechnungenKundeNeu.SelectedIndexChanged += new System.EventHandler(this.cbKundeRechnungNeu_SelectedIndexChanged);
             // 
             // dtpRechnungNeu
             // 
@@ -2740,10 +2741,9 @@
             this.panelBestellungen.Controls.Add(this.txtBestellungID);
             this.panelBestellungen.Controls.Add(this.label55);
             this.panelBestellungen.Controls.Add(this.listViewBestellungen);
-            this.panelBestellungen.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelBestellungen.Location = new System.Drawing.Point(205, 41);
+            this.panelBestellungen.Location = new System.Drawing.Point(903, 61);
             this.panelBestellungen.Name = "panelBestellungen";
-            this.panelBestellungen.Size = new System.Drawing.Size(1556, 1015);
+            this.panelBestellungen.Size = new System.Drawing.Size(71, 43);
             this.panelBestellungen.TabIndex = 56;
             this.panelBestellungen.Visible = false;
             // 
@@ -3794,9 +3794,9 @@
         private System.Windows.Forms.Panel panelRechnungNeu;
         private System.Windows.Forms.Label label43;
         private System.Windows.Forms.DateTimePicker dtpRechnungNeu;
-        private System.Windows.Forms.ComboBox cbKundeRechnungNeu;
+        private System.Windows.Forms.ComboBox cbRechnungenKundeNeu;
         private System.Windows.Forms.Label label42;
-        private System.Windows.Forms.ComboBox cbBestellungRechnungNeu;
+        private System.Windows.Forms.ComboBox cbRechnungBestellungNeu;
         private System.Windows.Forms.Label label41;
         private System.Windows.Forms.Label label40;
         private System.Windows.Forms.ListView listViewRechnungNeuArtikel;
