@@ -489,7 +489,7 @@ namespace FutureFarm
 
         private void Form1_Load(object sender, EventArgs e)
         {
-
+            this.Hide();
             GoFullscreen();
             MenuErstellen();
             panelsDeaktivieren();
@@ -497,8 +497,8 @@ namespace FutureFarm
             panelAuswahl.Top = btHome.Top;
             panelAuswahl.Height = btHome.Height;
             BenutzerEinlesen();
-            
 
+            this.Show();
             cbArtikelFilter.SelectedIndex = 1;
         }
 
@@ -1838,42 +1838,32 @@ namespace FutureFarm
         private void btRechnungSuchen_Click(object sender, EventArgs e)
         {
             //Rechnung in lv Suchen
-            RechnungenSuchen();
+            if (txtRechnungSuche.Text != "")
+                RechnungenSuchen();
+            else
+                RechnungSucheEinlesen();
         }
 
         private void RechnungenSuchen()
         {
-            for(int i=0; i<listViewRechnungen.Items.Count;i++)
+            for(int i=0; i<listViewRechnungSuche.Items.Count;i++)
             {
-                MessageBox.Show(i.ToString());
-
+                ListViewItem gefunden = listViewRechnungSuche.FindItemWithText(txtRechnungSuche.Text, true, 0, true); //HAUS suche auch in SubItem Text - Vorname
+                if (gefunden == null)
+                {
+                    lvItem = listViewRechnungSuche.Items[i];
+                    listViewRechnungSuche.Items[i].Remove();
+                }
             }
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
-            RechnungSuchen(txtRechnungSuche.Text);
-        }
-
-        private void RechnungSuchen(string suchtext)
-        {
-            try
-            {
-                listViewRechnungSuche.Items.Clear();
-                if (suchtext.Equals(""))
-                {
-                    RechnungSucheEinlesen();
-                }
-                else
-                {
-                    //if
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-
+            //Rechnung in lv Suchen
+            if (txtRechnungSuche.Text != "")
+                RechnungenSuchen();
+            else
+                RechnungSucheEinlesen();
         }
 
         private void btRechnungNeu_MouseEnter(object sender, EventArgs e)
@@ -2847,7 +2837,7 @@ namespace FutureFarm
                     bestellung.Lieferdatum = Convert.ToDateTime(dtpBestellungenLieferdatum.Value.ToShortDateString());
                     bestellung.Kunde = k;
 
-                    //Benutezr hinzufügen
+                    //Bestellung hinzufügen
                     var request2 = new RestRequest("bestellungen", Method.POST);
                     request2.AddHeader("Content-Type", "application/json");
                     request2.AddJsonBody(bestellung);
@@ -2860,13 +2850,30 @@ namespace FutureFarm
             }
             else
             {
-                //Prüfen ob BestellungArtikel ID schon da ist
-                for(int i=0; i<listViewBestellungenArtikelGewählt.Items.Count;i++)
-                {
-                    //if(listViewBestellungenArtikelGewählt.Items[i].Text.Equals())
-                }
+                //Kunden holen
+                var request1 = new RestRequest("kunden/{id}", Method.GET);
+                string kundenID = cbBestellungenKunde.Text.Substring(0, cbBestellungenKunde.Text.IndexOf('|') - 1);
+                request1.AddUrlSegment("id", kundenID);
+                request1.AddHeader("Content-Type", "application/json");
+                var response1 = client.Execute<Kunden>(request1);
+                Kunden k = response1.Data;
+
+
+                //Neue Bestellung anlegen
+                Bestellung bestellung = new Bestellung();
+                bestellung.BestellungID =Convert.ToInt32(txtBestellungID.Text);
+                bestellung.Status = cbBestellungStatus.Text;
+                bestellung.Lieferdatum = Convert.ToDateTime(dtpBestellungenLieferdatum.Value.ToShortDateString());
+                bestellung.Kunde = k;
+
+                var request3 = new RestRequest("bestellungen", Method.PUT);
+                request3.AddHeader("Content-Type", "application/json");
+                request3.AddJsonBody(bestellung);
+                var response3 = client.Execute(request3);
+
+                BestellungenEinlesen();
             }
-       
+
         }
 
         private void listViewBestellungenArtikelGewählt_SelectedIndexChanged(object sender, EventArgs e)
