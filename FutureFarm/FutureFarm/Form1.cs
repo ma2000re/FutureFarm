@@ -402,7 +402,6 @@ namespace FutureFarm
                 //pbPasswort.Enabled = false;
                 //btSpeichern.Enabled = false;
                 ////btArtikelLöschen.Enabled = false;
-                ////btArtikelNeu.Enabled = false;
                 ////btArtikelSpeichern.Enabled = false;
                 //btNewsLöschen.Enabled = false;
                 //btNewsSpeichern.Enabled = false;
@@ -416,7 +415,6 @@ namespace FutureFarm
                 pbPasswort.Enabled = true;
                 btSpeichern.Enabled = true;
                 btArtikelLöschen.Enabled = true;
-                btArtikelNeu.Enabled = true;
                 btArtikelSpeichern.Enabled = true;
                 btNewsLöschen.Enabled = true;
                 btNewsSpeichern.Enabled = true;
@@ -957,9 +955,9 @@ namespace FutureFarm
 
             foreach (Termine t in response.Data)
             {
-                //MessageBox.Show(a.Bezeichnung.ToString());
                 lvItem = new ListViewItem(t.TerminID.ToString());
-                lvItem.SubItems.Add(t.Titel.ToString());
+                MessageBox.Show(t.TerminID.ToString());
+                lvItem.SubItems.Add(t.Titel);
                 lvItem.SubItems.Add(t.Beschreibung.ToString());
                 DateTime datumVon = Convert.ToDateTime(t.DatumVon);
                 DateTime datumBis = Convert.ToDateTime(t.DatumBis);
@@ -1035,7 +1033,12 @@ namespace FutureFarm
                     //Benutzer erzeugen
                     Login login = new Login();
                     login.Benutzername = txtBenutzerBenutzername.Text;
-                    login.Passwort = txtBenutzerPasswort.Text;
+
+                    //Passwort verschlüsseln
+                    entPasswort = txtBenutzerPasswort.Text;
+                    PasswortVerschlüsseln();
+
+                    login.Passwort = verPasswort;
                     login.LetzteAnmeldung = DateTime.Now;
                     
 
@@ -1498,52 +1501,19 @@ namespace FutureFarm
             }
         }
             
-
-            private void btArtikelNeu_Click(object sender, EventArgs e)
-        {
-            //try
-            //{
-
-               
-            //}
-            //catch (Exception ex)
-            //{
-            //    MessageBox.Show("Fehler bei der Neuanlage: " + ex.Message);
-            //}
-
-        }
-
         private void btArtikelSpeichern_Click(object sender, EventArgs e)
         {
             try
             {
-                if(txtArtikelArtikelID.Text!="")
+                if(txtArtikelArtikelID.Text!="") //Bestehender Artikel
                 {
-                    MessageBox.Show("Artikel nicht neu");
-                    //ID da - Speichern
-
                     //Lieferant holen
-                    Lieferanten lieferant = new Lieferanten();
-                    var request1 = new RestRequest("lieferanten", Method.GET);
-                    request1.AddHeader("Content-Type", "application/json");
-                    var response1 = client.Execute<List<Lieferanten>>(request1);
-                    foreach (Lieferanten l in response1.Data)
-                    {
-                        //MessageBox.Show("Firma: "+l.Firma.ToString());
-                        if (l.LieferantenID == Convert.ToInt32(lvItem.SubItems[5].Text))
-                        {
-                            lieferant.LieferantenID = l.LieferantenID;
-                            lieferant.Vorname = l.Vorname;
-                            lieferant.Nachname = l.Nachname;
-                            lieferant.PLZ = l.PLZ;
-                            lieferant.Strasse = l.Strasse;
-                            lieferant.Telefonnummer = l.Telefonnummer;
-                            lieferant.UID = l.UID;
-                            lieferant.Firma = l.Firma;
-                            lieferant.Email = l.Email;
-                            lieferant.Aktiv = l.Aktiv;
-                        }
-                    }
+                    var requestLieferant = new RestRequest("lieferanten/{id}", Method.GET);
+                    requestLieferant.AddUrlSegment("id", cbArtikelLieferanten.Text);
+                    requestLieferant.AddHeader("Content-Type", "application/json");
+                    var responseLieferant = client.Execute<Lieferanten>(requestLieferant);
+                    Lieferanten lieferant = responseLieferant.Data;
+
 
                     //Artikel schreiben
                     Artikel aktArtikel = new Artikel();
@@ -1560,53 +1530,60 @@ namespace FutureFarm
 
 
                     //Artikel updaten
-                    var request2 = new RestRequest("artikel", Method.PUT);
-                    request2.AddHeader("Content-Type", "application/json");
-                    request2.AddJsonBody(aktArtikel);
-                    var response2 = client.Execute(request2);
-                    if (response2.StatusCode == System.Net.HttpStatusCode.BadRequest)
+                    var requestArtikelUp = new RestRequest("artikel", Method.PUT);
+                    requestArtikelUp.AddHeader("Content-Type", "application/json");
+                    requestArtikelUp.AddJsonBody(aktArtikel);
+                    var responseArtikelUp = client.Execute(requestArtikelUp);
+                    if (responseArtikelUp.StatusCode == System.Net.HttpStatusCode.BadRequest)
                     {
                         MessageBox.Show("An Error occured", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                     else
                     {
-                        //MessageBox.Show("Erfolgreich Artikel geändert!");
+                        MessageBox.Show("Erfolgreich Artikel geändert!");
                         ArtikelEinlesen();
                     }
                 }
-                else
+                else //Neuer Artikel
                 {
-                    MessageBox.Show("Artikel neu");
-                    //Keine ID - NEU
                     //Lieferant holen
-                    var request1 = new RestRequest("lieferanten/{id}", Method.GET);
-                    string gewLieferant = cbArtikelLieferanten.SelectedItem.ToString();
-
-                    request1.AddUrlSegment("id", gewLieferant);
-                    request1.AddHeader("Content-Type", "application/json");
-                    var response1 = client.Execute<Lieferanten>(request1);
-                    //MessageBox.Show(response1.Data.Firma.ToString());
-                    Lieferanten l = response1.Data;
+                    Lieferanten lief = new Lieferanten();
+                    var requestLieferantNeu = new RestRequest("lieferanten/{id}", Method.GET);
+                    requestLieferantNeu.AddHeader("Content-Type", "application/json");
+                    requestLieferantNeu.AddUrlSegment("id", cbArtikelLieferanten.SelectedItem.ToString());
+                    var responseLieferantNeu = client.Execute<List<Lieferanten>>(requestLieferantNeu);
+                    foreach(Lieferanten l in responseLieferantNeu.Data)
+                    {
+                        lief.LieferantenID = l.LieferantenID;
+                        lief.Vorname = l.Vorname;
+                        lief.Nachname = l.Nachname;
+                        lief.Firma = l.Firma;
+                        lief.Telefonnummer = l.Telefonnummer;
+                        lief.Email = l.Email;
+                        lief.UID = l.UID;
+                        lief.Strasse = l.Strasse;
+                        lief.Aktiv = l.Aktiv;
+                        lief.PLZ = l.PLZ;
+                    }
 
                     //Artikel erzeugen
-                    Artikel artikel = new Artikel();
-                    artikel.Lieferant = l;
-                    artikel.ExterneID = Convert.ToInt16(txtArtikelExterneID.Text);
-                    artikel.Bezeichnung = txtArtikelBezeichnung.Text;
-                    artikel.Aktiv = true;
-                    artikel.Lagerstand = Convert.ToInt16(txtArtikelLagerstand.Text);
-                    artikel.Reserviert = Convert.ToInt16(txtArtikelReserviert.Text);
-                    artikel.PreisNetto = Convert.ToDouble(txtArtikelNettopreis.Text);
-                    artikel.Ust = Convert.ToDouble(txtArtikelUST.Text);
-                    artikel.Aktiv = Convert.ToBoolean(checkboxArtikelAktiv.Text);
+                    Artikel artikelNeu = new Artikel();
+                    artikelNeu.ExterneID = Convert.ToInt32(txtArtikelExterneID.Text);
+                    artikelNeu.Bezeichnung = txtArtikelBezeichnung.Text;
+                    artikelNeu.Lagerstand = Convert.ToInt32(txtArtikelLagerstand.Text);
+                    artikelNeu.Reserviert = Convert.ToInt32(txtArtikelReserviert.Text);
+                    artikelNeu.PreisNetto = Convert.ToDouble(txtArtikelNettopreis.Text);
+                    artikelNeu.Ust = Convert.ToDouble(txtArtikelUST.Text);
+                    artikelNeu.Lieferant= lief;
+                    artikelNeu.Bild = "x";
+                    artikelNeu.Aktiv = checkboxArtikelAktiv.Checked;
 
 
-                    //Artikel hinzufügen
-                    var request2 = new RestRequest("artikel", Method.POST);
-                    request2.AddHeader("Content-Type", "application/json");
-                    request2.AddJsonBody(artikel);
-                    var response2 = client.Execute(request2);
-                    if (response2.StatusCode == System.Net.HttpStatusCode.BadRequest)
+                    var requestArtikelNeu = new RestRequest("artikel", Method.POST);
+                    requestArtikelNeu.AddHeader("Content-Type", "application/json");
+                    requestArtikelNeu.AddJsonBody(artikelNeu);
+                    var responseArtikelNeu = client.Execute(requestArtikelNeu);
+                    if (responseArtikelNeu.StatusCode == System.Net.HttpStatusCode.BadRequest)
                     {
                         MessageBox.Show("An Error occured", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
@@ -1665,31 +1642,43 @@ namespace FutureFarm
 
         private void btArtikelLöschen_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Löschen: Aktiv ist inaktiv");
+            //Lieferant holen
+            var requestLieferant = new RestRequest("lieferanten/{id}", Method.GET);
+            requestLieferant.AddUrlSegment("id", cbArtikelLieferanten.Text);
+            requestLieferant.AddHeader("Content-Type", "application/json");
+            var responseLieferant = client.Execute<Lieferanten>(requestLieferant);
+            Lieferanten lieferant = responseLieferant.Data;
 
-            //if (listViewArtikel.SelectedItems.Count==0)
-            //{
-            //    MessageBox.Show("Wählen Sie einen Artikel aus!");
-            //    return;
-            //}
-            //lvItem = listViewArtikel.SelectedItems[0];
-            //Artikel artikel = new Artikel();
-            //artikel.ArtikelID = Convert.ToInt32(lvItem.SubItems[0].Text);
-            //var request = new RestRequest("artikel/{id}", Method.DELETE);
-            //request.AddUrlSegment("id", artikel.ArtikelID.ToString());
-            //request.AddHeader("Content-Type", "application/json");
-            //request.AddJsonBody(artikel);
-            //var response = client.Execute(request);
-            //if (response.StatusCode == System.Net.HttpStatusCode.BadRequest)
-            //{
-            //    MessageBox.Show("An Error occured", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            //}
-            //else
-            //{
-            //    MessageBox.Show("Erfolgreich gelöscht");
-            //    ArtikelEinlesen();
-            //}
 
+            //Artikel schreiben
+            Artikel aktArtikel = new Artikel();
+            aktArtikel.Lieferant = lieferant;
+            aktArtikel.ExterneID = Convert.ToInt16(txtArtikelExterneID.Text);
+            aktArtikel.Bezeichnung = txtArtikelBezeichnung.Text;
+            aktArtikel.Lagerstand = Convert.ToInt16(txtArtikelLagerstand.Text);
+            aktArtikel.Reserviert = Convert.ToInt16(txtArtikelReserviert.Text);
+            aktArtikel.PreisNetto = Convert.ToDouble(txtArtikelNettopreis.Text);
+            aktArtikel.Ust = Convert.ToDouble(txtArtikelUST.Text);
+            aktArtikel.Aktiv = false;
+            aktArtikel.ArtikelID = Convert.ToInt32(txtArtikelArtikelID.Text);
+            aktArtikel.Bild = "";
+
+
+            //Artikel updaten
+            var requestArtikelUp = new RestRequest("artikel", Method.PUT);
+            requestArtikelUp.AddHeader("Content-Type", "application/json");
+            requestArtikelUp.AddJsonBody(aktArtikel);
+            var responseArtikelUp = client.Execute(requestArtikelUp);
+            if (responseArtikelUp.StatusCode == System.Net.HttpStatusCode.BadRequest)
+            {
+                MessageBox.Show("An Error occured", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else
+            {
+                MessageBox.Show("Erfolgreich Artikel geändert!");
+                ArtikelEinlesen();
+            }
+            ArtikelFelderLeeren();
         }
 
         private void cbArtikelLieferanten_SelectedIndexChanged(object sender, EventArgs e)
@@ -1697,20 +1686,28 @@ namespace FutureFarm
             //Lieferant holen
             string lieferantenID = cbArtikelLieferanten.Text;
 
-            var request1 = new RestRequest("lieferanten", Method.GET);
-            request1.AddHeader("Content-Type", "application/json");
-            var response1 = client.Execute<List<Lieferanten>>(request1);
-            foreach (Lieferanten l in response1.Data)
+            var request = new RestRequest("lieferanten/{id}", Method.GET);
+            request.AddUrlSegment("id", lieferantenID);
+            request.AddHeader("Content-Type", "application/json");
+            var response = client.Execute<List<Lieferanten>>(request);
+
+            foreach (Lieferanten l in response.Data)
             {
-                if(l.LieferantenID.Equals(lieferantenID))
                 txtArtikelLieferantFirma.Text = l.Firma.ToString();
             }
 
+
         }
+
 
         private void btReset_Click(object sender, EventArgs e)
         {
             reset = true;
+            ArtikelFelderLeeren();
+        }
+
+        private void ArtikelFelderLeeren()
+        {
             txtArtikelArtikelID.Clear();
             txtArtikelExterneID.Clear();
             txtArtikelBezeichnung.Clear();
@@ -1719,7 +1716,7 @@ namespace FutureFarm
             txtArtikelLagerstand.Clear();
             txtArtikelReserviert.Clear();
             txtArtikelLieferantFirma.Clear();
-            cbArtikelLieferanten.SelectedValue="";
+            cbArtikelLieferanten.SelectedValue = "";
         }
 
         private void btNewsReset_Click(object sender, EventArgs e)
@@ -2159,12 +2156,103 @@ namespace FutureFarm
             if(txtKundenID.Text!="")
             {
                 //Kunde speichern
+
+                Kunden kunde = new Kunden();
+                kunde.KundenID = Convert.ToInt32(txtKundenID.Text);
+                kunde.Anrede = cbKundenAnrede.SelectedItem.ToString();
+                kunde.Vorname = txtKundenVorname.Text;
+                kunde.Nachname = txtKundenNachname.Text;
+                kunde.Firma = txtKundenFirma.Text;
+                kunde.Email = txtKundenEmail.Text;
+                kunde.Telefonnummer = txtKundenTelefonnummer.Text;
+                kunde.Strasse = txtKundenStrasse.Text;
+
+                Postleitzahl plz = new Postleitzahl();
+                //PLZ holen
+                var request1 = new RestRequest("postleitzahlen", Method.PUT);
+                request1.AddHeader("Content-Type", "application/json");
+                var response1 = client.Execute<List<Postleitzahl>>(request1);
+                foreach (Postleitzahl pl in response1.Data)
+                {
+                    if (txtKundenPLZ.Text.Equals(pl.PLZ.ToString())&&cbKundenOrt.Text.Equals(pl.Ortschaft.ToString()))
+                    {
+                        plz.PLZID = pl.PLZID;
+                        plz.PLZ = pl.PLZ;
+                        plz.Ortschaft = pl.Ortschaft;
+                    }
+                }
+
+                kunde.Postleitzahl = plz;
+                kunde.Aktiv = true;
+
+                //Kunden updaten
+                var requestUpdate = new RestRequest("kunden", Method.PUT);
+                requestUpdate.AddHeader("Content-Type", "application/json");
+                requestUpdate.AddJsonBody(kunde);
+                var responseUpdate = client.Execute(requestUpdate);
+                if (responseUpdate.StatusCode == System.Net.HttpStatusCode.BadRequest)
+                {
+                    MessageBox.Show("An Error occured", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                else
+                {
+                    MessageBox.Show("Kunde erfolgreich geändert!");
+                    KundenEinlesen();
+                }
+
+
+
+
             }
             else
             {
                 //Kunde neu anlegen
+                Kunden kunde = new Kunden();
+                kunde.Anrede = cbKundenAnrede.SelectedItem.ToString();
+                kunde.Vorname = txtKundenVorname.Text;
+                kunde.Nachname = txtKundenNachname.Text;
+                kunde.Firma = txtKundenFirma.Text;
+                kunde.Email = txtKundenEmail.Text;
+                kunde.Telefonnummer = txtKundenTelefonnummer.Text;
+                kunde.Strasse = txtKundenStrasse.Text;
+
+                Postleitzahl plz = new Postleitzahl();
+                //PLZ holen
+                var request1 = new RestRequest("postleitzahlen", Method.GET);
+                request1.AddHeader("Content-Type", "application/json");
+                var response1 = client.Execute<List<Postleitzahl>>(request1);
+                foreach (Postleitzahl pl in response1.Data)
+                {
+                    if (txtKundenPLZ.Text.Equals(pl.PLZ.ToString()) && cbKundenOrt.Text.Equals(pl.Ortschaft.ToString()))
+                    {
+                        plz.PLZID = pl.PLZID;
+                        plz.PLZ = pl.PLZ;
+                        plz.Ortschaft = pl.Ortschaft;
+                    }
+                }
+
+                kunde.Postleitzahl = plz;
+                kunde.Aktiv = true;
+
+                //Kunden hinzufügen
+                var requestNeu = new RestRequest("kunden", Method.POST);
+                requestNeu.AddHeader("Content-Type", "application/json");
+                requestNeu.AddJsonBody(kunde);
+                var responseNeu = client.Execute(requestNeu);
+                if (responseNeu.StatusCode == System.Net.HttpStatusCode.BadRequest)
+                {
+                    MessageBox.Show("An Error occured", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                else
+                {
+                    MessageBox.Show("Kunde erfolgreich angelegt!");
+                    KundenEinlesen();
+                }
+
+
             }
         }
+
 
         private void btKundenLöschen_Click(object sender, EventArgs e)
         {
@@ -2186,8 +2274,51 @@ namespace FutureFarm
                 lvItem = listViewKunden.SelectedItems[0];
 
                 txtKundenID.Text = lvItem.SubItems[0].Text.ToString();
-                //...
+                if (lvItem.SubItems[1].Text.Equals("Frau"))
+                    cbKundenAnrede.SelectedItem = cbKundenAnrede.Items[0];
+                else if (lvItem.SubItems[1].Text.Equals("Herr"))
+                    cbKundenAnrede.SelectedItem = cbKundenAnrede.Items[1];
+                else
+                    cbKundenAnrede.SelectedItem = cbKundenAnrede.Items[2];
+                txtKundenVorname.Text = lvItem.SubItems[2].Text.ToString();
+                txtKundenNachname.Text = lvItem.SubItems[3].Text.ToString();
+                txtKundenFirma.Text = lvItem.SubItems[4].Text.ToString();
+                txtKundenTelefonnummer.Text = lvItem.SubItems[5].Text.ToString();
+                txtKundenEmail.Text = lvItem.SubItems[6].Text.ToString();
+                txtKundenStrasse.Text = lvItem.SubItems[7].Text.ToString();
 
+
+                //PLZID holen
+                Postleitzahl plzKunde = new Postleitzahl();
+                var request1 = new RestRequest("kunden", Method.GET);
+                request1.AddHeader("Content-Type", "application/json");
+                var response1 = client.Execute<List<Kunden>>(request1);
+                foreach(Kunden k in response1.Data)
+                {
+                    if(txtKundenID.Text.Equals(k.KundenID.ToString()))
+                    {
+                        MessageBox.Show(k.Nachname);
+                        plzKunde.PLZID = k.Postleitzahl.PLZID;
+                        plzKunde.PLZ = k.Postleitzahl.PLZ;
+                        plzKunde.Ortschaft = k.Postleitzahl.Ortschaft;
+
+                        txtKundenPLZ.Text = plzKunde.PLZ;
+                    }
+                }
+
+                cbKundenOrt.Items.Clear();
+                //PLZ holen
+                var request2 = new RestRequest("postleitzahlen", Method.GET);
+                request2.AddHeader("Content-Type", "application/json");
+                var response2 = client.Execute<List<Postleitzahl>>(request2);
+                foreach (Postleitzahl pl in response2.Data)
+                {
+                    if (txtKundenPLZ.Text.Equals(pl.PLZ.ToString()))
+                    {
+                        cbKundenOrt.Items.Add(pl.Ortschaft);
+                        cbKundenOrt.SelectedItem = cbKundenOrt.Items[0];
+                    }
+                }
             }
             catch(Exception ex)
             {
@@ -2780,6 +2911,39 @@ namespace FutureFarm
                 }
 
             }
+        }
+
+        private void txtKundenPLZ_TextChanged(object sender, EventArgs e)
+        {
+        }
+
+        private void btKundenOrtSuche_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                cbKundenOrt.Items.Clear();
+                Postleitzahl plz = new Postleitzahl();
+                //PLZ holen
+                var request1 = new RestRequest("postleitzahlen", Method.GET);
+                request1.AddHeader("Content-Type", "application/json");
+                var response1 = client.Execute<List<Postleitzahl>>(request1);
+                foreach (Postleitzahl pl in response1.Data)
+                {
+                    if (txtKundenPLZ.Text.Equals(pl.PLZ.ToString()))
+                    {
+                        plz.PLZID = pl.PLZID;
+                        plz.PLZ = pl.PLZ;
+                        plz.Ortschaft = pl.Ortschaft;
+                        cbKundenOrt.Items.Add(plz.Ortschaft);
+                    }
+                }
+                cbKundenOrt.DroppedDown = true;
+            }
+            catch (Exception ex)
+            {
+
+            }
+
         }
     }
 }

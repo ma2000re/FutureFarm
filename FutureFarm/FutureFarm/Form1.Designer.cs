@@ -117,7 +117,6 @@
             this.txtArtikelReserviert = new System.Windows.Forms.TextBox();
             this.btArtikelSpeichern = new System.Windows.Forms.Button();
             this.label19 = new System.Windows.Forms.Label();
-            this.btArtikelNeu = new System.Windows.Forms.Button();
             this.label18 = new System.Windows.Forms.Label();
             this.txtArtikelLagerstand = new System.Windows.Forms.TextBox();
             this.txtArtikelArtikelID = new System.Windows.Forms.TextBox();
@@ -291,6 +290,7 @@
             this.columnHeader57 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader58 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.panelKunden = new System.Windows.Forms.Panel();
+            this.btKundenOrtSuche = new System.Windows.Forms.Button();
             this.btKundenLöschen = new System.Windows.Forms.Button();
             this.btKundenSpeichern = new System.Windows.Forms.Button();
             this.cbKundenOrt = new System.Windows.Forms.ComboBox();
@@ -299,7 +299,7 @@
             this.label66 = new System.Windows.Forms.Label();
             this.txtKundenStrasse = new System.Windows.Forms.TextBox();
             this.label65 = new System.Windows.Forms.Label();
-            this.txtKudenEmail = new System.Windows.Forms.TextBox();
+            this.txtKundenEmail = new System.Windows.Forms.TextBox();
             this.label64 = new System.Windows.Forms.Label();
             this.txtKundenTelefonnummer = new System.Windows.Forms.TextBox();
             this.label63 = new System.Windows.Forms.Label();
@@ -1211,10 +1211,9 @@
             this.panelArtikel.Controls.Add(this.cbArtikelFilter);
             this.panelArtikel.Controls.Add(this.listViewArtikel);
             this.panelArtikel.Cursor = System.Windows.Forms.Cursors.Default;
-            this.panelArtikel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelArtikel.Location = new System.Drawing.Point(205, 41);
+            this.panelArtikel.Location = new System.Drawing.Point(1161, 242);
             this.panelArtikel.Name = "panelArtikel";
-            this.panelArtikel.Size = new System.Drawing.Size(1556, 1015);
+            this.panelArtikel.Size = new System.Drawing.Size(60, 42);
             this.panelArtikel.TabIndex = 23;
             this.panelArtikel.Visible = false;
             // 
@@ -1232,7 +1231,6 @@
             this.panelArtikelInfo.Controls.Add(this.txtArtikelReserviert);
             this.panelArtikelInfo.Controls.Add(this.btArtikelSpeichern);
             this.panelArtikelInfo.Controls.Add(this.label19);
-            this.panelArtikelInfo.Controls.Add(this.btArtikelNeu);
             this.panelArtikelInfo.Controls.Add(this.label18);
             this.panelArtikelInfo.Controls.Add(this.txtArtikelLagerstand);
             this.panelArtikelInfo.Controls.Add(this.txtArtikelArtikelID);
@@ -1268,7 +1266,7 @@
             this.btReset.Name = "btReset";
             this.btReset.Size = new System.Drawing.Size(103, 33);
             this.btReset.TabIndex = 55;
-            this.btReset.Text = "Reset";
+            this.btReset.Text = "NEU";
             this.btReset.UseVisualStyleBackColor = true;
             this.btReset.Click += new System.EventHandler(this.btReset_Click);
             // 
@@ -1370,17 +1368,6 @@
             this.label19.Size = new System.Drawing.Size(106, 22);
             this.label19.TabIndex = 40;
             this.label19.Text = "Bruttopreis";
-            // 
-            // btArtikelNeu
-            // 
-            this.btArtikelNeu.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btArtikelNeu.Location = new System.Drawing.Point(827, 3);
-            this.btArtikelNeu.Name = "btArtikelNeu";
-            this.btArtikelNeu.Size = new System.Drawing.Size(161, 59);
-            this.btArtikelNeu.TabIndex = 48;
-            this.btArtikelNeu.Text = "Neu";
-            this.btArtikelNeu.UseVisualStyleBackColor = true;
-            this.btArtikelNeu.Click += new System.EventHandler(this.btArtikelNeu_Click);
             // 
             // label18
             // 
@@ -1538,10 +1525,10 @@
             this.listViewArtikel.FullRowSelect = true;
             this.listViewArtikel.GridLines = true;
             this.listViewArtikel.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
-            this.listViewArtikel.Location = new System.Drawing.Point(0, 505);
+            this.listViewArtikel.Location = new System.Drawing.Point(0, -468);
             this.listViewArtikel.MultiSelect = false;
             this.listViewArtikel.Name = "listViewArtikel";
-            this.listViewArtikel.Size = new System.Drawing.Size(1556, 510);
+            this.listViewArtikel.Size = new System.Drawing.Size(60, 510);
             this.listViewArtikel.TabIndex = 30;
             this.listViewArtikel.UseCompatibleStateImageBehavior = false;
             this.listViewArtikel.View = System.Windows.Forms.View.Details;
@@ -2996,6 +2983,7 @@
             // 
             // panelKunden
             // 
+            this.panelKunden.Controls.Add(this.btKundenOrtSuche);
             this.panelKunden.Controls.Add(this.btKundenLöschen);
             this.panelKunden.Controls.Add(this.btKundenSpeichern);
             this.panelKunden.Controls.Add(this.cbKundenOrt);
@@ -3004,7 +2992,7 @@
             this.panelKunden.Controls.Add(this.label66);
             this.panelKunden.Controls.Add(this.txtKundenStrasse);
             this.panelKunden.Controls.Add(this.label65);
-            this.panelKunden.Controls.Add(this.txtKudenEmail);
+            this.panelKunden.Controls.Add(this.txtKundenEmail);
             this.panelKunden.Controls.Add(this.label64);
             this.panelKunden.Controls.Add(this.txtKundenTelefonnummer);
             this.panelKunden.Controls.Add(this.label63);
@@ -3018,11 +3006,21 @@
             this.panelKunden.Controls.Add(this.txtKundenID);
             this.panelKunden.Controls.Add(this.label59);
             this.panelKunden.Controls.Add(this.listViewKunden);
-            this.panelKunden.Location = new System.Drawing.Point(1183, 141);
+            this.panelKunden.Location = new System.Drawing.Point(1160, 181);
             this.panelKunden.Name = "panelKunden";
-            this.panelKunden.Size = new System.Drawing.Size(38, 39);
+            this.panelKunden.Size = new System.Drawing.Size(61, 55);
             this.panelKunden.TabIndex = 57;
             this.panelKunden.Visible = false;
+            // 
+            // btKundenOrtSuche
+            // 
+            this.btKundenOrtSuche.Location = new System.Drawing.Point(328, 331);
+            this.btKundenOrtSuche.Name = "btKundenOrtSuche";
+            this.btKundenOrtSuche.Size = new System.Drawing.Size(31, 28);
+            this.btKundenOrtSuche.TabIndex = 22;
+            this.btKundenOrtSuche.Text = "S";
+            this.btKundenOrtSuche.UseVisualStyleBackColor = true;
+            this.btKundenOrtSuche.Click += new System.EventHandler(this.btKundenOrtSuche_Click);
             // 
             // btKundenLöschen
             // 
@@ -3055,9 +3053,9 @@
             "Frau",
             "Herr",
             "Firma"});
-            this.cbKundenOrt.Location = new System.Drawing.Point(328, 330);
+            this.cbKundenOrt.Location = new System.Drawing.Point(363, 330);
             this.cbKundenOrt.Name = "cbKundenOrt";
-            this.cbKundenOrt.Size = new System.Drawing.Size(215, 29);
+            this.cbKundenOrt.Size = new System.Drawing.Size(180, 29);
             this.cbKundenOrt.TabIndex = 19;
             // 
             // label67
@@ -3077,6 +3075,7 @@
             this.txtKundenPLZ.Name = "txtKundenPLZ";
             this.txtKundenPLZ.Size = new System.Drawing.Size(77, 27);
             this.txtKundenPLZ.TabIndex = 17;
+            this.txtKundenPLZ.TextChanged += new System.EventHandler(this.txtKundenPLZ_TextChanged);
             // 
             // label66
             // 
@@ -3106,13 +3105,13 @@
             this.label65.TabIndex = 14;
             this.label65.Text = "E-Mail";
             // 
-            // txtKudenEmail
+            // txtKundenEmail
             // 
-            this.txtKudenEmail.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtKudenEmail.Location = new System.Drawing.Point(245, 265);
-            this.txtKudenEmail.Name = "txtKudenEmail";
-            this.txtKudenEmail.Size = new System.Drawing.Size(298, 27);
-            this.txtKudenEmail.TabIndex = 13;
+            this.txtKundenEmail.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtKundenEmail.Location = new System.Drawing.Point(245, 265);
+            this.txtKundenEmail.Name = "txtKundenEmail";
+            this.txtKundenEmail.Size = new System.Drawing.Size(298, 27);
+            this.txtKundenEmail.TabIndex = 13;
             // 
             // label64
             // 
@@ -3245,9 +3244,9 @@
             this.listViewKunden.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.listViewKunden.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.listViewKunden.FullRowSelect = true;
-            this.listViewKunden.Location = new System.Drawing.Point(0, -280);
+            this.listViewKunden.Location = new System.Drawing.Point(0, -264);
             this.listViewKunden.Name = "listViewKunden";
-            this.listViewKunden.Size = new System.Drawing.Size(38, 319);
+            this.listViewKunden.Size = new System.Drawing.Size(61, 319);
             this.listViewKunden.TabIndex = 0;
             this.listViewKunden.UseCompatibleStateImageBehavior = false;
             this.listViewKunden.View = System.Windows.Forms.View.Details;
@@ -3732,7 +3731,6 @@
         private System.Windows.Forms.TextBox txtArtikelReserviert;
         public System.Windows.Forms.Button btArtikelSpeichern;
         private System.Windows.Forms.Label label19;
-        public System.Windows.Forms.Button btArtikelNeu;
         private System.Windows.Forms.Label label18;
         private System.Windows.Forms.TextBox txtArtikelLagerstand;
         private System.Windows.Forms.TextBox txtArtikelArtikelID;
@@ -3890,7 +3888,7 @@
         private System.Windows.Forms.Label label66;
         private System.Windows.Forms.TextBox txtKundenStrasse;
         private System.Windows.Forms.Label label65;
-        private System.Windows.Forms.TextBox txtKudenEmail;
+        private System.Windows.Forms.TextBox txtKundenEmail;
         private System.Windows.Forms.Label label64;
         private System.Windows.Forms.TextBox txtKundenTelefonnummer;
         private System.Windows.Forms.Label label63;
@@ -3939,6 +3937,7 @@
         private System.Windows.Forms.Label lbBenutzername;
         private System.Windows.Forms.Button btMenüMinMax;
         private System.Windows.Forms.ColumnHeader columnHeader47;
+        private System.Windows.Forms.Button btKundenOrtSuche;
     }
 }
 
