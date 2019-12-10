@@ -1123,6 +1123,15 @@ namespace FutureFarm
 
         private void btÄndern_Click(object sender, EventArgs e)
         {
+            if(txtBenutzerBenutzerID.Text!="") //Speichern Methode
+            {
+
+            }
+            else //Neu Methode
+            {
+
+            }
+
             //PUT Methode
             FrmSuperpasswort fSuper = new FrmSuperpasswort();
             fSuper.lbAktion.Text = "Benutzer ändern...";
@@ -1699,7 +1708,6 @@ namespace FutureFarm
 
         }
 
-
         private void btReset_Click(object sender, EventArgs e)
         {
             reset = true;
@@ -1782,12 +1790,6 @@ namespace FutureFarm
 
         public void EinloggenNeu()
         {
-            //Benutzereingaben aus FrmLogin
-            //FrmLogin fl = new FrmLogin();
-            //string eingabeBenutzername = fl.txtBenutzername.Text;
-            //string eingabePasswort = fl.txtPasswort.Text;
-
-
             //MessageBox.Show(eingabeBenutzername + " " + eingabePasswort);
 
             panelBenutzerLoginEinlesen();
@@ -1795,7 +1797,7 @@ namespace FutureFarm
             //einzelne Benutzer in der Listview durchgehen
             for(int i=0; i < listViewPanelBenutzerLogin.Items.Count;i++)
             {
-                //Item prüfen
+                //einzelnes Item prüfen
                 lvItem = listViewPanelBenutzerLogin.Items[i];
                 if (benutzerEingabe.Equals(lvItem.SubItems[1].Text)) //Wenn Benutzer existiert --> Passwort prüfen
                 {

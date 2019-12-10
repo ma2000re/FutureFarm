@@ -802,13 +802,15 @@
             this.panelBenutzer.Controls.Add(this.txtBenutzerPasswort);
             this.panelBenutzer.Controls.Add(this.txtBenutzerBenutzername);
             this.panelBenutzer.Controls.Add(this.label3);
+            this.panelBenutzer.Controls.Add(this.btRechnungNeu);
             this.panelBenutzer.Controls.Add(this.label2);
             this.panelBenutzer.Controls.Add(this.txtBenutzerBenutzerID);
             this.panelBenutzer.Controls.Add(this.label1);
             this.panelBenutzer.Controls.Add(this.listViewPanelBenutzerLogin);
-            this.panelBenutzer.Location = new System.Drawing.Point(1155, 90);
+            this.panelBenutzer.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panelBenutzer.Location = new System.Drawing.Point(205, 41);
             this.panelBenutzer.Name = "panelBenutzer";
-            this.panelBenutzer.Size = new System.Drawing.Size(52, 43);
+            this.panelBenutzer.Size = new System.Drawing.Size(1556, 1015);
             this.panelBenutzer.TabIndex = 21;
             this.panelBenutzer.Visible = false;
             this.panelBenutzer.MouseEnter += new System.EventHandler(this.panelBenutzer_MouseEnter);
@@ -842,7 +844,7 @@
             this.btBenutzerÄndern.Name = "btBenutzerÄndern";
             this.btBenutzerÄndern.Size = new System.Drawing.Size(120, 41);
             this.btBenutzerÄndern.TabIndex = 3;
-            this.btBenutzerÄndern.Text = "Ändern";
+            this.btBenutzerÄndern.Text = "Speichern";
             this.btBenutzerÄndern.UseVisualStyleBackColor = true;
             this.btBenutzerÄndern.Click += new System.EventHandler(this.btÄndern_Click);
             // 
@@ -924,9 +926,9 @@
             this.listViewPanelBenutzerLogin.Dock = System.Windows.Forms.DockStyle.Right;
             this.listViewPanelBenutzerLogin.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.listViewPanelBenutzerLogin.FullRowSelect = true;
-            this.listViewPanelBenutzerLogin.Location = new System.Drawing.Point(-552, 0);
+            this.listViewPanelBenutzerLogin.Location = new System.Drawing.Point(952, 0);
             this.listViewPanelBenutzerLogin.Name = "listViewPanelBenutzerLogin";
-            this.listViewPanelBenutzerLogin.Size = new System.Drawing.Size(604, 43);
+            this.listViewPanelBenutzerLogin.Size = new System.Drawing.Size(604, 1015);
             this.listViewPanelBenutzerLogin.TabIndex = 18;
             this.listViewPanelBenutzerLogin.UseCompatibleStateImageBehavior = false;
             this.listViewPanelBenutzerLogin.View = System.Windows.Forms.View.Details;
@@ -2205,7 +2207,7 @@
             this.btRechnungNeu.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btRechnungNeu.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btRechnungNeu.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btRechnungNeu.Location = new System.Drawing.Point(205, 236);
+            this.btRechnungNeu.Location = new System.Drawing.Point(0, 238);
             this.btRechnungNeu.Name = "btRechnungNeu";
             this.btRechnungNeu.Size = new System.Drawing.Size(190, 87);
             this.btRechnungNeu.TabIndex = 53;
@@ -3562,7 +3564,6 @@
             this.Controls.Add(this.panelBestellungen);
             this.Controls.Add(this.panelTermine);
             this.Controls.Add(this.panelRechnungNeu);
-            this.Controls.Add(this.btRechnungNeu);
             this.Controls.Add(this.panelRechnungen);
             this.Controls.Add(this.panelArtikel);
             this.Controls.Add(this.panelBenutzer);
