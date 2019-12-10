@@ -63,13 +63,13 @@
             this.panelUnten = new System.Windows.Forms.Panel();
             this.panelUnterMenu = new System.Windows.Forms.Panel();
             this.panelBenutzer = new System.Windows.Forms.Panel();
-            this.btBenutzerNeu = new System.Windows.Forms.Button();
             this.btBenutzerLöschen = new System.Windows.Forms.Button();
             this.btBenutzerÄndern = new System.Windows.Forms.Button();
             this.pbPasswort = new System.Windows.Forms.PictureBox();
             this.txtBenutzerPasswort = new System.Windows.Forms.TextBox();
             this.txtBenutzerBenutzername = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
+            this.btRechnungNeu = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.txtBenutzerBenutzerID = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -143,7 +143,6 @@
             this.columnHeader22 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.panelNews = new System.Windows.Forms.Panel();
             this.btNewsReset = new System.Windows.Forms.Button();
-            this.btNewsNeu = new System.Windows.Forms.Button();
             this.txtNewsID = new System.Windows.Forms.TextBox();
             this.btNewsLöschen = new System.Windows.Forms.Button();
             this.btNewsSpeichern = new System.Windows.Forms.Button();
@@ -208,7 +207,6 @@
             this.columnHeader27 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader28 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.label39 = new System.Windows.Forms.Label();
-            this.btRechnungNeu = new System.Windows.Forms.Button();
             this.panelRechnungNeu = new System.Windows.Forms.Panel();
             this.btRechnungNeuSpeichern = new System.Windows.Forms.Button();
             this.cbRechnungNeuBezahlt = new System.Windows.Forms.CheckBox();
@@ -237,7 +235,6 @@
             this.panelTermine = new System.Windows.Forms.Panel();
             this.btTerminLöschen = new System.Windows.Forms.Button();
             this.btTerminSpeichern = new System.Windows.Forms.Button();
-            this.btTerminNeu = new System.Windows.Forms.Button();
             this.label53 = new System.Windows.Forms.Label();
             this.dtpTermineZeitBis = new System.Windows.Forms.DateTimePicker();
             this.dtpTermineZeitVon = new System.Windows.Forms.DateTimePicker();
@@ -349,6 +346,7 @@
             this.cbsAnfragen = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.bestellungÜbernehmenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.btMenüMinMax = new System.Windows.Forms.Button();
+            this.columnHeader81 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.panelLinks.SuspendLayout();
             this.panelMenü.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbLogoHome)).BeginInit();
@@ -795,36 +793,22 @@
             // panelBenutzer
             // 
             this.panelBenutzer.BackColor = System.Drawing.SystemColors.Control;
-            this.panelBenutzer.Controls.Add(this.btBenutzerNeu);
             this.panelBenutzer.Controls.Add(this.btBenutzerLöschen);
             this.panelBenutzer.Controls.Add(this.btBenutzerÄndern);
             this.panelBenutzer.Controls.Add(this.pbPasswort);
             this.panelBenutzer.Controls.Add(this.txtBenutzerPasswort);
             this.panelBenutzer.Controls.Add(this.txtBenutzerBenutzername);
             this.panelBenutzer.Controls.Add(this.label3);
-            this.panelBenutzer.Controls.Add(this.btRechnungNeu);
             this.panelBenutzer.Controls.Add(this.label2);
             this.panelBenutzer.Controls.Add(this.txtBenutzerBenutzerID);
             this.panelBenutzer.Controls.Add(this.label1);
             this.panelBenutzer.Controls.Add(this.listViewPanelBenutzerLogin);
-            this.panelBenutzer.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelBenutzer.Location = new System.Drawing.Point(205, 41);
+            this.panelBenutzer.Location = new System.Drawing.Point(1120, 95);
             this.panelBenutzer.Name = "panelBenutzer";
-            this.panelBenutzer.Size = new System.Drawing.Size(1556, 1015);
+            this.panelBenutzer.Size = new System.Drawing.Size(71, 61);
             this.panelBenutzer.TabIndex = 21;
             this.panelBenutzer.Visible = false;
             this.panelBenutzer.MouseEnter += new System.EventHandler(this.panelBenutzer_MouseEnter);
-            // 
-            // btBenutzerNeu
-            // 
-            this.btBenutzerNeu.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btBenutzerNeu.Location = new System.Drawing.Point(35, 200);
-            this.btBenutzerNeu.Name = "btBenutzerNeu";
-            this.btBenutzerNeu.Size = new System.Drawing.Size(120, 41);
-            this.btBenutzerNeu.TabIndex = 2;
-            this.btBenutzerNeu.Text = "Neu";
-            this.btBenutzerNeu.UseVisualStyleBackColor = true;
-            this.btBenutzerNeu.Click += new System.EventHandler(this.btNeu_Click);
             // 
             // btBenutzerLöschen
             // 
@@ -839,6 +823,7 @@
             // 
             // btBenutzerÄndern
             // 
+            this.btBenutzerÄndern.FlatAppearance.BorderColor = System.Drawing.Color.DodgerBlue;
             this.btBenutzerÄndern.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btBenutzerÄndern.Location = new System.Drawing.Point(163, 200);
             this.btBenutzerÄndern.Name = "btBenutzerÄndern";
@@ -887,6 +872,25 @@
             this.label3.TabIndex = 22;
             this.label3.Text = "Passwort";
             // 
+            // btRechnungNeu
+            // 
+            this.btRechnungNeu.BackColor = System.Drawing.SystemColors.AppWorkspace;
+            this.btRechnungNeu.FlatAppearance.BorderColor = System.Drawing.SystemColors.AppWorkspace;
+            this.btRechnungNeu.FlatAppearance.BorderSize = 0;
+            this.btRechnungNeu.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btRechnungNeu.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btRechnungNeu.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btRechnungNeu.Location = new System.Drawing.Point(205, 245);
+            this.btRechnungNeu.Name = "btRechnungNeu";
+            this.btRechnungNeu.Size = new System.Drawing.Size(190, 87);
+            this.btRechnungNeu.TabIndex = 53;
+            this.btRechnungNeu.Text = "   Neu erstellen";
+            this.btRechnungNeu.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btRechnungNeu.UseVisualStyleBackColor = false;
+            this.btRechnungNeu.Visible = false;
+            this.btRechnungNeu.Click += new System.EventHandler(this.btRechnungNeu_Click);
+            this.btRechnungNeu.MouseEnter += new System.EventHandler(this.btRechnungNeu_MouseEnter);
+            // 
             // label2
             // 
             this.label2.AutoSize = true;
@@ -926,9 +930,9 @@
             this.listViewPanelBenutzerLogin.Dock = System.Windows.Forms.DockStyle.Right;
             this.listViewPanelBenutzerLogin.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.listViewPanelBenutzerLogin.FullRowSelect = true;
-            this.listViewPanelBenutzerLogin.Location = new System.Drawing.Point(952, 0);
+            this.listViewPanelBenutzerLogin.Location = new System.Drawing.Point(-533, 0);
             this.listViewPanelBenutzerLogin.Name = "listViewPanelBenutzerLogin";
-            this.listViewPanelBenutzerLogin.Size = new System.Drawing.Size(604, 1015);
+            this.listViewPanelBenutzerLogin.Size = new System.Drawing.Size(604, 61);
             this.listViewPanelBenutzerLogin.TabIndex = 18;
             this.listViewPanelBenutzerLogin.UseCompatibleStateImageBehavior = false;
             this.listViewPanelBenutzerLogin.View = System.Windows.Forms.View.Details;
@@ -1594,7 +1598,6 @@
             // panelNews
             // 
             this.panelNews.Controls.Add(this.btNewsReset);
-            this.panelNews.Controls.Add(this.btNewsNeu);
             this.panelNews.Controls.Add(this.txtNewsID);
             this.panelNews.Controls.Add(this.btNewsLöschen);
             this.panelNews.Controls.Add(this.btNewsSpeichern);
@@ -1618,20 +1621,9 @@
             this.btNewsReset.Name = "btNewsReset";
             this.btNewsReset.Size = new System.Drawing.Size(83, 33);
             this.btNewsReset.TabIndex = 12;
-            this.btNewsReset.Text = "Reset";
+            this.btNewsReset.Text = "NEU";
             this.btNewsReset.UseVisualStyleBackColor = true;
             this.btNewsReset.Click += new System.EventHandler(this.btNewsReset_Click);
-            // 
-            // btNewsNeu
-            // 
-            this.btNewsNeu.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btNewsNeu.Location = new System.Drawing.Point(57, 712);
-            this.btNewsNeu.Name = "btNewsNeu";
-            this.btNewsNeu.Size = new System.Drawing.Size(180, 61);
-            this.btNewsNeu.TabIndex = 11;
-            this.btNewsNeu.Text = "Neu";
-            this.btNewsNeu.UseVisualStyleBackColor = true;
-            this.btNewsNeu.Click += new System.EventHandler(this.btNewsNeu_Click);
             // 
             // txtNewsID
             // 
@@ -1796,9 +1788,10 @@
             this.panelRechnungen.Controls.Add(this.listViewRechnungArtikel);
             this.panelRechnungen.Controls.Add(this.listViewRechnungen);
             this.panelRechnungen.Controls.Add(this.label39);
-            this.panelRechnungen.Location = new System.Drawing.Point(1165, 479);
+            this.panelRechnungen.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panelRechnungen.Location = new System.Drawing.Point(205, 41);
             this.panelRechnungen.Name = "panelRechnungen";
-            this.panelRechnungen.Size = new System.Drawing.Size(88, 88);
+            this.panelRechnungen.Size = new System.Drawing.Size(1556, 1015);
             this.panelRechnungen.TabIndex = 52;
             this.panelRechnungen.Visible = false;
             // 
@@ -2199,25 +2192,6 @@
             this.label39.TabIndex = 51;
             this.label39.Text = "____________________________________";
             // 
-            // btRechnungNeu
-            // 
-            this.btRechnungNeu.BackColor = System.Drawing.SystemColors.AppWorkspace;
-            this.btRechnungNeu.FlatAppearance.BorderColor = System.Drawing.SystemColors.AppWorkspace;
-            this.btRechnungNeu.FlatAppearance.BorderSize = 0;
-            this.btRechnungNeu.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btRechnungNeu.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btRechnungNeu.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btRechnungNeu.Location = new System.Drawing.Point(0, 238);
-            this.btRechnungNeu.Name = "btRechnungNeu";
-            this.btRechnungNeu.Size = new System.Drawing.Size(190, 87);
-            this.btRechnungNeu.TabIndex = 53;
-            this.btRechnungNeu.Text = "   Neu erstellen";
-            this.btRechnungNeu.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btRechnungNeu.UseVisualStyleBackColor = false;
-            this.btRechnungNeu.Visible = false;
-            this.btRechnungNeu.Click += new System.EventHandler(this.btRechnungNeu_Click);
-            this.btRechnungNeu.MouseEnter += new System.EventHandler(this.btRechnungNeu_MouseEnter);
-            // 
             // panelRechnungNeu
             // 
             this.panelRechnungNeu.Controls.Add(this.btRechnungNeuSpeichern);
@@ -2479,7 +2453,6 @@
             // 
             this.panelTermine.Controls.Add(this.btTerminLöschen);
             this.panelTermine.Controls.Add(this.btTerminSpeichern);
-            this.panelTermine.Controls.Add(this.btTerminNeu);
             this.panelTermine.Controls.Add(this.label53);
             this.panelTermine.Controls.Add(this.dtpTermineZeitBis);
             this.panelTermine.Controls.Add(this.dtpTermineZeitVon);
@@ -2505,33 +2478,24 @@
             // btTerminLöschen
             // 
             this.btTerminLöschen.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btTerminLöschen.Location = new System.Drawing.Point(395, 468);
+            this.btTerminLöschen.Location = new System.Drawing.Point(395, 425);
             this.btTerminLöschen.Name = "btTerminLöschen";
             this.btTerminLöschen.Size = new System.Drawing.Size(159, 39);
             this.btTerminLöschen.TabIndex = 17;
             this.btTerminLöschen.Text = "Löschen";
             this.btTerminLöschen.UseVisualStyleBackColor = true;
+            this.btTerminLöschen.Click += new System.EventHandler(this.btTerminLöschen_Click);
             // 
             // btTerminSpeichern
             // 
             this.btTerminSpeichern.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btTerminSpeichern.Location = new System.Drawing.Point(395, 423);
+            this.btTerminSpeichern.Location = new System.Drawing.Point(395, 380);
             this.btTerminSpeichern.Name = "btTerminSpeichern";
             this.btTerminSpeichern.Size = new System.Drawing.Size(159, 39);
             this.btTerminSpeichern.TabIndex = 16;
             this.btTerminSpeichern.Text = "Speichern";
             this.btTerminSpeichern.UseVisualStyleBackColor = true;
-            // 
-            // btTerminNeu
-            // 
-            this.btTerminNeu.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btTerminNeu.Location = new System.Drawing.Point(395, 380);
-            this.btTerminNeu.Name = "btTerminNeu";
-            this.btTerminNeu.Size = new System.Drawing.Size(159, 39);
-            this.btTerminNeu.TabIndex = 15;
-            this.btTerminNeu.Text = "Neu";
-            this.btTerminNeu.UseVisualStyleBackColor = true;
-            this.btTerminNeu.Click += new System.EventHandler(this.btTerminNeu_Click);
+            this.btTerminSpeichern.Click += new System.EventHandler(this.btTerminSpeichern_Click);
             // 
             // label53
             // 
@@ -2546,7 +2510,7 @@
             // dtpTermineZeitBis
             // 
             this.dtpTermineZeitBis.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dtpTermineZeitBis.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dtpTermineZeitBis.Format = System.Windows.Forms.DateTimePickerFormat.Time;
             this.dtpTermineZeitBis.Location = new System.Drawing.Point(359, 334);
             this.dtpTermineZeitBis.Name = "dtpTermineZeitBis";
             this.dtpTermineZeitBis.Size = new System.Drawing.Size(147, 27);
@@ -2555,7 +2519,7 @@
             // dtpTermineZeitVon
             // 
             this.dtpTermineZeitVon.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dtpTermineZeitVon.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dtpTermineZeitVon.Format = System.Windows.Forms.DateTimePickerFormat.Time;
             this.dtpTermineZeitVon.Location = new System.Drawing.Point(170, 334);
             this.dtpTermineZeitVon.Name = "dtpTermineZeitVon";
             this.dtpTermineZeitVon.Size = new System.Drawing.Size(147, 27);
@@ -2673,10 +2637,12 @@
             this.columnHeader51,
             this.columnHeader52,
             this.columnHeader54,
-            this.columnHeader56});
+            this.columnHeader56,
+            this.columnHeader81});
             this.listViewTermine.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.listViewTermine.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.listViewTermine.FullRowSelect = true;
+            this.listViewTermine.GridLines = true;
             this.listViewTermine.Location = new System.Drawing.Point(0, -357);
             this.listViewTermine.MultiSelect = false;
             this.listViewTermine.Name = "listViewTermine";
@@ -2739,7 +2705,7 @@
             // btBestellungSpeichern
             // 
             this.btBestellungSpeichern.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btBestellungSpeichern.Location = new System.Drawing.Point(891, 910);
+            this.btBestellungSpeichern.Location = new System.Drawing.Point(907, 903);
             this.btBestellungSpeichern.Name = "btBestellungSpeichern";
             this.btBestellungSpeichern.Size = new System.Drawing.Size(199, 61);
             this.btBestellungSpeichern.TabIndex = 33;
@@ -3553,6 +3519,10 @@
             this.btMenüMinMax.UseVisualStyleBackColor = true;
             this.btMenüMinMax.Click += new System.EventHandler(this.btMenüMinMax_Click);
             // 
+            // columnHeader81
+            // 
+            this.columnHeader81.Text = "Aktiv";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
@@ -3563,10 +3533,11 @@
             this.Controls.Add(this.panelKunden);
             this.Controls.Add(this.panelBestellungen);
             this.Controls.Add(this.panelTermine);
+            this.Controls.Add(this.btRechnungNeu);
+            this.Controls.Add(this.panelBenutzer);
             this.Controls.Add(this.panelRechnungNeu);
             this.Controls.Add(this.panelRechnungen);
             this.Controls.Add(this.panelArtikel);
-            this.Controls.Add(this.panelBenutzer);
             this.Controls.Add(this.panelUnterMenu);
             this.Controls.Add(this.panelNews);
             this.Controls.Add(this.panelUnten);
@@ -3660,7 +3631,6 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox txtBenutzerBenutzerID;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Button btBenutzerNeu;
         private System.Windows.Forms.Button btBenutzerLöschen;
         private System.Windows.Forms.Button btBenutzerÄndern;
         private System.Windows.Forms.Panel panelFirmendaten;
@@ -3714,7 +3684,6 @@
         private System.Windows.Forms.Button btNewsLöschen;
         private System.Windows.Forms.Button btNewsSpeichern;
         private System.Windows.Forms.TextBox txtNewsID;
-        private System.Windows.Forms.Button btNewsNeu;
         private System.Windows.Forms.Label lbArtikelFilter;
         private System.Windows.Forms.ComboBox cbArtikelFilter;
         private System.Windows.Forms.ColumnHeader columnHeader22;
@@ -3839,7 +3808,6 @@
         private System.Windows.Forms.Label label48;
         private System.Windows.Forms.Button btTerminLöschen;
         private System.Windows.Forms.Button btTerminSpeichern;
-        private System.Windows.Forms.Button btTerminNeu;
         private System.Windows.Forms.Panel panelBestellungen;
         private System.Windows.Forms.ListView listViewBestellungen;
         private System.Windows.Forms.ColumnHeader columnHeader53;
@@ -3939,6 +3907,7 @@
         private System.Windows.Forms.Button btMenüMinMax;
         private System.Windows.Forms.ColumnHeader columnHeader47;
         private System.Windows.Forms.Button btKundenOrtSuche;
+        private System.Windows.Forms.ColumnHeader columnHeader81;
     }
 }
 

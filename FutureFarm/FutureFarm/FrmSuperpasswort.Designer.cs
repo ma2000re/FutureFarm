@@ -98,6 +98,7 @@
             this.txtPasswort.PasswordChar = '*';
             this.txtPasswort.Size = new System.Drawing.Size(499, 26);
             this.txtPasswort.TabIndex = 0;
+            this.txtPasswort.Text = "Superpasswort";
             // 
             // FrmSuperpasswort
             // 

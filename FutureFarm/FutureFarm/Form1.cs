@@ -410,7 +410,7 @@ namespace FutureFarm
             {
 
                 btBenutzerLöschen.Enabled = true;
-                btBenutzerNeu.Enabled = true;
+                //btBenutzerNeu.Enabled = true;
                 btBenutzerÄndern.Enabled = true;
                 pbPasswort.Enabled = true;
                 btSpeichern.Enabled = true;
@@ -956,7 +956,6 @@ namespace FutureFarm
             foreach (Termine t in response.Data)
             {
                 lvItem = new ListViewItem(t.TerminID.ToString());
-                MessageBox.Show(t.TerminID.ToString());
                 lvItem.SubItems.Add(t.Titel);
                 lvItem.SubItems.Add(t.Beschreibung.ToString());
                 DateTime datumVon = Convert.ToDateTime(t.DatumVon);
@@ -966,6 +965,9 @@ namespace FutureFarm
                 lvItem.SubItems.Add(datumVon.ToShortDateString()+"-"+datumBis.ToShortDateString());
                 lvItem.SubItems.Add(uhrzeitVon.ToShortTimeString()+"-"+uhrzeitBis.ToShortTimeString());
                 lvItem.SubItems.Add(t.Login.BenutzernameID.ToString());
+                lvItem.SubItems.Add(t.Aktiv.ToString());
+
+                if(t.Aktiv==true)
                 listViewTermine.Items.Add(lvItem);
             }
 
@@ -993,83 +995,32 @@ namespace FutureFarm
 
         }
 
-            private void pictureBox2_Click(object sender, EventArgs e)
+        private void pictureBox2_Click(object sender, EventArgs e)
+        {
+            if (pbBildName.Equals("eye-closed.png"))
             {
-                if (pbBildName.Equals("eye-closed.png"))
-                {
-                    pbBildName = "eye-open.png";
-                    pbPasswort.Image = Image.FromFile(@"D:\\OneDrive - BHAK und BHAS Mistelbach 316448\\Schule\\AP_SWE\\GitHub\\FutureFarmProgramm\\FutureFarm\\FutureFarm\\Properties\\" + pbBildName);
-                    txtBenutzerPasswort.PasswordChar = '\0';
-                }
-                else
-                {
-                    pbBildName = "eye-closed.png";
-                    pbPasswort.Image = Image.FromFile(@"D:\\OneDrive - BHAK und BHAS Mistelbach 316448\\Schule\\AP_SWE\\GitHub\\FutureFarmProgramm\\FutureFarm\\FutureFarm\\Properties\\" + pbBildName);
-                    txtBenutzerPasswort.PasswordChar = '*';
-                }
-
+                pbBildName = "eye-open.png";
+                pbPasswort.Image = Image.FromFile(@"D:\\OneDrive - BHAK und BHAS Mistelbach 316448\\Schule\\AP_SWE\\GitHub\\FutureFarmProgramm\\FutureFarm\\FutureFarm\\Properties\\" + pbBildName);
+                txtBenutzerPasswort.PasswordChar = '\0';
+            }
+            else
+            {
+                pbBildName = "eye-closed.png";
+                pbPasswort.Image = Image.FromFile(@"D:\\OneDrive - BHAK und BHAS Mistelbach 316448\\Schule\\AP_SWE\\GitHub\\FutureFarmProgramm\\FutureFarm\\FutureFarm\\Properties\\" + pbBildName);
+                txtBenutzerPasswort.PasswordChar = '*';
             }
 
-
-            private void pbPasswort_MouseHover(object sender, EventArgs e)
-            {
-            }
-
-            private void btNeu_Click(object sender, EventArgs e)
-            {
-            //POST Methode
-            FrmSuperpasswort fSuper = new FrmSuperpasswort();
-            fSuper.lbAktion.Text = "Benutzer anlegen...";
-            fSuper.lbText.Text = "Bitte Passwort eingeben, um Ihre Berechtigung zum Hinzufügen von Benutzern zu prüfen:";
-            fSuper.ShowDialog();
-            if (fSuper.berechtigt == true)
-            {
-                //Benutzer hinzufügen
-                try
-                {
+        }
 
 
+        private void pbPasswort_MouseHover(object sender, EventArgs e)
+        {
+        }
 
-                    //Benutzer erzeugen
-                    Login login = new Login();
-                    login.Benutzername = txtBenutzerBenutzername.Text;
-
-                    //Passwort verschlüsseln
-                    entPasswort = txtBenutzerPasswort.Text;
-                    PasswortVerschlüsseln();
-
-                    login.Passwort = verPasswort;
-                    login.LetzteAnmeldung = DateTime.Now;
-                    
-
-                    //Benutezr hinzufügen
-                    var request2 = new RestRequest("logins", Method.POST);
-                    request2.AddHeader("Content-Type", "application/json");
-                    request2.AddJsonBody(login);
-                    //MessageBox.Show(login.Benutzername.ToString() + " ... " + login.Passwort.ToString());
-                    var response2 = client.Execute(request2);
-                    if (response2.StatusCode == System.Net.HttpStatusCode.BadRequest)
-                    {
-                        MessageBox.Show("An Error occured", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
-                    else
-                    {
-                        MessageBox.Show("Erfolgreich Benutzer hinzugefügt!");
-                        panelBenutzerLoginEinlesen();
-                    }
-
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Fehler bei der Neuanlage: " + ex.Message);
-                }
-
-
-
-            }
+        private void btNeu_Click(object sender, EventArgs e)
+        {
             
-            panelBenutzerLoginEinlesen();
-            }
+        }
 
         private void btLöschen_Click(object sender, EventArgs e)
         {            
@@ -1123,67 +1074,114 @@ namespace FutureFarm
 
         private void btÄndern_Click(object sender, EventArgs e)
         {
-            if(txtBenutzerBenutzerID.Text!="") //Speichern Methode
-            {
-
-            }
-            else //Neu Methode
-            {
-
-            }
-
-            //PUT Methode
             FrmSuperpasswort fSuper = new FrmSuperpasswort();
-            fSuper.lbAktion.Text = "Benutzer ändern...";
-            fSuper.lbText.Text = "Bitte Passwort eingeben, \num Ihre Berechtigung zum Ändern von Benutzern zu prüfen:";
-            fSuper.ShowDialog();
-            if (fSuper.berechtigt == true)
+
+            if (!txtBenutzerBenutzerID.Text.Equals("")) //Speichern Methode
             {
-                try
+                MessageBox.Show("Speichern");
+                //PUT Methode
+                fSuper.lbAktion.Text = "Benutzer ändern...";
+                fSuper.lbText.Text = "Bitte Passwort eingeben, \num Ihre Berechtigung zum Ändern von Benutzern zu prüfen:";
+                fSuper.ShowDialog();
+                if (fSuper.berechtigt == true)
                 {
-
-                    if (listViewPanelBenutzerLogin.SelectedItems.Count == 0)
+                    try
                     {
-                        MessageBox.Show("Wählen Sie einen Benutzer aus!");
-                        return;
+
+                        if (listViewPanelBenutzerLogin.SelectedItems.Count == 0)
+                        {
+                            MessageBox.Show("Wählen Sie einen Benutzer aus!");
+                            return;
+                        }
+                        lvItem = listViewPanelBenutzerLogin.SelectedItems[0];
+
+                        Login login = new Login();
+                        login.BenutzernameID = Convert.ToInt32(lvItem.SubItems[0].Text);
+                        login.Benutzername = txtBenutzerBenutzername.Text;
+
+                        //Passwort verschlüsseln
+                        PasswortVerschlüsseln();
+
+
+                        login.Passwort = verPasswort;
+
+
+                        login.LetzteAnmeldung = Convert.ToDateTime(lvItem.SubItems[3].Text);
+
+                        var request = new RestRequest("logins", Method.PUT);
+                        request.AddHeader("Content-Type", "application/json");
+                        request.AddJsonBody(login);
+                        var response = client.Execute(request);
+                        if (response.StatusCode == System.Net.HttpStatusCode.BadRequest)
+                        {
+                            MessageBox.Show("An Error occured", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+                        else
+                        {
+                            MessageBox.Show("Erfolgreich geändert!");
+                            panelBenutzerLoginEinlesen();
+                        }
+
                     }
-                    lvItem = listViewPanelBenutzerLogin.SelectedItems[0];
-
-                    Login login = new Login();
-                    login.BenutzernameID = Convert.ToInt32(lvItem.SubItems[0].Text);
-                    login.Benutzername = txtBenutzerBenutzername.Text;
-
-                    //Passwort verschlüsseln
-                    PasswortVerschlüsseln();
-
-
-                    login.Passwort = verPasswort;
-
-
-                    login.LetzteAnmeldung = Convert.ToDateTime(lvItem.SubItems[3].Text);
-
-                    var request = new RestRequest("logins", Method.PUT);
-                    request.AddHeader("Content-Type", "application/json");
-                    request.AddJsonBody(login);
-                    var response = client.Execute(request);
-                    if (response.StatusCode == System.Net.HttpStatusCode.BadRequest)
+                    catch (Exception ex)
                     {
-                        MessageBox.Show("An Error occured", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show("Fehler bei der Änderung: " + ex.Message);
                     }
-                    else
-                    {
-                        MessageBox.Show("Erfolgreich geändert!");
-                        panelBenutzerLoginEinlesen();
-                    }
-
                 }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Fehler bei der Änderung: " + ex.Message);
-                }
-
-
             }
+            else//Neu Methode
+            {
+                MessageBox.Show("Neu");
+                //POST Methode
+                fSuper.lbAktion.Text = "Benutzer anlegen...";
+                fSuper.lbText.Text = "Bitte Passwort eingeben, um Ihre Berechtigung zum Hinzufügen von Benutzern zu prüfen:";
+                fSuper.ShowDialog();
+                if (fSuper.berechtigt == true)
+                {
+                    //Benutzer hinzufügen
+                    try
+                    {
+                        //Benutzer erzeugen
+                        Login login = new Login();
+                        login.Benutzername = txtBenutzerBenutzername.Text;
+
+                        //Passwort verschlüsseln
+                        entPasswort = txtBenutzerPasswort.Text;
+                        PasswortVerschlüsseln();
+
+                        login.Passwort = verPasswort;
+                        login.LetzteAnmeldung = DateTime.Now;
+
+
+                        //Benutezr hinzufügen
+                        var request2 = new RestRequest("logins", Method.POST);
+                        request2.AddHeader("Content-Type", "application/json");
+                        request2.AddJsonBody(login);
+                        //MessageBox.Show(login.Benutzername.ToString() + " ... " + login.Passwort.ToString());
+                        var response2 = client.Execute(request2);
+                        if (response2.StatusCode == System.Net.HttpStatusCode.BadRequest)
+                        {
+                            MessageBox.Show("An Error occured", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+                        else
+                        {
+                            MessageBox.Show("Erfolgreich Benutzer hinzugefügt!");
+                            panelBenutzerLoginEinlesen();
+                        }
+
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Fehler bei der Neuanlage: " + ex.Message);
+                    }
+
+
+
+                }
+
+                panelBenutzerLoginEinlesen();
+            }
+            
         }
 
         private void PasswortVerschlüsseln()
@@ -1371,7 +1369,6 @@ namespace FutureFarm
 
         private void listViewNews_SelectedIndexChanged(object sender, EventArgs e)
         {
-            btNewsNeu.Enabled = false;
             if (listViewNews.SelectedItems.Count == 0)
             {
                 MessageBox.Show("Wählen Sie bitte einen Beitrag aus!");
@@ -1387,126 +1384,134 @@ namespace FutureFarm
 
         private void btNewsNeu_Click(object sender, EventArgs e)
         {
-            try
-            {
-
-                //Benutzer holen
-                int aktuelleID = 0;
-                
-                
-                //ACHTUNG ÄNDERN WENN LOGIN WIEDER GEHT!!!!!!!!!!!!!!!!!!!!!!!!!!
-                angBenutzer = "Manuel.Reisinger";
-
-                panelBenutzerLoginEinlesen();
-                for (int i = 0; i < listViewPanelBenutzerLogin.Items.Count; i++)
-                {
-                    lvItem = listViewPanelBenutzerLogin.Items[i];
-                    if (angBenutzer.Equals(lvItem.SubItems[1].Text))
-                    {
-                        aktuelleID = Convert.ToInt16(lvItem.SubItems[0].Text);
-                        break;
-                    }
-                }
-
-                var request1 = new RestRequest("logins/{id}", Method.GET);
-                request1.AddUrlSegment("id", aktuelleID.ToString());
-                request1.AddHeader("Content-Type", "application/json");
-                var response1 = client.Execute<Login>(request1);
-                Login l = response1.Data;
-                MessageBox.Show(l.Benutzername.ToString());
-
-                //News erzeugen
-                News news = new News();
-                news.Titel = txtNewsTitel.Text;
-                news.Beitrag = txtNewsBeitrag.Text;
-                news.Datum = Convert.ToDateTime(dtpNews.Value);
-                news.Login = l;
-                
-
-                //Benutzer hinzufügen
-                var request2 = new RestRequest("news", Method.POST);
-                request2.AddHeader("Content-Type", "application/json");
-                request2.AddJsonBody(news);
-                var response2 = client.Execute(request2);
-                if (response2.StatusCode == System.Net.HttpStatusCode.BadRequest)
-                {
-                    MessageBox.Show("An Error occured", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-                else
-                {
-                    //MessageBox.Show("Erfolgreich News hinzugefügt!");
-                    NewsEinlesen();
-                    txtNewsTitel.Clear();
-                    txtNewsID.Clear();
-                    txtNewsBeitrag.Clear();
-                    dtpNews.Value = DateTime.Now;
-
-                }
-
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Fehler bei der Neuanlage: " + ex.Message);
-            }
+            
 
         }
 
         private void btNewsSpeichern_Click(object sender, EventArgs e)
         {
-            try
+            if(!txtNewsID.Text.Equals(""))
             {
-
-                //Benutzer holen
-                int aktuelleID = 0;
-
-
-                //ACHTUNG ÄNDERN WENN LOGIN WIEDER GEHT!!!!!!!!!!!!!!!!!!!!!!!!!!
-                angBenutzer = "Manuel.Reisinger";
-
-                panelBenutzerLoginEinlesen();
-                for (int i = 0; i < listViewPanelBenutzerLogin.Items.Count; i++)
+                try
                 {
-                    lvItem = listViewPanelBenutzerLogin.Items[i];
-                    if (angBenutzer.Equals(lvItem.SubItems[1].Text))
+
+                    //Benutzer holen
+                    int aktuelleID = 0;
+
+
+                    //ACHTUNG ÄNDERN WENN LOGIN WIEDER GEHT!!!!!!!!!!!!!!!!!!!!!!!!!!
+                    angBenutzer = "Manuel.Reisinger";
+
+                    panelBenutzerLoginEinlesen();
+                    for (int i = 0; i < listViewPanelBenutzerLogin.Items.Count; i++)
                     {
-                        aktuelleID = Convert.ToInt16(lvItem.SubItems[0].Text);
-                        break;
+                        lvItem = listViewPanelBenutzerLogin.Items[i];
+                        if (angBenutzer.Equals(lvItem.SubItems[1].Text))
+                        {
+                            aktuelleID = Convert.ToInt16(lvItem.SubItems[0].Text);
+                            break;
+                        }
                     }
+
+                    var request1 = new RestRequest("logins/{id}", Method.GET);
+                    request1.AddUrlSegment("id", aktuelleID.ToString());
+                    request1.AddHeader("Content-Type", "application/json");
+                    var response1 = client.Execute<Login>(request1);
+                    Login l = response1.Data;
+                    //MessageBox.Show(l.Benutzername.ToString());
+
+
+                    News news = new News();
+                    news.NewsID = Convert.ToInt16(txtNewsID.Text);
+                    news.Beitrag = txtNewsBeitrag.Text;
+                    news.Titel = txtNewsTitel.Text;
+                    news.Login = l;
+                    news.Datum = dtpNews.Value;
+
+                    var request = new RestRequest("news", Method.PUT);
+                    request.AddHeader("Content-Type", "application/json");
+                    request.AddJsonBody(news);
+                    var response = client.Execute(request);
+                    if (response.StatusCode == System.Net.HttpStatusCode.BadRequest)
+                    {
+                        MessageBox.Show("An Error occured", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                    else
+                    {
+                        //MessageBox.Show("News erfolgreich geändert!");
+                        NewsEinlesen();
+                    }
+
                 }
-
-                var request1 = new RestRequest("logins/{id}", Method.GET);
-                request1.AddUrlSegment("id", aktuelleID.ToString());
-                request1.AddHeader("Content-Type", "application/json");
-                var response1 = client.Execute<Login>(request1);
-                Login l = response1.Data;
-                //MessageBox.Show(l.Benutzername.ToString());
-
-
-                News news = new News();
-                news.NewsID = Convert.ToInt16(txtNewsID.Text);
-                news.Beitrag = txtNewsBeitrag.Text;
-                news.Titel = txtNewsTitel.Text;
-                news.Login = l;
-                news.Datum = dtpNews.Value;
-
-                var request = new RestRequest("news", Method.PUT);
-                request.AddHeader("Content-Type", "application/json");
-                request.AddJsonBody(news);
-                var response = client.Execute(request);
-                if (response.StatusCode == System.Net.HttpStatusCode.BadRequest)
+                catch (Exception ex)
                 {
-                    MessageBox.Show("An Error occured", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-                else
-                {
-                    //MessageBox.Show("News erfolgreich geändert!");
-                    NewsEinlesen();
+                    MessageBox.Show("Fehler bei der Änderung: " + ex.Message);
                 }
 
             }
-            catch (Exception ex)
+            else
             {
-                MessageBox.Show("Fehler bei der Änderung: " + ex.Message);
+                try
+                {
+
+                    //Benutzer holen
+                    int aktuelleID = 0;
+
+
+                    //ACHTUNG ÄNDERN WENN LOGIN WIEDER GEHT!!!!!!!!!!!!!!!!!!!!!!!!!!
+                    angBenutzer = "Manuel.Reisinger";
+
+                    panelBenutzerLoginEinlesen();
+                    for (int i = 0; i < listViewPanelBenutzerLogin.Items.Count; i++)
+                    {
+                        lvItem = listViewPanelBenutzerLogin.Items[i];
+                        if (angBenutzer.Equals(lvItem.SubItems[1].Text))
+                        {
+                            aktuelleID = Convert.ToInt16(lvItem.SubItems[0].Text);
+                            break;
+                        }
+                    }
+
+                    var request1 = new RestRequest("logins/{id}", Method.GET);
+                    request1.AddUrlSegment("id", aktuelleID.ToString());
+                    request1.AddHeader("Content-Type", "application/json");
+                    var response1 = client.Execute<Login>(request1);
+                    Login l = response1.Data;
+                    MessageBox.Show(l.Benutzername.ToString());
+
+                    //News erzeugen
+                    News news = new News();
+                    news.Titel = txtNewsTitel.Text;
+                    news.Beitrag = txtNewsBeitrag.Text;
+                    news.Datum = Convert.ToDateTime(dtpNews.Value);
+                    news.Login = l;
+
+
+                    //Benutzer hinzufügen
+                    var request2 = new RestRequest("news", Method.POST);
+                    request2.AddHeader("Content-Type", "application/json");
+                    request2.AddJsonBody(news);
+                    var response2 = client.Execute(request2);
+                    if (response2.StatusCode == System.Net.HttpStatusCode.BadRequest)
+                    {
+                        MessageBox.Show("An Error occured", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                    else
+                    {
+                        //MessageBox.Show("Erfolgreich News hinzugefügt!");
+                        NewsEinlesen();
+                        txtNewsTitel.Clear();
+                        txtNewsID.Clear();
+                        txtNewsBeitrag.Clear();
+                        dtpNews.Value = DateTime.Now;
+
+                    }
+
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Fehler bei der Neuanlage: " + ex.Message);
+                }
             }
         }
             
@@ -1733,7 +1738,6 @@ namespace FutureFarm
             txtNewsID.Clear();
             txtNewsTitel.Clear();
             dtpNews.Value = DateTime.Now;
-            btNewsNeu.Enabled = true;
         }
 
         private void btNewsLöschen_Click(object sender, EventArgs e)
@@ -1834,6 +1838,16 @@ namespace FutureFarm
         private void btRechnungSuchen_Click(object sender, EventArgs e)
         {
             //Rechnung in lv Suchen
+            RechnungenSuchen();
+        }
+
+        private void RechnungenSuchen()
+        {
+            for(int i=0; i<listViewRechnungen.Items.Count;i++)
+            {
+                MessageBox.Show(i.ToString());
+
+            }
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
@@ -2116,36 +2130,6 @@ namespace FutureFarm
 
         private void btTerminNeu_Click(object sender, EventArgs e)
         {
-            try
-            {
-
-                //Artikel erzeugen
-                Termine termin = new Termine();
-                termin.Titel = txtTerminTitel.Text;
-                termin.Beschreibung = txtTerminBeschreibung.Text;
-                //termin.
-
-
-                //    //Artikel hinzufügen
-                //    var request2 = new RestRequest("artikel", Method.POST);
-                //    request2.AddHeader("Content-Type", "application/json");
-                //    request2.AddJsonBody(artikel);
-                //    var response2 = client.Execute(request2);
-                //    if (response2.StatusCode == System.Net.HttpStatusCode.BadRequest)
-                //    {
-                //        MessageBox.Show("An Error occured", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                //    }
-                //    else
-                //    {
-                //        MessageBox.Show("Erfolgreich Artikel hinzugefügt!");
-                //        ArtikelEinlesen();
-                //    }
-
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Fehler bei der Neuanlage: " + ex.Message);
-            }
 
         }
 
@@ -2946,6 +2930,154 @@ namespace FutureFarm
 
             }
 
+        }
+
+        private void btTerminSpeichern_Click(object sender, EventArgs e)
+        {
+            if(!txtTerminID.Text.Equals(""))
+            {
+                //Termin update
+                Termine termin = new Termine();
+                termin.TerminID = Convert.ToInt32(txtTerminID.Text);
+                termin.Titel = txtTerminTitel.Text;
+                termin.Beschreibung = txtTerminBeschreibung.Text;
+                termin.DatumVon = dtpTerminDatumVon.Value;
+                termin.DatumBis = dtpTerminDatumBis.Value; //HAUS Zeit wird immer -1 in Datenbank übernommen
+                termin.UhrzeitVon = dtpTermineZeitVon.Value;
+                termin.UhrzeitBis = dtpTermineZeitBis.Value;
+                termin.Aktiv = true;
+
+                Login benutzer = new Login();
+                var request = new RestRequest("logins", Method.GET);
+                request.AddHeader("Content-Type", "application-json");
+                var response = client.Execute<List<Login>>(request);
+                foreach (Login l in response.Data)
+                {
+                    if (l.Benutzername.Equals("Manuel.Reisinger"))
+                    {
+                        benutzer.BenutzernameID = l.BenutzernameID;
+                        benutzer.Benutzername = l.Benutzername;
+                        benutzer.Passwort = l.Passwort;
+                        benutzer.LetzteAnmeldung = l.LetzteAnmeldung;
+                    }
+                }
+
+                termin.Login = benutzer;
+
+                var request1 = new RestRequest("termine", Method.PUT);
+                request1.AddHeader("Content-Type", "Application/Json");
+                request1.AddJsonBody(termin);
+                var response1 = client.Execute(request1);
+                if (response.StatusCode == System.Net.HttpStatusCode.BadRequest)
+                {
+                    MessageBox.Show("An Error occured", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                else
+                {
+                    MessageBox.Show("Erfolgreich Termin geändert!");
+                    TermineEinlesen();
+                }
+            }
+            else
+            {
+                //Termin neu
+                try
+                {
+
+                    //Artikel erzeugen
+                    Termine termin = new Termine();
+                    termin.Titel = txtTerminTitel.Text;
+                    termin.Beschreibung = txtTerminBeschreibung.Text;
+                    termin.DatumVon = dtpTerminDatumVon.Value;
+                    termin.DatumBis = dtpTerminDatumBis.Value;
+                    termin.UhrzeitVon = dtpTermineZeitVon.Value;
+                    termin.UhrzeitBis = dtpTermineZeitBis.Value;
+                    termin.Aktiv = true;
+
+                    Login benutzer = new Login();
+                    var request = new RestRequest("logins", Method.GET);
+                    request.AddHeader("Content-Type", "application-json");
+                    var response = client.Execute<List<Login>>(request);
+                    foreach(Login l in response.Data)
+                    {
+                        if(l.Benutzername.Equals("Manuel.Reisinger"))
+                        {
+                            benutzer.BenutzernameID = l.BenutzernameID;
+                            benutzer.Benutzername = l.Benutzername;
+                            benutzer.Passwort = l.Passwort;
+                            benutzer.LetzteAnmeldung = l.LetzteAnmeldung;
+                        }
+                    }
+
+                    termin.Login = benutzer;
+
+                    //Termin hinzufügen
+                    var request2 = new RestRequest("termine", Method.POST);
+                    request2.AddHeader("Content-Type", "application/json");
+                    request2.AddJsonBody(termin);
+                    var response2 = client.Execute(request2);
+                    if (response2.StatusCode == System.Net.HttpStatusCode.BadRequest)
+                    {
+                        MessageBox.Show("An Error occured", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Erfolgreich Termin hinzugefügt!");
+                        TermineEinlesen();
+                    }
+
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Fehler bei der Neuanlage: " + ex.Message);
+                }
+
+            }
+        }
+
+        private void btTerminLöschen_Click(object sender, EventArgs e)
+        {
+            //Termin löschen --> inaktiv
+            Termine termin = new Termine();
+            termin.TerminID = Convert.ToInt32(txtTerminID.Text);
+            termin.Titel = txtTerminTitel.Text;
+            termin.Beschreibung = txtTerminBeschreibung.Text;
+            termin.DatumVon = dtpTerminDatumVon.Value;
+            termin.DatumBis = dtpTerminDatumBis.Value;
+            termin.UhrzeitVon = dtpTermineZeitVon.Value;
+            termin.UhrzeitBis = dtpTermineZeitBis.Value;
+            termin.Aktiv = false;
+
+            Login benutzer = new Login();
+            var request = new RestRequest("logins", Method.GET);
+            request.AddHeader("Content-Type", "application-json");
+            var response = client.Execute<List<Login>>(request);
+            foreach (Login l in response.Data)
+            {
+                if (l.Benutzername.Equals("Manuel.Reisinger"))
+                {
+                    benutzer.BenutzernameID = l.BenutzernameID;
+                    benutzer.Benutzername = l.Benutzername;
+                    benutzer.Passwort = l.Passwort;
+                    benutzer.LetzteAnmeldung = l.LetzteAnmeldung;
+                }
+            }
+
+            termin.Login = benutzer;
+
+            var request1 = new RestRequest("termine", Method.PUT);
+            request1.AddHeader("Content-Type", "Application/Json");
+            request1.AddJsonBody(termin);
+            var response1 = client.Execute(request1);
+            if (response.StatusCode == System.Net.HttpStatusCode.BadRequest)
+            {
+                MessageBox.Show("An Error occured", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else
+            {
+                MessageBox.Show("Erfolgreich Termin gelöscht!");
+                TermineEinlesen();
+            }
         }
     }
 }

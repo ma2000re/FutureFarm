@@ -16,6 +16,7 @@ namespace Common.Models
         public virtual DateTime UhrzeitVon { get; set; }
         public virtual DateTime UhrzeitBis { get; set; }
         public virtual Login Login { get; set; }
+        public virtual bool Aktiv { get; set; }
 
         //[JsonIgnore]
         public virtual ICollection<Login> Logins { get; set; }
