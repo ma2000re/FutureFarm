@@ -40,10 +40,9 @@ namespace FutureFarm
 
         private void btBestätigen_Click(object sender, EventArgs e)
         {
-            Form1 f1 = new Form1();
-            f1.benutzerEingabe = txtBenutzername.Text;
-            f1.passwortEingabe = txtPasswort.Text;
-            f1.EinloggenNeu();
+            Form1.f1.benutzerEingabe = txtBenutzername.Text;
+            Form1.f1.passwortEingabe = txtPasswort.Text;
+            Form1.f1.EinloggenNeu();
 
             this.Close();
         }

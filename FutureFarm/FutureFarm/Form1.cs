@@ -24,6 +24,7 @@ namespace FutureFarm
     {
         public Form1()
         {
+            f1 = this;
             InitializeComponent();
 
             //Auswahl anpassen
@@ -43,6 +44,9 @@ namespace FutureFarm
         ListViewItem lvItem;
         Artikel aktArtikel;
         RC4 rc4;
+
+        internal static Form1 f1;
+
 
 
         internal bool LogIn;
@@ -182,6 +186,11 @@ namespace FutureFarm
             panelArtikelInfo.Location = new Point(Convert.ToInt16(panelArtikel.Width * 0.05), Convert.ToInt16(panelArtikel.Height * 0.05));
             lbArtikelFilter.Location = new Point(10, (panelArtikel.Height-listViewArtikel.Height-40));
             cbArtikelFilter.Location = new Point((10 + lbArtikelFilter.Width), (panelArtikel.Height - listViewArtikel.Height - 43));
+            lbArtikelSuchen.Location = new Point((20 + lbArtikelFilter.Width + cbArtikelFilter.Width), (panelArtikel.Height - listViewArtikel.Height - 40));
+            txtArtikelSuchen.Location = new Point((20 + lbArtikelFilter.Width + cbArtikelFilter.Width + lbArtikelSuchen.Width), (panelArtikel.Height - listViewArtikel.Height - 43));
+            btArtikelSuchen.Location = new Point((25 + lbArtikelFilter.Width + cbArtikelFilter.Width + lbArtikelSuchen.Width+txtArtikelSuchen.Width), (panelArtikel.Height - listViewArtikel.Height - 43));
+
+
 
             ArtikelEinlesen();
             LieferantenEinlesen();
@@ -328,9 +337,9 @@ namespace FutureFarm
                 if (dialogResult == DialogResult.Yes)
                 {
                     LogIn = false;
-                    btLogin.Image = Image.FromFile("D:\\OneDrive - BHAK und BHAS Mistelbach 316448\\Schule\\AP_SWE\\GitHub\\FutureFarmProgramm\\FutureFarm\\FutureFarm\\Properties\\logout.png");
+                    btLogin2.Image = Image.FromFile("D:\\OneDrive - BHAK und BHAS Mistelbach 316448\\Schule\\AP_SWE\\GitHub\\FutureFarmProgramm\\FutureFarm\\FutureFarm\\Properties\\logout.png");
                     
-                    btLogin.Text = "Log In";
+                    btLogin2.Text = "Log In";
                 }
                 else if (dialogResult == DialogResult.No)
                 {
@@ -344,53 +353,6 @@ namespace FutureFarm
             }
 
         }
-
-        //public void Einloggen()
-        //{
-        //    //Benutzer die eingelesen sind löschen
-        //    listViewLoginDaten.Items.Clear();
-
-        //    //Benutzer neu aus DB holen
-        //    BenutzerEinlesen();
-
-        //    FrmLogin fLogin = new FrmLogin();
-
-        //    //Daten aus TextBox aus FormLogin holen
-        //    benutzerEingabe = fLogin.txtBenutzername.Text;
-        //    passwortEingabe = fLogin.txtPasswort.Text;
-
-        //    //MessageBox.Show(anzahlBenutzer.ToString());
-        //    for (int i = 0; i < listViewLoginDaten.Items.Count; i++)
-        //    {
-        //        if (listViewLoginDaten.Items[i].SubItems[1].Text.Equals(benutzerEingabe))
-        //        {
-        //            if (listViewLoginDaten.Items[i].SubItems[2].Text.Equals(passwortEingabe))
-        //            {
-        //                LogIn = true;
-        //                btLogin.Text = benutzerEingabe;
-        //                angBenutzer = benutzerEingabe;
-
-        //                btLogin.Image = Image.FromFile("D:\\OneDrive - BHAK und BHAS Mistelbach 316448\\Schule\\AP_SWE\\GitHub\\FutureFarmProgramm\\FutureFarm\\FutureFarm\\Properties\\login.png");
-
-        //                LetzteAnmeldungAktualisieren();
-        //                MessageBox.Show("Login abgeschlossen, break eingeleitet!\n"+btLogin.Text+"§§"+LogIn.ToString());
-                        
-        //            }
-        //            else
-        //            {
-        //                MessageBox.Show("Passwort falsch!");
-        //                LogIn = false;
-        //            }
-        //            CheckEingeloggt();
-        //        }
-        //        break;
-        //    }
-
-        //    if (LogIn == false)
-        //    {
-        //        MessageBox.Show("Login fehlgeschlagen!");
-        //    }
-        //}
 
         internal void CheckEingeloggt()
         {
@@ -410,7 +372,6 @@ namespace FutureFarm
             {
 
                 btBenutzerLöschen.Enabled = true;
-                //btBenutzerNeu.Enabled = true;
                 btBenutzerÄndern.Enabled = true;
                 pbPasswort.Enabled = true;
                 btSpeichern.Enabled = true;
@@ -1813,7 +1774,6 @@ namespace FutureFarm
                         LogIn = true;
                         btLogin2.Text = benutzerEingabe;
                         btLogin2.Image = Image.FromFile("D:\\OneDrive - BHAK und BHAS Mistelbach 316448\\Schule\\AP_SWE\\GitHub\\FutureFarmProgramm\\FutureFarm\\FutureFarm\\Properties\\login.png");
-                        lbBenutzername.Text = benutzerEingabe;
                         MessageBox.Show("Anmeldung erfolgreich!");
                         break;
                     }
@@ -1830,7 +1790,6 @@ namespace FutureFarm
                         MessageBox.Show("Benutzer wurde nicht gefunden!");
                     }
                 }
-
                 CheckEingeloggt();
             }
         }
@@ -1848,10 +1807,11 @@ namespace FutureFarm
         {
             for(int i=0; i<listViewRechnungSuche.Items.Count;i++)
             {
+                MessageBox.Show(listViewRechnungSuche.Items[i].Text);
                 ListViewItem gefunden = listViewRechnungSuche.FindItemWithText(txtRechnungSuche.Text, true, 0, true); //HAUS suche auch in SubItem Text - Vorname
                 if (gefunden == null)
                 {
-                    lvItem = listViewRechnungSuche.Items[i];
+                    //lvItem = listViewRechnungSuche.Items[i];
                     listViewRechnungSuche.Items[i].Remove();
                 }
             }
@@ -3085,6 +3045,41 @@ namespace FutureFarm
                 MessageBox.Show("Erfolgreich Termin gelöscht!");
                 TermineEinlesen();
             }
+        }
+
+        private void txtArtikelSuchen_TextChanged(object sender, EventArgs e)
+        {
+            //Rechnung in lv Suchen
+            if (txtArtikelSuchen.Text != "")
+            {
+                ArtikelEinlesen();
+                ArtikelSuchen();
+            }
+            else
+                ArtikelEinlesen();
+
+        }
+
+        private void ArtikelSuchen()
+        {
+            for (int i = 0; i < listViewArtikel.Items.Count; i++)
+            {
+                ListViewItem gefunden = listViewArtikel.FindItemWithText("*"+txtArtikelSuchen.Text+"*", true, 0, false); //HAUS suche auch in SubItem Text - Vorname
+                if (gefunden == null)
+                {
+                    lvItem = listViewArtikel.Items[i];
+                    listViewArtikel.Items[i].Remove();
+                }
+
+
+
+            }
+
+        }
+
+        private void btArtikelSuchen_Click(object sender, EventArgs e)
+        {
+            ArtikelSuchen();
         }
     }
 }
