@@ -285,6 +285,11 @@ namespace FutureFarm
             panelKunden.Dock = DockStyle.Fill;
             panelKunden.BringToFront();
 
+            lbKundenSuchen.Location = new Point((15), (panelKunden.Height - listViewKunden.Height - 40));
+            txtArtikelSuchen.Location = new Point((20+lbKundenSuchen.Width), (panelArtikel.Height - listViewArtikel.Height - 43));
+            btArtikelSuchen.Location = new Point((25 + txtArtikelSuchen.Width+lbKundenSuchen.Width), (panelArtikel.Height - listViewArtikel.Height - 43));
+
+
             KundenEinlesen();
         }
 
@@ -2274,6 +2279,12 @@ namespace FutureFarm
 
         private void listViewAnfragen_SelectedIndexChanged(object sender, EventArgs e)
         {
+            //lvItem = listViewAnfragen.SelectedItems[0];
+            //txtAnfrageID.Text = lvItem.SubItems[0].Text;
+            //dtpAnfrageDatum.Value =Convert.ToDateTime(lvItem.SubItems[1].Text);
+            //txtAnfrageArt.Text = lvItem.SubItems[2].Text;
+            //txtAnfrageName.Text = lvItem.SubItems[3].Text;
+
             try
             {
                 if (listViewAnfragen.SelectedItems[0].SubItems[2].Text.Equals("Bestellung"))
@@ -2285,6 +2296,22 @@ namespace FutureFarm
                 {
                     btAnfrageErledigt.Visible = true;
                     btAnfragenBestellungÜbernehmen.Visible = false;
+                }
+
+                var request = new RestRequest("formulare/{id}", Method.GET);
+                request.AddUrlSegment("id", lvItem.Text);
+                request.AddHeader("Content-Type", "application/json");
+                var response = client.Execute<List<Formular>>(request);
+
+                foreach (Formular f in response.Data)
+                {
+                    txtAnfrageID.Text = f.FormularID.ToString();
+                    txtAnfrageArt.Text = f.Art.Bezeichnung.ToString();
+                    txtAnfrageName.Text = f.Nachname.ToString() + " " + f.Vorname.ToString();
+                    txtAnfrageEmail.Text = f.Email.ToString();
+                    txtAnfrageInhalt.Text = f.Inhalt.ToString();
+                    txtAnfrageTelefonnummer.Text = f.Telefonnummer.ToString();
+                    dtpAnfrageDatum.Value = f.Datum;
                 }
             }
             catch(Exception ex)
@@ -2745,7 +2772,6 @@ namespace FutureFarm
             bestellungArtikel.Bestellung = b;
             bestellungArtikel.Artikel=a1;
 
-            //MessageBox.Show(b.BestellungID.ToString() + " " + a1.Bezeichnung);
 
             var request1 = new RestRequest("bestellungartikel", Method.PUT);
             request1.AddHeader("Content-Type", "application/json");
@@ -2758,15 +2784,7 @@ namespace FutureFarm
             else
             {
                 listViewBestellungenArtikelGewählt.Items.Remove(listViewBestellungenArtikelGewählt.SelectedItems[0]);
-                MessageBox.Show("Erfolgreich entfernt!");
             }
-
-            //HIER
-            //Falscher Artike gewählt
-
-
-
-
         }
 
         private void btBestellungSpeichern_Click(object sender, EventArgs e)
@@ -2866,10 +2884,6 @@ namespace FutureFarm
             }
         }
 
-        private void txtKundenPLZ_TextChanged(object sender, EventArgs e)
-        {
-        }
-
         private void btKundenOrtSuche_Click(object sender, EventArgs e)
         {
             try
@@ -2920,7 +2934,7 @@ namespace FutureFarm
                 var response = client.Execute<List<Login>>(request);
                 foreach (Login l in response.Data)
                 {
-                    if (l.Benutzername.Equals("Manuel.Reisinger"))
+                    if (l.Benutzername.Equals(btLogin2.Text))
                     {
                         benutzer.BenutzernameID = l.BenutzernameID;
                         benutzer.Benutzername = l.Benutzername;
@@ -2967,7 +2981,7 @@ namespace FutureFarm
                     var response = client.Execute<List<Login>>(request);
                     foreach(Login l in response.Data)
                     {
-                        if(l.Benutzername.Equals("Manuel.Reisinger"))
+                        if(l.Benutzername.Equals(btLogin2.Text))
                         {
                             benutzer.BenutzernameID = l.BenutzernameID;
                             benutzer.Benutzername = l.Benutzername;
@@ -3021,7 +3035,7 @@ namespace FutureFarm
             var response = client.Execute<List<Login>>(request);
             foreach (Login l in response.Data)
             {
-                if (l.Benutzername.Equals("Manuel.Reisinger"))
+                if (l.Benutzername.Equals(btLogin2.Text))
                 {
                     benutzer.BenutzernameID = l.BenutzernameID;
                     benutzer.Benutzername = l.Benutzername;
@@ -3051,26 +3065,11 @@ namespace FutureFarm
         {
             if (txtArtikelSuchen.Text != "")
             {
+                ArtikelEinlesen();
                 ArtikelSuchen();
             }
             else
                 ArtikelEinlesen();
-
-        }
-
-        private void ArtikelSuchen()
-        {
-            foreach (ListViewItem item in listViewArtikel.Items)
-            {
-                if (item.SubItems[0].Text.Contains(txtArtikelSuchen.Text) || item.SubItems[1].Text.Contains(txtArtikelSuchen.Text) || item.SubItems[2].Text.Contains(txtArtikelSuchen.Text) || item.SubItems[3].Text.Contains(txtArtikelSuchen.Text) || item.SubItems[4].Text.Contains(txtArtikelSuchen.Text))
-                {
-
-                }
-                else
-                {
-                    item.Remove();
-                }
-            }
         }
 
         private void btArtikelSuchen_Click(object sender, EventArgs e)
@@ -3083,31 +3082,11 @@ namespace FutureFarm
                 ArtikelEinlesen();
         }
 
-        private void btKundenSuchen_Click(object sender, EventArgs e)
+        private void ArtikelSuchen()
         {
-            if (txtKundeSuchen.Text != "")
+            foreach (ListViewItem item in listViewArtikel.Items)
             {
-                KundenSuchen();
-            }
-            else
-                KundenSuchen();
-        }
-
-        private void txtKundeSuchen_TextChanged(object sender, EventArgs e)
-        {
-            if (txtKundeSuchen.Text != "")
-            {
-                KundenSuchen();
-            }
-            else
-                KundenSuchen();
-        }
-
-        private void KundenSuchen()
-        {
-            foreach (ListViewItem item in listViewKunden.Items)
-            {
-                if (item.SubItems[0].Text.Contains(txtKundeSuchen.Text) || item.SubItems[1].Text.Contains(txtKundeSuchen.Text) || item.SubItems[2].Text.Contains(txtKundeSuchen.Text) || item.SubItems[3].Text.Contains(txtKundeSuchen.Text) || item.SubItems[4].Text.Contains(txtKundeSuchen.Text) || item.SubItems[5].Text.Contains(txtKundeSuchen.Text) || item.SubItems[6].Text.Contains(txtKundeSuchen.Text) || item.SubItems[7].Text.Contains(txtKundeSuchen.Text) || item.SubItems[8].Text.Contains(txtKundeSuchen.Text) || item.SubItems[9].Text.Contains(txtKundeSuchen.Text))
+                if (item.SubItems[0].Text.ToLower().Contains(txtArtikelSuchen.Text.ToLower()) || item.SubItems[1].Text.ToLower().Contains(txtArtikelSuchen.Text.ToLower()) || item.SubItems[2].Text.ToLower().Contains(txtArtikelSuchen.Text.ToLower()) || item.SubItems[3].Text.ToLower().Contains(txtArtikelSuchen.Text.ToLower()) || item.SubItems[4].Text.ToLower().Contains(txtArtikelSuchen.Text.ToLower()))
                 {
 
                 }
@@ -3116,8 +3095,96 @@ namespace FutureFarm
                     item.Remove();
                 }
             }
+        }
 
+        private void btKundenSuchen_Click(object sender, EventArgs e)
+        {
+            if (txtKundeSuchen.Text != "")
+            {
+                KundenEinlesen();
+                KundenSuchen();
+            }
+            else
+                KundenEinlesen();
+        }
+
+        private void txtKundeSuchen_TextChanged(object sender, EventArgs e)
+        {
+            if (txtKundeSuchen.Text != "")
+            {
+                KundenEinlesen();
+                KundenSuchen();
+            }
+            else
+                KundenEinlesen();
+        }
+
+        private void KundenSuchen()
+        {
+            foreach (ListViewItem item in listViewKunden.Items)
+            {
+                if (item.SubItems[0].Text.ToLower().Contains(txtKundeSuchen.Text.ToLower()) || item.SubItems[1].Text.ToLower().Contains(txtKundeSuchen.Text.ToLower()) || item.SubItems[2].Text.ToLower().Contains(txtKundeSuchen.Text.ToLower()) || item.SubItems[3].Text.ToLower().Contains(txtKundeSuchen.Text.ToLower()) || item.SubItems[4].Text.ToLower().Contains(txtKundeSuchen.Text.ToLower()) || item.SubItems[5].Text.ToLower().Contains(txtKundeSuchen.Text.ToLower()) || item.SubItems[6].Text.ToLower().Contains(txtKundeSuchen.Text.ToLower()) || item.SubItems[7].Text.ToLower().Contains(txtKundeSuchen.Text.ToLower()) || item.SubItems[8].Text.ToLower().Contains(txtKundeSuchen.Text.ToLower()) || item.SubItems[9].Text.ToLower().Contains(txtKundeSuchen.Text.ToLower()))
+                {
+                    
+                }
+                else
+                {
+                    item.Remove();
+                }
+            }
+        }
+
+        private void btAnfragenBestellungÜbernehmen_Click(object sender, EventArgs e)
+        {
+            FrmWarnung fw = new FrmWarnung();
+            if(txtAnfrageArt.Text.Equals("Bestellung"))
+            {
+                string kunde = txtAnfrageName.Text;
+                string telefon = txtAnfrageTelefonnummer.Text;
+                string email = txtAnfrageEmail.Text;
+                string inhalt = txtAnfrageInhalt.Text;
+                bool vorhanden=false;
+
+                var request = new RestRequest("kunden", Method.GET);
+                request.AddHeader("Content-Type", "application/json");
+                var response = client.Execute<List<Kunden>>(request);
+
+                foreach (Kunden k in response.Data)
+                {
+                   if((k.Nachname+" "+k.Vorname).Equals(kunde))//||k.Telefonnummer.Equals(telefon)||k.Email.Equals(email)
+                    {
+                        vorhanden = true;
+                        
+                        fw.cbWarnungKunde.Items.Add(k.KundenID.ToString()+" | "+k.Nachname+" "+k.Vorname);
+                    }
+                }
+
+                if(vorhanden==true)
+                {
+                    fw.cbWarnungKunde.Visible = true;
+                    fw.lbText.Text = "Kunden auswählen...";
+                    fw.ShowDialog();
+                    if (fw.weiter == true)
+                    {
+                        string cbKunde = fw.cbWarnungKunde.SelectedItem.ToString();
+                        string gewKunde = cbKunde.Substring(cbKunde.IndexOf("|") + 2, cbKunde.Length - (cbKunde.IndexOf("|") + 2));
+                        fw.cbWarnungKunde.Visible = false;
+                        BestellungÜbernehmen(gewKunde);
+                    }
+                    else
+                    {
+                        fw.lbText.Text = "Kein Kunde gefunden,\nbitte legen Sie einen neuen Kunden an";
+                        fw.ShowDialog();
+                    }
+                }
+            }
+        }
+
+        private void BestellungÜbernehmen(string gewKunde)
+        {
+            
         }
     }
 }
+
 

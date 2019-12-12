@@ -33,6 +33,7 @@
             this.btAbbrechen = new System.Windows.Forms.Button();
             this.btWeiter = new System.Windows.Forms.Button();
             this.lbText = new System.Windows.Forms.Label();
+            this.cbWarnungKunde = new System.Windows.Forms.ComboBox();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -90,11 +91,23 @@
             this.lbText.TabIndex = 22;
             this.lbText.Text = "Text...";
             // 
+            // cbWarnungKunde
+            // 
+            this.cbWarnungKunde.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbWarnungKunde.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbWarnungKunde.FormattingEnabled = true;
+            this.cbWarnungKunde.Location = new System.Drawing.Point(20, 144);
+            this.cbWarnungKunde.Name = "cbWarnungKunde";
+            this.cbWarnungKunde.Size = new System.Drawing.Size(437, 29);
+            this.cbWarnungKunde.TabIndex = 23;
+            this.cbWarnungKunde.Visible = false;
+            // 
             // FrmWarnung
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(534, 309);
+            this.Controls.Add(this.cbWarnungKunde);
             this.Controls.Add(this.lbText);
             this.Controls.Add(this.btWeiter);
             this.Controls.Add(this.btAbbrechen);
@@ -120,5 +133,6 @@
         private System.Windows.Forms.Button btAbbrechen;
         private System.Windows.Forms.Button btWeiter;
         internal System.Windows.Forms.Label lbText;
+        internal System.Windows.Forms.ComboBox cbWarnungKunde;
     }
 }
