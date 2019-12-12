@@ -17,7 +17,10 @@ namespace FutureFarm
         public FrmLogin()
         {
             InitializeComponent();
+            fl = this;
         }
+
+        internal static Form fl;
 
         private void btHome_Click(object sender, EventArgs e)
         {

@@ -234,6 +234,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="logoNEW.ico" />
+    <None Include="Properties\login.png" />
     <None Include="Properties\minimieren.jpeg" />
     <None Include="Properties\maximieren.jpeg" />
     <None Include="Properties\eye-open.png" />

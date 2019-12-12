@@ -16,7 +16,7 @@ using RestSharp.Authenticators;
 using Word = Microsoft.Office.Interop.Word;
 using System.Reflection;
 using System.Security.Cryptography;
-
+using FutureFarm.Properties;
 
 namespace FutureFarm
 {
@@ -46,7 +46,7 @@ namespace FutureFarm
         RC4 rc4;
 
         internal static Form1 f1;
-
+        internal static Form fl = new FrmLogin();
 
 
         internal bool LogIn;
@@ -69,7 +69,8 @@ namespace FutureFarm
         internal double weite = Screen.PrimaryScreen.WorkingArea.Width;
         internal double höhe = Screen.PrimaryScreen.WorkingArea.Height;
 
-
+        internal Image imgLogin = Properties.Resources.login;
+        internal Image imgLogout = Properties.Resources.logout;
 
         private void btHome_Click(object sender, EventArgs e)
         {
@@ -98,10 +99,6 @@ namespace FutureFarm
             RechnungenEinlesen();
             RechnungArtikelEinlesen();
             RechnungSucheEinlesen();
-
-
-
-
         }
 
         private void RechnungenEinlesen()
@@ -337,8 +334,9 @@ namespace FutureFarm
                 if (dialogResult == DialogResult.Yes)
                 {
                     LogIn = false;
-                    btLogin2.Image = Image.FromFile("D:\\OneDrive - BHAK und BHAS Mistelbach 316448\\Schule\\AP_SWE\\GitHub\\FutureFarmProgramm\\FutureFarm\\FutureFarm\\Properties\\logout.png");
-                    
+                   // btLogin2.Image = Image.FromFile("D:\\OneDrive - BHAK und BHAS Mistelbach 316448\\Schule\\AP_SWE\\GitHub\\FutureFarmProgramm\\FutureFarm\\FutureFarm\\Properties\\logout.png");
+                    btLogin2.Image = new Bitmap(FutureFarm.Properties.Resources.logout);
+
                     btLogin2.Text = "Log In";
                 }
                 else if (dialogResult == DialogResult.No)
@@ -1740,23 +1738,19 @@ namespace FutureFarm
 
         private void btLogin2_Click(object sender, EventArgs e)
         {
-            FrmLogin fl = new FrmLogin();
-
-            if(LogIn==false)
-            fl.ShowDialog();
+            if (LogIn == false)
+                fl.ShowDialog();
             else
             {
                 MessageBox.Show("Benutzer wird abgemeldet!");
                 LogIn = false;
                 btLogin2.Text = "   Log In";
-                btLogin2.Image = Image.FromFile("D:\\OneDrive - BHAK und BHAS Mistelbach 316448\\Schule\\AP_SWE\\GitHub\\FutureFarmProgramm\\FutureFarm\\FutureFarm\\Properties\\logout.png");
+                btLogin2.Image = imgLogout;
             }
         }
 
         public void EinloggenNeu()
         {
-            //MessageBox.Show(eingabeBenutzername + " " + eingabePasswort);
-
             panelBenutzerLoginEinlesen();
 
             //einzelne Benutzer in der Listview durchgehen
@@ -1773,7 +1767,8 @@ namespace FutureFarm
                     {
                         LogIn = true;
                         btLogin2.Text = benutzerEingabe;
-                        btLogin2.Image = Image.FromFile("D:\\OneDrive - BHAK und BHAS Mistelbach 316448\\Schule\\AP_SWE\\GitHub\\FutureFarmProgramm\\FutureFarm\\FutureFarm\\Properties\\login.png");
+                        btLogin2.Image = imgLogin;
+                        
                         MessageBox.Show("Anmeldung erfolgreich!");
                         break;
                     }
@@ -1788,10 +1783,14 @@ namespace FutureFarm
                     if(i==Convert.ToInt32(listViewPanelBenutzerLogin.Items.Count)-1)
                     {
                         MessageBox.Show("Benutzer wurde nicht gefunden!");
+                        break;
                     }
                 }
                 CheckEingeloggt();
             }
+            if (LogIn == false)
+                fl.ShowDialog();
+                
         }
 
         private void btRechnungSuchen_Click(object sender, EventArgs e)
@@ -1805,14 +1804,15 @@ namespace FutureFarm
 
         private void RechnungenSuchen()
         {
-            for(int i=0; i<listViewRechnungSuche.Items.Count;i++)
+            foreach (ListViewItem item in listViewRechnungSuche.Items)
             {
-                MessageBox.Show(listViewRechnungSuche.Items[i].Text);
-                ListViewItem gefunden = listViewRechnungSuche.FindItemWithText(txtRechnungSuche.Text, true, 0, true); //HAUS suche auch in SubItem Text - Vorname
-                if (gefunden == null)
+                if (item.SubItems[0].Text.Contains(txtRechnungSuche.Text) || item.SubItems[1].Text.Contains(txtRechnungSuche.Text) || item.SubItems[2].Text.Contains(txtRechnungSuche.Text) || item.SubItems[3].Text.Contains(txtRechnungSuche.Text) || item.SubItems[4].Text.Contains(txtRechnungSuche.Text))
                 {
-                    //lvItem = listViewRechnungSuche.Items[i];
-                    listViewRechnungSuche.Items[i].Remove();
+
+                }
+                else
+                {
+                    item.Remove();
                 }
             }
         }
@@ -3049,10 +3049,8 @@ namespace FutureFarm
 
         private void txtArtikelSuchen_TextChanged(object sender, EventArgs e)
         {
-            //Rechnung in lv Suchen
             if (txtArtikelSuchen.Text != "")
             {
-                ArtikelEinlesen();
                 ArtikelSuchen();
             }
             else
@@ -3062,24 +3060,63 @@ namespace FutureFarm
 
         private void ArtikelSuchen()
         {
-            for (int i = 0; i < listViewArtikel.Items.Count; i++)
+            foreach (ListViewItem item in listViewArtikel.Items)
             {
-                ListViewItem gefunden = listViewArtikel.FindItemWithText("*"+txtArtikelSuchen.Text+"*", true, 0, false); //HAUS suche auch in SubItem Text - Vorname
-                if (gefunden == null)
+                if (item.SubItems[0].Text.Contains(txtArtikelSuchen.Text) || item.SubItems[1].Text.Contains(txtArtikelSuchen.Text) || item.SubItems[2].Text.Contains(txtArtikelSuchen.Text) || item.SubItems[3].Text.Contains(txtArtikelSuchen.Text) || item.SubItems[4].Text.Contains(txtArtikelSuchen.Text))
                 {
-                    lvItem = listViewArtikel.Items[i];
-                    listViewArtikel.Items[i].Remove();
+
                 }
-
-
-
+                else
+                {
+                    item.Remove();
+                }
             }
-
         }
 
         private void btArtikelSuchen_Click(object sender, EventArgs e)
         {
-            ArtikelSuchen();
+            if (txtArtikelSuchen.Text != "")
+            {
+                ArtikelSuchen();
+            }
+            else
+                ArtikelEinlesen();
+        }
+
+        private void btKundenSuchen_Click(object sender, EventArgs e)
+        {
+            if (txtKundeSuchen.Text != "")
+            {
+                KundenSuchen();
+            }
+            else
+                KundenSuchen();
+        }
+
+        private void txtKundeSuchen_TextChanged(object sender, EventArgs e)
+        {
+            if (txtKundeSuchen.Text != "")
+            {
+                KundenSuchen();
+            }
+            else
+                KundenSuchen();
+        }
+
+        private void KundenSuchen()
+        {
+            foreach (ListViewItem item in listViewKunden.Items)
+            {
+                if (item.SubItems[0].Text.Contains(txtKundeSuchen.Text) || item.SubItems[1].Text.Contains(txtKundeSuchen.Text) || item.SubItems[2].Text.Contains(txtKundeSuchen.Text) || item.SubItems[3].Text.Contains(txtKundeSuchen.Text) || item.SubItems[4].Text.Contains(txtKundeSuchen.Text) || item.SubItems[5].Text.Contains(txtKundeSuchen.Text) || item.SubItems[6].Text.Contains(txtKundeSuchen.Text) || item.SubItems[7].Text.Contains(txtKundeSuchen.Text) || item.SubItems[8].Text.Contains(txtKundeSuchen.Text) || item.SubItems[9].Text.Contains(txtKundeSuchen.Text))
+                {
+
+                }
+                else
+                {
+                    item.Remove();
+                }
+            }
+
         }
     }
 }
