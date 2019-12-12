@@ -2279,12 +2279,6 @@ namespace FutureFarm
 
         private void listViewAnfragen_SelectedIndexChanged(object sender, EventArgs e)
         {
-            //lvItem = listViewAnfragen.SelectedItems[0];
-            //txtAnfrageID.Text = lvItem.SubItems[0].Text;
-            //dtpAnfrageDatum.Value =Convert.ToDateTime(lvItem.SubItems[1].Text);
-            //txtAnfrageArt.Text = lvItem.SubItems[2].Text;
-            //txtAnfrageName.Text = lvItem.SubItems[3].Text;
-
             try
             {
                 if (listViewAnfragen.SelectedItems[0].SubItems[2].Text.Equals("Bestellung"))
@@ -2297,6 +2291,7 @@ namespace FutureFarm
                     btAnfrageErledigt.Visible = true;
                     btAnfragenBestellungÜbernehmen.Visible = false;
                 }
+                lvItem = listViewAnfragen.SelectedItems[0];
 
                 var request = new RestRequest("formulare/{id}", Method.GET);
                 request.AddUrlSegment("id", lvItem.Text);
@@ -3182,7 +3177,32 @@ namespace FutureFarm
 
         private void BestellungÜbernehmen(string gewKunde)
         {
-            
+
+            Kunden kunde = new Kunden();
+            var request = new RestRequest("kunden", Method.GET);
+            request.AddHeader("Content-Type", "application/json");
+            var response = client.Execute<List<Kunden>>(request);
+
+            foreach (Kunden k in response.Data)
+            {
+                if ((k.Nachname + " " + k.Vorname).Equals(gewKunde))
+                {
+                    kunde.KundenID = k.KundenID;
+                    kunde.Vorname = k.Vorname;
+                    kunde.Nachname = k.Nachname;
+                    kunde.Telefonnummer = k.Telefonnummer;
+                    kunde.Email = k.Email;
+                    kunde.Anrede = k.Anrede;
+                    kunde.Firma = k.Firma;
+                    kunde.Strasse = k.Strasse;
+                    kunde.Aktiv = k.Aktiv;
+                    kunde.PLZ = k.PLZ;
+                }
+            }
+
+
+
+
         }
     }
 }
