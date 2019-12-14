@@ -25,6 +25,7 @@ namespace FutureFarm
         public Form1()
         {
             f1 = this;
+            flade = new FrmLadebildschirm();
             InitializeComponent();
 
             //Auswahl anpassen
@@ -47,6 +48,7 @@ namespace FutureFarm
 
         internal static Form1 f1;
         internal static Form fl = new FrmLogin();
+        internal static FrmLadebildschirm flade;
 
 
         internal bool LogIn;
@@ -453,7 +455,7 @@ namespace FutureFarm
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            this.Hide();
+            this.Hide();            
             GoFullscreen();
             MenuErstellen();
             panelsDeaktivieren();
@@ -462,6 +464,7 @@ namespace FutureFarm
             panelAuswahl.Height = btHome.Height;
             BenutzerEinlesen();
 
+            flade.Hide();
             this.Show();
             cbArtikelFilter.SelectedIndex = 1;
         }

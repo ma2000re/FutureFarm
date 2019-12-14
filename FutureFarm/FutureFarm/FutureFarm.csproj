@@ -77,6 +77,12 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="FrmLadebildschirm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmLadebildschirm.Designer.cs">
+      <DependentUpon>FrmLadebildschirm.cs</DependentUpon>
+    </Compile>
     <Compile Include="FrmLogin.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -126,6 +132,9 @@
     <Compile Include="RC4.cs" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmLadebildschirm.resx">
+      <DependentUpon>FrmLadebildschirm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmLogin.resx">
       <DependentUpon>FrmLogin.cs</DependentUpon>
@@ -234,6 +243,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="logoNEW.ico" />
+    <None Include="Resources\logoGif.gif" />
+    <None Include="Resources\logo.gif" />
     <None Include="Properties\login.png" />
     <None Include="Properties\minimieren.jpeg" />
     <None Include="Properties\maximieren.jpeg" />
