@@ -243,6 +243,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="logoNEW.ico" />
+    <None Include="Properties\globe.png" />
     <None Include="Resources\logoGif.gif" />
     <None Include="Resources\logo.gif" />
     <None Include="Properties\login.png" />

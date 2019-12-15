@@ -65,6 +65,8 @@ namespace FutureFarm
         internal string verPasswort;
         internal string entPasswort;
 
+        internal string[] artikelÜbernahme;
+
         internal int anzahlBenutzer;
         internal int menge;
 
@@ -556,8 +558,8 @@ namespace FutureFarm
             panelAuswahl.Top = btEinstellungen.Top;
 
             //Unterauswahl anzeigen
-            btFirmendaten.Location = new Point(Convert.ToInt16(panelLinks.Width), (pbLogoHome.Height + (btHome.Height * 9)));
-            btBenutzer.Location = new Point(Convert.ToInt16(panelLinks.Width), Convert.ToInt16((pbLogoHome.Height + (btHome.Height * 9.5))));
+            btFirmendaten.Location = new Point(Convert.ToInt16(panelLinks.Width), (pbLogoHome.Height + (btHome.Height * 10)));
+            btBenutzer.Location = new Point(Convert.ToInt16(panelLinks.Width), Convert.ToInt16((pbLogoHome.Height + (btHome.Height * 10.5))));
             btFirmendaten.Visible = true;
             btBenutzer.Visible = true;
             btFirmendaten.BringToFront();
@@ -595,7 +597,7 @@ namespace FutureFarm
 
         private void MenuErstellen()
         {
-            int anzahlTasks = 10;
+            int anzahlTasks = 11;
             int menuHöhe = Convert.ToInt16(höhe - pbLogoHome.Height);
             int menuWeite = Convert.ToInt16(weite * 0.10);
 
@@ -631,6 +633,8 @@ namespace FutureFarm
             btTermine.Width = btWeite;
             btEinstellungen.Height = btHöhe;
             btEinstellungen.Width = btWeite;
+            btWebsite.Height = btHöhe;
+            btWebsite.Width = btWeite;
             //Button Location Positionen
             btHome.Location = new Point(btPositionX, 0);
             btRechnungen.Location = new Point(btPositionX, btHöhe);
@@ -641,7 +645,8 @@ namespace FutureFarm
             btBestellungen.Location = new Point(btPositionX, btHöhe * 6);
             btNews.Location = new Point(btPositionX, btHöhe * 7);
             btTermine.Location = new Point(btPositionX, btHöhe * 8);
-            btEinstellungen.Location = new Point(btPositionX, btHöhe * 9);
+            btWebsite.Location = new Point(btPositionX, btHöhe * 9);
+            btEinstellungen.Location = new Point(btPositionX, btHöhe * 10);
             //AuswahlPanel
             panelAuswahl.Location = new Point(0, 0);
             panelAuswahl.Height = btHöhe;
@@ -660,6 +665,7 @@ namespace FutureFarm
             panelAuswahl.Top = btHome.Top;
 
             panelUnterMenu.Visible = false;
+            umenu();
         }
 
         private void btBenutzer_Click(object sender, EventArgs e)
@@ -1973,77 +1979,6 @@ namespace FutureFarm
         }
 
 
-        internal void CreateWordDocument(object filename, object saveAs)
-        {
-            Word.Application wordApp = new Word.Application();
-
-            object missing = Missing.Value;
-            Word.Document myWordDoc = null;
-
-            if (File.Exists((string)filename))
-            {
-
-                object readOnly = false;
-                object isVisible = false;
-                wordApp.Visible = false;
-
-
-                myWordDoc = wordApp.Documents.Open(ref filename, ref missing, ref readOnly,
-                    ref missing, ref missing, ref missing,
-                    ref missing, ref missing, ref missing,
-                    ref missing, ref missing, ref missing,
-                    ref missing, ref missing, ref missing, ref missing);
-
-
-                myWordDoc.Activate();
-                wordApp.Visible = false;
-
-                //suche
-                //this.FindAndReplace(wordApp, "<vorMontag>", cbVorMontag.Text);
-                //this.FindAndReplace(wordApp, "<hauptMontag>", cbHauptMontag.Text);
-                //this.FindAndReplace(wordApp, "<nachMontag>", cbNachMontag.Text);
-
-                //this.FindAndReplace(wordApp, "<vorDienstag>", cbVorDienstag.Text);
-                //this.FindAndReplace(wordApp, "<hauptDienstag>", cbHauptDienstag.Text);
-                //this.FindAndReplace(wordApp, "<nachDienstag>", cbNachDienstag.Text);
-
-                //this.FindAndReplace(wordApp, "<vorMittwoch>", cbVorMittwoch.Text);
-                //this.FindAndReplace(wordApp, "<hauptMittwoch>", cbHauptMittwoch.Text);
-                //this.FindAndReplace(wordApp, "<nachMittwoch>", cbNachMittwoch.Text);
-
-                //this.FindAndReplace(wordApp, "<vorDonnerstag>", cbVorDonnerstag.Text);
-                //this.FindAndReplace(wordApp, "<hauptDonnerstag>", cbHauptDonnerstag.Text);
-                //this.FindAndReplace(wordApp, "<nachDonnerstag>", cbNachDonnerstag.Text);
-
-                //this.FindAndReplace(wordApp, "<vorFreitag>", cbVorFreitag.Text);
-                //this.FindAndReplace(wordApp, "<hauptFreitag>", cbHauptFreitag.Text);
-                //this.FindAndReplace(wordApp, "<nachFreitag>", cbNachFreitag.Text);
-
-                //this.FindAndReplace(wordApp, "<datum>", DateTime.Now.ToShortDateString());
-            }
-            else
-            {
-                MessageBox.Show("Dokument konnte nicht gefunden werden");
-            }
-
-            ////Speichern
-            myWordDoc.SaveAs2(ref saveAs, ref missing, ref missing, ref missing,
-                ref missing, ref missing, ref missing,
-                ref missing, ref missing, ref missing,
-                ref missing, ref missing, ref missing);
-
-            DialogResult dialogResult = MessageBox.Show("Rechnung wurde angelegt,\nsoll diese direkt geöffnet werden?", "", MessageBoxButtons.YesNo);
-            if (dialogResult == DialogResult.Yes)
-            {
-                wordApp.Visible = true;
-            }
-            else if (dialogResult == DialogResult.No)
-            {
-                myWordDoc.Close();
-                wordApp.Quit();
-            }
-
-        }
 
         private void button2_Click(object sender, EventArgs e)
         {
@@ -3159,26 +3094,34 @@ namespace FutureFarm
 
                 if(vorhanden==true)
                 {
-                    fw.cbWarnungKunde.Visible = true;
-                    fw.lbText.Text = "Kunden auswählen...";
-                    fw.ShowDialog();
-                    if (fw.weiter == true)
+                    try
                     {
-                        string cbKunde = fw.cbWarnungKunde.SelectedItem.ToString();
-                        string gewKunde = cbKunde.Substring(cbKunde.IndexOf("|") + 2, cbKunde.Length - (cbKunde.IndexOf("|") + 2));
-                        fw.cbWarnungKunde.Visible = false;
-                        BestellungÜbernehmen(gewKunde);
-                    }
-                    else
-                    {
-                        fw.lbText.Text = "Kein Kunde gefunden,\nbitte legen Sie einen neuen Kunden an";
+                        fw.cbWarnungKunde.Visible = true;
+                        fw.lbText.Text = "Kunden auswählen...";
                         fw.ShowDialog();
+                        if (fw.weiter == true)
+                        {
+                            string cbKunde = fw.cbWarnungKunde.SelectedItem.ToString();
+                            string gewKunde = cbKunde.Substring(cbKunde.IndexOf("|") + 2, cbKunde.Length - (cbKunde.IndexOf("|") + 2));
+                            fw.cbWarnungKunde.Visible = false;
+
+                            BestellungÜbernehmen(gewKunde, inhalt);
+                        }
+                        else
+                        {
+                            fw.lbText.Text = "Kein Kunde gefunden,\nbitte legen Sie einen neuen Kunden an";
+                            fw.ShowDialog();
+                        }
+                    }
+                    catch(Exception ex)
+                    {
+                        MessageBox.Show(ex.Message);
                     }
                 }
             }
         }
 
-        private void BestellungÜbernehmen(string gewKunde)
+        private void BestellungÜbernehmen(string gewKunde, string inhalt)
         {
 
             Kunden kunde = new Kunden();
@@ -3203,10 +3146,151 @@ namespace FutureFarm
                 }
             }
 
+            int anzahlArtikel = inhalt.Count(x => x.Equals('#'));
+            int artikelID;
+            int neuerStart = 0;
+            string[] arrArtikel;
+
+            for(int i=0; i<anzahlArtikel;i++)
+            {
+                arrArtikel=inhalt.Split(new Char[] { '#' });
+                MessageBox.Show(arrArtikel[i]);
+            }
 
 
 
         }
+
+        private void btWebsite_MouseEnter(object sender, EventArgs e)
+        {
+            panelAuswahl.Top = btWebsite.Top;
+            umenu();
+
+        }
+
+        private void btWebsite_Click(object sender, EventArgs e)
+        {
+            panelsDeaktivieren();
+            panelWebsite.Dock = DockStyle.Fill;
+        }
+
+        private void btRechnungWord_Click(object sender, EventArgs e)
+        {
+            string path = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.FullName;
+            string vorlage = path + @"\RechnungVorlage.docx";
+            string speicherort = path + @"\"+txtRechnungID.Text+"_"+txtRechnungKunde.Text+"_Rechnung.docx";
+
+            CreateWordDocument(vorlage, speicherort);
+
+        }
+
+        internal void CreateWordDocument(object filename, object saveAs)
+        {
+            Word.Application wordApp = new Word.Application();
+
+            object missing = Missing.Value;
+            Word.Document myWordDoc = null;
+
+            if (File.Exists((string)filename))
+            {
+
+                object readOnly = false;
+                object isVisible = false;
+                wordApp.Visible = false;
+
+
+
+                myWordDoc = wordApp.Documents.Open(ref filename, ref missing, ref missing,
+                    ref missing, ref missing, ref missing,
+                    ref missing, ref missing, ref missing,
+                    ref missing, ref missing, ref missing,
+                    ref missing, ref missing, ref missing, ref missing);
+
+                MessageBox.Show("warten");
+
+                myWordDoc.Activate();
+                wordApp.Visible = false;
+
+                //suche
+                this.FindAndReplace(wordApp, "<KundeAnrede>", "Herr");
+                this.FindAndReplace(wordApp, "<KundeVorname>", "Max");
+                this.FindAndReplace(wordApp, "<KundeNachname>", "Mustermann");
+                this.FindAndReplace(wordApp, "<KundeStrasse>", "Musterstraße 10");
+                this.FindAndReplace(wordApp, "<KundePLZ>", "1010");
+                this.FindAndReplace(wordApp, "<KundeOrt>", "Wien, Innere Stadt");
+                this.FindAndReplace(wordApp, "<RechnungsNummer>", txtRechnungID.Text);
+                this.FindAndReplace(wordApp, "<Datum>", dtpRechnungDatum.Value.ToShortDateString());
+                this.FindAndReplace(wordApp, "<ArtikelNr>", "1");
+                this.FindAndReplace(wordApp, "<ArtikelBezeichnung>", "Hokkaido");
+                this.FindAndReplace(wordApp, "<ArtikelMenge>", "1");
+                this.FindAndReplace(wordApp, "<ArtikelPreis>", "1,20");
+                this.FindAndReplace(wordApp, "<ArtikelUst>", "20");
+                this.FindAndReplace(wordApp, "<SummeNetto>", txtRechnungSummeNetto.Text);
+                this.FindAndReplace(wordApp, "<SummeUst>", txtRechnungSummeUST.Text);
+                this.FindAndReplace(wordApp, "<SummeBrutto>", txtRechnungSummeBrutto.Text);
+                this.FindAndReplace(wordApp, "<Lieferdatum>", "31.12.2019");
+
+                if(cbRechnungBezahlt.Checked==true)
+                    this.FindAndReplace(wordApp, "<Zahlung>", "bezahlt");
+                else
+                    this.FindAndReplace(wordApp, "<Zahlung>", "offen");
+
+                this.FindAndReplace(wordApp, "<AusgestelltAm>", DateTime.Now.ToShortDateString());
+
+            }
+            else
+            {
+                MessageBox.Show("Dokument konnte nicht gefunden werden");
+            }
+
+            ////Speichern
+            myWordDoc.SaveAs2(ref saveAs, ref missing, ref missing, ref missing,
+                ref missing, ref missing, ref missing,
+                ref missing, ref missing, ref missing,
+                ref missing, ref missing, ref missing);
+
+            DialogResult dialogResult = MessageBox.Show("Die Rechnung wurde angelegt,\nsoll diese direkt geöffnet werden?", "", MessageBoxButtons.YesNo);
+            if (dialogResult == DialogResult.Yes)
+            {
+                wordApp.Visible = true;
+                wordApp.ShowMe();
+            }
+            else if (dialogResult == DialogResult.No)
+            {
+                myWordDoc.Close();
+                wordApp.Quit();
+            }
+
+        }
+
+        internal void FindAndReplace(Word.Application wordApp, object ToFindText, object replaceWithText)
+        {
+            object matchCase = true;
+            object matchWHoleWord = true;
+            object matchWildCards = false;
+            object matchSoundLike = false;
+            object nmatchAllForms = false;
+            object forward = true;
+            object format = false;
+            object matchKashida = false;
+            object matchDiactitics = false;
+            object matchAlefHamza = false;
+            object matchControl = false;
+            object read_only = false;
+            object replace = 2;
+            object wrap = 1;
+
+            wordApp.Selection.Find.Execute(ref ToFindText,
+                ref matchCase, ref matchWHoleWord,
+                ref matchWildCards, ref matchSoundLike,
+                ref nmatchAllForms, ref forward,
+                ref wrap, ref format, ref replaceWithText,
+                ref replace, ref matchKashida,
+                ref matchDiactitics, ref matchAlefHamza,
+                ref matchControl);
+        }
+
+
     }
 }
 

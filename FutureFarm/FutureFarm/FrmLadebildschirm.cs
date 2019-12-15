@@ -26,6 +26,7 @@ namespace FutureFarm
         {
             Form1 f1 = new Form1();
             f1.Show();
+            timer1.Stop();
         }
     }
 }
