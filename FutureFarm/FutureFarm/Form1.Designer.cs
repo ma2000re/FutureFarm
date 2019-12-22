@@ -211,7 +211,7 @@
             this.panelRechnungNeu = new System.Windows.Forms.Panel();
             this.btRechnungNeuSpeichern = new System.Windows.Forms.Button();
             this.cbRechnungNeuBezahlt = new System.Windows.Forms.CheckBox();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.dtpRechnungNeuBezahlt = new System.Windows.Forms.DateTimePicker();
             this.btRechnungNeuWordErstellen = new System.Windows.Forms.Button();
             this.txtRechnungNeuBrutto = new System.Windows.Forms.TextBox();
             this.label44 = new System.Windows.Forms.Label();
@@ -1806,10 +1806,9 @@
             this.panelRechnungen.Controls.Add(this.listViewRechnungArtikel);
             this.panelRechnungen.Controls.Add(this.listViewRechnungen);
             this.panelRechnungen.Controls.Add(this.label39);
-            this.panelRechnungen.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelRechnungen.Location = new System.Drawing.Point(205, 41);
+            this.panelRechnungen.Location = new System.Drawing.Point(1146, 230);
             this.panelRechnungen.Name = "panelRechnungen";
-            this.panelRechnungen.Size = new System.Drawing.Size(1556, 1015);
+            this.panelRechnungen.Size = new System.Drawing.Size(67, 48);
             this.panelRechnungen.TabIndex = 52;
             this.panelRechnungen.Visible = false;
             this.panelRechnungen.MouseEnter += new System.EventHandler(this.panelRechnungen_MouseEnter);
@@ -1875,6 +1874,7 @@
             this.btRechnungSpeichern.TabIndex = 52;
             this.btRechnungSpeichern.Text = "Speichern";
             this.btRechnungSpeichern.UseVisualStyleBackColor = true;
+            this.btRechnungSpeichern.Click += new System.EventHandler(this.btRechnungSpeichern_Click);
             // 
             // txtRechnungSummeBrutto
             // 
@@ -2226,7 +2226,7 @@
             // 
             this.panelRechnungNeu.Controls.Add(this.btRechnungNeuSpeichern);
             this.panelRechnungNeu.Controls.Add(this.cbRechnungNeuBezahlt);
-            this.panelRechnungNeu.Controls.Add(this.dateTimePicker1);
+            this.panelRechnungNeu.Controls.Add(this.dtpRechnungNeuBezahlt);
             this.panelRechnungNeu.Controls.Add(this.btRechnungNeuWordErstellen);
             this.panelRechnungNeu.Controls.Add(this.txtRechnungNeuBrutto);
             this.panelRechnungNeu.Controls.Add(this.label44);
@@ -2243,9 +2243,10 @@
             this.panelRechnungNeu.Controls.Add(this.cbRechnungenKundeNeu);
             this.panelRechnungNeu.Controls.Add(this.dtpRechnungNeu);
             this.panelRechnungNeu.Controls.Add(this.label43);
-            this.panelRechnungNeu.Location = new System.Drawing.Point(1161, 305);
+            this.panelRechnungNeu.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panelRechnungNeu.Location = new System.Drawing.Point(205, 41);
             this.panelRechnungNeu.Name = "panelRechnungNeu";
-            this.panelRechnungNeu.Size = new System.Drawing.Size(60, 46);
+            this.panelRechnungNeu.Size = new System.Drawing.Size(1556, 1015);
             this.panelRechnungNeu.TabIndex = 54;
             this.panelRechnungNeu.Visible = false;
             this.panelRechnungNeu.MouseEnter += new System.EventHandler(this.panelRechnungNeu_MouseEnter);
@@ -2253,7 +2254,7 @@
             // btRechnungNeuSpeichern
             // 
             this.btRechnungNeuSpeichern.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btRechnungNeuSpeichern.Location = new System.Drawing.Point(385, 773);
+            this.btRechnungNeuSpeichern.Location = new System.Drawing.Point(605, 776);
             this.btRechnungNeuSpeichern.Name = "btRechnungNeuSpeichern";
             this.btRechnungNeuSpeichern.Size = new System.Drawing.Size(214, 44);
             this.btRechnungNeuSpeichern.TabIndex = 71;
@@ -2272,19 +2273,19 @@
             this.cbRechnungNeuBezahlt.Text = "Bezahlt am";
             this.cbRechnungNeuBezahlt.UseVisualStyleBackColor = true;
             // 
-            // dateTimePicker1
+            // dtpRechnungNeuBezahlt
             // 
-            this.dateTimePicker1.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dateTimePicker1.Location = new System.Drawing.Point(633, 280);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(186, 31);
-            this.dateTimePicker1.TabIndex = 69;
+            this.dtpRechnungNeuBezahlt.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dtpRechnungNeuBezahlt.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtpRechnungNeuBezahlt.Location = new System.Drawing.Point(633, 280);
+            this.dtpRechnungNeuBezahlt.Name = "dtpRechnungNeuBezahlt";
+            this.dtpRechnungNeuBezahlt.Size = new System.Drawing.Size(186, 31);
+            this.dtpRechnungNeuBezahlt.TabIndex = 69;
             // 
             // btRechnungNeuWordErstellen
             // 
             this.btRechnungNeuWordErstellen.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btRechnungNeuWordErstellen.Location = new System.Drawing.Point(605, 773);
+            this.btRechnungNeuWordErstellen.Location = new System.Drawing.Point(605, 825);
             this.btRechnungNeuWordErstellen.Name = "btRechnungNeuWordErstellen";
             this.btRechnungNeuWordErstellen.Size = new System.Drawing.Size(214, 44);
             this.btRechnungNeuWordErstellen.TabIndex = 68;
@@ -2735,7 +2736,7 @@
             this.panelBestellungen.Size = new System.Drawing.Size(71, 43);
             this.panelBestellungen.TabIndex = 56;
             this.panelBestellungen.Visible = false;
-            this.panelBestellungen.MouseEnter += new System.EventHandler(this.panelBestellungen_MouseEnter);
+            this.panelBestellungen.MouseEnter += new System.EventHandler(this.panelArtikel_MouseEnter);
             // 
             // btBestellungSpeichern
             // 
@@ -3860,7 +3861,7 @@
         private System.Windows.Forms.Label label46;
         private System.Windows.Forms.Label label47;
         private System.Windows.Forms.Button btRechnungNeuWordErstellen;
-        private System.Windows.Forms.DateTimePicker dateTimePicker1;
+        private System.Windows.Forms.DateTimePicker dtpRechnungNeuBezahlt;
         private System.Windows.Forms.CheckBox cbRechnungNeuBezahlt;
         private System.Windows.Forms.Button btRechnungNeuSpeichern;
         private System.Windows.Forms.Panel panelTermine;

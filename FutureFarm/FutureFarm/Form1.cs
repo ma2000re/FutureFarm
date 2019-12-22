@@ -1780,11 +1780,14 @@ namespace FutureFarm
 
         private void btLogin2_Click(object sender, EventArgs e)
         {
+            FrmWarnung fw = new FrmWarnung();
+
             if (LogIn == false)
                 fl.ShowDialog();
             else
             {
-                MessageBox.Show("Benutzer wird abgemeldet!");
+                fw.lbText.Text = "Der Benutzer wird jetzt abgemeldet...";
+                fw.Text = "Abmeldung";
                 LogIn = false;
                 btLogin2.Text = "   Log In";
                 btLogin2.Image = imgLogout;
@@ -1909,43 +1912,41 @@ namespace FutureFarm
             cbRechnungBestellungNeu.Items.Clear();
             //Client für API
 
+            string cbKundenText = cbRechnungenKundeNeu.SelectedItem.ToString();
+            rechnungNeuKunde = cbKundenText.Substring(0, cbKundenText.IndexOf(' '));
+
             var request = new RestRequest("bestellungen", Method.GET);
             request.AddHeader("Content-Type", "application/json");
             var response = client.Execute<List<Bestellung>>(request);
 
-            //cbBestellungRechnungNeu.Items.Add("Bestellung erstellen...");
             foreach (Bestellung b in response.Data)
             {
-                
                 if (b.Kunde.KundenID.ToString().Equals(rechnungNeuKunde))
-                cbRechnungBestellungNeu.Items.Add(b.BestellungID+" | Status: "+b.Status);
+                cbRechnungBestellungNeu.Items.Add(b.BestellungID + " | Status: " + b.Status);
             }
 
         }
 
         private void cbKundeRechnungNeu_SelectedIndexChanged(object sender, EventArgs e)
         {
-            string cbKundenText = cbRechnungenKundeNeu.Items[0].ToString();
-            rechnungNeuKunde = cbKundenText.Substring(0, cbKundenText.IndexOf(' '));
+            listViewRechnungGewähltArtikel.Items.Clear();
             ComboRechnungNeuBestellungenEinlesen();
 
         }
 
         private void cbBestellungRechnungNeu_SelectedIndexChanged(object sender, EventArgs e)
         {
+            listViewRechnungNeuArtikel.Items.Clear();
+
             if(cbRechnungBestellungNeu.Text.Equals("Bestellung erstellen..."))
             {
-                //panelBestellung.Visible = true;
-                //panelBestellung.BringToFront();
-                MessageBox.Show("Neue Bestellung erstellen");
-
                 FrmWarnung fw = new FrmWarnung();
                 fw.lbText.Text="Wollen Sie eine neue Bestellung erstellen?";
                 fw.ShowDialog();
                 if (fw.weiter == true)
                 {
-                    //panelBestellung.Visible = 0;
-                    //panelBestellung.BringToFront();
+                    panelsDeaktivieren();
+                    panelBestellungen.Dock = DockStyle.Fill;
                 }
 
             }
@@ -2010,7 +2011,121 @@ namespace FutureFarm
 
         private void button2_Click(object sender, EventArgs e)
         {
+            string kundenID = cbRechnungenKundeNeu.Text.Substring(0, cbRechnungenKundeNeu.Text.IndexOf(" "));
+            var requestKunde = new RestRequest("kunden", Method.GET);
+            requestKunde.AddHeader("Content-Type", "Application/Json");
+            var responseKunde = client.Execute<List<Kunden>>(requestKunde);
+            Kunden kunde = new Kunden();
+            foreach(Kunden k in responseKunde.Data)
+            {
+                if(kundenID.Equals(k.KundenID.ToString()))
+                {
+                    kunde.KundenID = k.KundenID;
+                    kunde.Anrede = k.Anrede;
+                    kunde.Vorname = k.Vorname;
+                    kunde.Nachname = k.Nachname;
+                    kunde.Firma = k.Firma;
+                    kunde.Telefonnummer = k.Telefonnummer;
+                    kunde.Email = k.Email;
+                    kunde.Strasse = k.Strasse;
+                    kunde.Aktiv = k.Aktiv;
+                    kunde.PLZ = k.PLZ;
+                }
+            }
 
+            string bestellungID = cbRechnungBestellungNeu.Text.Substring(0, cbRechnungBestellungNeu.Text.IndexOf(" "));
+            
+            var requestBestellung = new RestRequest("bestellungen", Method.GET);
+            requestBestellung.AddHeader("Content-Type", "Application/Json");
+            var responseBestellung = client.Execute<List<Bestellung>>(requestBestellung);
+            Bestellung bestellung = new Bestellung();
+            foreach (Bestellung b in responseBestellung.Data)
+            {
+                if(bestellungID.Equals(b.BestellungID.ToString()))
+                {
+                    bestellung.BestellungID = b.BestellungID;
+                    bestellung.Status = "Abgeschlossen";
+                    bestellung.Lieferdatum = b.Lieferdatum;
+                    bestellung.Kunde = kunde;
+                }
+            }
+
+            var requestBestellungUp = new RestRequest("bestellungen", Method.PUT);
+            requestBestellungUp.AddHeader("Content-Type", "application/json");
+            requestBestellungUp.AddJsonBody(bestellung);
+            var responseBestellungUp = client.Execute(requestBestellungUp);
+
+            Rechnung rechnung = new Rechnung();
+            rechnung.Datum = Convert.ToDateTime(dtpRechnungNeu.Value.ToShortDateString());
+            rechnung.Kunde = kunde;
+            rechnung.Bestellung = bestellung;
+            rechnung.Bezahlt = cbRechnungNeuBezahlt.Checked;
+            rechnung.BezahltAm = Convert.ToDateTime(dtpRechnungNeuBezahlt.Value.ToShortDateString());
+
+            //Rechnung erstellen
+            var request = new RestRequest("rechnungen", Method.POST);
+            request.AddHeader("Content-Type", "application/Json");
+            request.AddJsonBody(rechnung);
+            var response = client.Execute(request);
+            if (response.StatusCode == System.Net.HttpStatusCode.BadRequest)
+            {
+                MessageBox.Show("An Error occured", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else
+            {
+                MessageBox.Show("Rechnung erfolgreich angelegt!");
+            }
+
+            //Rechnungartikel erstellen
+
+
+            for (int i=0; i<listViewRechnungNeuArtikel.Items.Count;i++)
+            {
+                lvItem = listViewRechnungNeuArtikel.Items[i];
+                RechnungArtikel ra = new RechnungArtikel();
+                Artikel artikel = new Artikel();
+
+                var requestArtikel = new RestRequest("artikel", Method.GET);
+                requestArtikel.AddHeader("Content-Type", "application/json");
+                var responseArtikel = client.Execute<List<Artikel>>(requestArtikel);
+                foreach(Artikel a in responseArtikel.Data)
+                {
+                    if(lvItem.Text.Equals(a.ArtikelID.ToString()))
+                    {
+                        MessageBox.Show("art gefunden");
+                        artikel.ArtikelID = a.ArtikelID;
+                        artikel.Bezeichnung = a.Bezeichnung;
+                        artikel.ExterneID = a.ExterneID;
+                        artikel.PreisNetto = a.PreisNetto;
+                        artikel.Ust = a.Ust;
+                        artikel.Lagerstand = a.Lagerstand;
+                        artikel.Reserviert = a.Reserviert;
+                        artikel.Bild = a.Bild;
+                        artikel.Aktiv = a.Aktiv;
+                        artikel.Lieferant = a.Lieferant;
+                    }
+                }
+
+                ra.Menge = Convert.ToInt32(lvItem.SubItems[2].Text);
+                ra.NettoPreis = Convert.ToDouble(lvItem.SubItems[3].Text);
+                ra.Aktiv= true;
+                ra.Rechnung = rechnung;
+                ra.Artikel = artikel;
+
+                var request1 = new RestRequest("rechnungartikel", Method.POST);
+                request1.AddHeader("Content-Type", "application/Json");
+                request1.AddJsonBody(ra);
+                //HIER FEHLER
+                var response1 = client.Execute(request1);
+                if (response1.StatusCode == System.Net.HttpStatusCode.BadRequest)
+                {
+                    MessageBox.Show("An Error occured", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                else
+                {
+                    MessageBox.Show("Rechnungartikel erfolgreich angelegt!");
+                }
+            }
         }
 
         private void panelTermine_MouseEnter(object sender, EventArgs e)
@@ -2290,6 +2405,7 @@ namespace FutureFarm
 
         private void listViewRechnungSuche_SelectedIndexChanged(object sender, EventArgs e)
         {
+            listViewRechnungGewähltArtikel.Items.Clear();
             try
             {
                 lvItem = listViewRechnungSuche.SelectedItems[0];
@@ -2309,32 +2425,35 @@ namespace FutureFarm
                 }
 
                 //Artikel anzeigen
-                for(int i=0; i<listViewRechnungArtikel.Items.Count;i++)
+                for (int i = 0; i < listViewRechnungArtikel.Items.Count; i++)
                 {
-                    if(listViewRechnungArtikel.Items[i].SubItems[4].Text.Equals(txtRechnungID.Text))
+                    if (listViewRechnungArtikel.Items[i].SubItems[4].Text.Equals(txtRechnungID.Text))
                     {
                         string artikelID = listViewRechnungArtikel.Items[i].SubItems[5].Text;
 
                         //Client für API
 
-                        var request = new RestRequest("artikel/{id}", Method.GET);
-                        request.AddUrlSegment("id", artikelID);
+                        var request = new RestRequest("artikel", Method.GET);
                         request.AddHeader("Content-Type", "application/json");
                         var response = client.Execute<List<Artikel>>(request);
 
                         foreach (Artikel a in response.Data)
                         {
-                            lvItem = new ListViewItem(a.ArtikelID.ToString());
-                            lvItem.SubItems.Add(a.Bezeichnung.ToString());
-                            
-                            lvItem.SubItems.Add(listViewRechnungArtikel.Items[i].SubItems[1].Text);
-                            lvItem.SubItems.Add(a.PreisNetto.ToString());
-                            lvItem.SubItems.Add(a.Ust.ToString());
+                            if (artikelID.Equals(a.ArtikelID.ToString()))
+                            {
+                                lvItem = new ListViewItem(a.ArtikelID.ToString());
+                                lvItem.SubItems.Add(a.Bezeichnung.ToString());
 
-                            listViewRechnungGewähltArtikel.Items.Add(lvItem);
+                                lvItem.SubItems.Add(listViewRechnungArtikel.Items[i].SubItems[1].Text);
+                                lvItem.SubItems.Add(a.PreisNetto.ToString());
+                                lvItem.SubItems.Add(a.Ust.ToString());
+
+                                listViewRechnungGewähltArtikel.Items.Add(lvItem);
+                            }
                         }
                     }
                 }
+
 
                 //Summen berechnen
                 double summeNetto = 0;
@@ -2470,13 +2589,6 @@ namespace FutureFarm
                     }
                     else
                     {
-                        return;
-                    }
-                }
-                else
-                {
-                    if (txtBestellungID.Text != "")
-                    {
                         //Neue Bestellung anlegen
                         Bestellung b = new Bestellung();
                         b.Status = cbBestellungStatus.Text;
@@ -2498,35 +2610,18 @@ namespace FutureFarm
 
                         BestellungenEinlesen();
                         lvItem = listViewBestellungen.Items[listViewBestellungen.Items.Count - 1];
-                        txtBestellungID.Text = lvItem.Text;
-
+                        txtBestellungID.Text = lvItem.Text;                        
                     }
-                    else
-                        return;
-                }
-
-            }
-
-
-            if (listViewBestellungArtikelAlle.SelectedItems[0].SubItems[6].Text.Equals("False"))
-            {
-                fw.lbText.Text = "Gewählter Artikel ist inaktiv,\ntrotzdem hinzufügen?";
-                fw.ShowDialog();
-                if (fw.weiter == true)
-                {
-                    BestellungArtikelHinzufügen();
-
-
                 }
                 else
                 {
-                    //Artikel nicht hinzufügen
+                    
                 }
+
             }
             else
             {
                 BestellungArtikelHinzufügen();
-
             }
         }
 
@@ -3294,24 +3389,63 @@ namespace FutureFarm
                 myWordDoc.Activate();
                 wordApp.Visible = false;
 
+                //Infos holen
+                string nachname = txtRechnungKunde.Text.Substring(0, txtRechnungKunde.Text.IndexOf(" "));
+                string vorname = txtRechnungKunde.Text.Substring(txtRechnungKunde.Text.IndexOf(" ") + 1, txtRechnungKunde.Text.Length - nachname.Length-1);
+                string anrede="";
+                string strasse = "";
+                string plz = "";
+                string ort = "";
+                string artikelIDs = "";
+                string artikelBezeichnungen = "";
+                string artikelMengen = "";
+                string artikelNetto = "";
+                string artikelUST = "";
+
+                var requestAnrede = new RestRequest("kunden", Method.GET);
+                requestAnrede.AddHeader("Content-Type", "application/Json");
+                var responseAnrede = client.Execute<List<Kunden>>(requestAnrede);
+                foreach(Kunden k in responseAnrede.Data)
+                {
+                    if(nachname.Equals(k.Nachname)&&vorname.Equals(k.Vorname))
+                    {
+                        anrede = k.Anrede;
+                        strasse = k.Strasse;
+                        plz = k.Postleitzahl.PLZ;
+                        ort = k.Postleitzahl.Ortschaft;
+                    }
+                }
+
+                //Artikel suchen
+                for(int i =0; i<listViewRechnungGewähltArtikel.Items.Count;i++)
+                {
+                    lvItem = listViewRechnungGewähltArtikel.Items[i];
+                    artikelIDs += lvItem.SubItems[0].Text+"\n";
+                    artikelBezeichnungen += lvItem.SubItems[1].Text + "\n";
+                    artikelMengen += lvItem.SubItems[2].Text + "\n";
+                    artikelNetto += (Convert.ToInt32(lvItem.SubItems[3].Text)*Convert.ToInt32(artikelMengen))+ "\n";
+                    artikelUST += lvItem.SubItems[4].Text + "\n";
+                }
+
+
                 //suche
-                this.FindAndReplace(wordApp, "<KundeAnrede>", "Herr");
-                this.FindAndReplace(wordApp, "<KundeVorname>", "Max");
-                this.FindAndReplace(wordApp, "<KundeNachname>", "Mustermann");
-                this.FindAndReplace(wordApp, "<KundeStrasse>", "Musterstraße 10");
-                this.FindAndReplace(wordApp, "<KundePLZ>", "1010");
-                this.FindAndReplace(wordApp, "<KundeOrt>", "Wien, Innere Stadt");
+                this.FindAndReplace(wordApp, "<KundeAnrede>", anrede);
+                this.FindAndReplace(wordApp, "<KundeVorname>", vorname);
+                this.FindAndReplace(wordApp, "<KundeNachname>", nachname);
+                this.FindAndReplace(wordApp, "<KundeStrasse>", strasse);
+                this.FindAndReplace(wordApp, "<KundePLZ>", plz);
+                this.FindAndReplace(wordApp, "<KundeOrt>", ort);
                 this.FindAndReplace(wordApp, "<RechnungsNummer>", txtRechnungID.Text);
                 this.FindAndReplace(wordApp, "<Datum>", dtpRechnungDatum.Value.ToShortDateString());
-                this.FindAndReplace(wordApp, "<ArtikelNr>", "1");
-                this.FindAndReplace(wordApp, "<ArtikelBezeichnung>", "Hokkaido");
-                this.FindAndReplace(wordApp, "<ArtikelMenge>", "1");
-                this.FindAndReplace(wordApp, "<ArtikelPreis>", "1,20");
-                this.FindAndReplace(wordApp, "<ArtikelUst>", "20");
+                this.FindAndReplace(wordApp, "<ArtikelNr>", artikelIDs);
+                this.FindAndReplace(wordApp, "<ArtikelBezeichnung>", artikelBezeichnungen);
+                this.FindAndReplace(wordApp, "<ArtikelMenge>", artikelMengen);
+                this.FindAndReplace(wordApp, "<ArtikelPreis>", artikelNetto);
+                this.FindAndReplace(wordApp, "<ArtikelUst>", artikelUST);
                 this.FindAndReplace(wordApp, "<SummeNetto>", txtRechnungSummeNetto.Text);
                 this.FindAndReplace(wordApp, "<SummeUst>", txtRechnungSummeUST.Text);
                 this.FindAndReplace(wordApp, "<SummeBrutto>", txtRechnungSummeBrutto.Text);
-                this.FindAndReplace(wordApp, "<Lieferdatum>", "31.12.2019");
+                this.FindAndReplace(wordApp, "<Lieferdatum>", dtpRechnungDatum.Value.ToShortDateString());
 
                 if(cbRechnungBezahlt.Checked==true)
                     this.FindAndReplace(wordApp, "<Zahlung>", "bezahlt");
@@ -3340,7 +3474,6 @@ namespace FutureFarm
             if (dialogResult == DialogResult.Yes)
             {
                 wordApp.Visible = true;
-                this.Hide();
                 wordApp.ShowMe();
 
             }
@@ -3460,6 +3593,11 @@ namespace FutureFarm
                 pbMinMax.Location = new Point(Convert.ToInt32(panelLinks.Width), Convert.ToInt32(panelMenü.Height) / 2);
                 pbMinMax.Image = min;
             }
+        }
+
+        private void btRechnungSpeichern_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

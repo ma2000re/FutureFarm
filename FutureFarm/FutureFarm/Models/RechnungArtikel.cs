@@ -14,7 +14,7 @@ namespace Common.Models
         public virtual int Menge { get; set; }
         public virtual double NettoPreis { get; set; }
         public virtual double Ust { get; set; }
-
+        public virtual bool Aktiv { get; set; }
         //[JsonIgnore]
         public virtual ICollection<Rechnung> Rechnungen { get; set; }
         //[JsonIgnore]
