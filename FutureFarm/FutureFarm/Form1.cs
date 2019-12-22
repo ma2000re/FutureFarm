@@ -25,7 +25,7 @@ namespace FutureFarm
         public Form1()
         {
             f1 = this;
-            flade = new FrmLadebildschirm();
+            
             InitializeComponent();
 
             //Auswahl anpassen
@@ -75,13 +75,15 @@ namespace FutureFarm
 
         internal Image imgLogin = Properties.Resources.login;
         internal Image imgLogout = Properties.Resources.logout;
+        internal Image min = Properties.Resources.min;
+        internal Image max = Properties.Resources.max;
 
         private void btHome_Click(object sender, EventArgs e)
         {
             panelAuswahl.Height = btHome.Height;
             panelAuswahl.Top = btHome.Top;
             panelsDeaktivieren();
-
+            pbMinMax.BringToFront();
         }
 
         private void btEinstellungen_Click(object sender, EventArgs e)
@@ -99,6 +101,7 @@ namespace FutureFarm
             panelRechnungen.Visible = true;
             panelRechnungen.Dock = DockStyle.Fill;
             panelRechnungen.BringToFront();
+            pbMinMax.BringToFront();
 
             RechnungenEinlesen();
             RechnungArtikelEinlesen();
@@ -182,6 +185,8 @@ namespace FutureFarm
             panelArtikel.Visible = true;
             panelArtikel.Dock = DockStyle.Fill;
             panelArtikel.BringToFront();
+            pbMinMax.BringToFront();
+
 
             listViewArtikel.Height = Convert.ToInt16(panelArtikel.Height * 0.45);
             panelArtikelInfo.Location = new Point(Convert.ToInt16(panelArtikel.Width * 0.05), Convert.ToInt16(panelArtikel.Height * 0.05));
@@ -273,6 +278,8 @@ namespace FutureFarm
             panelAuswahl.Height = btLieferanten.Height;
             panelAuswahl.Top = btLieferanten.Top;
             panelsDeaktivieren();
+            pbMinMax.BringToFront();
+
 
             //panelLieferanten.Visible = true;
             //panelLieferanten.Dock = DockStyle.Fill;
@@ -292,6 +299,7 @@ namespace FutureFarm
             lbKundenSuchen.Location = new Point((15), (panelKunden.Height - listViewKunden.Height - 40));
             txtArtikelSuchen.Location = new Point((20+lbKundenSuchen.Width), (panelArtikel.Height - listViewArtikel.Height - 43));
             btArtikelSuchen.Location = new Point((25 + txtArtikelSuchen.Width+lbKundenSuchen.Width), (panelArtikel.Height - listViewArtikel.Height - 43));
+            pbMinMax.BringToFront();
 
 
             KundenEinlesen();
@@ -457,10 +465,15 @@ namespace FutureFarm
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            this.Hide();            
+            flade = new FrmLadebildschirm();
+            flade.ShowDialog();
+            this.Hide();    
+            
             GoFullscreen();
             MenuErstellen();
             panelsDeaktivieren();
+
+            pbMinMax.Image = min;
 
             panelAuswahl.Top = btHome.Top;
             panelAuswahl.Height = btHome.Height;
@@ -468,6 +481,7 @@ namespace FutureFarm
 
             flade.Hide();
             this.Show();
+            flade.Close();
             cbArtikelFilter.SelectedIndex = 1;
         }
 
@@ -656,7 +670,7 @@ namespace FutureFarm
 
 
             //MinMax
-            btMenüMinMax.Location = new Point(Convert.ToInt32(panelLinks.Width), Convert.ToInt32(panelMenü.Height / 2));
+            pbMinMax.Location = new Point(Convert.ToInt32(panelLinks.Width), Convert.ToInt32(panelMenü.Height / 2));
 
         }
 
@@ -737,6 +751,8 @@ namespace FutureFarm
             panelAnfragen.BringToFront();
             panelAnfragen.Dock = DockStyle.Fill;
 
+            pbMinMax.BringToFront();
+
             AnfragenEinlesen();
         }
 
@@ -756,6 +772,7 @@ namespace FutureFarm
                 lvItem.SubItems.Add(f.Art.Bezeichnung.ToString());
                 lvItem.SubItems.Add(f.Nachname + " " + f.Vorname).ToString();
 
+                if(f.Status!="Abgeschlossen")
                 listViewAnfragen.Items.Add(lvItem);
             }
 
@@ -787,6 +804,9 @@ namespace FutureFarm
             BestellungenEinlesen();
             BestellungenArtikelEinlesen();
             ComboKundenEinlesen();
+
+            pbMinMax.BringToFront();
+
         }
 
         private void ComboKundenEinlesen()
@@ -874,6 +894,8 @@ namespace FutureFarm
 
             panelUnterMenu.Visible = false;
 
+            pbMinMax.BringToFront();
+
         }
 
         private void NewsEinlesen()
@@ -915,6 +937,9 @@ namespace FutureFarm
             dtpTermineZeitBis.ShowUpDown = true;
 
             TermineEinlesen();
+
+            pbMinMax.BringToFront();
+
         }
 
         private void TermineEinlesen()
@@ -1221,79 +1246,83 @@ namespace FutureFarm
 
         }
 
-            private void pictureBox1_Click(object sender, EventArgs e)
-            {
-                panelsDeaktivieren();
-            }
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+            panelsDeaktivieren();
+        }
 
-            private void panelFirmendaten_MouseEnter(object sender, EventArgs e)
-            {
-                panelUnterMenu.Visible = false;
-                btFirmendaten.Visible = false;
-                btBenutzer.Visible = false;
-            }
+        private void panelFirmendaten_MouseEnter(object sender, EventArgs e)
+        {
+            panelUnterMenu.Visible = false;
+            btFirmendaten.Visible = false;
+            btBenutzer.Visible = false;
+            panelAuswahl.Height = btArtikel.Height;
+            panelAuswahl.Top = btArtikel.Top;
+        }
 
-            private void panelBenutzer_MouseEnter(object sender, EventArgs e)
-            {
-                panelUnterMenu.Visible = false;
-                btFirmendaten.Visible = false;
-                btBenutzer.Visible = false;
+        private void panelBenutzer_MouseEnter(object sender, EventArgs e)
+        {
+            panelUnterMenu.Visible = false;
+            btFirmendaten.Visible = false;
+            btBenutzer.Visible = false;
+            panelAuswahl.Height = btBenutzer.Height;
+            panelAuswahl.Top = btBenutzer.Top;
 
-            }
+        }
 
-            private void btSpeichern_Click(object sender, EventArgs e)
+        private void btSpeichern_Click(object sender, EventArgs e)
+        {
+
+        //PUT Methode
+        FrmSuperpasswort fSuper = new FrmSuperpasswort();
+        fSuper.lbAktion.Text = "Firmendaten ändern...";
+        fSuper.lbText.Text = "Bitte Passwort eingeben, \num Ihre Berechtigung zum Ändern von Firmendaten zu prüfen:";
+        fSuper.ShowDialog();
+        if (fSuper.berechtigt == true)
+        {
+            try
             {
 
-            //PUT Methode
-            FrmSuperpasswort fSuper = new FrmSuperpasswort();
-            fSuper.lbAktion.Text = "Firmendaten ändern...";
-            fSuper.lbText.Text = "Bitte Passwort eingeben, \num Ihre Berechtigung zum Ändern von Firmendaten zu prüfen:";
-            fSuper.ShowDialog();
-            if (fSuper.berechtigt == true)
-            {
-                try
+                Firmendaten fi = new Firmendaten();
+                fi.FirmendatenID = 11;
+                fi.Name = txtFirmendatenName.Text;
+                fi.Anschrift = txtFirmendatenAnschrift.Text;
+                fi.Email = txtFirmendatenEmail.Text;
+                fi.Telefon = txtFirmendatenTelefonnummer.Text;
+                fi.Rechtsform = txtFirmendatenRechtsform.Text;
+                fi.Sitz = txtFirmendatenSitz.Text;
+                fi.Firmenbuchnummer = txtFirmendatenFirmenbuchnummer.Text;
+                fi.UIDNummer = txtFirmendatenUIDNummer.Text;
+                fi.MitgliedWKO = txtFirmendatenWKOMitglied.Text;
+                fi.Aufsichtsbehörde = txtFirmendatenAufsichtsbehörde.Text;
+                fi.Berufsbezeichnung = txtFirmendatenBerufsbezeichnung.Text;
+                fi.Datum = Convert.ToDateTime(DateTime.Now.ToShortDateString());
+
+                var request = new RestRequest("firmendaten", Method.PUT);
+                request.AddHeader("Content-Type", "application/json");
+                request.AddJsonBody(fi);
+                var response = client.Execute(request);
+                if (response.StatusCode == System.Net.HttpStatusCode.BadRequest)
                 {
-
-                    Firmendaten fi = new Firmendaten();
-                    fi.FirmendatenID = 11;
-                    fi.Name = txtFirmendatenName.Text;
-                    fi.Anschrift = txtFirmendatenAnschrift.Text;
-                    fi.Email = txtFirmendatenEmail.Text;
-                    fi.Telefon = txtFirmendatenTelefonnummer.Text;
-                    fi.Rechtsform = txtFirmendatenRechtsform.Text;
-                    fi.Sitz = txtFirmendatenSitz.Text;
-                    fi.Firmenbuchnummer = txtFirmendatenFirmenbuchnummer.Text;
-                    fi.UIDNummer = txtFirmendatenUIDNummer.Text;
-                    fi.MitgliedWKO = txtFirmendatenWKOMitglied.Text;
-                    fi.Aufsichtsbehörde = txtFirmendatenAufsichtsbehörde.Text;
-                    fi.Berufsbezeichnung = txtFirmendatenBerufsbezeichnung.Text;
-                    fi.Datum = Convert.ToDateTime(DateTime.Now.ToShortDateString());
-
-                    var request = new RestRequest("firmendaten", Method.PUT);
-                    request.AddHeader("Content-Type", "application/json");
-                    request.AddJsonBody(fi);
-                    var response = client.Execute(request);
-                    if (response.StatusCode == System.Net.HttpStatusCode.BadRequest)
-                    {
-                        MessageBox.Show("An Error occured", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
-                    else
-                    {
-                        MessageBox.Show("Firmendaten erfolgreich geändert!");
-                        FirmendatenEinlesen();
-                    }
-
+                    MessageBox.Show("An Error occured", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
-                catch (Exception ex)
+                else
                 {
-                    MessageBox.Show("Fehler bei der Änderung: " + ex.Message);
+                    MessageBox.Show("Firmendaten erfolgreich geändert!");
+                    FirmendatenEinlesen();
                 }
 
-
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Fehler bei der Änderung: " + ex.Message);
             }
 
 
         }
+
+
+    }
 
         private void listViewArtikel_SelectedIndexChanged(object sender, EventArgs e)
             {
@@ -1372,8 +1401,7 @@ namespace FutureFarm
                     int aktuelleID = 0;
 
 
-                    //ACHTUNG ÄNDERN WENN LOGIN WIEDER GEHT!!!!!!!!!!!!!!!!!!!!!!!!!!
-                    angBenutzer = "Manuel.Reisinger";
+                    angBenutzer = btLogin2.Text;
 
                     panelBenutzerLoginEinlesen();
                     for (int i = 0; i < listViewPanelBenutzerLogin.Items.Count; i++)
@@ -1432,7 +1460,7 @@ namespace FutureFarm
 
 
                     //ACHTUNG ÄNDERN WENN LOGIN WIEDER GEHT!!!!!!!!!!!!!!!!!!!!!!!!!!
-                    angBenutzer = "Manuel.Reisinger";
+                    angBenutzer = btLogin2.Text;
 
                     panelBenutzerLoginEinlesen();
                     for (int i = 0; i < listViewPanelBenutzerLogin.Items.Count; i++)
@@ -1987,6 +2015,11 @@ namespace FutureFarm
 
         private void panelTermine_MouseEnter(object sender, EventArgs e)
         {
+            panelUnterMenu.Visible = false;
+            btFirmendaten.Visible = false;
+            btBenutzer.Visible = false;
+            panelAuswahl.Height = btTermine.Height;
+            panelAuswahl.Top = btTermine.Top;
 
         }
 
@@ -2048,7 +2081,7 @@ namespace FutureFarm
 
                 Postleitzahl plz = new Postleitzahl();
                 //PLZ holen
-                var request1 = new RestRequest("postleitzahlen", Method.PUT);
+                var request1 = new RestRequest("postleitzahlen", Method.GET);
                 request1.AddHeader("Content-Type", "application/json");
                 var response1 = client.Execute<List<Postleitzahl>>(request1);
                 foreach (Postleitzahl pl in response1.Data)
@@ -2166,7 +2199,7 @@ namespace FutureFarm
                 txtKundenEmail.Text = lvItem.SubItems[6].Text.ToString();
                 txtKundenStrasse.Text = lvItem.SubItems[7].Text.ToString();
 
-
+                cbKundenOrt.Items.Clear();
                 //PLZID holen
                 Postleitzahl plzKunde = new Postleitzahl();
                 var request1 = new RestRequest("kunden", Method.GET);
@@ -2176,30 +2209,31 @@ namespace FutureFarm
                 {
                     if(txtKundenID.Text.Equals(k.KundenID.ToString()))
                     {
-                        MessageBox.Show(k.Nachname);
                         plzKunde.PLZID = k.Postleitzahl.PLZID;
                         plzKunde.PLZ = k.Postleitzahl.PLZ;
                         plzKunde.Ortschaft = k.Postleitzahl.Ortschaft;
 
                         txtKundenPLZ.Text = plzKunde.PLZ;
-                    }
-                }
-
-                cbKundenOrt.Items.Clear();
-                //PLZ holen
-                var request2 = new RestRequest("postleitzahlen", Method.GET);
-                request2.AddHeader("Content-Type", "application/json");
-                var response2 = client.Execute<List<Postleitzahl>>(request2);
-                foreach (Postleitzahl pl in response2.Data)
-                {
-                    if (txtKundenPLZ.Text.Equals(pl.PLZ.ToString()))
-                    {
-                        cbKundenOrt.Items.Add(pl.Ortschaft);
+                        cbKundenOrt.Items.Add(plzKunde.Ortschaft);
                         cbKundenOrt.SelectedItem = cbKundenOrt.Items[0];
                     }
                 }
+
+                //cbKundenOrt.Items.Clear();
+                ////PLZ holen
+                //var request2 = new RestRequest("postleitzahlen", Method.GET);
+                //request2.AddHeader("Content-Type", "application/json");
+                //var response2 = client.Execute<List<Postleitzahl>>(request2);
+                //foreach (Postleitzahl pl in response2.Data)
+                //{
+                //    if (txtKundenPLZ.Text.Equals(pl.PLZ.ToString()))
+                //    {
+                //        cbKundenOrt.Items.Add(pl.Ortschaft);
+                //        cbKundenOrt.SelectedText = pl.Ortschaft;
+                //    }
+                //}
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
@@ -2323,21 +2357,6 @@ namespace FutureFarm
             }
         }
 
-        private void btMenüMinMax_Click(object sender, EventArgs e)
-        {
-            if(btMenüMinMax.Text.Equals("<"))
-            {
-                btMenüMinMax.Text = ">";
-                panelLinks.Width = 50;
-                btMenüMinMax.Location = new Point(Convert.ToInt32(panelLinks.Width), Convert.ToInt32(panelMenü.Height) / 2);
-            }
-            else if(btMenüMinMax.Text.Equals(">"))
-            {
-                btMenüMinMax.Text = "<";
-                panelLinks.Width = Convert.ToInt16(weite * 0.10);
-                btMenüMinMax.Location = new Point(Convert.ToInt32(panelLinks.Width), Convert.ToInt32(panelMenü.Height) / 2);
-            }
-        }
 
         private void listViewBestellungen_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -3089,6 +3108,7 @@ namespace FutureFarm
                         vorhanden = true;
                         
                         fw.cbWarnungKunde.Items.Add(k.KundenID.ToString()+" | "+k.Nachname+" "+k.Vorname);
+                        fw.cbWarnungKunde.SelectedItem = fw.cbWarnungKunde.Items[0];
                     }
                 }
 
@@ -3109,7 +3129,7 @@ namespace FutureFarm
                         }
                         else
                         {
-                            fw.lbText.Text = "Kein Kunde gefunden,\nbitte legen Sie einen neuen Kunden an";
+                            fw.lbText.Text = "Kein Kunde ausgewählt,\nbitte wiederholen Sie den Vorgang";
                             fw.ShowDialog();
                         }
                     }
@@ -3118,6 +3138,17 @@ namespace FutureFarm
                         MessageBox.Show(ex.Message);
                     }
                 }
+                else
+                {
+                    fw.lbText.Text = "Kein Kunde gefunden,\nbitte legen Sie einen neuen Kunden an";
+                    fw.ShowDialog();
+                    if(fw.weiter==true)
+                    {
+                        panelsDeaktivieren();
+                        panelKunden.Dock = DockStyle.Fill;
+                    }
+                }
+
             }
         }
 
@@ -3146,19 +3177,68 @@ namespace FutureFarm
                 }
             }
 
-            int anzahlArtikel = inhalt.Count(x => x.Equals('#'));
-            int artikelID;
-            int neuerStart = 0;
-            string[] arrArtikel;
+            //Bestellung anlegen
+            Bestellung bestellung = new Bestellung();
+            bestellung.Kunde = kunde;
+            bestellung.Lieferdatum = Convert.ToDateTime(DateTime.Now.ToShortDateString());
+            bestellung.Status = "Neu";
 
-            for(int i=0; i<anzahlArtikel;i++)
+            var request2 = new RestRequest("bestellungen", Method.POST);
+            request2.AddHeader("Content-Type", "application/json");
+            request2.AddJsonBody(bestellung);
+            var response2 = client.Execute(request2);
+            if (response2.StatusCode == System.Net.HttpStatusCode.BadRequest)
             {
-                arrArtikel=inhalt.Split(new Char[] { '#' });
-                MessageBox.Show(arrArtikel[i]);
+                MessageBox.Show("An Error occured", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+            else
+            {
+                BestellungenEinlesen();
+
+                Formular formular = new Formular();
+                formular.FormularID = Convert.ToInt32(txtAnfrageID.Text);
+                formular.Vorname = kunde.Vorname;
+                formular.Nachname = kunde.Nachname;
+                formular.Telefonnummer = txtAnfrageTelefonnummer.Text;
+                formular.Email = txtAnfrageEmail.Text;
+                formular.Inhalt = txtAnfrageInhalt.Text;
+                formular.Datum = dtpAnfrageDatum.Value;
+                formular.Status = "Abgeschlossen";
+                Art art = new Art();
+                art.ArtID = 2;
+                art.Bezeichnung = "Bestellung";
+                formular.Art = art;
 
 
+                //Anfrage abschließen
+                var request3 = new RestRequest("formulare", Method.PUT);
+                request3.AddHeader("Content-Type", "application/json");
+                request3.AddJsonBody(formular);
+                var response3 = client.Execute(request3);
 
+                AnfragenEinlesen();
+                AnfragenFelderLeeren();
+                FrmWarnung fw = new FrmWarnung();
+                fw.lbText.Text = "Bestellung angelegt!\nBitte fügen Sie die Artikel zur Bestellung hinzu";
+                fw.ShowDialog();
+                if (fw.weiter == true)
+                {
+                    panelsDeaktivieren();
+                    panelBestellungen.Dock=DockStyle.Fill;
+                }
+            }
+        }
+
+        private void AnfragenFelderLeeren()
+        {
+            txtAnfrageID.Clear();
+            txtAnfrageArt.Clear();
+            txtAnfrageName.Clear();
+            txtAnfrageTelefonnummer.Clear();
+            txtAnfrageEmail.Clear();
+            txtAnfrageInhalt.Clear();
+            dtpAnfrageDatum.Value = DateTime.Now;
+            btAnfragenBestellungÜbernehmen.Visible = false;
         }
 
         private void btWebsite_MouseEnter(object sender, EventArgs e)
@@ -3172,6 +3252,9 @@ namespace FutureFarm
         {
             panelsDeaktivieren();
             panelWebsite.Dock = DockStyle.Fill;
+
+            pbMinMax.BringToFront();
+
         }
 
         private void btRechnungWord_Click(object sender, EventArgs e)
@@ -3243,17 +3326,23 @@ namespace FutureFarm
                 MessageBox.Show("Dokument konnte nicht gefunden werden");
             }
 
-            ////Speichern
+            //Speichern
             myWordDoc.SaveAs2(ref saveAs, ref missing, ref missing, ref missing,
                 ref missing, ref missing, ref missing,
                 ref missing, ref missing, ref missing,
                 ref missing, ref missing, ref missing);
 
+
+
+
+
             DialogResult dialogResult = MessageBox.Show("Die Rechnung wurde angelegt,\nsoll diese direkt geöffnet werden?", "", MessageBoxButtons.YesNo);
             if (dialogResult == DialogResult.Yes)
             {
                 wordApp.Visible = true;
+                this.Hide();
                 wordApp.ShowMe();
+
             }
             else if (dialogResult == DialogResult.No)
             {
@@ -3290,7 +3379,88 @@ namespace FutureFarm
                 ref matchControl);
         }
 
+        private void panelAnfragen_MouseEnter(object sender, EventArgs e)
+        {
+            panelUnterMenu.Visible = false;
+            btFirmendaten.Visible = false;
+            btBenutzer.Visible = false;
+            panelAuswahl.Height = btAnfragen.Height;
+            panelAuswahl.Top = btAnfragen.Top;
+        }
 
+        private void panelArtikel_MouseEnter(object sender, EventArgs e)
+        {
+            panelUnterMenu.Visible = false;
+            btFirmendaten.Visible = false;
+            btBenutzer.Visible = false;
+            panelAuswahl.Height = btArtikel.Height;
+            panelAuswahl.Top = btArtikel.Top;
+        }
+
+        private void panelBestellungen_MouseEnter(object sender, EventArgs e)
+        {
+            panelUnterMenu.Visible = false;
+            btFirmendaten.Visible = false;
+            btBenutzer.Visible = false;
+            panelAuswahl.Height = btBestellungen.Height;
+            panelAuswahl.Top = btBestellungen.Top;
+
+        }
+
+        private void panelKunden_MouseEnter(object sender, EventArgs e)
+        {
+            panelUnterMenu.Visible = false;
+            btFirmendaten.Visible = false;
+            btBenutzer.Visible = false;
+            panelAuswahl.Height = btKunden.Height;
+            panelAuswahl.Top = btKunden.Top;
+
+        }
+
+        private void panelNews_MouseEnter(object sender, EventArgs e)
+        {
+            panelUnterMenu.Visible = false;
+            btFirmendaten.Visible = false;
+            btBenutzer.Visible = false;
+            panelAuswahl.Height = btNews.Height;
+            panelAuswahl.Top = btNews.Top;
+        }
+
+        private void panelRechnungen_MouseEnter(object sender, EventArgs e)
+        {
+            panelUnterMenu.Visible = false;
+            btFirmendaten.Visible = false;
+            btBenutzer.Visible = false;
+            panelAuswahl.Height = btRechnungen.Height;
+            panelAuswahl.Top = btRechnungen.Top;
+
+        }
+
+        private void panelWebsite_MouseEnter(object sender, EventArgs e)
+        {
+            panelUnterMenu.Visible = false;
+            btFirmendaten.Visible = false;
+            btBenutzer.Visible = false;
+            panelAuswahl.Height = btWebsite.Height;
+            panelAuswahl.Top = btWebsite.Top;
+
+        }
+
+        private void pbMinMax_Click(object sender, EventArgs e)
+        {
+            if(pbMinMax.Image==min)
+            {
+                panelLinks.Width = 50;
+                pbMinMax.Location = new Point(Convert.ToInt32(panelLinks.Width), Convert.ToInt32(panelMenü.Height) / 2);
+                pbMinMax.Image = max;
+            }
+            else
+            {
+                panelLinks.Width = Convert.ToInt16(weite * 0.10);
+                pbMinMax.Location = new Point(Convert.ToInt32(panelLinks.Width), Convert.ToInt32(panelMenü.Height) / 2);
+                pbMinMax.Image = min;
+            }
+        }
     }
 }
 

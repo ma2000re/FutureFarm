@@ -243,6 +243,10 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="logoNEW.ico" />
+    <None Include="Resources\min.png" />
+    <None Include="Resources\max.png" />
+    <None Include="Resources\maximieren.jpg" />
+    <None Include="Resources\minmieren.jpg" />
     <None Include="Properties\globe.png" />
     <None Include="Resources\logoGif.gif" />
     <None Include="Resources\logo.gif" />

@@ -17,6 +17,7 @@ namespace Common.Models
         public virtual string Inhalt { get; set; }
         public virtual DateTime Datum { get; set; }
         public virtual Bestellung Bestellung { get; set; }
+        public virtual string Status { get; set; }
 
         //[JsonIgnore]
         public virtual ICollection<Art> Arten { get; set; }

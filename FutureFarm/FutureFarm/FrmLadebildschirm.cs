@@ -15,7 +15,10 @@ namespace FutureFarm
         public FrmLadebildschirm()
         {
             InitializeComponent();
+            Form1.flade = this;
         }
+
+        
 
         private void FrmLadebildschirm_Load(object sender, EventArgs e)
         {
@@ -24,9 +27,16 @@ namespace FutureFarm
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            Form1 f1 = new Form1();
-            f1.Show();
+
             timer1.Stop();
+            this.Close();
+            Form1.f1.Show();
+           
+        }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
