@@ -260,15 +260,27 @@ namespace FutureFarm
 
         private void LieferantenEinlesen()
         {
-            cbArtikelLieferanten.Items.Clear();
+            listViewLieferanten.Items.Clear();
 
             var request = new RestRequest("lieferanten", Method.GET);
             request.AddHeader("Content-Type", "application/json");
             var response = client.Execute<List<Lieferanten>>(request);
 
+            
             foreach (Lieferanten l in response.Data)
             {
-                cbArtikelLieferanten.Items.Add(l.LieferantenID.ToString());
+                lvItem = new ListViewItem(l.LieferantenID.ToString());
+                lvItem.SubItems.Add(l.Vorname.ToString());
+                lvItem.SubItems.Add(l.Nachname.ToString());
+                lvItem.SubItems.Add(l.Firma.ToString());
+                lvItem.SubItems.Add(l.Telefonnummer.ToString());
+                lvItem.SubItems.Add(l.Email.ToString());
+                lvItem.SubItems.Add(l.Strasse.ToString());
+                lvItem.SubItems.Add(l.Postleitzahl.PLZ.ToString());
+                lvItem.SubItems.Add(l.Aktiv.ToString());
+                lvItem.SubItems.Add(l.UID.ToString());
+
+                listViewLieferanten.Items.Add(lvItem);
             }
 
         }
@@ -281,9 +293,11 @@ namespace FutureFarm
             pbMinMax.BringToFront();
 
 
-            //panelLieferanten.Visible = true;
-            //panelLieferanten.Dock = DockStyle.Fill;
-            //panelLieferanten.BringToFront();
+            panelLieferanten.Visible = true;
+            panelLieferanten.Dock = DockStyle.Fill;
+            panelLieferanten.BringToFront();
+
+            LieferantenEinlesen();
         }
 
         private void btKunden_Click(object sender, EventArgs e)
@@ -2116,6 +2130,8 @@ namespace FutureFarm
                 request1.AddHeader("Content-Type", "application/Json");
                 request1.AddJsonBody(ra);
                 //HIER FEHLER
+                MessageBox.Show("Fehler");
+
                 var response1 = client.Execute(request1);
                 if (response1.StatusCode == System.Net.HttpStatusCode.BadRequest)
                 {
@@ -3349,6 +3365,7 @@ namespace FutureFarm
             panelWebsite.Dock = DockStyle.Fill;
 
             pbMinMax.BringToFront();
+            OpenExplorer(@"D:\OneDrive - BHAK und BHAS Mistelbach 316448\Schule\AP_SWE\GitHub\FutureFarmProgramm\FutureFarm\FutureFarm\Properties\Galerie");
 
         }
 
@@ -3598,6 +3615,61 @@ namespace FutureFarm
         private void btRechnungSpeichern_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void btWebsiteBilder_Click(object sender, EventArgs e)
+        {
+            OpenExplorer(@"D:\OneDrive - BHAK und BHAS Mistelbach 316448\Schule\AP_SWE\GitHub\FutureFarmProgramm\FutureFarm\FutureFarm\Properties\Galerie");
+        }
+
+        private static void OpenExplorer(string path)
+        {
+	        if (Directory.Exists(path))
+		        Process.Start("explorer.exe", path);
+        }
+
+        private void listViewLieferanten_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            lvItem = listViewLieferanten.SelectedItems[0];
+
+            MessageBox.Show(lvItem.SubItems[1].Text.ToString());
+            txtLieferantenID.Text = lvItem.SubItems[0].Text;
+            txtLieferantenVorname.Text = lvItem.SubItems[1].Text;
+            txtLieferantenNachname.Text = lvItem.SubItems[2].Text;
+            txtLieferantenFirma.Text = lvItem.SubItems[3].Text;
+            txtLieferantenTelefonnummer.Text = lvItem.SubItems[4].Text;
+            txtLieferantenEmail.Text = lvItem.SubItems[5].Text;
+            txtLieferantenStrasse.Text = lvItem.SubItems[6].Text;
+            txtLieferantenPLZ.Text = lvItem.SubItems[7].Text;
+            txtLieferantenUID.Text = lvItem.SubItems[9].Text;
+        }
+
+        private void btLieferantPLZ_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                cbLieferantenOrtschaft.Items.Clear();
+                Postleitzahl plz = new Postleitzahl();
+                //PLZ holen
+                var request1 = new RestRequest("postleitzahlen", Method.GET);
+                request1.AddHeader("Content-Type", "application/json");
+                var response1 = client.Execute<List<Postleitzahl>>(request1);
+                foreach (Postleitzahl pl in response1.Data)
+                {
+                    if (txtLieferantenPLZ.Text.Equals(pl.PLZ.ToString()))
+                    {
+                        plz.PLZID = pl.PLZID;
+                        plz.PLZ = pl.PLZ;
+                        plz.Ortschaft = pl.Ortschaft;
+                        cbLieferantenOrtschaft.Items.Add(plz.Ortschaft);
+                    }
+                }
+                cbLieferantenOrtschaft.DroppedDown = true;
+            }
+            catch (Exception ex)
+            {
+
+            }
         }
     }
 }
