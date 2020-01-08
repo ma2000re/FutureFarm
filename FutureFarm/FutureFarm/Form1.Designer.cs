@@ -356,8 +356,10 @@
             this.printDocument1 = new System.Drawing.Printing.PrintDocument();
             this.printDialog1 = new System.Windows.Forms.PrintDialog();
             this.panelLieferanten = new System.Windows.Forms.Panel();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.button2 = new System.Windows.Forms.Button();
+            this.label84 = new System.Windows.Forms.Label();
+            this.txtLieferantenUID = new System.Windows.Forms.TextBox();
+            this.txtLieferantenSuchen = new System.Windows.Forms.TextBox();
+            this.btLieferantenSuchen = new System.Windows.Forms.Button();
             this.label76 = new System.Windows.Forms.Label();
             this.btLieferantPLZ = new System.Windows.Forms.Button();
             this.btLieferantenLöschen = new System.Windows.Forms.Button();
@@ -389,9 +391,7 @@
             this.columnHeader94 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader95 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader96 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.txtLieferantenUID = new System.Windows.Forms.TextBox();
             this.columnHeader97 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.label84 = new System.Windows.Forms.Label();
             this.panelLinks.SuspendLayout();
             this.panelMenü.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbLogoHome)).BeginInit();
@@ -3644,8 +3644,8 @@
             // 
             this.panelLieferanten.Controls.Add(this.label84);
             this.panelLieferanten.Controls.Add(this.txtLieferantenUID);
-            this.panelLieferanten.Controls.Add(this.textBox1);
-            this.panelLieferanten.Controls.Add(this.button2);
+            this.panelLieferanten.Controls.Add(this.txtLieferantenSuchen);
+            this.panelLieferanten.Controls.Add(this.btLieferantenSuchen);
             this.panelLieferanten.Controls.Add(this.label76);
             this.panelLieferanten.Controls.Add(this.btLieferantPLZ);
             this.panelLieferanten.Controls.Add(this.btLieferantenLöschen);
@@ -3675,23 +3675,43 @@
             this.panelLieferanten.TabIndex = 62;
             this.panelLieferanten.Visible = false;
             // 
-            // textBox1
+            // label84
             // 
-            this.textBox1.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox1.Location = new System.Drawing.Point(167, 630);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(364, 27);
-            this.textBox1.TabIndex = 25;
+            this.label84.AutoSize = true;
+            this.label84.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label84.Location = new System.Drawing.Point(95, 301);
+            this.label84.Name = "label84";
+            this.label84.Size = new System.Drawing.Size(38, 21);
+            this.label84.TabIndex = 27;
+            this.label84.Text = "UID";
             // 
-            // button2
+            // txtLieferantenUID
             // 
-            this.button2.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button2.Location = new System.Drawing.Point(537, 628);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(106, 31);
-            this.button2.TabIndex = 24;
-            this.button2.Text = "Suchen";
-            this.button2.UseVisualStyleBackColor = true;
+            this.txtLieferantenUID.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtLieferantenUID.Location = new System.Drawing.Point(245, 298);
+            this.txtLieferantenUID.Name = "txtLieferantenUID";
+            this.txtLieferantenUID.Size = new System.Drawing.Size(298, 27);
+            this.txtLieferantenUID.TabIndex = 26;
+            // 
+            // txtLieferantenSuchen
+            // 
+            this.txtLieferantenSuchen.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtLieferantenSuchen.Location = new System.Drawing.Point(167, 630);
+            this.txtLieferantenSuchen.Name = "txtLieferantenSuchen";
+            this.txtLieferantenSuchen.Size = new System.Drawing.Size(364, 27);
+            this.txtLieferantenSuchen.TabIndex = 25;
+            this.txtLieferantenSuchen.TextChanged += new System.EventHandler(this.textBox1_TextChanged_1);
+            // 
+            // btLieferantenSuchen
+            // 
+            this.btLieferantenSuchen.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btLieferantenSuchen.Location = new System.Drawing.Point(537, 628);
+            this.btLieferantenSuchen.Name = "btLieferantenSuchen";
+            this.btLieferantenSuchen.Size = new System.Drawing.Size(106, 31);
+            this.btLieferantenSuchen.TabIndex = 24;
+            this.btLieferantenSuchen.Text = "Suchen";
+            this.btLieferantenSuchen.UseVisualStyleBackColor = true;
+            this.btLieferantenSuchen.Click += new System.EventHandler(this.btLieferantenSuchen_Click);
             // 
             // label76
             // 
@@ -3960,27 +3980,9 @@
             // 
             this.columnHeader96.Text = "Aktiv";
             // 
-            // txtLieferantenUID
-            // 
-            this.txtLieferantenUID.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtLieferantenUID.Location = new System.Drawing.Point(245, 298);
-            this.txtLieferantenUID.Name = "txtLieferantenUID";
-            this.txtLieferantenUID.Size = new System.Drawing.Size(298, 27);
-            this.txtLieferantenUID.TabIndex = 26;
-            // 
             // columnHeader97
             // 
             this.columnHeader97.Text = "UID";
-            // 
-            // label84
-            // 
-            this.label84.AutoSize = true;
-            this.label84.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label84.Location = new System.Drawing.Point(95, 301);
-            this.label84.Name = "label84";
-            this.label84.Size = new System.Drawing.Size(38, 21);
-            this.label84.TabIndex = 27;
-            this.label84.Text = "UID";
             // 
             // Form1
             // 
@@ -4381,8 +4383,8 @@
         private System.Windows.Forms.PrintDialog printDialog1;
         private System.Windows.Forms.Panel panelLieferanten;
         private System.Windows.Forms.TextBox txtLieferantenUID;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.TextBox txtLieferantenSuchen;
+        private System.Windows.Forms.Button btLieferantenSuchen;
         private System.Windows.Forms.Label label76;
         private System.Windows.Forms.Button btLieferantPLZ;
         private System.Windows.Forms.Button btLieferantenLöschen;

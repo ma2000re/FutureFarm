@@ -3630,18 +3630,46 @@ namespace FutureFarm
 
         private void listViewLieferanten_SelectedIndexChanged(object sender, EventArgs e)
         {
-            lvItem = listViewLieferanten.SelectedItems[0];
+            try
+            {
+                lvItem = listViewLieferanten.SelectedItems[0];
 
-            MessageBox.Show(lvItem.SubItems[1].Text.ToString());
-            txtLieferantenID.Text = lvItem.SubItems[0].Text;
-            txtLieferantenVorname.Text = lvItem.SubItems[1].Text;
-            txtLieferantenNachname.Text = lvItem.SubItems[2].Text;
-            txtLieferantenFirma.Text = lvItem.SubItems[3].Text;
-            txtLieferantenTelefonnummer.Text = lvItem.SubItems[4].Text;
-            txtLieferantenEmail.Text = lvItem.SubItems[5].Text;
-            txtLieferantenStrasse.Text = lvItem.SubItems[6].Text;
-            txtLieferantenPLZ.Text = lvItem.SubItems[7].Text;
-            txtLieferantenUID.Text = lvItem.SubItems[9].Text;
+                txtLieferantenID.Text = lvItem.SubItems[0].Text;
+                txtLieferantenVorname.Text = lvItem.SubItems[1].Text;
+                txtLieferantenNachname.Text = lvItem.SubItems[2].Text;
+                txtLieferantenFirma.Text = lvItem.SubItems[3].Text;
+                txtLieferantenTelefonnummer.Text = lvItem.SubItems[4].Text;
+                txtLieferantenEmail.Text = lvItem.SubItems[5].Text;
+                txtLieferantenStrasse.Text = lvItem.SubItems[6].Text;
+                txtLieferantenPLZ.Text = lvItem.SubItems[7].Text;
+                txtLieferantenUID.Text = lvItem.SubItems[9].Text;
+
+
+                cbLieferantenOrtschaft.Items.Clear();
+                //PLZID holen
+                Postleitzahl plzLieferant = new Postleitzahl();
+                var request1 = new RestRequest("lieferanten", Method.GET);
+                request1.AddHeader("Content-Type", "application/json");
+                var response1 = client.Execute<List<Lieferanten>>(request1);
+                foreach (Lieferanten l in response1.Data)
+                {
+                    if (txtLieferantenID.Text.Equals(l.LieferantenID.ToString()))
+                    {
+                        plzLieferant.PLZID = l.Postleitzahl.PLZID;
+                        plzLieferant.PLZ = l.Postleitzahl.PLZ;
+                        plzLieferant.Ortschaft = l.Postleitzahl.Ortschaft;
+
+                        txtLieferantenPLZ.Text = plzLieferant.PLZ;
+                        cbLieferantenOrtschaft.Items.Add(plzLieferant.Ortschaft);
+                        cbLieferantenOrtschaft.SelectedItem = cbLieferantenOrtschaft.Items[0];
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                //MessageBox.Show(ex.Message);
+            }
+
         }
 
         private void btLieferantPLZ_Click(object sender, EventArgs e)
@@ -3670,6 +3698,50 @@ namespace FutureFarm
             {
 
             }
+        }
+
+        private void textBox1_TextChanged_1(object sender, EventArgs e)
+        {
+            if (txtLieferantenSuchen.Text != "")
+            {
+                LieferantenEinlesen();
+                LieferantenSuchen();
+            }
+            else
+                LieferantenEinlesen();
+
+        }
+
+        private void LieferantenSuchen()
+        {
+            foreach (ListViewItem item in listViewLieferanten.Items)
+            {
+                if (item.SubItems[0].Text.ToLower().Contains(txtLieferantenSuchen.Text.ToLower()) || item.SubItems[1].Text.ToLower().Contains(txtLieferantenSuchen.Text.ToLower()) || item.SubItems[2].Text.ToLower().Contains(txtLieferantenSuchen.Text.ToLower()) || item.SubItems[3].Text.ToLower().Contains(txtLieferantenSuchen.Text.ToLower()) || item.SubItems[4].Text.ToLower().Contains(txtLieferantenSuchen.Text.ToLower()) || item.SubItems[5].Text.ToLower().Contains(txtLieferantenSuchen.Text.ToLower()) || item.SubItems[6].Text.ToLower().Contains(txtLieferantenSuchen.Text.ToLower()) || item.SubItems[7].Text.ToLower().Contains(txtLieferantenSuchen.Text.ToLower()) || item.SubItems[8].Text.ToLower().Contains(txtLieferantenSuchen.Text.ToLower()) || item.SubItems[9].Text.ToLower().Contains(txtLieferantenSuchen.Text.ToLower()))
+                {
+
+                }
+                else
+                {
+                    item.Remove();
+                }
+            }
+
+        }
+
+        private void btLieferantenSuchen_Click(object sender, EventArgs e)
+        {
+            foreach (ListViewItem item in listViewLieferanten.Items)
+            {
+                if (item.SubItems[0].Text.ToLower().Contains(txtLieferantenSuchen.Text.ToLower()) || item.SubItems[1].Text.ToLower().Contains(txtLieferantenSuchen.Text.ToLower()) || item.SubItems[2].Text.ToLower().Contains(txtLieferantenSuchen.Text.ToLower()) || item.SubItems[3].Text.ToLower().Contains(txtLieferantenSuchen.Text.ToLower()) || item.SubItems[4].Text.ToLower().Contains(txtLieferantenSuchen.Text.ToLower()) || item.SubItems[5].Text.ToLower().Contains(txtLieferantenSuchen.Text.ToLower()) || item.SubItems[6].Text.ToLower().Contains(txtLieferantenSuchen.Text.ToLower()) || item.SubItems[7].Text.ToLower().Contains(txtLieferantenSuchen.Text.ToLower()) || item.SubItems[8].Text.ToLower().Contains(txtLieferantenSuchen.Text.ToLower()) || item.SubItems[9].Text.ToLower().Contains(txtLieferantenSuchen.Text.ToLower()))
+                {
+
+                }
+                else
+                {
+                    item.Remove();
+                }
+            }
+
         }
     }
 }
