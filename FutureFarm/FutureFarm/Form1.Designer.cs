@@ -76,7 +76,7 @@
             this.columnHeader8 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.btRechnungNeu = new System.Windows.Forms.Button();
             this.panelFirmendaten = new System.Windows.Forms.Panel();
-            this.btSpeichern = new System.Windows.Forms.Button();
+            this.btFirmendatenSpeichern = new System.Windows.Forms.Button();
             this.label15 = new System.Windows.Forms.Label();
             this.txtFirmendatenUIDNummer = new System.Windows.Forms.TextBox();
             this.label14 = new System.Windows.Forms.Label();
@@ -392,6 +392,8 @@
             this.columnHeader95 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader96 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader97 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.btLieferantenReset = new System.Windows.Forms.Button();
+            this.btKundenReset = new System.Windows.Forms.Button();
             this.panelLinks.SuspendLayout();
             this.panelMenü.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbLogoHome)).BeginInit();
@@ -981,7 +983,7 @@
             // 
             // panelFirmendaten
             // 
-            this.panelFirmendaten.Controls.Add(this.btSpeichern);
+            this.panelFirmendaten.Controls.Add(this.btFirmendatenSpeichern);
             this.panelFirmendaten.Controls.Add(this.label15);
             this.panelFirmendaten.Controls.Add(this.txtFirmendatenUIDNummer);
             this.panelFirmendaten.Controls.Add(this.label14);
@@ -1012,16 +1014,16 @@
             this.panelFirmendaten.Visible = false;
             this.panelFirmendaten.MouseEnter += new System.EventHandler(this.panelFirmendaten_MouseEnter);
             // 
-            // btSpeichern
+            // btFirmendatenSpeichern
             // 
-            this.btSpeichern.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btSpeichern.Location = new System.Drawing.Point(481, 792);
-            this.btSpeichern.Name = "btSpeichern";
-            this.btSpeichern.Size = new System.Drawing.Size(252, 74);
-            this.btSpeichern.TabIndex = 23;
-            this.btSpeichern.Text = "Änderungen\r\nspeichern";
-            this.btSpeichern.UseVisualStyleBackColor = true;
-            this.btSpeichern.Click += new System.EventHandler(this.btSpeichern_Click);
+            this.btFirmendatenSpeichern.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btFirmendatenSpeichern.Location = new System.Drawing.Point(481, 792);
+            this.btFirmendatenSpeichern.Name = "btFirmendatenSpeichern";
+            this.btFirmendatenSpeichern.Size = new System.Drawing.Size(252, 74);
+            this.btFirmendatenSpeichern.TabIndex = 23;
+            this.btFirmendatenSpeichern.Text = "Änderungen\r\nspeichern";
+            this.btFirmendatenSpeichern.UseVisualStyleBackColor = true;
+            this.btFirmendatenSpeichern.Click += new System.EventHandler(this.btSpeichern_Click);
             // 
             // label15
             // 
@@ -3025,6 +3027,7 @@
             // 
             // panelKunden
             // 
+            this.panelKunden.Controls.Add(this.btKundenReset);
             this.panelKunden.Controls.Add(this.txtKundeSuchen);
             this.panelKunden.Controls.Add(this.btKundenSuchen);
             this.panelKunden.Controls.Add(this.lbKundenSuchen);
@@ -3151,6 +3154,7 @@
             this.txtKundenPLZ.Name = "txtKundenPLZ";
             this.txtKundenPLZ.Size = new System.Drawing.Size(77, 27);
             this.txtKundenPLZ.TabIndex = 17;
+            this.txtKundenPLZ.TextChanged += new System.EventHandler(this.txtKundenPLZ_TextChanged);
             // 
             // label66
             // 
@@ -3642,6 +3646,7 @@
             // 
             // panelLieferanten
             // 
+            this.panelLieferanten.Controls.Add(this.btLieferantenReset);
             this.panelLieferanten.Controls.Add(this.label84);
             this.panelLieferanten.Controls.Add(this.txtLieferantenUID);
             this.panelLieferanten.Controls.Add(this.txtLieferantenSuchen);
@@ -3668,10 +3673,9 @@
             this.panelLieferanten.Controls.Add(this.txtLieferantenID);
             this.panelLieferanten.Controls.Add(this.label85);
             this.panelLieferanten.Controls.Add(this.listViewLieferanten);
-            this.panelLieferanten.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelLieferanten.Location = new System.Drawing.Point(205, 41);
+            this.panelLieferanten.Location = new System.Drawing.Point(1034, 310);
             this.panelLieferanten.Name = "panelLieferanten";
-            this.panelLieferanten.Size = new System.Drawing.Size(1556, 1015);
+            this.panelLieferanten.Size = new System.Drawing.Size(70, 66);
             this.panelLieferanten.TabIndex = 62;
             this.panelLieferanten.Visible = false;
             // 
@@ -3742,6 +3746,7 @@
             this.btLieferantenLöschen.TabIndex = 21;
             this.btLieferantenLöschen.Text = "Löschen";
             this.btLieferantenLöschen.UseVisualStyleBackColor = true;
+            this.btLieferantenLöschen.Click += new System.EventHandler(this.btLieferantenLöschen_Click);
             // 
             // btLieferantenSpeichern
             // 
@@ -3752,16 +3757,13 @@
             this.btLieferantenSpeichern.TabIndex = 20;
             this.btLieferantenSpeichern.Text = "Speichern";
             this.btLieferantenSpeichern.UseVisualStyleBackColor = true;
+            this.btLieferantenSpeichern.Click += new System.EventHandler(this.btLieferantenSpeichern_Click);
             // 
             // cbLieferantenOrtschaft
             // 
             this.cbLieferantenOrtschaft.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbLieferantenOrtschaft.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbLieferantenOrtschaft.FormattingEnabled = true;
-            this.cbLieferantenOrtschaft.Items.AddRange(new object[] {
-            "Frau",
-            "Herr",
-            "Firma"});
             this.cbLieferantenOrtschaft.Location = new System.Drawing.Point(363, 361);
             this.cbLieferantenOrtschaft.Name = "cbLieferantenOrtschaft";
             this.cbLieferantenOrtschaft.Size = new System.Drawing.Size(180, 29);
@@ -3784,6 +3786,7 @@
             this.txtLieferantenPLZ.Name = "txtLieferantenPLZ";
             this.txtLieferantenPLZ.Size = new System.Drawing.Size(77, 27);
             this.txtLieferantenPLZ.TabIndex = 17;
+            this.txtLieferantenPLZ.TextChanged += new System.EventHandler(this.txtLieferantenPLZ_TextChanged);
             // 
             // label78
             // 
@@ -3928,9 +3931,9 @@
             this.listViewLieferanten.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.listViewLieferanten.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.listViewLieferanten.FullRowSelect = true;
-            this.listViewLieferanten.Location = new System.Drawing.Point(0, 696);
+            this.listViewLieferanten.Location = new System.Drawing.Point(0, -253);
             this.listViewLieferanten.Name = "listViewLieferanten";
-            this.listViewLieferanten.Size = new System.Drawing.Size(1556, 319);
+            this.listViewLieferanten.Size = new System.Drawing.Size(70, 319);
             this.listViewLieferanten.TabIndex = 0;
             this.listViewLieferanten.UseCompatibleStateImageBehavior = false;
             this.listViewLieferanten.View = System.Windows.Forms.View.Details;
@@ -3983,6 +3986,28 @@
             // columnHeader97
             // 
             this.columnHeader97.Text = "UID";
+            // 
+            // btLieferantenReset
+            // 
+            this.btLieferantenReset.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btLieferantenReset.Location = new System.Drawing.Point(470, 550);
+            this.btLieferantenReset.Name = "btLieferantenReset";
+            this.btLieferantenReset.Size = new System.Drawing.Size(73, 26);
+            this.btLieferantenReset.TabIndex = 28;
+            this.btLieferantenReset.Text = "Reset";
+            this.btLieferantenReset.UseVisualStyleBackColor = true;
+            this.btLieferantenReset.Click += new System.EventHandler(this.button2_Click_1);
+            // 
+            // btKundenReset
+            // 
+            this.btKundenReset.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btKundenReset.Location = new System.Drawing.Point(470, 519);
+            this.btKundenReset.Name = "btKundenReset";
+            this.btKundenReset.Size = new System.Drawing.Size(73, 26);
+            this.btKundenReset.TabIndex = 29;
+            this.btKundenReset.Text = "Reset";
+            this.btKundenReset.UseVisualStyleBackColor = true;
+            this.btKundenReset.Click += new System.EventHandler(this.btKundenReset_Click);
             // 
             // Form1
             // 
@@ -4099,7 +4124,7 @@
         private System.Windows.Forms.Button btBenutzerLöschen;
         private System.Windows.Forms.Button btBenutzerÄndern;
         private System.Windows.Forms.Panel panelFirmendaten;
-        private System.Windows.Forms.Button btSpeichern;
+        private System.Windows.Forms.Button btFirmendatenSpeichern;
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.TextBox txtFirmendatenUIDNummer;
         private System.Windows.Forms.Label label14;
@@ -4418,6 +4443,8 @@
         private System.Windows.Forms.ColumnHeader columnHeader96;
         private System.Windows.Forms.ColumnHeader columnHeader97;
         private System.Windows.Forms.Label label84;
+        private System.Windows.Forms.Button btLieferantenReset;
+        private System.Windows.Forms.Button btKundenReset;
     }
 }
 

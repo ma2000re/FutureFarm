@@ -280,6 +280,7 @@ namespace FutureFarm
                 lvItem.SubItems.Add(l.Aktiv.ToString());
                 lvItem.SubItems.Add(l.UID.ToString());
 
+                if(l.Aktiv==true)
                 listViewLieferanten.Items.Add(lvItem);
             }
 
@@ -342,6 +343,7 @@ namespace FutureFarm
                 lvItem.SubItems.Add(k.Postleitzahl.PLZ.ToString());
                 lvItem.SubItems.Add(k.Aktiv.ToString());
                 
+                if(k.Aktiv==true)
                 listViewKunden.Items.Add(lvItem);
             }
 
@@ -385,30 +387,56 @@ namespace FutureFarm
 
         internal void CheckEingeloggt()
         {
-            if (LogIn == false)
-            {
-                //btLöschen.Enabled = false;
-                //btNeu.Enabled = false;
-                //btÄndern.Enabled = false;
-                //pbPasswort.Enabled = false;
-                //btSpeichern.Enabled = false;
-                ////btArtikelLöschen.Enabled = false;
-                ////btArtikelSpeichern.Enabled = false;
-                //btNewsLöschen.Enabled = false;
-                //btNewsSpeichern.Enabled = false;
-            }
-            else if (LogIn == true)
-            {
+            //if (LogIn == false)
+            //{
+            //    pbPasswort.Enabled = false;
+            //    btArtikelLöschen.Enabled = false;
+            //    btArtikelSpeichern.Enabled = false;
+            //    btNewsLöschen.Enabled = false;
+            //    btNewsSpeichern.Enabled = false;
+            //    btLieferantenSpeichern.Enabled = false;
+            //    btLieferantenLöschen.Enabled = false;
+            //    btKundenSpeichern.Enabled = false;
+            //    btKundenLöschen.Enabled = false;
+            //    btArtikelSpeichern.Enabled = false;
+            //    btArtikelLöschen.Enabled = false;
+            //    btTerminLöschen.Enabled = false;
+            //    btTerminSpeichern.Enabled = false;
+            //    btBenutzerLöschen.Enabled = false;
+            //    btBenutzerÄndern.Enabled = false;
+            //    btFirmendatenSpeichern.Enabled = false;
 
-                btBenutzerLöschen.Enabled = true;
-                btBenutzerÄndern.Enabled = true;
-                pbPasswort.Enabled = true;
-                btSpeichern.Enabled = true;
-                btArtikelLöschen.Enabled = true;
-                btArtikelSpeichern.Enabled = true;
-                btNewsLöschen.Enabled = true;
-                btNewsSpeichern.Enabled = true;
-            }
+            //}
+            //else if (LogIn == true)
+            //{
+
+            //    btBenutzerLöschen.Enabled = true;
+            //    btBenutzerÄndern.Enabled = true;
+            //    pbPasswort.Enabled = true;
+            //    btFirmendatenSpeichern.Enabled = true;
+            //    btArtikelLöschen.Enabled = true;
+            //    btArtikelSpeichern.Enabled = true;
+            //    btNewsLöschen.Enabled = true;
+            //    btNewsSpeichern.Enabled = true;
+            //}
+
+            pbPasswort.Enabled = LogIn;
+            btArtikelLöschen.Enabled = LogIn;
+            btArtikelSpeichern.Enabled = LogIn;
+            btNewsLöschen.Enabled = LogIn;
+            btNewsSpeichern.Enabled = LogIn;
+            btLieferantenSpeichern.Enabled = LogIn;
+            btLieferantenLöschen.Enabled = LogIn;
+            btKundenSpeichern.Enabled = LogIn;
+            btKundenLöschen.Enabled = LogIn;
+            btArtikelSpeichern.Enabled = LogIn;
+            btArtikelLöschen.Enabled = LogIn;
+            btTerminLöschen.Enabled = LogIn;
+            btTerminSpeichern.Enabled = LogIn;
+            btBenutzerLöschen.Enabled = LogIn;
+            btBenutzerÄndern.Enabled = LogIn;
+            btFirmendatenSpeichern.Enabled = LogIn;
+
 
         }
 
@@ -486,6 +514,7 @@ namespace FutureFarm
             GoFullscreen();
             MenuErstellen();
             panelsDeaktivieren();
+            CheckEingeloggt();
 
             pbMinMax.Image = min;
 
@@ -1806,6 +1835,8 @@ namespace FutureFarm
                 btLogin2.Text = "   Log In";
                 btLogin2.Image = imgLogout;
             }
+
+            CheckEingeloggt();
         }
 
         public void EinloggenNeu()
@@ -2302,9 +2333,57 @@ namespace FutureFarm
             if(txtKundenID.Text!="")
             {
                 //Kunden inaktiv setzen
+                if (txtKundenID.Text != "")
+                {
+                    Kunden kunde = new Kunden();
+                    kunde.KundenID = Convert.ToInt32(txtKundenID.Text);
+                    kunde.Anrede = cbKundenAnrede.SelectedItem.ToString();
+                    kunde.Vorname = txtKundenVorname.Text;
+                    kunde.Nachname = txtKundenNachname.Text;
+                    kunde.Firma = txtKundenFirma.Text;
+                    kunde.Email = txtKundenEmail.Text;
+                    kunde.Telefonnummer = txtKundenTelefonnummer.Text;
+                    kunde.Strasse = txtKundenStrasse.Text;
 
-            }
-            else
+                    Postleitzahl plz = new Postleitzahl();
+                    //PLZ holen
+                    var request1 = new RestRequest("postleitzahlen", Method.GET);
+                    request1.AddHeader("Content-Type", "application/json");
+                    var response1 = client.Execute<List<Postleitzahl>>(request1);
+                    foreach (Postleitzahl pl in response1.Data)
+                    {
+                        if (txtKundenPLZ.Text.Equals(pl.PLZ.ToString()) && cbKundenOrt.Text.Equals(pl.Ortschaft.ToString()))
+                        {
+                            plz.PLZID = pl.PLZID;
+                            plz.PLZ = pl.PLZ;
+                            plz.Ortschaft = pl.Ortschaft;
+                        }
+                    }
+
+                    kunde.Postleitzahl = plz;
+                    kunde.Aktiv = false;
+
+                    //Kunden updaten
+                    var requestUpdate = new RestRequest("kunden", Method.PUT);
+                    requestUpdate.AddHeader("Content-Type", "application/json");
+                    requestUpdate.AddJsonBody(kunde);
+                    var responseUpdate = client.Execute(requestUpdate);
+                    if (responseUpdate.StatusCode == System.Net.HttpStatusCode.BadRequest)
+                    {
+                        MessageBox.Show("An Error occured", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Kunde erfolgreich 'gelöscht'!");
+                        KundenEinlesen();
+                    }
+
+
+
+                }
+
+                }
+                else
             {
                 MessageBox.Show("Kein Kunde ausgewählt!", "Fehler");
             }
@@ -2949,6 +3028,11 @@ namespace FutureFarm
 
         private void btKundenOrtSuche_Click(object sender, EventArgs e)
         {
+            PLZKundenSuchen();
+        }
+
+        private void PLZKundenSuchen()
+        {
             try
             {
                 cbKundenOrt.Items.Clear();
@@ -2973,7 +3057,6 @@ namespace FutureFarm
             {
 
             }
-
         }
 
         private void btTerminSpeichern_Click(object sender, EventArgs e)
@@ -3674,6 +3757,11 @@ namespace FutureFarm
 
         private void btLieferantPLZ_Click(object sender, EventArgs e)
         {
+            PLZLieferantSuchen();
+        }
+
+        private void PLZLieferantSuchen()
+        {
             try
             {
                 cbLieferantenOrtschaft.Items.Clear();
@@ -3698,6 +3786,7 @@ namespace FutureFarm
             {
 
             }
+
         }
 
         private void textBox1_TextChanged_1(object sender, EventArgs e)
@@ -3742,6 +3831,210 @@ namespace FutureFarm
                 }
             }
 
+        }
+
+        private void btLieferantenSpeichern_Click(object sender, EventArgs e)
+        {
+            if (txtLieferantenID.Text != "")
+            {
+                //Lieferant speichern
+
+                Lieferanten lieferant = new Lieferanten();
+                lieferant.LieferantenID = Convert.ToInt32(txtLieferantenID.Text);
+                lieferant.UID = txtLieferantenUID.Text;
+                lieferant.Vorname = txtLieferantenVorname.Text;
+                lieferant.Nachname = txtLieferantenNachname.Text;
+                lieferant.Firma = txtLieferantenFirma.Text;
+                lieferant.Email = txtLieferantenEmail.Text;
+                lieferant.Telefonnummer = txtLieferantenTelefonnummer.Text;
+                lieferant.Strasse = txtLieferantenStrasse.Text;
+
+                Postleitzahl plz = new Postleitzahl();
+                //PLZ holen
+                var request1 = new RestRequest("postleitzahlen", Method.GET);
+                request1.AddHeader("Content-Type", "application/json");
+                var response1 = client.Execute<List<Postleitzahl>>(request1);
+                foreach (Postleitzahl pl in response1.Data)
+                {
+                    if (txtLieferantenPLZ.Text.Equals(pl.PLZ.ToString()) && cbLieferantenOrtschaft.Text.Equals(pl.Ortschaft.ToString()))
+                    {
+                        plz.PLZID = pl.PLZID;
+                        plz.PLZ = pl.PLZ;
+                        plz.Ortschaft = pl.Ortschaft;
+                    }
+                }
+
+                lieferant.Postleitzahl = plz;
+                lieferant.Aktiv = true;
+
+                //Lieferanten updaten
+                var requestUpdate = new RestRequest("lieferanten", Method.PUT);
+                requestUpdate.AddHeader("Content-Type", "application/json");
+                requestUpdate.AddJsonBody(lieferant);
+                var responseUpdate = client.Execute(requestUpdate);
+                if (responseUpdate.StatusCode == System.Net.HttpStatusCode.BadRequest)
+                {
+                    MessageBox.Show("An Error occured", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                else
+                {
+                    //MessageBox.Show("Lieferant erfolgreich geändert!");
+                    LieferantenEinlesen();
+                }
+
+
+
+
+            }
+            else
+            {
+                //LIeferanten neu anlegen
+                Lieferanten lieferant = new Lieferanten();
+                //lieferant.LieferantenID = Convert.ToInt32(txtLieferantenID.Text);
+                lieferant.UID = txtLieferantenUID.Text;
+                lieferant.Vorname = txtLieferantenVorname.Text;
+                lieferant.Nachname = txtLieferantenNachname.Text;
+                lieferant.Firma = txtLieferantenFirma.Text;
+                lieferant.Email = txtLieferantenEmail.Text;
+                lieferant.Telefonnummer = txtLieferantenTelefonnummer.Text;
+                lieferant.Strasse = txtLieferantenStrasse.Text;
+
+                Postleitzahl plz = new Postleitzahl();
+                //PLZ holen
+                var request1 = new RestRequest("postleitzahlen", Method.GET);
+                request1.AddHeader("Content-Type", "application/json");
+                var response1 = client.Execute<List<Postleitzahl>>(request1);
+                foreach (Postleitzahl pl in response1.Data)
+                {
+                    if (txtLieferantenPLZ.Text.Equals(pl.PLZ.ToString()) && cbLieferantenOrtschaft.Text.Equals(pl.Ortschaft.ToString()))
+                    {
+                        plz.PLZID = pl.PLZID;
+                        plz.PLZ = pl.PLZ;
+                        plz.Ortschaft = pl.Ortschaft;
+                    }
+                }
+
+                lieferant.Postleitzahl = plz;
+                lieferant.Aktiv = true;
+
+                //Lieferanten hinzufügen
+                var requestNeu = new RestRequest("lieferanten", Method.POST);
+                requestNeu.AddHeader("Content-Type", "application/json");
+                requestNeu.AddJsonBody(lieferant);
+                var responseNeu = client.Execute(requestNeu);
+                if (responseNeu.StatusCode == System.Net.HttpStatusCode.BadRequest)
+                {
+                    MessageBox.Show("An Error occured", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                else
+                {
+                    MessageBox.Show("Lieferant erfolgreich angelegt!");
+                    LieferantenEinlesen();
+                }
+
+
+            }
+
+        }
+
+        private void button2_Click_1(object sender, EventArgs e)
+        {
+            txtLieferantenID.Clear();
+            txtLieferantenVorname.Clear();
+            txtLieferantenNachname.Clear();
+            txtLieferantenFirma.Clear();
+            txtLieferantenTelefonnummer.Clear();
+            txtLieferantenEmail.Clear();
+            txtLieferantenStrasse.Clear();
+            txtLieferantenPLZ.Clear();
+            txtLieferantenUID.Clear();
+            cbLieferantenOrtschaft.Items.Clear();
+        }
+
+        private void txtLieferantenPLZ_TextChanged(object sender, EventArgs e)
+        {
+            if(cbLieferantenOrtschaft.Items.Count==0)
+            {
+                if (txtLieferantenPLZ.TextLength > 3)
+                    PLZLieferantSuchen();
+
+            }
+
+        }
+
+        private void btLieferantenLöschen_Click(object sender, EventArgs e)
+        {
+            if (txtLieferantenID.Text != "")
+            {
+                //Lieferant speichern
+
+                Lieferanten lieferant = new Lieferanten();
+                lieferant.LieferantenID = Convert.ToInt32(txtLieferantenID.Text);
+                lieferant.UID = txtLieferantenUID.Text;
+                lieferant.Vorname = txtLieferantenVorname.Text;
+                lieferant.Nachname = txtLieferantenNachname.Text;
+                lieferant.Firma = txtLieferantenFirma.Text;
+                lieferant.Email = txtLieferantenEmail.Text;
+                lieferant.Telefonnummer = txtLieferantenTelefonnummer.Text;
+                lieferant.Strasse = txtLieferantenStrasse.Text;
+
+                Postleitzahl plz = new Postleitzahl();
+                //PLZ holen
+                var request1 = new RestRequest("postleitzahlen", Method.GET);
+                request1.AddHeader("Content-Type", "application/json");
+                var response1 = client.Execute<List<Postleitzahl>>(request1);
+                foreach (Postleitzahl pl in response1.Data)
+                {
+                    if (txtLieferantenPLZ.Text.Equals(pl.PLZ.ToString()) && cbLieferantenOrtschaft.Text.Equals(pl.Ortschaft.ToString()))
+                    {
+                        plz.PLZID = pl.PLZID;
+                        plz.PLZ = pl.PLZ;
+                        plz.Ortschaft = pl.Ortschaft;
+                    }
+                }
+
+                lieferant.Postleitzahl = plz;
+                lieferant.Aktiv = false;
+
+                //Lieferanten updaten
+                var requestUpdate = new RestRequest("lieferanten", Method.PUT);
+                requestUpdate.AddHeader("Content-Type", "application/json");
+                requestUpdate.AddJsonBody(lieferant);
+                var responseUpdate = client.Execute(requestUpdate);
+                if (responseUpdate.StatusCode == System.Net.HttpStatusCode.BadRequest)
+                {
+                    MessageBox.Show("An Error occured", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                else
+                {
+                    MessageBox.Show("Lieferant erfolgreich 'gelöscht'!");
+                    LieferantenEinlesen();
+                }
+
+            }
+        }
+
+        private void txtKundenPLZ_TextChanged(object sender, EventArgs e)
+        {
+            if(cbKundenOrt.Items.Count==0)
+            {
+                if (txtKundenPLZ.TextLength > 3)
+                    PLZKundenSuchen();
+            }
+        }
+
+        private void btKundenReset_Click(object sender, EventArgs e)
+        {
+            txtKundenID.Clear();
+            cbKundenAnrede.SelectedText = "";
+            txtKundenVorname.Clear();
+            txtKundenNachname.Clear();
+            txtKundenFirma.Clear();
+            txtKundenTelefonnummer.Clear();
+            txtKundenEmail.Clear();
+            txtKundenStrasse.Clear();
+            txtKundenPLZ.Clear();
+            cbKundenOrt.Items.Clear();
         }
     }
 }
