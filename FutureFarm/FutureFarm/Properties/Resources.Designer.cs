@@ -423,6 +423,16 @@ namespace FutureFarm.Properties {
         /// <summary>
         ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap New_Mail_icon {
+            get {
+                object obj = ResourceManager.GetObject("New-Mail-icon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap new1 {
             get {
                 object obj = ResourceManager.GetObject("new1", resourceCulture);

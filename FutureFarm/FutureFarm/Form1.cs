@@ -291,12 +291,13 @@ namespace FutureFarm
             panelAuswahl.Height = btLieferanten.Height;
             panelAuswahl.Top = btLieferanten.Top;
             panelsDeaktivieren();
-            pbMinMax.BringToFront();
 
 
             panelLieferanten.Visible = true;
             panelLieferanten.Dock = DockStyle.Fill;
             panelLieferanten.BringToFront();
+
+            pbMinMax.BringToFront();
 
             LieferantenEinlesen();
         }
@@ -387,39 +388,6 @@ namespace FutureFarm
 
         internal void CheckEingeloggt()
         {
-            //if (LogIn == false)
-            //{
-            //    pbPasswort.Enabled = false;
-            //    btArtikelLöschen.Enabled = false;
-            //    btArtikelSpeichern.Enabled = false;
-            //    btNewsLöschen.Enabled = false;
-            //    btNewsSpeichern.Enabled = false;
-            //    btLieferantenSpeichern.Enabled = false;
-            //    btLieferantenLöschen.Enabled = false;
-            //    btKundenSpeichern.Enabled = false;
-            //    btKundenLöschen.Enabled = false;
-            //    btArtikelSpeichern.Enabled = false;
-            //    btArtikelLöschen.Enabled = false;
-            //    btTerminLöschen.Enabled = false;
-            //    btTerminSpeichern.Enabled = false;
-            //    btBenutzerLöschen.Enabled = false;
-            //    btBenutzerÄndern.Enabled = false;
-            //    btFirmendatenSpeichern.Enabled = false;
-
-            //}
-            //else if (LogIn == true)
-            //{
-
-            //    btBenutzerLöschen.Enabled = true;
-            //    btBenutzerÄndern.Enabled = true;
-            //    pbPasswort.Enabled = true;
-            //    btFirmendatenSpeichern.Enabled = true;
-            //    btArtikelLöschen.Enabled = true;
-            //    btArtikelSpeichern.Enabled = true;
-            //    btNewsLöschen.Enabled = true;
-            //    btNewsSpeichern.Enabled = true;
-            //}
-
             pbPasswort.Enabled = LogIn;
             btArtikelLöschen.Enabled = LogIn;
             btArtikelSpeichern.Enabled = LogIn;
@@ -436,8 +404,8 @@ namespace FutureFarm
             btBenutzerLöschen.Enabled = LogIn;
             btBenutzerÄndern.Enabled = LogIn;
             btFirmendatenSpeichern.Enabled = LogIn;
-
-
+            btRechnungSpeichern.Enabled = LogIn;
+            btRechnungNeuSpeichern.Enabled = LogIn;
         }
 
         private void LetzteAnmeldungAktualisieren()
@@ -776,6 +744,7 @@ namespace FutureFarm
             panelBestellungen.Visible = false;
             panelKunden.Visible = false;
             panelAnfragen.Visible = false;
+            panelTermine.Visible = false;
 
             //if (LogIn == true)
             //{
@@ -2223,6 +2192,7 @@ namespace FutureFarm
 
         private void listViewBestellungArtikelAlle_SelectedIndexChanged(object sender, EventArgs e)
         {
+            cbBestellungStatus.SelectedIndex = 1;
         }
 
         private void btKundenSpeichern_Click(object sender, EventArgs e)
@@ -3626,8 +3596,8 @@ namespace FutureFarm
             panelUnterMenu.Visible = false;
             btFirmendaten.Visible = false;
             btBenutzer.Visible = false;
-            panelAuswahl.Height = btArtikel.Height;
-            panelAuswahl.Top = btArtikel.Top;
+            panelAuswahl.Height = btBestellungen.Height;
+            panelAuswahl.Top = btBestellungen.Top;
         }
 
         private void panelBestellungen_MouseEnter(object sender, EventArgs e)

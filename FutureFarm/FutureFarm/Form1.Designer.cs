@@ -32,24 +32,10 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.panelLinks = new System.Windows.Forms.Panel();
             this.panelMenü = new System.Windows.Forms.Panel();
-            this.btWebsite = new System.Windows.Forms.Button();
             this.panelMenuUnten = new System.Windows.Forms.Panel();
-            this.btBestellungen = new System.Windows.Forms.Button();
-            this.btTermine = new System.Windows.Forms.Button();
-            this.btNews = new System.Windows.Forms.Button();
-            this.btAnfragen = new System.Windows.Forms.Button();
-            this.btHome = new System.Windows.Forms.Button();
             this.panelAuswahl = new System.Windows.Forms.Panel();
-            this.btEinstellungen = new System.Windows.Forms.Button();
-            this.btRechnungen = new System.Windows.Forms.Button();
-            this.btLieferanten = new System.Windows.Forms.Button();
-            this.btArtikel = new System.Windows.Forms.Button();
-            this.btKunden = new System.Windows.Forms.Button();
-            this.pbLogoHome = new System.Windows.Forms.PictureBox();
             this.panelOben = new System.Windows.Forms.Panel();
-            this.btLogin2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
-            this.btBeenden = new System.Windows.Forms.Button();
             this.listViewLoginDaten = new System.Windows.Forms.ListView();
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -62,7 +48,6 @@
             this.panelBenutzer = new System.Windows.Forms.Panel();
             this.btBenutzerLöschen = new System.Windows.Forms.Button();
             this.btBenutzerÄndern = new System.Windows.Forms.Button();
-            this.pbPasswort = new System.Windows.Forms.PictureBox();
             this.txtBenutzerPasswort = new System.Windows.Forms.TextBox();
             this.txtBenutzerBenutzername = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
@@ -289,6 +274,7 @@
             this.columnHeader57 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader58 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.panelKunden = new System.Windows.Forms.Panel();
+            this.btKundenReset = new System.Windows.Forms.Button();
             this.txtKundeSuchen = new System.Windows.Forms.TextBox();
             this.btKundenSuchen = new System.Windows.Forms.Button();
             this.lbKundenSuchen = new System.Windows.Forms.Label();
@@ -351,11 +337,11 @@
             this.cbsAnfragen = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.bestellungÜbernehmenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panelWebsite = new System.Windows.Forms.Panel();
-            this.pbMinMax = new System.Windows.Forms.PictureBox();
             this.pageSetupDialog1 = new System.Windows.Forms.PageSetupDialog();
             this.printDocument1 = new System.Drawing.Printing.PrintDocument();
             this.printDialog1 = new System.Windows.Forms.PrintDialog();
             this.panelLieferanten = new System.Windows.Forms.Panel();
+            this.btLieferantenReset = new System.Windows.Forms.Button();
             this.label84 = new System.Windows.Forms.Label();
             this.txtLieferantenUID = new System.Windows.Forms.TextBox();
             this.txtLieferantenSuchen = new System.Windows.Forms.TextBox();
@@ -392,14 +378,26 @@
             this.columnHeader95 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader96 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader97 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.btLieferantenReset = new System.Windows.Forms.Button();
-            this.btKundenReset = new System.Windows.Forms.Button();
+            this.pbMinMax = new System.Windows.Forms.PictureBox();
+            this.pbPasswort = new System.Windows.Forms.PictureBox();
+            this.btLogin2 = new System.Windows.Forms.Button();
+            this.btBeenden = new System.Windows.Forms.Button();
+            this.btWebsite = new System.Windows.Forms.Button();
+            this.btBestellungen = new System.Windows.Forms.Button();
+            this.btTermine = new System.Windows.Forms.Button();
+            this.btNews = new System.Windows.Forms.Button();
+            this.btAnfragen = new System.Windows.Forms.Button();
+            this.btHome = new System.Windows.Forms.Button();
+            this.btEinstellungen = new System.Windows.Forms.Button();
+            this.btRechnungen = new System.Windows.Forms.Button();
+            this.btLieferanten = new System.Windows.Forms.Button();
+            this.btArtikel = new System.Windows.Forms.Button();
+            this.btKunden = new System.Windows.Forms.Button();
+            this.pbLogoHome = new System.Windows.Forms.PictureBox();
             this.panelLinks.SuspendLayout();
             this.panelMenü.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pbLogoHome)).BeginInit();
             this.panelOben.SuspendLayout();
             this.panelBenutzer.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pbPasswort)).BeginInit();
             this.panelFirmendaten.SuspendLayout();
             this.panelArtikel.SuspendLayout();
             this.panelArtikelInfo.SuspendLayout();
@@ -411,8 +409,10 @@
             this.panelKunden.SuspendLayout();
             this.panelAnfragen.SuspendLayout();
             this.cbsAnfragen.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pbMinMax)).BeginInit();
             this.panelLieferanten.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbMinMax)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbPasswort)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbLogoHome)).BeginInit();
             this.SuspendLayout();
             // 
             // panelLinks
@@ -449,23 +449,6 @@
             this.panelMenü.Size = new System.Drawing.Size(205, 955);
             this.panelMenü.TabIndex = 8;
             // 
-            // btWebsite
-            // 
-            this.btWebsite.FlatAppearance.BorderSize = 0;
-            this.btWebsite.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btWebsite.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btWebsite.Image = global::FutureFarm.Properties.Resources.globe;
-            this.btWebsite.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btWebsite.Location = new System.Drawing.Point(12, 798);
-            this.btWebsite.Name = "btWebsite";
-            this.btWebsite.Size = new System.Drawing.Size(190, 59);
-            this.btWebsite.TabIndex = 11;
-            this.btWebsite.Text = "   Website";
-            this.btWebsite.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btWebsite.UseVisualStyleBackColor = true;
-            this.btWebsite.Click += new System.EventHandler(this.btWebsite_Click);
-            this.btWebsite.MouseEnter += new System.EventHandler(this.btWebsite_MouseEnter);
-            // 
             // panelMenuUnten
             // 
             this.panelMenuUnten.BackColor = System.Drawing.Color.DodgerBlue;
@@ -475,91 +458,6 @@
             this.panelMenuUnten.Size = new System.Drawing.Size(205, 5);
             this.panelMenuUnten.TabIndex = 3;
             // 
-            // btBestellungen
-            // 
-            this.btBestellungen.FlatAppearance.BorderSize = 0;
-            this.btBestellungen.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btBestellungen.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btBestellungen.Image = global::FutureFarm.Properties.Resources.Fax_icon;
-            this.btBestellungen.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btBestellungen.Location = new System.Drawing.Point(24, 571);
-            this.btBestellungen.Name = "btBestellungen";
-            this.btBestellungen.Size = new System.Drawing.Size(190, 87);
-            this.btBestellungen.TabIndex = 10;
-            this.btBestellungen.Text = "   Bestellungen";
-            this.btBestellungen.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btBestellungen.UseVisualStyleBackColor = true;
-            this.btBestellungen.Click += new System.EventHandler(this.btBestellungen_Click);
-            this.btBestellungen.MouseEnter += new System.EventHandler(this.btBestellungen_MouseEnter);
-            // 
-            // btTermine
-            // 
-            this.btTermine.FlatAppearance.BorderSize = 0;
-            this.btTermine.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btTermine.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btTermine.Image = global::FutureFarm.Properties.Resources.termin;
-            this.btTermine.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btTermine.Location = new System.Drawing.Point(12, 754);
-            this.btTermine.Name = "btTermine";
-            this.btTermine.Size = new System.Drawing.Size(190, 54);
-            this.btTermine.TabIndex = 9;
-            this.btTermine.Text = "   Termine";
-            this.btTermine.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btTermine.UseVisualStyleBackColor = true;
-            this.btTermine.Click += new System.EventHandler(this.btTermine_Click);
-            this.btTermine.MouseEnter += new System.EventHandler(this.btTermine_MouseEnter);
-            // 
-            // btNews
-            // 
-            this.btNews.FlatAppearance.BorderSize = 0;
-            this.btNews.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btNews.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btNews.Image = global::FutureFarm.Properties.Resources.news;
-            this.btNews.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btNews.Location = new System.Drawing.Point(15, 661);
-            this.btNews.Name = "btNews";
-            this.btNews.Size = new System.Drawing.Size(190, 87);
-            this.btNews.TabIndex = 8;
-            this.btNews.Text = "   News";
-            this.btNews.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btNews.UseVisualStyleBackColor = true;
-            this.btNews.Click += new System.EventHandler(this.btNews_Click);
-            this.btNews.MouseEnter += new System.EventHandler(this.btNews_MouseEnter);
-            // 
-            // btAnfragen
-            // 
-            this.btAnfragen.FlatAppearance.BorderSize = 0;
-            this.btAnfragen.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btAnfragen.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btAnfragen.Image = global::FutureFarm.Properties.Resources.Fax_icon;
-            this.btAnfragen.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btAnfragen.Location = new System.Drawing.Point(9, 478);
-            this.btAnfragen.Name = "btAnfragen";
-            this.btAnfragen.Size = new System.Drawing.Size(190, 87);
-            this.btAnfragen.TabIndex = 7;
-            this.btAnfragen.Text = "   Anfragen";
-            this.btAnfragen.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btAnfragen.UseVisualStyleBackColor = true;
-            this.btAnfragen.Click += new System.EventHandler(this.btAnfragen_Click);
-            this.btAnfragen.MouseEnter += new System.EventHandler(this.btAnfragen_MouseEnter);
-            // 
-            // btHome
-            // 
-            this.btHome.FlatAppearance.BorderSize = 0;
-            this.btHome.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btHome.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btHome.Image = global::FutureFarm.Properties.Resources.home1;
-            this.btHome.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btHome.Location = new System.Drawing.Point(12, 21);
-            this.btHome.Name = "btHome";
-            this.btHome.Size = new System.Drawing.Size(190, 87);
-            this.btHome.TabIndex = 2;
-            this.btHome.Text = "   Home";
-            this.btHome.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btHome.UseVisualStyleBackColor = true;
-            this.btHome.Click += new System.EventHandler(this.btHome_Click);
-            this.btHome.MouseEnter += new System.EventHandler(this.btHome_MouseEnter);
-            // 
             // panelAuswahl
             // 
             this.panelAuswahl.BackColor = System.Drawing.Color.DodgerBlue;
@@ -567,103 +465,6 @@
             this.panelAuswahl.Name = "panelAuswahl";
             this.panelAuswahl.Size = new System.Drawing.Size(10, 79);
             this.panelAuswahl.TabIndex = 2;
-            // 
-            // btEinstellungen
-            // 
-            this.btEinstellungen.FlatAppearance.BorderSize = 0;
-            this.btEinstellungen.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btEinstellungen.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btEinstellungen.Image = global::FutureFarm.Properties.Resources.customer_support1;
-            this.btEinstellungen.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btEinstellungen.Location = new System.Drawing.Point(9, 866);
-            this.btEinstellungen.Name = "btEinstellungen";
-            this.btEinstellungen.Size = new System.Drawing.Size(190, 59);
-            this.btEinstellungen.TabIndex = 3;
-            this.btEinstellungen.Text = "   Einstellungen";
-            this.btEinstellungen.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btEinstellungen.UseVisualStyleBackColor = true;
-            this.btEinstellungen.Click += new System.EventHandler(this.btEinstellungen_Click);
-            this.btEinstellungen.MouseEnter += new System.EventHandler(this.btEinstellungen_MouseEnter);
-            // 
-            // btRechnungen
-            // 
-            this.btRechnungen.FlatAppearance.BorderSize = 0;
-            this.btRechnungen.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btRechnungen.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btRechnungen.Image = global::FutureFarm.Properties.Resources.invoice1;
-            this.btRechnungen.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btRechnungen.Location = new System.Drawing.Point(12, 103);
-            this.btRechnungen.Name = "btRechnungen";
-            this.btRechnungen.Size = new System.Drawing.Size(190, 87);
-            this.btRechnungen.TabIndex = 3;
-            this.btRechnungen.Text = "   Rechnungen";
-            this.btRechnungen.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btRechnungen.UseVisualStyleBackColor = true;
-            this.btRechnungen.Click += new System.EventHandler(this.btRechnungen_Click);
-            this.btRechnungen.MouseEnter += new System.EventHandler(this.btRechnungen_MouseEnter);
-            // 
-            // btLieferanten
-            // 
-            this.btLieferanten.FlatAppearance.BorderSize = 0;
-            this.btLieferanten.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btLieferanten.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btLieferanten.Image = global::FutureFarm.Properties.Resources.delivery_truck1;
-            this.btLieferanten.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btLieferanten.Location = new System.Drawing.Point(24, 397);
-            this.btLieferanten.Name = "btLieferanten";
-            this.btLieferanten.Size = new System.Drawing.Size(190, 87);
-            this.btLieferanten.TabIndex = 6;
-            this.btLieferanten.Text = "   Lieferanten";
-            this.btLieferanten.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btLieferanten.UseVisualStyleBackColor = true;
-            this.btLieferanten.Click += new System.EventHandler(this.btLieferanten_Click);
-            this.btLieferanten.MouseEnter += new System.EventHandler(this.btLieferanten_MouseEnter);
-            // 
-            // btArtikel
-            // 
-            this.btArtikel.FlatAppearance.BorderSize = 0;
-            this.btArtikel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btArtikel.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btArtikel.Image = global::FutureFarm.Properties.Resources.artikel1;
-            this.btArtikel.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btArtikel.Location = new System.Drawing.Point(36, 220);
-            this.btArtikel.Name = "btArtikel";
-            this.btArtikel.Size = new System.Drawing.Size(190, 87);
-            this.btArtikel.TabIndex = 4;
-            this.btArtikel.Text = "   Artikel";
-            this.btArtikel.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btArtikel.UseVisualStyleBackColor = true;
-            this.btArtikel.Click += new System.EventHandler(this.btArtikel_Click);
-            this.btArtikel.MouseEnter += new System.EventHandler(this.btArtikel_MouseEnter);
-            // 
-            // btKunden
-            // 
-            this.btKunden.FlatAppearance.BorderSize = 0;
-            this.btKunden.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btKunden.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btKunden.Image = global::FutureFarm.Properties.Resources.multiple_users_silhouette1;
-            this.btKunden.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btKunden.Location = new System.Drawing.Point(36, 304);
-            this.btKunden.Name = "btKunden";
-            this.btKunden.Size = new System.Drawing.Size(190, 87);
-            this.btKunden.TabIndex = 5;
-            this.btKunden.Text = "   Kunden";
-            this.btKunden.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btKunden.UseVisualStyleBackColor = true;
-            this.btKunden.Click += new System.EventHandler(this.btKunden_Click);
-            this.btKunden.MouseEnter += new System.EventHandler(this.btKunden_MouseEnter);
-            // 
-            // pbLogoHome
-            // 
-            this.pbLogoHome.Dock = System.Windows.Forms.DockStyle.Top;
-            this.pbLogoHome.Image = global::FutureFarm.Properties.Resources.logoTransp;
-            this.pbLogoHome.Location = new System.Drawing.Point(0, 0);
-            this.pbLogoHome.Name = "pbLogoHome";
-            this.pbLogoHome.Size = new System.Drawing.Size(205, 133);
-            this.pbLogoHome.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pbLogoHome.TabIndex = 7;
-            this.pbLogoHome.TabStop = false;
-            this.pbLogoHome.Click += new System.EventHandler(this.pictureBox1_Click);
             // 
             // panelOben
             // 
@@ -677,22 +478,6 @@
             this.panelOben.Name = "panelOben";
             this.panelOben.Size = new System.Drawing.Size(1556, 41);
             this.panelOben.TabIndex = 1;
-            // 
-            // btLogin2
-            // 
-            this.btLogin2.FlatAppearance.BorderSize = 0;
-            this.btLogin2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btLogin2.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btLogin2.Image = global::FutureFarm.Properties.Resources.logout;
-            this.btLogin2.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btLogin2.Location = new System.Drawing.Point(6, 6);
-            this.btLogin2.Name = "btLogin2";
-            this.btLogin2.Size = new System.Drawing.Size(371, 29);
-            this.btLogin2.TabIndex = 3;
-            this.btLogin2.Text = "  Log In";
-            this.btLogin2.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btLogin2.UseVisualStyleBackColor = true;
-            this.btLogin2.Click += new System.EventHandler(this.btLogin2_Click);
             // 
             // button1
             // 
@@ -708,19 +493,6 @@
             this.button1.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
-            // btBeenden
-            // 
-            this.btBeenden.Dock = System.Windows.Forms.DockStyle.Right;
-            this.btBeenden.FlatAppearance.BorderSize = 0;
-            this.btBeenden.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btBeenden.Image = global::FutureFarm.Properties.Resources.turn_off;
-            this.btBeenden.Location = new System.Drawing.Point(1500, 0);
-            this.btBeenden.Name = "btBeenden";
-            this.btBeenden.Size = new System.Drawing.Size(56, 41);
-            this.btBeenden.TabIndex = 0;
-            this.btBeenden.UseVisualStyleBackColor = true;
-            this.btBeenden.Click += new System.EventHandler(this.btBeenden_Click);
             // 
             // listViewLoginDaten
             // 
@@ -855,18 +627,6 @@
             this.btBenutzerÄndern.Text = "Speichern";
             this.btBenutzerÄndern.UseVisualStyleBackColor = true;
             this.btBenutzerÄndern.Click += new System.EventHandler(this.btÄndern_Click);
-            // 
-            // pbPasswort
-            // 
-            this.pbPasswort.Image = global::FutureFarm.Properties.Resources.eye_closed;
-            this.pbPasswort.Location = new System.Drawing.Point(387, 143);
-            this.pbPasswort.Name = "pbPasswort";
-            this.pbPasswort.Size = new System.Drawing.Size(25, 25);
-            this.pbPasswort.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pbPasswort.TabIndex = 25;
-            this.pbPasswort.TabStop = false;
-            this.pbPasswort.Click += new System.EventHandler(this.pictureBox2_Click);
-            this.pbPasswort.MouseHover += new System.EventHandler(this.pbPasswort_MouseHover);
             // 
             // txtBenutzerPasswort
             // 
@@ -2770,9 +2530,10 @@
             this.panelBestellungen.Controls.Add(this.txtBestellungID);
             this.panelBestellungen.Controls.Add(this.label55);
             this.panelBestellungen.Controls.Add(this.listViewBestellungen);
-            this.panelBestellungen.Location = new System.Drawing.Point(903, 61);
+            this.panelBestellungen.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panelBestellungen.Location = new System.Drawing.Point(205, 41);
             this.panelBestellungen.Name = "panelBestellungen";
-            this.panelBestellungen.Size = new System.Drawing.Size(71, 43);
+            this.panelBestellungen.Size = new System.Drawing.Size(1556, 1015);
             this.panelBestellungen.TabIndex = 56;
             this.panelBestellungen.Visible = false;
             this.panelBestellungen.MouseEnter += new System.EventHandler(this.panelArtikel_MouseEnter);
@@ -3060,6 +2821,17 @@
             this.panelKunden.TabIndex = 57;
             this.panelKunden.Visible = false;
             this.panelKunden.MouseEnter += new System.EventHandler(this.panelKunden_MouseEnter);
+            // 
+            // btKundenReset
+            // 
+            this.btKundenReset.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btKundenReset.Location = new System.Drawing.Point(470, 519);
+            this.btKundenReset.Name = "btKundenReset";
+            this.btKundenReset.Size = new System.Drawing.Size(73, 26);
+            this.btKundenReset.TabIndex = 29;
+            this.btKundenReset.Text = "Reset";
+            this.btKundenReset.UseVisualStyleBackColor = true;
+            this.btKundenReset.Click += new System.EventHandler(this.btKundenReset_Click);
             // 
             // txtKundeSuchen
             // 
@@ -3629,17 +3401,6 @@
             this.panelWebsite.TabIndex = 60;
             this.panelWebsite.MouseEnter += new System.EventHandler(this.panelWebsite_MouseEnter);
             // 
-            // pbMinMax
-            // 
-            this.pbMinMax.Image = global::FutureFarm.Properties.Resources.min;
-            this.pbMinMax.Location = new System.Drawing.Point(205, 546);
-            this.pbMinMax.Name = "pbMinMax";
-            this.pbMinMax.Size = new System.Drawing.Size(25, 62);
-            this.pbMinMax.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pbMinMax.TabIndex = 61;
-            this.pbMinMax.TabStop = false;
-            this.pbMinMax.Click += new System.EventHandler(this.pbMinMax_Click);
-            // 
             // printDialog1
             // 
             this.printDialog1.UseEXDialog = true;
@@ -3678,6 +3439,17 @@
             this.panelLieferanten.Size = new System.Drawing.Size(70, 66);
             this.panelLieferanten.TabIndex = 62;
             this.panelLieferanten.Visible = false;
+            // 
+            // btLieferantenReset
+            // 
+            this.btLieferantenReset.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btLieferantenReset.Location = new System.Drawing.Point(470, 550);
+            this.btLieferantenReset.Name = "btLieferantenReset";
+            this.btLieferantenReset.Size = new System.Drawing.Size(73, 26);
+            this.btLieferantenReset.TabIndex = 28;
+            this.btLieferantenReset.Text = "Reset";
+            this.btLieferantenReset.UseVisualStyleBackColor = true;
+            this.btLieferantenReset.Click += new System.EventHandler(this.button2_Click_1);
             // 
             // label84
             // 
@@ -3987,27 +3759,256 @@
             // 
             this.columnHeader97.Text = "UID";
             // 
-            // btLieferantenReset
+            // pbMinMax
             // 
-            this.btLieferantenReset.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btLieferantenReset.Location = new System.Drawing.Point(470, 550);
-            this.btLieferantenReset.Name = "btLieferantenReset";
-            this.btLieferantenReset.Size = new System.Drawing.Size(73, 26);
-            this.btLieferantenReset.TabIndex = 28;
-            this.btLieferantenReset.Text = "Reset";
-            this.btLieferantenReset.UseVisualStyleBackColor = true;
-            this.btLieferantenReset.Click += new System.EventHandler(this.button2_Click_1);
+            this.pbMinMax.Image = global::FutureFarm.Properties.Resources.min;
+            this.pbMinMax.Location = new System.Drawing.Point(205, 546);
+            this.pbMinMax.Name = "pbMinMax";
+            this.pbMinMax.Size = new System.Drawing.Size(25, 62);
+            this.pbMinMax.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pbMinMax.TabIndex = 61;
+            this.pbMinMax.TabStop = false;
+            this.pbMinMax.Click += new System.EventHandler(this.pbMinMax_Click);
             // 
-            // btKundenReset
+            // pbPasswort
             // 
-            this.btKundenReset.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btKundenReset.Location = new System.Drawing.Point(470, 519);
-            this.btKundenReset.Name = "btKundenReset";
-            this.btKundenReset.Size = new System.Drawing.Size(73, 26);
-            this.btKundenReset.TabIndex = 29;
-            this.btKundenReset.Text = "Reset";
-            this.btKundenReset.UseVisualStyleBackColor = true;
-            this.btKundenReset.Click += new System.EventHandler(this.btKundenReset_Click);
+            this.pbPasswort.Image = global::FutureFarm.Properties.Resources.eye_closed;
+            this.pbPasswort.Location = new System.Drawing.Point(387, 143);
+            this.pbPasswort.Name = "pbPasswort";
+            this.pbPasswort.Size = new System.Drawing.Size(25, 25);
+            this.pbPasswort.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pbPasswort.TabIndex = 25;
+            this.pbPasswort.TabStop = false;
+            this.pbPasswort.Click += new System.EventHandler(this.pictureBox2_Click);
+            this.pbPasswort.MouseHover += new System.EventHandler(this.pbPasswort_MouseHover);
+            // 
+            // btLogin2
+            // 
+            this.btLogin2.FlatAppearance.BorderSize = 0;
+            this.btLogin2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btLogin2.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btLogin2.Image = global::FutureFarm.Properties.Resources.logout;
+            this.btLogin2.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btLogin2.Location = new System.Drawing.Point(6, 6);
+            this.btLogin2.Name = "btLogin2";
+            this.btLogin2.Size = new System.Drawing.Size(371, 29);
+            this.btLogin2.TabIndex = 3;
+            this.btLogin2.Text = "  Log In";
+            this.btLogin2.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btLogin2.UseVisualStyleBackColor = true;
+            this.btLogin2.Click += new System.EventHandler(this.btLogin2_Click);
+            // 
+            // btBeenden
+            // 
+            this.btBeenden.Dock = System.Windows.Forms.DockStyle.Right;
+            this.btBeenden.FlatAppearance.BorderSize = 0;
+            this.btBeenden.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btBeenden.Image = global::FutureFarm.Properties.Resources.turn_off;
+            this.btBeenden.Location = new System.Drawing.Point(1500, 0);
+            this.btBeenden.Name = "btBeenden";
+            this.btBeenden.Size = new System.Drawing.Size(56, 41);
+            this.btBeenden.TabIndex = 0;
+            this.btBeenden.UseVisualStyleBackColor = true;
+            this.btBeenden.Click += new System.EventHandler(this.btBeenden_Click);
+            // 
+            // btWebsite
+            // 
+            this.btWebsite.FlatAppearance.BorderSize = 0;
+            this.btWebsite.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btWebsite.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btWebsite.Image = global::FutureFarm.Properties.Resources.globe;
+            this.btWebsite.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btWebsite.Location = new System.Drawing.Point(12, 798);
+            this.btWebsite.Name = "btWebsite";
+            this.btWebsite.Size = new System.Drawing.Size(190, 59);
+            this.btWebsite.TabIndex = 11;
+            this.btWebsite.Text = "   Website Bilder";
+            this.btWebsite.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btWebsite.UseVisualStyleBackColor = true;
+            this.btWebsite.Click += new System.EventHandler(this.btWebsite_Click);
+            this.btWebsite.MouseEnter += new System.EventHandler(this.btWebsite_MouseEnter);
+            // 
+            // btBestellungen
+            // 
+            this.btBestellungen.FlatAppearance.BorderSize = 0;
+            this.btBestellungen.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btBestellungen.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btBestellungen.Image = global::FutureFarm.Properties.Resources.Fax_icon;
+            this.btBestellungen.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btBestellungen.Location = new System.Drawing.Point(24, 571);
+            this.btBestellungen.Name = "btBestellungen";
+            this.btBestellungen.Size = new System.Drawing.Size(190, 87);
+            this.btBestellungen.TabIndex = 10;
+            this.btBestellungen.Text = "   Bestellungen";
+            this.btBestellungen.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btBestellungen.UseVisualStyleBackColor = true;
+            this.btBestellungen.Click += new System.EventHandler(this.btBestellungen_Click);
+            this.btBestellungen.MouseEnter += new System.EventHandler(this.btBestellungen_MouseEnter);
+            // 
+            // btTermine
+            // 
+            this.btTermine.FlatAppearance.BorderSize = 0;
+            this.btTermine.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btTermine.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btTermine.Image = global::FutureFarm.Properties.Resources.termin;
+            this.btTermine.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btTermine.Location = new System.Drawing.Point(12, 754);
+            this.btTermine.Name = "btTermine";
+            this.btTermine.Size = new System.Drawing.Size(190, 54);
+            this.btTermine.TabIndex = 9;
+            this.btTermine.Text = "   Termine";
+            this.btTermine.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btTermine.UseVisualStyleBackColor = true;
+            this.btTermine.Click += new System.EventHandler(this.btTermine_Click);
+            this.btTermine.MouseEnter += new System.EventHandler(this.btTermine_MouseEnter);
+            // 
+            // btNews
+            // 
+            this.btNews.FlatAppearance.BorderSize = 0;
+            this.btNews.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btNews.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btNews.Image = global::FutureFarm.Properties.Resources.news;
+            this.btNews.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btNews.Location = new System.Drawing.Point(15, 661);
+            this.btNews.Name = "btNews";
+            this.btNews.Size = new System.Drawing.Size(190, 87);
+            this.btNews.TabIndex = 8;
+            this.btNews.Text = "   News";
+            this.btNews.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btNews.UseVisualStyleBackColor = true;
+            this.btNews.Click += new System.EventHandler(this.btNews_Click);
+            this.btNews.MouseEnter += new System.EventHandler(this.btNews_MouseEnter);
+            // 
+            // btAnfragen
+            // 
+            this.btAnfragen.FlatAppearance.BorderSize = 0;
+            this.btAnfragen.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btAnfragen.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btAnfragen.Image = global::FutureFarm.Properties.Resources.New_Mail_icon;
+            this.btAnfragen.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btAnfragen.Location = new System.Drawing.Point(9, 478);
+            this.btAnfragen.Name = "btAnfragen";
+            this.btAnfragen.Size = new System.Drawing.Size(190, 87);
+            this.btAnfragen.TabIndex = 7;
+            this.btAnfragen.Text = "   Anfragen";
+            this.btAnfragen.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btAnfragen.UseVisualStyleBackColor = true;
+            this.btAnfragen.Click += new System.EventHandler(this.btAnfragen_Click);
+            this.btAnfragen.MouseEnter += new System.EventHandler(this.btAnfragen_MouseEnter);
+            // 
+            // btHome
+            // 
+            this.btHome.FlatAppearance.BorderSize = 0;
+            this.btHome.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btHome.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btHome.Image = global::FutureFarm.Properties.Resources.home1;
+            this.btHome.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btHome.Location = new System.Drawing.Point(12, 21);
+            this.btHome.Name = "btHome";
+            this.btHome.Size = new System.Drawing.Size(190, 87);
+            this.btHome.TabIndex = 2;
+            this.btHome.Text = "   Home";
+            this.btHome.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btHome.UseVisualStyleBackColor = true;
+            this.btHome.Click += new System.EventHandler(this.btHome_Click);
+            this.btHome.MouseEnter += new System.EventHandler(this.btHome_MouseEnter);
+            // 
+            // btEinstellungen
+            // 
+            this.btEinstellungen.FlatAppearance.BorderSize = 0;
+            this.btEinstellungen.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btEinstellungen.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btEinstellungen.Image = global::FutureFarm.Properties.Resources.customer_support1;
+            this.btEinstellungen.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btEinstellungen.Location = new System.Drawing.Point(9, 866);
+            this.btEinstellungen.Name = "btEinstellungen";
+            this.btEinstellungen.Size = new System.Drawing.Size(190, 59);
+            this.btEinstellungen.TabIndex = 3;
+            this.btEinstellungen.Text = "   Einstellungen";
+            this.btEinstellungen.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btEinstellungen.UseVisualStyleBackColor = true;
+            this.btEinstellungen.Click += new System.EventHandler(this.btEinstellungen_Click);
+            this.btEinstellungen.MouseEnter += new System.EventHandler(this.btEinstellungen_MouseEnter);
+            // 
+            // btRechnungen
+            // 
+            this.btRechnungen.FlatAppearance.BorderSize = 0;
+            this.btRechnungen.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btRechnungen.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btRechnungen.Image = global::FutureFarm.Properties.Resources.invoice1;
+            this.btRechnungen.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btRechnungen.Location = new System.Drawing.Point(12, 103);
+            this.btRechnungen.Name = "btRechnungen";
+            this.btRechnungen.Size = new System.Drawing.Size(190, 87);
+            this.btRechnungen.TabIndex = 3;
+            this.btRechnungen.Text = "   Rechnungen";
+            this.btRechnungen.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btRechnungen.UseVisualStyleBackColor = true;
+            this.btRechnungen.Click += new System.EventHandler(this.btRechnungen_Click);
+            this.btRechnungen.MouseEnter += new System.EventHandler(this.btRechnungen_MouseEnter);
+            // 
+            // btLieferanten
+            // 
+            this.btLieferanten.FlatAppearance.BorderSize = 0;
+            this.btLieferanten.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btLieferanten.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btLieferanten.Image = global::FutureFarm.Properties.Resources.delivery_truck1;
+            this.btLieferanten.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btLieferanten.Location = new System.Drawing.Point(24, 397);
+            this.btLieferanten.Name = "btLieferanten";
+            this.btLieferanten.Size = new System.Drawing.Size(190, 87);
+            this.btLieferanten.TabIndex = 6;
+            this.btLieferanten.Text = "   Lieferanten";
+            this.btLieferanten.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btLieferanten.UseVisualStyleBackColor = true;
+            this.btLieferanten.Click += new System.EventHandler(this.btLieferanten_Click);
+            this.btLieferanten.MouseEnter += new System.EventHandler(this.btLieferanten_MouseEnter);
+            // 
+            // btArtikel
+            // 
+            this.btArtikel.FlatAppearance.BorderSize = 0;
+            this.btArtikel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btArtikel.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btArtikel.Image = global::FutureFarm.Properties.Resources.artikel1;
+            this.btArtikel.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btArtikel.Location = new System.Drawing.Point(36, 220);
+            this.btArtikel.Name = "btArtikel";
+            this.btArtikel.Size = new System.Drawing.Size(190, 87);
+            this.btArtikel.TabIndex = 4;
+            this.btArtikel.Text = "   Artikel";
+            this.btArtikel.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btArtikel.UseVisualStyleBackColor = true;
+            this.btArtikel.Click += new System.EventHandler(this.btArtikel_Click);
+            this.btArtikel.MouseEnter += new System.EventHandler(this.btArtikel_MouseEnter);
+            // 
+            // btKunden
+            // 
+            this.btKunden.FlatAppearance.BorderSize = 0;
+            this.btKunden.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btKunden.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btKunden.Image = global::FutureFarm.Properties.Resources.multiple_users_silhouette1;
+            this.btKunden.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btKunden.Location = new System.Drawing.Point(36, 304);
+            this.btKunden.Name = "btKunden";
+            this.btKunden.Size = new System.Drawing.Size(190, 87);
+            this.btKunden.TabIndex = 5;
+            this.btKunden.Text = "   Kunden";
+            this.btKunden.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btKunden.UseVisualStyleBackColor = true;
+            this.btKunden.Click += new System.EventHandler(this.btKunden_Click);
+            this.btKunden.MouseEnter += new System.EventHandler(this.btKunden_MouseEnter);
+            // 
+            // pbLogoHome
+            // 
+            this.pbLogoHome.Dock = System.Windows.Forms.DockStyle.Top;
+            this.pbLogoHome.Image = global::FutureFarm.Properties.Resources.logoTransp;
+            this.pbLogoHome.Location = new System.Drawing.Point(0, 0);
+            this.pbLogoHome.Name = "pbLogoHome";
+            this.pbLogoHome.Size = new System.Drawing.Size(205, 133);
+            this.pbLogoHome.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pbLogoHome.TabIndex = 7;
+            this.pbLogoHome.TabStop = false;
+            this.pbLogoHome.Click += new System.EventHandler(this.pictureBox1_Click);
             // 
             // Form1
             // 
@@ -4046,11 +4047,9 @@
             this.MouseEnter += new System.EventHandler(this.Form1_MouseEnter);
             this.panelLinks.ResumeLayout(false);
             this.panelMenü.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pbLogoHome)).EndInit();
             this.panelOben.ResumeLayout(false);
             this.panelBenutzer.ResumeLayout(false);
             this.panelBenutzer.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pbPasswort)).EndInit();
             this.panelFirmendaten.ResumeLayout(false);
             this.panelFirmendaten.PerformLayout();
             this.panelArtikel.ResumeLayout(false);
@@ -4072,9 +4071,11 @@
             this.panelAnfragen.ResumeLayout(false);
             this.panelAnfragen.PerformLayout();
             this.cbsAnfragen.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pbMinMax)).EndInit();
             this.panelLieferanten.ResumeLayout(false);
             this.panelLieferanten.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbMinMax)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbPasswort)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbLogoHome)).EndInit();
             this.ResumeLayout(false);
 
         }

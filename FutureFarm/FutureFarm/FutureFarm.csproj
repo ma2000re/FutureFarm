@@ -243,6 +243,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="logoNEW.ico" />
+    <None Include="Properties\New-Mail-icon.png" />
     <None Include="Resources\min.png" />
     <None Include="Resources\max.png" />
     <None Include="Resources\maximieren.jpg" />
