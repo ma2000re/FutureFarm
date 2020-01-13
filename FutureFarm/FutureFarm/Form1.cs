@@ -80,6 +80,11 @@ namespace FutureFarm
 
         private void btHome_Click(object sender, EventArgs e)
         {
+            Home();
+        }
+
+        private void Home()
+        {
             panelAuswahl.Height = btHome.Height;
             panelAuswahl.Top = btHome.Top;
             panelsDeaktivieren();
@@ -88,12 +93,22 @@ namespace FutureFarm
 
         private void btEinstellungen_Click(object sender, EventArgs e)
         {
+            Einstellungen();
+        }
+
+        private void Einstellungen()
+        {
             panelAuswahl.Height = btEinstellungen.Height;
             panelAuswahl.Top = btEinstellungen.Top;
             panelsDeaktivieren();
         }
 
         private void btRechnungen_Click(object sender, EventArgs e)
+        {
+            Rechnungen();
+        }
+
+        private void Rechnungen()
         {
             panelAuswahl.Height = btRechnungen.Height;
             panelAuswahl.Top = btRechnungen.Top;
@@ -178,8 +193,14 @@ namespace FutureFarm
 
         private void btArtikel_Click(object sender, EventArgs e)
         {
+            Artikel();
+        }
+
+        private void Artikel()
+        {
             panelAuswahl.Height = btArtikel.Height;
             panelAuswahl.Top = btArtikel.Top;
+
             panelsDeaktivieren();
 
             panelArtikel.Visible = true;
@@ -190,11 +211,11 @@ namespace FutureFarm
 
             listViewArtikel.Height = Convert.ToInt16(panelArtikel.Height * 0.45);
             panelArtikelInfo.Location = new Point(Convert.ToInt16(panelArtikel.Width * 0.05), Convert.ToInt16(panelArtikel.Height * 0.05));
-            lbArtikelFilter.Location = new Point(10, (panelArtikel.Height-listViewArtikel.Height-40));
+            lbArtikelFilter.Location = new Point(10, (panelArtikel.Height - listViewArtikel.Height - 40));
             cbArtikelFilter.Location = new Point((10 + lbArtikelFilter.Width), (panelArtikel.Height - listViewArtikel.Height - 43));
             lbArtikelSuchen.Location = new Point((20 + lbArtikelFilter.Width + cbArtikelFilter.Width), (panelArtikel.Height - listViewArtikel.Height - 40));
             txtArtikelSuchen.Location = new Point((20 + lbArtikelFilter.Width + cbArtikelFilter.Width + lbArtikelSuchen.Width), (panelArtikel.Height - listViewArtikel.Height - 43));
-            btArtikelSuchen.Location = new Point((25 + lbArtikelFilter.Width + cbArtikelFilter.Width + lbArtikelSuchen.Width+txtArtikelSuchen.Width), (panelArtikel.Height - listViewArtikel.Height - 43));
+            btArtikelSuchen.Location = new Point((25 + lbArtikelFilter.Width + cbArtikelFilter.Width + lbArtikelSuchen.Width + txtArtikelSuchen.Width), (panelArtikel.Height - listViewArtikel.Height - 43));
 
 
 
@@ -288,6 +309,11 @@ namespace FutureFarm
 
         private void btLieferanten_Click(object sender, EventArgs e)
         {
+            Lieferanten();
+        }
+
+        private void Lieferanten()
+        {
             panelAuswahl.Height = btLieferanten.Height;
             panelAuswahl.Top = btLieferanten.Top;
             panelsDeaktivieren();
@@ -304,6 +330,11 @@ namespace FutureFarm
 
         private void btKunden_Click(object sender, EventArgs e)
         {
+            Kunden();
+        }
+
+        private void Kunden()
+        {
             panelAuswahl.Height = btKunden.Height;
             panelAuswahl.Top = btKunden.Top;
             panelsDeaktivieren();
@@ -313,8 +344,8 @@ namespace FutureFarm
             panelKunden.BringToFront();
 
             lbKundenSuchen.Location = new Point((15), (panelKunden.Height - listViewKunden.Height - 40));
-            txtArtikelSuchen.Location = new Point((20+lbKundenSuchen.Width), (panelArtikel.Height - listViewArtikel.Height - 43));
-            btArtikelSuchen.Location = new Point((25 + txtArtikelSuchen.Width+lbKundenSuchen.Width), (panelArtikel.Height - listViewArtikel.Height - 43));
+            txtArtikelSuchen.Location = new Point((20 + lbKundenSuchen.Width), (panelArtikel.Height - listViewArtikel.Height - 43));
+            btArtikelSuchen.Location = new Point((25 + txtArtikelSuchen.Width + lbKundenSuchen.Width), (panelArtikel.Height - listViewArtikel.Height - 43));
             pbMinMax.BringToFront();
 
 
@@ -475,9 +506,11 @@ namespace FutureFarm
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            menuStrip1.Visible = false;
             flade = new FrmLadebildschirm();
             flade.ShowDialog();
             this.Hide();    
+
             
             GoFullscreen();
             MenuErstellen();
@@ -491,9 +524,16 @@ namespace FutureFarm
             BenutzerEinlesen();
 
             flade.Hide();
-            this.Show();
             flade.Close();
             cbArtikelFilter.SelectedIndex = 1;
+
+            fl.ShowDialog();
+            this.Show();
+
+            CheckEingeloggt();
+
+            this.KeyPreview = true;
+
         }
 
         internal void GoFullscreen()
@@ -612,6 +652,9 @@ namespace FutureFarm
         {
             panelUnterMenu.Visible = true;
             panelUnterMenu.Location = btFirmendaten.Location;
+            panelAuswahl.Height = btFirmendaten.Height;
+            panelAuswahl.Top = btFirmendaten.Top;
+            
         }
 
         private void btBenutzer_MouseEnter(object sender, EventArgs e)
@@ -695,6 +738,11 @@ namespace FutureFarm
 
         private void btBenutzer_Click(object sender, EventArgs e)
         {
+            Benutzer();
+        }
+
+        private void Benutzer()
+        {
             panelsDeaktivieren();
 
             panelBenutzer.Visible = true;
@@ -709,6 +757,8 @@ namespace FutureFarm
             CheckEingeloggt();
 
             panelUnterMenu.Visible = false;
+
+            pbMinMax.BringToFront();
         }
 
         private void panelBenutzerLoginEinlesen()
@@ -745,17 +795,14 @@ namespace FutureFarm
             panelKunden.Visible = false;
             panelAnfragen.Visible = false;
             panelTermine.Visible = false;
-
-            //if (LogIn == true)
-            //{
-            //    btBenutzerNeu.Enabled = true;
-            //    btBenutzerÄndern.Enabled = true;
-            //    btBenutzerLöschen.Enabled = true;
-            //    pbPasswort.Enabled = true;
-            //}
         }
 
         private void btAnfragen_Click(object sender, EventArgs e)
+        {
+            Anfragen();
+        }
+
+        private void Anfragen()
         {
             panelsDeaktivieren();
 
@@ -800,6 +847,11 @@ namespace FutureFarm
 
         private void btBestellungen_Click(object sender, EventArgs e)
         {
+            Bestellungen();
+        }
+
+        private void Bestellungen()
+        {
             //Daten löschen
             txtBestellungID.Clear();
             listViewBestellungenArtikelGewählt.Items.Clear();
@@ -818,7 +870,6 @@ namespace FutureFarm
             ComboKundenEinlesen();
 
             pbMinMax.BringToFront();
-
         }
 
         private void ComboKundenEinlesen()
@@ -890,6 +941,11 @@ namespace FutureFarm
 
         private void btNews_Click(object sender, EventArgs e)
         {
+            News();
+        }
+
+        private void News()
+        {
             panelAuswahl.Height = btNews.Height;
             panelAuswahl.Top = btNews.Top;
             panelsDeaktivieren();
@@ -907,7 +963,6 @@ namespace FutureFarm
             panelUnterMenu.Visible = false;
 
             pbMinMax.BringToFront();
-
         }
 
         private void NewsEinlesen()
@@ -934,6 +989,11 @@ namespace FutureFarm
 
 
         private void btTermine_Click(object sender, EventArgs e)
+        {
+            Termine();
+        }
+
+        private void Termine()
         {
             panelsDeaktivieren();
 
@@ -982,8 +1042,6 @@ namespace FutureFarm
             }
 
         }
-
-
 
         private void listViewPanelBenutzerLogin_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -1212,6 +1270,11 @@ namespace FutureFarm
 
         private void btFirmendaten_Click(object sender, EventArgs e)
         {
+            Firmendaten();
+        }
+
+        private void Firmendaten()
+        {
             panelsDeaktivieren();
 
             panelFirmendaten.Visible = true;
@@ -1223,6 +1286,7 @@ namespace FutureFarm
             CheckEingeloggt();
 
             panelUnterMenu.Visible = false;
+            pbMinMax.BringToFront();
 
         }
 
@@ -1268,8 +1332,8 @@ namespace FutureFarm
             panelUnterMenu.Visible = false;
             btFirmendaten.Visible = false;
             btBenutzer.Visible = false;
-            panelAuswahl.Height = btArtikel.Height;
-            panelAuswahl.Top = btArtikel.Top;
+            panelAuswahl.Height = btEinstellungen.Height;
+            panelAuswahl.Top = btEinstellungen.Top;
         }
 
         private void panelBenutzer_MouseEnter(object sender, EventArgs e)
@@ -1277,8 +1341,8 @@ namespace FutureFarm
             panelUnterMenu.Visible = false;
             btFirmendaten.Visible = false;
             btBenutzer.Visible = false;
-            panelAuswahl.Height = btBenutzer.Height;
-            panelAuswahl.Top = btBenutzer.Top;
+            panelAuswahl.Height = btEinstellungen.Height;
+            panelAuswahl.Top = btEinstellungen.Top;
 
         }
 
@@ -1286,17 +1350,11 @@ namespace FutureFarm
         {
 
         //PUT Methode
-        FrmSuperpasswort fSuper = new FrmSuperpasswort();
-        fSuper.lbAktion.Text = "Firmendaten ändern...";
-        fSuper.lbText.Text = "Bitte Passwort eingeben, \num Ihre Berechtigung zum Ändern von Firmendaten zu prüfen:";
-        fSuper.ShowDialog();
-        if (fSuper.berechtigt == true)
-        {
             try
             {
 
                 Firmendaten fi = new Firmendaten();
-                fi.FirmendatenID = 11;
+                fi.FirmendatenID = 1;
                 fi.Name = txtFirmendatenName.Text;
                 fi.Anschrift = txtFirmendatenAnschrift.Text;
                 fi.Email = txtFirmendatenEmail.Text;
@@ -1331,7 +1389,7 @@ namespace FutureFarm
             }
 
 
-        }
+        
 
 
     }
@@ -2012,13 +2070,6 @@ namespace FutureFarm
         private void btWordErstellen_Click(object sender, EventArgs e)
         {
 
-            ////Word Dokument erstellen
-            //string path = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.FullName;
-            //string vorlage = path + @"\RechnungVorlage.docx";
-            //string speicherort = path + @"\Speiseplan.docx";
-
-            //CreateWordDocument(vorlage, speicherort);
-
         }
 
 
@@ -2090,6 +2141,16 @@ namespace FutureFarm
                 MessageBox.Show("Rechnung erfolgreich angelegt!");
             }
 
+            //Rechnung ID finden
+            string rechnungID = "";
+            var request2 = new RestRequest("rechnungen", Method.GET);
+            request2.AddHeader("Content-Type", "application/json");
+            var response2 = client.Execute<List<Rechnung>>(request2);
+            foreach(Rechnung r in response2.Data)
+            {
+                rechnungID = r.RechnungID.ToString();
+            }
+            rechnung.RechnungID = Convert.ToInt32(rechnungID);
             //Rechnungartikel erstellen
 
 
@@ -2106,7 +2167,6 @@ namespace FutureFarm
                 {
                     if(lvItem.Text.Equals(a.ArtikelID.ToString()))
                     {
-                        MessageBox.Show("art gefunden");
                         artikel.ArtikelID = a.ArtikelID;
                         artikel.Bezeichnung = a.Bezeichnung;
                         artikel.ExterneID = a.ExterneID;
@@ -2122,6 +2182,7 @@ namespace FutureFarm
 
                 ra.Menge = Convert.ToInt32(lvItem.SubItems[2].Text);
                 ra.NettoPreis = Convert.ToDouble(lvItem.SubItems[3].Text);
+                ra.Ust= Convert.ToDouble(lvItem.SubItems[4].Text);
                 ra.Aktiv= true;
                 ra.Rechnung = rechnung;
                 ra.Artikel = artikel;
@@ -2129,9 +2190,7 @@ namespace FutureFarm
                 var request1 = new RestRequest("rechnungartikel", Method.POST);
                 request1.AddHeader("Content-Type", "application/Json");
                 request1.AddJsonBody(ra);
-                //HIER FEHLER
-                MessageBox.Show("Fehler");
-
+                
                 var response1 = client.Execute(request1);
                 if (response1.StatusCode == System.Net.HttpStatusCode.BadRequest)
                 {
@@ -2399,19 +2458,6 @@ namespace FutureFarm
                     }
                 }
 
-                //cbKundenOrt.Items.Clear();
-                ////PLZ holen
-                //var request2 = new RestRequest("postleitzahlen", Method.GET);
-                //request2.AddHeader("Content-Type", "application/json");
-                //var response2 = client.Execute<List<Postleitzahl>>(request2);
-                //foreach (Postleitzahl pl in response2.Data)
-                //{
-                //    if (txtKundenPLZ.Text.Equals(pl.PLZ.ToString()))
-                //    {
-                //        cbKundenOrt.Items.Add(pl.Ortschaft);
-                //        cbKundenOrt.SelectedText = pl.Ortschaft;
-                //    }
-                //}
             }
             catch (Exception ex)
             {
@@ -3414,10 +3460,22 @@ namespace FutureFarm
 
         private void btWebsite_Click(object sender, EventArgs e)
         {
-            panelsDeaktivieren();
-            panelWebsite.Dock = DockStyle.Fill;
+            Website();
+        }
 
+        private void Website()
+        {
+            panelAuswahl.Height = btWebsite.Height;
+            panelAuswahl.Top = btWebsite.Top;
+
+            panelsDeaktivieren();
+
+            panelWebsite.Visible = true;
+            panelWebsite.Dock = DockStyle.Fill;
+            panelWebsite.BringToFront();
             pbMinMax.BringToFront();
+
+
             OpenExplorer(@"D:\OneDrive - BHAK und BHAS Mistelbach 316448\Schule\AP_SWE\GitHub\FutureFarmProgramm\FutureFarm\FutureFarm\Properties\Galerie");
 
         }
@@ -3472,6 +3530,7 @@ namespace FutureFarm
                 string artikelNetto = "";
                 string artikelUST = "";
 
+
                 var requestAnrede = new RestRequest("kunden", Method.GET);
                 requestAnrede.AddHeader("Content-Type", "application/Json");
                 var responseAnrede = client.Execute<List<Kunden>>(requestAnrede);
@@ -3486,17 +3545,20 @@ namespace FutureFarm
                     }
                 }
 
-                //Artikel suchen
-                for(int i =0; i<listViewRechnungGewähltArtikel.Items.Count;i++)
+                //gesamte Bestellung in String
+                for(int i=0; i<listViewRechnungGewähltArtikel.Items.Count;i++)
                 {
                     lvItem = listViewRechnungGewähltArtikel.Items[i];
-                    artikelIDs += lvItem.SubItems[0].Text+"\n";
-                    artikelBezeichnungen += lvItem.SubItems[1].Text + "\n";
-                    artikelMengen += lvItem.SubItems[2].Text + "\n";
-                    artikelNetto += (Convert.ToInt32(lvItem.SubItems[3].Text)*Convert.ToInt32(artikelMengen))+ "\n";
-                    artikelUST += lvItem.SubItems[4].Text + "\n";
+                    artikelIDs += lvItem.SubItems[0].Text + "\r";
+
+
+                    artikelBezeichnungen += lvItem.SubItems[1].Text + "\r";
+                    artikelMengen += lvItem.SubItems[2].Text + "\r";
+                    artikelNetto += (Convert.ToDouble(lvItem.SubItems[3].Text) * Convert.ToDouble(lvItem.SubItems[2].Text)) + "\r";
+                    artikelUST += lvItem.SubItems[4].Text + "\r";
                 }
 
+                //HIER
 
                 //suche
                 this.FindAndReplace(wordApp, "<KundeAnrede>", anrede);
@@ -3543,8 +3605,11 @@ namespace FutureFarm
             DialogResult dialogResult = MessageBox.Show("Die Rechnung wurde angelegt,\nsoll diese direkt geöffnet werden?", "", MessageBoxButtons.YesNo);
             if (dialogResult == DialogResult.Yes)
             {
-                wordApp.Visible = true;
-                wordApp.ShowMe();
+                //wordApp.Visible = true;
+                //wordApp.ShowMe();
+
+                myWordDoc.Close();
+                wordApp.Quit();
 
             }
             else if (dialogResult == DialogResult.No)
@@ -3596,8 +3661,8 @@ namespace FutureFarm
             panelUnterMenu.Visible = false;
             btFirmendaten.Visible = false;
             btBenutzer.Visible = false;
-            panelAuswahl.Height = btBestellungen.Height;
-            panelAuswahl.Top = btBestellungen.Top;
+            panelAuswahl.Height = btArtikel.Height;
+            panelAuswahl.Top = btArtikel.Top;
         }
 
         private void panelBestellungen_MouseEnter(object sender, EventArgs e)
@@ -4005,6 +4070,79 @@ namespace FutureFarm
             txtKundenStrasse.Clear();
             txtKundenPLZ.Clear();
             cbKundenOrt.Items.Clear();
+        }
+
+        private void Form1_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                MessageBox.Show("Enter");
+            }
+        }
+
+        private void Form1_KeyPress(object sender, KeyPressEventArgs e)
+        {
+
+        }
+
+        private void homeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Home();
+        }
+
+        private void rechnungenToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Rechnungen();
+        }
+
+        private void artikelToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Artikel();
+        }
+
+        private void kundenToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Kunden();
+        }
+
+        private void lieferantenToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Lieferanten();
+        }
+
+        private void bestellungeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Bestellungen();
+        }
+
+        private void fAnfragenToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Anfragen();
+        }
+
+        private void newsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            News();
+        }
+
+        private void termineToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Termine();
+        }
+
+        private void websiteToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Website();
+        }
+
+        private void iFirmendatenToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Firmendaten();
+        }
+
+        private void uBenutzerToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Benutzer();
         }
     }
 }
