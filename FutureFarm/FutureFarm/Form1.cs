@@ -3816,7 +3816,6 @@ namespace FutureFarm
             }
             else
                 LieferantenEinlesen();
-
         }
 
         private void LieferantenSuchen()
