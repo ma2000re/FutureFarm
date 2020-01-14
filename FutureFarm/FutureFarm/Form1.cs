@@ -1045,11 +1045,7 @@ namespace FutureFarm
 
         private void listViewPanelBenutzerLogin_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (listViewPanelBenutzerLogin.SelectedItems.Count == 0)
-            {
-                MessageBox.Show("Wählen Sie bitte einen Benutzer aus!");
-                return;
-            }
+            
             lvItem = listViewPanelBenutzerLogin.SelectedItems[0];
 
             txtBenutzerBenutzerID.Text = lvItem.SubItems[0].Text;
@@ -1396,11 +1392,6 @@ namespace FutureFarm
 
         private void listViewArtikel_SelectedIndexChanged(object sender, EventArgs e)
             {
-                if (listViewArtikel.SelectedItems.Count == 0)
-                {
-                    MessageBox.Show("Wählen Sie bitte einen Artikel aus!");
-                    return;
-                }
                 lvItem = listViewArtikel.SelectedItems[0];
 
 
@@ -1441,11 +1432,6 @@ namespace FutureFarm
 
         private void listViewNews_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (listViewNews.SelectedItems.Count == 0)
-            {
-                MessageBox.Show("Wählen Sie bitte einen Beitrag aus!");
-                return;
-            }
             lvItem = listViewNews.SelectedItems[0];
 
             txtNewsID.Text = lvItem.SubItems[0].Text;
@@ -2215,11 +2201,6 @@ namespace FutureFarm
 
         private void listViewTermine_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (listViewTermine.SelectedItems.Count == 0)
-            {
-                MessageBox.Show("Wählen Sie bitte einen Termin aus!");
-                return;
-            }
 
             lvItem = listViewTermine.SelectedItems[0];
 
@@ -3512,7 +3493,10 @@ namespace FutureFarm
                     ref missing, ref missing, ref missing,
                     ref missing, ref missing, ref missing, ref missing);
 
-                MessageBox.Show("warten");
+                //Timer
+                wordTimer.Start();
+
+
 
                 myWordDoc.Activate();
                 wordApp.Visible = false;
@@ -3549,9 +3533,8 @@ namespace FutureFarm
                 for(int i=0; i<listViewRechnungGewähltArtikel.Items.Count;i++)
                 {
                     lvItem = listViewRechnungGewähltArtikel.Items[i];
+
                     artikelIDs += lvItem.SubItems[0].Text + "\r";
-
-
                     artikelBezeichnungen += lvItem.SubItems[1].Text + "\r";
                     artikelMengen += lvItem.SubItems[2].Text + "\r";
                     artikelNetto += (Convert.ToDouble(lvItem.SubItems[3].Text) * Convert.ToDouble(lvItem.SubItems[2].Text)) + "\r";

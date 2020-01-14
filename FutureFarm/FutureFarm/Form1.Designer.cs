@@ -406,6 +406,7 @@
             this.websiteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.iFirmendatenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.uBenutzerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.wordTimer = new System.Windows.Forms.Timer(this.components);
             this.panelLinks.SuspendLayout();
             this.panelMenü.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbLogoHome)).BeginInit();
@@ -4116,6 +4117,10 @@
             this.uBenutzerToolStripMenuItem.Text = "&UBenutzer";
             this.uBenutzerToolStripMenuItem.Click += new System.EventHandler(this.uBenutzerToolStripMenuItem_Click);
             // 
+            // wordTimer
+            // 
+            this.wordTimer.Interval = 7500;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
@@ -4572,6 +4577,7 @@
         private System.Windows.Forms.ToolStripMenuItem websiteToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem iFirmendatenToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem uBenutzerToolStripMenuItem;
+        private System.Windows.Forms.Timer wordTimer;
     }
 }
 
