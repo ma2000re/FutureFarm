@@ -22,6 +22,12 @@ namespace FutureFarm
 
         private void FrmLadebildschirm_Load(object sender, EventArgs e)
         {
+            this.Width = Screen.PrimaryScreen.WorkingArea.Width;
+            this.Height = pictureBox1.Height;
+            this.Location = new Point(0, this.Height / 3);
+
+            pictureBox1.Location = new Point((this.Width / 2 - pictureBox1.Width / 2), 0);
+
             timer1.Start(); // Timer starten
         }
 

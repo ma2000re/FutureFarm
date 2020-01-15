@@ -343,6 +343,16 @@ namespace FutureFarm.Properties {
         /// <summary>
         ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap lupe {
+            get {
+                object obj = ResourceManager.GetObject("lupe", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap max {
             get {
                 object obj = ResourceManager.GetObject("max", resourceCulture);
@@ -486,6 +496,16 @@ namespace FutureFarm.Properties {
         internal static System.Drawing.Bitmap turn_off1 {
             get {
                 object obj = ResourceManager.GetObject("turn-off1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Unbenannt_1 {
+            get {
+                object obj = ResourceManager.GetObject("Unbenannt-1", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

@@ -56,12 +56,12 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.ClientSize = new System.Drawing.Size(948, 647);
+            this.ClientSize = new System.Drawing.Size(1365, 647);
             this.Controls.Add(this.pictureBox1);
             this.DoubleBuffered = true;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "FrmLadebildschirm";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.Text = "FrmLadebildschirm";
             this.Load += new System.EventHandler(this.FrmLadebildschirm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();

@@ -33,7 +33,7 @@ namespace FutureFarm
             panelAuswahl.Top = btHome.Top;
 
 
-            client = new RestClient("http://localhost:8888")
+            client = new RestClient("http://futurefarm.projects.hakmistelbach.ac.at/aoi")
             {
                 Authenticator = new HttpBasicAuthenticator("demo", "demo")
             };
@@ -220,7 +220,7 @@ namespace FutureFarm
 
 
             ArtikelEinlesen();
-            LieferantenEinlesen();
+            ArtikelLieferantenEinlesen();
 
             CheckEingeloggt();
 
@@ -279,6 +279,21 @@ namespace FutureFarm
 
         }
 
+        private void ArtikelLieferantenEinlesen()
+        {
+            cbArtikelLieferanten.Items.Clear();
+
+            var request = new RestRequest("lieferanten", Method.GET);
+            request.AddHeader("Content-Type", "application/Json");
+            var response = client.Execute<List<Lieferanten>>(request);
+
+            foreach(Lieferanten l in response.Data)
+            {
+                if(l.Aktiv==true)
+                cbArtikelLieferanten.Items.Add(l.LieferantenID);
+            }
+        }
+
         private void LieferantenEinlesen()
         {
             listViewLieferanten.Items.Clear();
@@ -331,6 +346,7 @@ namespace FutureFarm
         private void btKunden_Click(object sender, EventArgs e)
         {
             Kunden();
+            cbKundenOrt.Items.Clear();
         }
 
         private void Kunden()
@@ -380,6 +396,7 @@ namespace FutureFarm
             }
 
         }
+
 
         private void btLogin_Click(object sender, EventArgs e)
         {
@@ -476,7 +493,7 @@ namespace FutureFarm
             }
             else
             {
-                MessageBox.Show("Erfolgreich Anmeldezeit geändert!");
+                Bestätigung();
                 BenutzerEinlesen();
             }
 
@@ -1045,18 +1062,23 @@ namespace FutureFarm
 
         private void listViewPanelBenutzerLogin_SelectedIndexChanged(object sender, EventArgs e)
         {
-            
-            lvItem = listViewPanelBenutzerLogin.SelectedItems[0];
+            try
+            {
+                lvItem = listViewPanelBenutzerLogin.SelectedItems[0];
 
-            txtBenutzerBenutzerID.Text = lvItem.SubItems[0].Text;
+                txtBenutzerBenutzerID.Text = lvItem.SubItems[0].Text;
 
-            verPasswort = lvItem.SubItems[2].Text;
-            PasswortEntschlüsseln();
-            txtBenutzerPasswort.Text = entPasswort;
+                verPasswort = lvItem.SubItems[2].Text;
+                PasswortEntschlüsseln();
+                txtBenutzerPasswort.Text = entPasswort;
 
-            txtBenutzerBenutzername.Text = lvItem.SubItems[1].Text;
-            // inlesenKunden();
-
+                txtBenutzerBenutzername.Text = lvItem.SubItems[1].Text;
+                // inlesenKunden();
+            }
+            catch(Exception ex)
+            {
+                return;
+            }
         }
 
         private void pictureBox2_Click(object sender, EventArgs e)
@@ -1118,12 +1140,12 @@ namespace FutureFarm
                     }
                     else
                     {
-                        MessageBox.Show("Erfolgreich gelöscht");
                         panelBenutzerLoginEinlesen();
 
                         txtBenutzerBenutzername.Clear();
                         txtBenutzerBenutzerID.Clear();
                         txtBenutzerPasswort.Clear();
+                        Bestätigung();
                     }
 
                 }
@@ -1182,7 +1204,7 @@ namespace FutureFarm
                         }
                         else
                         {
-                            MessageBox.Show("Erfolgreich geändert!");
+                            Bestätigung();
                             panelBenutzerLoginEinlesen();
                         }
 
@@ -1229,7 +1251,7 @@ namespace FutureFarm
                         }
                         else
                         {
-                            MessageBox.Show("Erfolgreich Benutzer hinzugefügt!");
+                            Bestätigung();
                             panelBenutzerLoginEinlesen();
                         }
 
@@ -1374,7 +1396,7 @@ namespace FutureFarm
                 }
                 else
                 {
-                    MessageBox.Show("Firmendaten erfolgreich geändert!");
+                    Bestätigung();
                     FirmendatenEinlesen();
                 }
 
@@ -1391,6 +1413,8 @@ namespace FutureFarm
     }
 
         private void listViewArtikel_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
             {
                 lvItem = listViewArtikel.SelectedItems[0];
 
@@ -1402,7 +1426,7 @@ namespace FutureFarm
                 txtArtikelUST.Text = lvItem.SubItems[4].Text;
                 Double netto = Convert.ToDouble(txtArtikelNettopreis.Text);
                 Double ust = Convert.ToDouble(txtArtikelUST.Text);
-                txtArtikelBrutto.Text = (netto + (netto*(ust / 100))).ToString();
+                txtArtikelBrutto.Text = (netto + (netto * (ust / 100))).ToString();
                 txtArtikelBrutto.Text.Replace(',', '.');
                 cbArtikelLieferanten.Text = lvItem.SubItems[5].Text;
                 txtArtikelLagerstand.Text = lvItem.SubItems[6].Text;
@@ -1416,13 +1440,18 @@ namespace FutureFarm
                 request.AddHeader("Content-Type", "application/json");
                 var response = client.Execute<Lieferanten>(request);
                 txtArtikelLieferantFirma.Text = response.Data.Firma.ToString();
-          
+
                 //Artikel holen
                 var request1 = new RestRequest("artikel/{id}", Method.GET);
                 request1.AddUrlSegment("id", txtArtikelArtikelID.Text.ToString());
                 request1.AddHeader("Content-Type", "application/json");
                 var response1 = client.Execute<Artikel>(request1);
                 aktArtikel = response1.Data;
+            }
+            catch(Exception ex)
+            {
+                return;
+            }
         }
 
         private void dtpNews_ValueChanged(object sender, EventArgs e)
@@ -1432,12 +1461,20 @@ namespace FutureFarm
 
         private void listViewNews_SelectedIndexChanged(object sender, EventArgs e)
         {
-            lvItem = listViewNews.SelectedItems[0];
+            try
+            {
+                lvItem = listViewNews.SelectedItems[0];
 
-            txtNewsID.Text = lvItem.SubItems[0].Text;
-            txtNewsTitel.Text = lvItem.SubItems[1].Text;
-            txtNewsBeitrag.Text = lvItem.SubItems[2].Text;
-            dtpNews.Value = Convert.ToDateTime(lvItem.SubItems[3].Text);
+                txtNewsID.Text = lvItem.SubItems[0].Text;
+                txtNewsTitel.Text = lvItem.SubItems[1].Text;
+                txtNewsBeitrag.Text = lvItem.SubItems[2].Text;
+                dtpNews.Value = Convert.ToDateTime(lvItem.SubItems[3].Text);
+            }
+            catch(Exception ex)
+            {
+                return;
+            }
+            
         }
 
         private void btNewsNeu_Click(object sender, EventArgs e)
@@ -1495,7 +1532,7 @@ namespace FutureFarm
                     }
                     else
                     {
-                        //MessageBox.Show("News erfolgreich geändert!");
+                        Bestätigung();
                         NewsEinlesen();
                     }
 
@@ -1555,13 +1592,12 @@ namespace FutureFarm
                     }
                     else
                     {
-                        //MessageBox.Show("Erfolgreich News hinzugefügt!");
                         NewsEinlesen();
                         txtNewsTitel.Clear();
                         txtNewsID.Clear();
                         txtNewsBeitrag.Clear();
                         dtpNews.Value = DateTime.Now;
-
+                        Bestätigung();
                     }
 
                 }
@@ -1611,7 +1647,7 @@ namespace FutureFarm
                     }
                     else
                     {
-                        MessageBox.Show("Erfolgreich Artikel geändert!");
+                        Bestätigung();
                         ArtikelEinlesen();
                     }
                 }
@@ -1660,7 +1696,7 @@ namespace FutureFarm
                     }
                     else
                     {
-                        MessageBox.Show("Erfolgreich Artikel hinzugefügt!");
+                        Bestätigung();
                         ArtikelEinlesen();
                     }
                 }
@@ -1688,26 +1724,19 @@ namespace FutureFarm
 
         private void txtArtikelNettopreis_TextChanged(object sender, EventArgs e)
         {
-            PreisBerechnen();
+           
+            ArtikelPreisBerechnen();
         }
 
-        private void PreisBerechnen()
+        private void ArtikelPreisBerechnen()
         {
             try
             {
-                if (reset == false)
-                {
-                    double netto = Convert.ToDouble(txtArtikelNettopreis.Text);
-                    double ust = Convert.ToDouble(txtArtikelUST.Text);
-                    double brutto = netto + (netto * (ust / 100));
-                    txtArtikelBrutto.Text = brutto.ToString();
-                }
-                else
-                    reset = false;
+                txtArtikelBrutto.Text = (Convert.ToDouble(txtArtikelNettopreis.Text) + (Convert.ToDouble(txtArtikelNettopreis.Text) * (Convert.ToDouble(txtArtikelUST.Text) / 100))).ToString();
             }
-            catch (Exception ex)
+            catch
             {
-                MessageBox.Show(ex.ToString());
+
             }
         }
 
@@ -1746,7 +1775,7 @@ namespace FutureFarm
             }
             else
             {
-                MessageBox.Show("Erfolgreich Artikel geändert!");
+                Bestätigung();
                 ArtikelEinlesen();
             }
             ArtikelFelderLeeren();
@@ -1818,12 +1847,12 @@ namespace FutureFarm
                 }
                 else
                 {
-                    //MessageBox.Show("Erfolgreich gelöscht");
                     NewsEinlesen();
                     txtNewsTitel.Clear();
                     txtNewsID.Clear();
                     txtNewsBeitrag.Clear();
                     dtpNews.Value = DateTime.Now;
+                    Bestätigung();
                 }
 
             }
@@ -1871,8 +1900,7 @@ namespace FutureFarm
                         LogIn = true;
                         btLogin2.Text = benutzerEingabe;
                         btLogin2.Image = imgLogin;
-                        
-                        MessageBox.Show("Anmeldung erfolgreich!");
+                        Bestätigung();
                         break;
                     }
                     else
@@ -2124,7 +2152,7 @@ namespace FutureFarm
             }
             else
             {
-                MessageBox.Show("Rechnung erfolgreich angelegt!");
+                Bestätigung();
             }
 
             //Rechnung ID finden
@@ -2184,7 +2212,7 @@ namespace FutureFarm
                 }
                 else
                 {
-                    MessageBox.Show("Rechnungartikel erfolgreich angelegt!");
+                    Bestätigung();
                 }
             }
         }
@@ -2201,27 +2229,32 @@ namespace FutureFarm
 
         private void listViewTermine_SelectedIndexChanged(object sender, EventArgs e)
         {
+            try
+            {
+                lvItem = listViewTermine.SelectedItems[0];
 
-            lvItem = listViewTermine.SelectedItems[0];
+                txtTerminID.Text = lvItem.SubItems[0].Text;
+                txtTerminTitel.Text = lvItem.SubItems[1].Text;
+                txtTerminBeschreibung.Text = lvItem.SubItems[2].Text;
 
-            txtTerminID.Text = lvItem.SubItems[0].Text;
-            txtTerminTitel.Text = lvItem.SubItems[1].Text;
-            txtTerminBeschreibung.Text = lvItem.SubItems[2].Text;
+                //Datum
+                string gesamtesDatum = lvItem.SubItems[3].Text;
+                string datumVor = gesamtesDatum.Substring(0, gesamtesDatum.IndexOf('-'));
+                dtpTerminDatumVon.Value = Convert.ToDateTime(datumVor);
+                string datumNach = gesamtesDatum.Substring(gesamtesDatum.IndexOf('-') + 1, 10);
+                dtpTerminDatumBis.Value = Convert.ToDateTime(datumNach);
 
-            //Datum
-            string gesamtesDatum = lvItem.SubItems[3].Text;
-            string datumVor = gesamtesDatum.Substring(0, gesamtesDatum.IndexOf('-'));
-            dtpTerminDatumVon.Value = Convert.ToDateTime(datumVor);
-            string datumNach = gesamtesDatum.Substring(gesamtesDatum.IndexOf('-') + 1, 10);
-            dtpTerminDatumBis.Value = Convert.ToDateTime(datumNach);
-
-            //Uhrzeit
-            string gesamteZeit = lvItem.SubItems[4].Text;
-            string zeitVon = gesamteZeit.Substring(0, gesamteZeit.IndexOf('-'));
-            dtpTermineZeitVon.Value = Convert.ToDateTime(zeitVon);
-            string zeitBis=gesamteZeit.Substring(gesamteZeit.IndexOf('-')+1, 5);
-            dtpTermineZeitBis.Value = Convert.ToDateTime(zeitBis);
-
+                //Uhrzeit
+                string gesamteZeit = lvItem.SubItems[4].Text;
+                string zeitVon = gesamteZeit.Substring(0, gesamteZeit.IndexOf('-'));
+                dtpTermineZeitVon.Value = Convert.ToDateTime(zeitVon);
+                string zeitBis = gesamteZeit.Substring(gesamteZeit.IndexOf('-') + 1, 5);
+                dtpTermineZeitBis.Value = Convert.ToDateTime(zeitBis);
+            }
+            catch(Exception ex)
+            {
+                return;
+            }
 
         }
 
@@ -2263,10 +2296,14 @@ namespace FutureFarm
                         plz.PLZID = pl.PLZID;
                         plz.PLZ = pl.PLZ;
                         plz.Ortschaft = pl.Ortschaft;
+                        
+                        MessageBox.Show(txtKundenPLZ.Text + " " + cbKundenOrt.Text);
+                        break;
                     }
                 }
 
                 kunde.Postleitzahl = plz;
+                MessageBox.Show(plz.PLZID.ToString() + " " + plz.Ortschaft.ToString());
                 kunde.Aktiv = true;
 
                 //Kunden updaten
@@ -2280,7 +2317,7 @@ namespace FutureFarm
                 }
                 else
                 {
-                    MessageBox.Show("Kunde erfolgreich geändert!");
+                    Bestätigung();
                     KundenEinlesen();
                 }
 
@@ -2329,7 +2366,7 @@ namespace FutureFarm
                 }
                 else
                 {
-                    MessageBox.Show("Kunde erfolgreich angelegt!");
+                    Bestätigung();
                     KundenEinlesen();
                 }
 
@@ -2384,7 +2421,7 @@ namespace FutureFarm
                     }
                     else
                     {
-                        MessageBox.Show("Kunde erfolgreich 'gelöscht'!");
+                        Bestätigung();
                         KundenEinlesen();
                     }
 
@@ -2420,8 +2457,12 @@ namespace FutureFarm
                 txtKundenStrasse.Text = lvItem.SubItems[7].Text.ToString();
 
                 cbKundenOrt.Items.Clear();
+
+                
                 //PLZID holen
                 Postleitzahl plzKunde = new Postleitzahl();
+                string plzid = "";
+
                 var request1 = new RestRequest("kunden", Method.GET);
                 request1.AddHeader("Content-Type", "application/json");
                 var response1 = client.Execute<List<Kunden>>(request1);
@@ -2429,20 +2470,32 @@ namespace FutureFarm
                 {
                     if(txtKundenID.Text.Equals(k.KundenID.ToString()))
                     {
-                        plzKunde.PLZID = k.Postleitzahl.PLZID;
-                        plzKunde.PLZ = k.Postleitzahl.PLZ;
-                        plzKunde.Ortschaft = k.Postleitzahl.Ortschaft;
+                        //txtKundenPLZ.Text = k.Postleitzahl.PLZ;
+                        //if(txtKundenPLZ.Text.Equals(k.Postleitzahl.PLZ)&&)
+                        //cbKundenOrt.Items.Add(k.Postleitzahl.Ortschaft);
+                        //cbKundenOrt.SelectedItem = cbKundenOrt.Items[0];
+                        plzid = k.Postleitzahl.PLZID.ToString();
+                    }
+                }
 
-                        txtKundenPLZ.Text = plzKunde.PLZ;
-                        cbKundenOrt.Items.Add(plzKunde.Ortschaft);
-                        cbKundenOrt.SelectedItem = cbKundenOrt.Items[0];
+                var request2 = new RestRequest("postleitzahlen", Method.GET);
+                request2.AddHeader("Content-Type", "application/json");
+                var response2 = client.Execute<List<Postleitzahl>>(request2);
+
+                foreach(Postleitzahl plz in response2.Data)
+                {
+                    if (plzid.Equals(plz.PLZID.ToString()))
+                    {
+                        cbKundenOrt.Items.Add(plz.Ortschaft);
+                        txtKundenPLZ.Text = plz.PLZ;
+                        cbKundenOrt.SelectedItem =cbKundenOrt.Items[0];
                     }
                 }
 
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                return;
             }
         }
 
@@ -2564,7 +2617,7 @@ namespace FutureFarm
             }
             catch(Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                return;
             }
         }
 
@@ -2631,7 +2684,7 @@ namespace FutureFarm
             }
             catch(Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                return;
             }
         }
 
@@ -2783,6 +2836,7 @@ namespace FutureFarm
                     }
                     else
                     {
+                        Bestätigung();
                         BestellungenArtikelEinlesen();
                     }
                 }
@@ -2878,6 +2932,7 @@ namespace FutureFarm
             }
             else
             {
+
                 BestellungenArtikelEinlesen();
             }
 
@@ -2922,6 +2977,7 @@ namespace FutureFarm
             }
             else
             {
+                Bestätigung();
                 listViewBestellungenArtikelGewählt.Items.Remove(listViewBestellungenArtikelGewählt.SelectedItems[0]);
             }
         }
@@ -3098,7 +3154,7 @@ namespace FutureFarm
                 }
                 else
                 {
-                    MessageBox.Show("Erfolgreich Termin geändert!");
+                    Bestätigung();
                     TermineEinlesen();
                 }
             }
@@ -3146,7 +3202,7 @@ namespace FutureFarm
                     }
                     else
                     {
-                        MessageBox.Show("Erfolgreich Termin hinzugefügt!");
+                        Bestätigung();
                         TermineEinlesen();
                     }
 
@@ -3199,7 +3255,7 @@ namespace FutureFarm
             }
             else
             {
-                MessageBox.Show("Erfolgreich Termin gelöscht!");
+                Bestätigung();
                 TermineEinlesen();
             }
         }
@@ -3414,6 +3470,7 @@ namespace FutureFarm
                 fw.ShowDialog();
                 if (fw.weiter == true)
                 {
+                    Bestätigung();
                     panelsDeaktivieren();
                     panelBestellungen.Dock=DockStyle.Fill;
                 }
@@ -3588,11 +3645,11 @@ namespace FutureFarm
             DialogResult dialogResult = MessageBox.Show("Die Rechnung wurde angelegt,\nsoll diese direkt geöffnet werden?", "", MessageBoxButtons.YesNo);
             if (dialogResult == DialogResult.Yes)
             {
-                //wordApp.Visible = true;
-                //wordApp.ShowMe();
+                wordApp.Visible = true;
+                wordApp.ShowMe();
 
-                myWordDoc.Close();
-                wordApp.Quit();
+                //myWordDoc.Close();
+                //wordApp.Quit();
 
             }
             else if (dialogResult == DialogResult.No)
@@ -3895,7 +3952,7 @@ namespace FutureFarm
                 }
                 else
                 {
-                    //MessageBox.Show("Lieferant erfolgreich geändert!");
+                    Bestätigung();
                     LieferantenEinlesen();
                 }
 
@@ -3945,7 +4002,8 @@ namespace FutureFarm
                 }
                 else
                 {
-                    MessageBox.Show("Lieferant erfolgreich angelegt!");
+                    Bestätigung();
+
                     LieferantenEinlesen();
                 }
 
@@ -4024,7 +4082,7 @@ namespace FutureFarm
                 }
                 else
                 {
-                    MessageBox.Show("Lieferant erfolgreich 'gelöscht'!");
+                    Bestätigung();
                     LieferantenEinlesen();
                 }
 
@@ -4125,6 +4183,34 @@ namespace FutureFarm
         private void uBenutzerToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Benutzer();
+        }
+
+        private void Bestätigung()
+        {
+            timerBestätigung.Enabled = true;
+            timerBestätigung.Start();
+
+            int x = this.Width / 2 - pbBestätigung.Width / 2;
+            int y = this.Height / 2 - pbBestätigung.Height / 2;
+            pbBestätigung.Location = new Point(x, y);
+            pbBestätigung.Visible = true;
+            pbBestätigung.BringToFront();
+        }
+
+        private void timerBestätigung_Tick(object sender, EventArgs e)
+        {
+            pbBestätigung.Visible = false;
+            timerBestätigung.Enabled = false;
+        }
+
+        private void txtArtikelUST_TextChanged(object sender, EventArgs e)
+        {
+            ArtikelPreisBerechnen();
+        }
+
+        private void txtArtikelBrutto_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
