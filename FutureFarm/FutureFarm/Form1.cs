@@ -33,7 +33,7 @@ namespace FutureFarm
             panelAuswahl.Top = btHome.Top;
 
 
-            client = new RestClient("http://futurefarm.projects.hakmistelbach.ac.at/aoi")
+            client = new RestClient("http://futurefarm.projects.hakmistelbach.ac.at:20216")
             {
                 Authenticator = new HttpBasicAuthenticator("demo", "demo")
             };
