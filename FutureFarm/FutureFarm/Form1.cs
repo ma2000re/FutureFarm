@@ -2600,6 +2600,8 @@ namespace FutureFarm
                         cbRechnungBezahlt.Checked = Convert.ToBoolean(listViewRechnungen.Items[i].SubItems[2].Text.ToLower());
                         DateTime rechnungBezahltAm = Convert.ToDateTime(listViewRechnungen.Items[i].SubItems[3].Text);
                         dtpRechnungBezahlt.Value = rechnungBezahltAm;
+
+                        dtpRechnungDatum.Value = Convert.ToDateTime(listViewRechnungen.Items[i].SubItems[1].Text);
                     }
                 }
 
@@ -2790,10 +2792,7 @@ namespace FutureFarm
 
                         BestellungenEinlesen();
                         int anzahl = listViewBestellungen.Items.Count;
-                        //listViewBestellungen.SelectedItems=listViewBeste.Items
-                            //Arbeiten
-                        //lvItem = listViewBestellungen.Items[listViewBestellungen.Items.Count - 1];
-                        //txtBestellungID.Text = lvItem.Text;                        
+                        listViewBestellungen.Items[anzahl-1].Selected = true;                      
                     }
                 }
                 else
@@ -3810,7 +3809,49 @@ namespace FutureFarm
 
         private void btRechnungSpeichern_Click(object sender, EventArgs e)
         {
+            Rechnung rechnung = new Rechnung();
+            rechnung.RechnungID = Convert.ToInt32(txtRechnungID.Text);
+            rechnung.Datum = dtpRechnungDatum.Value;
+            rechnung.Bezahlt = cbRechnungBezahlt.Checked;
+            rechnung.BezahltAm = dtpRechnungBezahlt.Value;
 
+            //Kunde suchen
+            Kunden kunde = new Kunden();
+            var requestKunde = new RestRequest("kunden", Method.GET);
+            requestKunde.AddHeader("Content-Type", "application/json");
+            var responseKunde = client.Execute<List<Kunden>>(requestKunde);
+            foreach (Kunden k in responseKunde.Data)
+            {
+                if (txtRechnungKunde.Text.Equals(k.Nachname+" "+k.Vorname))
+                {
+                    kunde.KundenID = k.KundenID;
+                    kunde.Anrede = k.Anrede;
+                    kunde.Vorname = k.Vorname;
+                    kunde.Nachname = k.Nachname;
+                    kunde.Firma = k.Firma;
+                    kunde.Telefonnummer = k.Telefonnummer;
+                    kunde.Email = k.Email;
+                    kunde.Strasse = k.Strasse;
+                    kunde.Aktiv = k.Aktiv;
+                    kunde.PLZ = k.PLZ;
+                }
+            }
+
+            rechnung.Kunde = kunde;
+
+            var requestUpdate = new RestRequest("rechnungen", Method.PUT);
+            requestUpdate.AddHeader("Content-Type", "application/json");
+            requestUpdate.AddJsonBody(rechnung);
+            var responseUpdate = client.Execute(requestUpdate);
+            if (responseUpdate.StatusCode == System.Net.HttpStatusCode.BadRequest)
+            {
+                MessageBox.Show("An Error occured", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else
+            {
+                Bestätigung();
+                RechnungenEinlesen();
+            }
         }
 
         private void btWebsiteBilder_Click(object sender, EventArgs e)

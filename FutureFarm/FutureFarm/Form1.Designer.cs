@@ -105,6 +105,7 @@
             this.txtArtikelSuchen = new System.Windows.Forms.TextBox();
             this.lbArtikelSuchen = new System.Windows.Forms.Label();
             this.panelArtikelInfo = new System.Windows.Forms.Panel();
+            this.pbArtikel = new System.Windows.Forms.PictureBox();
             this.checkboxArtikelAktiv = new System.Windows.Forms.CheckBox();
             this.btReset = new System.Windows.Forms.Button();
             this.cbArtikelLieferanten = new System.Windows.Forms.ComboBox();
@@ -409,7 +410,6 @@
             this.pbBestätigung = new System.Windows.Forms.PictureBox();
             this.pbMinMax = new System.Windows.Forms.PictureBox();
             this.timerBestätigung = new System.Windows.Forms.Timer(this.components);
-            this.pbArtikel = new System.Windows.Forms.PictureBox();
             this.panelLinks.SuspendLayout();
             this.panelMenü.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbLogoHome)).BeginInit();
@@ -419,6 +419,7 @@
             this.panelFirmendaten.SuspendLayout();
             this.panelArtikel.SuspendLayout();
             this.panelArtikelInfo.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbArtikel)).BeginInit();
             this.panelNews.SuspendLayout();
             this.panelRechnungen.SuspendLayout();
             this.panelRechnungNeu.SuspendLayout();
@@ -431,7 +432,6 @@
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbBestätigung)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbMinMax)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pbArtikel)).BeginInit();
             this.SuspendLayout();
             // 
             // panelLinks
@@ -1332,6 +1332,15 @@
             this.panelArtikelInfo.Size = new System.Drawing.Size(1004, 358);
             this.panelArtikelInfo.TabIndex = 51;
             // 
+            // pbArtikel
+            // 
+            this.pbArtikel.Location = new System.Drawing.Point(703, 3);
+            this.pbArtikel.Name = "pbArtikel";
+            this.pbArtikel.Size = new System.Drawing.Size(298, 206);
+            this.pbArtikel.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pbArtikel.TabIndex = 57;
+            this.pbArtikel.TabStop = false;
+            // 
             // checkboxArtikelAktiv
             // 
             this.checkboxArtikelAktiv.AutoSize = true;
@@ -1879,9 +1888,10 @@
             this.panelRechnungen.Controls.Add(this.listViewRechnungArtikel);
             this.panelRechnungen.Controls.Add(this.listViewRechnungen);
             this.panelRechnungen.Controls.Add(this.label39);
-            this.panelRechnungen.Location = new System.Drawing.Point(1571, 973);
+            this.panelRechnungen.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panelRechnungen.Location = new System.Drawing.Point(205, 41);
             this.panelRechnungen.Name = "panelRechnungen";
-            this.panelRechnungen.Size = new System.Drawing.Size(79, 61);
+            this.panelRechnungen.Size = new System.Drawing.Size(1556, 1015);
             this.panelRechnungen.TabIndex = 52;
             this.panelRechnungen.Visible = false;
             this.panelRechnungen.MouseEnter += new System.EventHandler(this.panelRechnungen_MouseEnter);
@@ -2015,7 +2025,7 @@
             this.dtpRechnungDatum.CalendarFont = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dtpRechnungDatum.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dtpRechnungDatum.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpRechnungDatum.Location = new System.Drawing.Point(481, 255);
+            this.dtpRechnungDatum.Location = new System.Drawing.Point(601, 258);
             this.dtpRechnungDatum.Name = "dtpRechnungDatum";
             this.dtpRechnungDatum.Size = new System.Drawing.Size(136, 27);
             this.dtpRechnungDatum.TabIndex = 44;
@@ -2154,7 +2164,7 @@
             // 
             this.label31.AutoSize = true;
             this.label31.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label31.Location = new System.Drawing.Point(410, 258);
+            this.label31.Location = new System.Drawing.Point(530, 261);
             this.label31.Name = "label31";
             this.label31.Size = new System.Drawing.Size(65, 21);
             this.label31.TabIndex = 33;
@@ -2799,10 +2809,9 @@
             this.panelBestellungen.Controls.Add(this.txtBestellungID);
             this.panelBestellungen.Controls.Add(this.label55);
             this.panelBestellungen.Controls.Add(this.listViewBestellungen);
-            this.panelBestellungen.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelBestellungen.Location = new System.Drawing.Point(205, 41);
+            this.panelBestellungen.Location = new System.Drawing.Point(874, 973);
             this.panelBestellungen.Name = "panelBestellungen";
-            this.panelBestellungen.Size = new System.Drawing.Size(1556, 1015);
+            this.panelBestellungen.Size = new System.Drawing.Size(66, 48);
             this.panelBestellungen.TabIndex = 56;
             this.panelBestellungen.Visible = false;
             this.panelBestellungen.MouseEnter += new System.EventHandler(this.panelArtikel_MouseEnter);
@@ -4171,15 +4180,6 @@
             this.timerBestätigung.Interval = 1000;
             this.timerBestätigung.Tick += new System.EventHandler(this.timerBestätigung_Tick);
             // 
-            // pbArtikel
-            // 
-            this.pbArtikel.Location = new System.Drawing.Point(703, 3);
-            this.pbArtikel.Name = "pbArtikel";
-            this.pbArtikel.Size = new System.Drawing.Size(298, 206);
-            this.pbArtikel.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pbArtikel.TabIndex = 57;
-            this.pbArtikel.TabStop = false;
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
@@ -4234,6 +4234,7 @@
             this.panelArtikel.PerformLayout();
             this.panelArtikelInfo.ResumeLayout(false);
             this.panelArtikelInfo.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbArtikel)).EndInit();
             this.panelNews.ResumeLayout(false);
             this.panelNews.PerformLayout();
             this.panelRechnungen.ResumeLayout(false);
@@ -4255,7 +4256,6 @@
             this.menuStrip1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbBestätigung)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbMinMax)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pbArtikel)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
