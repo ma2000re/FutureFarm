@@ -17,6 +17,7 @@ using Word = Microsoft.Office.Interop.Word;
 using System.Reflection;
 using System.Security.Cryptography;
 using FutureFarm.Properties;
+using System.Drawing.Imaging;
 
 namespace FutureFarm
 {
@@ -77,6 +78,8 @@ namespace FutureFarm
         internal Image imgLogout = Properties.Resources.logout;
         internal Image min = Properties.Resources.min;
         internal Image max = Properties.Resources.max;
+        internal Image bestätigungImage = Properties.Resources.Unbenannt_1;
+
 
         private void btHome_Click(object sender, EventArgs e)
         {
@@ -121,6 +124,8 @@ namespace FutureFarm
             RechnungenEinlesen();
             RechnungArtikelEinlesen();
             RechnungSucheEinlesen();
+
+            listViewRechnungen.Sorting = SortOrder.Descending;
         }
 
         private void RechnungenEinlesen()
@@ -246,6 +251,7 @@ namespace FutureFarm
                 lvItem.SubItems.Add(a.Lagerstand.ToString());
                 lvItem.SubItems.Add(a.Reserviert.ToString());
                 lvItem.SubItems.Add(a.Aktiv.ToString());
+                
 
 
 
@@ -1433,6 +1439,10 @@ namespace FutureFarm
                 txtArtikelReserviert.Text = lvItem.SubItems[7].Text;
                 checkboxArtikelAktiv.Checked = Convert.ToBoolean(lvItem.SubItems[8].Text);
 
+                string bild = txtArtikelBezeichnung.Text.Trim();
+                pbArtikel.Image = Image.FromFile(@"D:\\OneDrive - BHAK und BHAS Mistelbach 316448\\Schule\\AP_SWE\\GitHub\\FutureFarmProgramm\\FutureFarm\\FutureFarm\\Properties\\Artikel\\" + bild + ".jpg");
+
+
 
                 //Lieferant auswählen per ID
                 var request = new RestRequest("lieferanten/{id}", Method.GET);
@@ -1452,6 +1462,7 @@ namespace FutureFarm
             {
                 return;
             }
+
         }
 
         private void dtpNews_ValueChanged(object sender, EventArgs e)
@@ -1974,6 +1985,8 @@ namespace FutureFarm
             panelRechnungNeu.BringToFront();
 
             ComboRechnungNeuKundenEinlesen();
+
+            dtpRechnungNeu.Value = DateTime.Now;
             
         }
 
@@ -2156,30 +2169,51 @@ namespace FutureFarm
             }
 
             //Rechnung ID finden
-            string rechnungID = "";
-            var request2 = new RestRequest("rechnungen", Method.GET);
-            request2.AddHeader("Content-Type", "application/json");
-            var response2 = client.Execute<List<Rechnung>>(request2);
-            foreach(Rechnung r in response2.Data)
-            {
-                rechnungID = r.RechnungID.ToString();
-            }
-            rechnung.RechnungID = Convert.ToInt32(rechnungID);
-            //Rechnungartikel erstellen
+            //string rechnungID = "";
+            //var request2 = new RestRequest("rechnungen", Method.GET);
+            //request2.AddHeader("Content-Type", "application/json");
+            //var response2 = client.Execute<List<Rechnung>>(request2);
+            //foreach(Rechnung r in response2.Data)
+            //{
+            //    if (rechnung.Datum == r.Datum && r.Kunde.Nachname.Equals(rechnung.Kunde.Nachname) && r.Bestellung.BestellungID.Equals(rechnung.Bestellung.BestellungID) && (r.Bezahlt == rechnung.Bezahlt))
+            //    {
+                    
+            //        rechnungID = r.RechnungID.ToString();
+            //    }
+            //}
+            
 
+
+            //Rechnungartikel erstellen
 
             for (int i=0; i<listViewRechnungNeuArtikel.Items.Count;i++)
             {
                 lvItem = listViewRechnungNeuArtikel.Items[i];
                 RechnungArtikel ra = new RechnungArtikel();
                 Artikel artikel = new Artikel();
+                Rechnung rechnungS = new Rechnung();
+
+                var requestRechnung = new RestRequest("rechnungen", Method.GET);
+                requestRechnung.AddHeader("Content-Type", "application/json");
+                var responseRechnung = client.Execute<List<Rechnung>>(requestRechnung);
+                foreach(Rechnung r in responseRechnung.Data)
+                {
+                    rechnungS.RechnungID = r.RechnungID;
+                    rechnungS.Datum = r.Datum;
+                    rechnungS.Bezahlt = r.Bezahlt;
+                    rechnungS.BezahltAm = r.BezahltAm;
+                    rechnungS.Kunde = r.Kunde;
+                    rechnungS.Bestellung = r.Bestellung;
+                }
+
+                MessageBox.Show(rechnungS.RechnungID.ToString());
 
                 var requestArtikel = new RestRequest("artikel", Method.GET);
                 requestArtikel.AddHeader("Content-Type", "application/json");
                 var responseArtikel = client.Execute<List<Artikel>>(requestArtikel);
-                foreach(Artikel a in responseArtikel.Data)
+                foreach (Artikel a in responseArtikel.Data)
                 {
-                    if(lvItem.Text.Equals(a.ArtikelID.ToString()))
+                    if (lvItem.Text.Equals(a.ArtikelID.ToString()))
                     {
                         artikel.ArtikelID = a.ArtikelID;
                         artikel.Bezeichnung = a.Bezeichnung;
@@ -2198,7 +2232,7 @@ namespace FutureFarm
                 ra.NettoPreis = Convert.ToDouble(lvItem.SubItems[3].Text);
                 ra.Ust= Convert.ToDouble(lvItem.SubItems[4].Text);
                 ra.Aktiv= true;
-                ra.Rechnung = rechnung;
+                ra.Rechnung = rechnungS;
                 ra.Artikel = artikel;
 
                 var request1 = new RestRequest("rechnungartikel", Method.POST);
@@ -2558,10 +2592,10 @@ namespace FutureFarm
                 txtRechnungID.Text = lvItem.SubItems[0].Text;
                 txtRechnungenBestellungID.Text = lvItem.SubItems[3].Text;
                 txtRechnungKunde.Text = lvItem.SubItems[2].Text;
-                
-                for (int i=0; i<listViewRechnungen.Items.Count;i++)
+
+                for (int i = 0; i < listViewRechnungen.Items.Count; i++)
                 {
-                    if(txtRechnungID.Text.Equals(listViewRechnungen.Items[i].SubItems[0].Text))
+                    if (txtRechnungID.Text.Equals(listViewRechnungen.Items[i].SubItems[0].Text))
                     {
                         cbRechnungBezahlt.Checked = Convert.ToBoolean(listViewRechnungen.Items[i].SubItems[2].Text.ToLower());
                         DateTime rechnungBezahltAm = Convert.ToDateTime(listViewRechnungen.Items[i].SubItems[3].Text);
@@ -2602,7 +2636,7 @@ namespace FutureFarm
 
                 //Summen berechnen
                 double summeNetto = 0;
-                double summeUst=0;
+                double summeUst = 0;
                 for (int i = 0; i < listViewRechnungGewähltArtikel.Items.Count; i++)
                 {
                     summeNetto += Convert.ToDouble(listViewRechnungGewähltArtikel.Items[i].SubItems[2].Text);
@@ -2615,7 +2649,7 @@ namespace FutureFarm
 
 
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 return;
             }
@@ -2746,6 +2780,7 @@ namespace FutureFarm
                         var response1 = client.Execute<Kunden>(request1);
                         Kunden k = response1.Data;
                         b.Kunde = k;
+                        MessageBox.Show(b.Kunde.Nachname);
 
                         //Bestellung hinzufügen
                         var request2 = new RestRequest("bestellungen", Method.POST);
@@ -2754,8 +2789,11 @@ namespace FutureFarm
                         var response2 = client.Execute(request2);
 
                         BestellungenEinlesen();
-                        lvItem = listViewBestellungen.Items[listViewBestellungen.Items.Count - 1];
-                        txtBestellungID.Text = lvItem.Text;                        
+                        int anzahl = listViewBestellungen.Items.Count;
+                        //listViewBestellungen.SelectedItems=listViewBeste.Items
+                            //Arbeiten
+                        //lvItem = listViewBestellungen.Items[listViewBestellungen.Items.Count - 1];
+                        //txtBestellungID.Text = lvItem.Text;                        
                     }
                 }
                 else
@@ -4197,6 +4235,7 @@ namespace FutureFarm
             pbBestätigung.BringToFront();
         }
 
+
         private void timerBestätigung_Tick(object sender, EventArgs e)
         {
             pbBestätigung.Visible = false;
@@ -4210,6 +4249,12 @@ namespace FutureFarm
 
         private void txtArtikelBrutto_TextChanged(object sender, EventArgs e)
         {
+
+        }
+
+        private void listViewRechnungSuche_Click(object sender, EventArgs e)
+        {
+            
 
         }
     }
